@@ -5,3 +5,7 @@
 [node name="TestScene" type="Node2D"]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ch2k2")]
+position = Vector2(572, 317)
+accelerationPerSecond = 200
+decelerationPerSecond = 250
+rotationSpeedPerSecond = 1.0
