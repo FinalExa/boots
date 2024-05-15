@@ -1,20 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=6 format=3 uid="uid://dqg13lpbwrv7"]
 
+[ext_resource type="Texture2D" uid="uid://bdsu8mixci7tf" path="res://Player/Sprites/Brook.png" id="1_hl47a"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
-[ext_resource type="Texture2D" uid="uid://cxvqtv8ktdus2" path="res://icon.svg" id="2_11hb6"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="3_fxyqo"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerSpeedThresholds.gd" id="4_33erx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
+radius = 33.1361
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_11hb6")
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_hl47a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_upbqd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="PlayerInputs" type="Node" parent="."]
 script = ExtResource("3_fxyqo")
@@ -27,3 +30,8 @@ accelerationPerSecond = 200.0
 decelerationPerSecond = 250.0
 rotationSpeedPerSecond = 1.0
 maxSpeed = 1000.0
+
+[node name="PlayerSpeedThresholds" type="Node2D" parent="." node_paths=PackedStringArray("playerMovements")]
+script = ExtResource("4_33erx")
+playerMovements = NodePath("../PlayerMovement")
+speedThresholds = Array[float]([300.0, 600.0, 900.0])
