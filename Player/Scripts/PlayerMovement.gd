@@ -6,34 +6,52 @@ extends Node
 
 @export var accelerationPerSecond: float
 @export var decelerationPerSecond: float
+@export var decelerationWhileSteering: float
 @export var rotationSpeedPerSecond: float
 @export var minSpeed: float
 @export var maxSpeed: float
 var currentSpeed: float
 var currentDirection: Vector2
+var lastDirection: Vector2
+var directionDifferent: bool
 var xValue: float
 var yValue: float
 
 func _ready():
 	currentSpeed = 0
+	lastDirection = Vector2.ZERO
 
 func SetCurrentSpeed(delta):
 	if (playerInputs.movementInput == Vector2.ZERO):
-		currentSpeed -= decelerationPerSecond * delta
+		Decelerate(delta, decelerationPerSecond)
+		if (currentSpeed < minSpeed):
+			currentSpeed = 0
 		if (currentSpeed == 0):
 			currentDirection = Vector2.ZERO
 	else:
-		currentSpeed = clamp(currentSpeed + (accelerationPerSecond * delta), minSpeed, maxSpeed)
 		SetDirection(delta)
+		if (!directionDifferent):
+			Accelerate(delta)
+		else:
+			Decelerate(delta, decelerationWhileSteering)
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 	playerBody.velocity = currentDirection * currentSpeed
-	
+
+func Accelerate(delta):
+	currentSpeed = clamp(currentSpeed + (accelerationPerSecond * delta), minSpeed, maxSpeed)
+
+func Decelerate(delta, decelerationValue):
+	currentSpeed -= decelerationValue * delta
+
 func SetDirection(delta):
 	if (currentDirection == Vector2.ZERO):
 		currentDirection = playerInputs.movementInput
 	else:
 		CalculateRotationDirection()
 		SetNewDirection(delta)
+		if (lastDirection != currentDirection): directionDifferent = true
+		else: directionDifferent = false
+		lastDirection = currentDirection
 
 func SetNewDirection(delta):
 	currentDirection.x = SetDirectionValue(playerInputs.movementInput.x, currentDirection.x, xValue, delta)

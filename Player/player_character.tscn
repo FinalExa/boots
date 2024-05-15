@@ -33,6 +33,7 @@ playerBody = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
 accelerationPerSecond = 200.0
 decelerationPerSecond = 250.0
+decelerationWhileSteering = 30.0
 rotationSpeedPerSecond = 1.0
 minSpeed = 50.0
 maxSpeed = 1500.0
