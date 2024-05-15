@@ -1,18 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://drqsgja5qy8np"]
+[gd_scene load_steps=5 format=3 uid="uid://dqg13lpbwrv7"]
 
-[ext_resource type="Script" path="res://Player/PlayerMovement.gd" id="1_h2t1a"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
 [ext_resource type="Texture2D" uid="uid://cxvqtv8ktdus2" path="res://icon.svg" id="2_11hb6"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="3_fxyqo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
-script = ExtResource("1_h2t1a")
-accelerationPerSecond = 160
-decelerationPerSecond = 120
-maxSpeed = 1000
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_11hb6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_upbqd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlayerInputs" type="Node" parent="."]
+script = ExtResource("3_fxyqo")
+
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("playerBody", "playerInputs")]
+script = ExtResource("1_n46fh")
+playerBody = NodePath("..")
+playerInputs = NodePath("../PlayerInputs")
+accelerationPerSecond = 200.0
+decelerationPerSecond = 250.0
+rotationSpeedPerSecond = 1.0
+maxSpeed = 1000.0
