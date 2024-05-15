@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=11 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Texture2D" uid="uid://bdsu8mixci7tf" path="res://Player/Sprites/Brook.png" id="1_hl47a"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="3_fxyqo"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerSpeedThresholds.gd" id="4_33erx"]
+[ext_resource type="Script" path="res://Player/Scripts/HUD/SpeedValue.gd" id="4_hhy2o"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerRotator.gd" id="4_mluyg"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
 [ext_resource type="Texture2D" uid="uid://bhk565yga7gwp" path="res://Player/Sprites/level2.png" id="7_ps88g"]
@@ -26,7 +27,7 @@ shape = SubResource("CircleShape2D_upbqd")
 [node name="PlayerInputs" type="Node" parent="."]
 script = ExtResource("3_fxyqo")
 
-[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("playerBody", "playerInputs")]
+[node name="PlayerMovements" type="Node" parent="." node_paths=PackedStringArray("playerBody", "playerInputs")]
 script = ExtResource("1_n46fh")
 playerBody = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
@@ -36,15 +37,35 @@ rotationSpeedPerSecond = 1.0
 minSpeed = 50.0
 maxSpeed = 1500.0
 
+[node name="PlayerHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -960.0
+offset_top = -536.0
+offset_right = 960.0
+offset_bottom = 536.0
+
+[node name="SpeedValue" type="Label" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "speedThresholds")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 56.0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_hhy2o")
+playerMovements = NodePath("../../PlayerMovements")
+speedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
+
 [node name="PlayerRotator" type="Node2D" parent="." node_paths=PackedStringArray("playerBody", "playerMovements")]
 script = ExtResource("4_mluyg")
 playerBody = NodePath("..")
-playerMovements = NodePath("../PlayerMovement")
+playerMovements = NodePath("../PlayerMovements")
 offsetDegrees = 90
 
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
-playerMovements = NodePath("../../PlayerMovement")
+playerMovements = NodePath("../../PlayerMovements")
 speedThresholds = Array[float]([400.0, 750.0, 1300.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox")]
 
