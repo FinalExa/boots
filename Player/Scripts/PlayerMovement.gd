@@ -36,24 +36,19 @@ func SetDirection(delta):
 		SetNewDirection(delta)
 
 func SetNewDirection(delta):
-	var minXValue: float
-	var maxXValue: float
-	if (xValue == -1):
-		minXValue = playerInputs.movementInput.x
-		maxXValue = 1
+	currentDirection.x = SetDirectionValue(playerInputs.movementInput.x, currentDirection.x, xValue, delta)
+	currentDirection.y = SetDirectionValue(playerInputs.movementInput.y, currentDirection.y, yValue, delta)
+
+func SetDirectionValue(movementValue: float, directionValue: float, value: int, delta):
+	var minValue: float
+	var maxValue: float
+	if (value == -1):
+		minValue = movementValue
+		maxValue = 1
 	else:
-		minXValue = -1
-		maxXValue = playerInputs.movementInput.x
-	currentDirection.x = clamp(currentDirection.x + (xValue * rotationSpeedPerSecond * delta), minXValue, maxXValue)
-	var minYValue
-	var maxYValue
-	if (yValue == -1):
-		minYValue = playerInputs.movementInput.y
-		maxYValue = 1
-	else:
-		minYValue = -1
-		maxYValue = playerInputs.movementInput.y
-	currentDirection.y = clamp(currentDirection.y + (yValue * rotationSpeedPerSecond * delta), minYValue, maxYValue)
+		minValue = -1
+		maxValue = movementValue
+	return clamp(directionValue + (value * rotationSpeedPerSecond * delta), minValue, maxValue)
 
 func CalculateRotationDirection():
 	if (currentDirection.x > playerInputs.movementInput.x): xValue = -1
