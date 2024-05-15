@@ -7,6 +7,7 @@ extends Node
 @export var accelerationPerSecond: float
 @export var decelerationPerSecond: float
 @export var rotationSpeedPerSecond: float
+@export var minSpeed: float
 @export var maxSpeed: float
 var currentSpeed: float
 var currentDirection: Vector2
@@ -18,11 +19,11 @@ func _ready():
 
 func SetCurrentSpeed(delta):
 	if (playerInputs.movementInput == Vector2.ZERO):
-		currentSpeed-=decelerationPerSecond*delta
+		currentSpeed -= decelerationPerSecond * delta
 		if (currentSpeed == 0):
 			currentDirection = Vector2.ZERO
 	else:
-		currentSpeed+=accelerationPerSecond*delta
+		currentSpeed = clamp(currentSpeed + (accelerationPerSecond * delta), minSpeed, maxSpeed)
 		SetDirection(delta)
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 	playerBody.velocity = currentDirection * currentSpeed
@@ -43,7 +44,7 @@ func SetNewDirection(delta):
 	else:
 		minXValue = -1
 		maxXValue = playerInputs.movementInput.x
-	currentDirection.x = clamp(currentDirection.x+(xValue*rotationSpeedPerSecond*delta), minXValue, maxXValue)
+	currentDirection.x = clamp(currentDirection.x + (xValue * rotationSpeedPerSecond * delta), minXValue, maxXValue)
 	var minYValue
 	var maxYValue
 	if (yValue == -1):
@@ -52,7 +53,7 @@ func SetNewDirection(delta):
 	else:
 		minYValue = -1
 		maxYValue = playerInputs.movementInput.y
-	currentDirection.y = clamp(currentDirection.y+(yValue*rotationSpeedPerSecond*delta), minYValue, maxYValue)
+	currentDirection.y = clamp(currentDirection.y + (yValue * rotationSpeedPerSecond * delta), minYValue, maxYValue)
 
 func CalculateRotationDirection():
 	if (currentDirection.x > playerInputs.movementInput.x): xValue = -1

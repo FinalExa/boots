@@ -33,7 +33,8 @@ playerInputs = NodePath("../PlayerInputs")
 accelerationPerSecond = 200.0
 decelerationPerSecond = 250.0
 rotationSpeedPerSecond = 1.0
-maxSpeed = 1000.0
+minSpeed = 50.0
+maxSpeed = 1500.0
 
 [node name="PlayerRotator" type="Node2D" parent="." node_paths=PackedStringArray("playerBody", "playerMovements")]
 script = ExtResource("4_mluyg")
@@ -44,7 +45,7 @@ offsetDegrees = 90
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
 playerMovements = NodePath("../../PlayerMovement")
-speedThresholds = Array[float]([300.0, 600.0, 900.0])
+speedThresholds = Array[float]([400.0, 750.0, 1300.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox")]
 
 [node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds"]
