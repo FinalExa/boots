@@ -3,13 +3,19 @@ extends Node2D
 
 @export var playerMovements: PlayerMovements
 @export var speedThresholds: Array[float]
+@export var thresholdHitboxes: Array[Area2D]
 var speedIndex: int
 
 func _ready():
-	speedIndex = 0
+	Startup()
 
 func _process(_delta):
 	SetCurrentSpeedThreshold()
+
+func Startup():
+	speedIndex = 0
+	for i in thresholdHitboxes.size():
+		DectivateCurrentHitbox(i)
 
 func SetCurrentSpeedThreshold():
 	if (playerMovements.currentSpeed > 0):
@@ -23,10 +29,22 @@ func SetSpeedLevel():
 
 func SetHigherSpeedLevel():
 	if (speedIndex < speedThresholds.size() - 1 && playerMovements.currentSpeed >= speedThresholds[speedIndex]):
+		DectivateCurrentHitbox(speedIndex)
 		speedIndex += 1
+		ActivateCurrentHitbox(speedIndex)
 		print(str("Current speed level: ", speedIndex))
 
 func SetLowerSpeedLevel():
 	if (speedIndex > 0 && playerMovements.currentSpeed < speedThresholds[speedIndex - 1]):
+		DectivateCurrentHitbox(speedIndex)
 		speedIndex -= 1
+		ActivateCurrentHitbox(speedIndex)
 		print(str("Current speed level: ", speedIndex))
+
+func DectivateCurrentHitbox(index: int):
+	if (thresholdHitboxes[index] != null): 
+		thresholdHitboxes[index].hide()
+
+func ActivateCurrentHitbox(index: int):
+	if (thresholdHitboxes[index] != null):
+		thresholdHitboxes[speedIndex].show()
