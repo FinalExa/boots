@@ -16,25 +16,25 @@ var yValue: float
 func _ready():
 	currentSpeed = 0
 
-func set_current_speed(delta):
+func SetCurrentSpeed(delta):
 	if (playerInputs.inputDirection == Vector2.ZERO):
 		currentSpeed-=decelerationPerSecond*delta
 		if (currentSpeed == 0):
 			currentDirection = Vector2.ZERO
 	else:
 		currentSpeed+=accelerationPerSecond*delta
-		set_direction(delta)
+		SetDirection(delta)
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 	playerBody.velocity = currentDirection * currentSpeed
 	
-func set_direction(delta):
+func SetDirection(delta):
 	if (currentDirection == Vector2.ZERO):
 		currentDirection = playerInputs.inputDirection
 	else:
-		calculate_rotation_direction()
-		set_new_direction(delta)
+		CalculateRotationDirection()
+		SetNewDirection(delta)
 
-func set_new_direction(delta):
+func SetNewDirection(delta):
 	var minXValue: float
 	var maxXValue: float
 	if (xValue == -1):
@@ -54,12 +54,12 @@ func set_new_direction(delta):
 		maxYValue = playerInputs.inputDirection.y
 	currentDirection.y = clamp(currentDirection.y+(yValue*rotationSpeedPerSecond*delta), minYValue, maxYValue)
 
-func calculate_rotation_direction():
+func CalculateRotationDirection():
 	if (currentDirection.x > playerInputs.inputDirection.x): xValue = -1
 	else: xValue = 1
 	if (currentDirection.y > playerInputs.inputDirection.y): yValue = -1
 	else: yValue = 1
 
 func _physics_process(delta):
-	set_current_speed(delta)
+	SetCurrentSpeed(delta)
 	playerBody.move_and_slide()
