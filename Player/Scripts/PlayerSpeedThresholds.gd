@@ -32,14 +32,12 @@ func SetHigherSpeedLevel():
 		DectivateCurrentHitbox(speedIndex)
 		speedIndex += 1
 		ActivateCurrentHitbox(speedIndex)
-		print(str("Current speed level: ", speedIndex))
 
 func SetLowerSpeedLevel():
 	if (speedIndex > 0 && playerMovements.currentSpeed < speedThresholds[speedIndex - 1]):
 		DectivateCurrentHitbox(speedIndex)
 		speedIndex -= 1
 		ActivateCurrentHitbox(speedIndex)
-		print(str("Current speed level: ", speedIndex))
 
 func DectivateCurrentHitbox(index: int):
 	if (thresholdHitboxes[index] != null): 
