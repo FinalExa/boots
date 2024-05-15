@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=10 format=3 uid="uid://dqg13lpbwrv7"]
 
+[ext_resource type="Texture2D" uid="uid://bdsu8mixci7tf" path="res://Player/Sprites/Brook.png" id="1_hl47a"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
-[ext_resource type="Texture2D" uid="uid://cxvqtv8ktdus2" path="res://icon.svg" id="2_11hb6"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="3_fxyqo"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerSpeedThresholds.gd" id="4_33erx"]
+[ext_resource type="Script" path="res://Player/PlayerRotator.gd" id="4_kcnjw"]
+[ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
+[ext_resource type="Texture2D" uid="uid://bhk565yga7gwp" path="res://Player/Sprites/level2.png" id="7_ps88g"]
+[ext_resource type="Texture2D" uid="uid://c8wbw6m22ou1j" path="res://Player/Sprites/level3.png" id="8_alu1b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
+radius = 33.1361
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_11hb6")
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("1_hl47a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_upbqd")
@@ -27,3 +34,34 @@ accelerationPerSecond = 200.0
 decelerationPerSecond = 250.0
 rotationSpeedPerSecond = 1.0
 maxSpeed = 1000.0
+
+[node name="PlayerRotator" type="Node2D" parent="." node_paths=PackedStringArray("playerBody", "playerMovements")]
+script = ExtResource("4_kcnjw")
+playerBody = NodePath("..")
+playerMovements = NodePath("../PlayerMovement")
+offsetDegrees = 90
+
+[node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
+script = ExtResource("4_33erx")
+playerMovements = NodePath("../../PlayerMovement")
+speedThresholds = Array[float]([300.0, 600.0, 900.0])
+thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox")]
+
+[node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
+polygon = PackedVector2Array(-64, 32, -32, 32, -24, -32, 24, -32, 32, 32, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
+texture = ExtResource("7_ps88g")
+
+[node name="SecondSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
+polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
+texture = ExtResource("8_alu1b")
+
+[node name="Arrow" type="Sprite2D" parent="PlayerRotator"]
+texture = ExtResource("5_s1pth")

@@ -17,7 +17,7 @@ func _ready():
 	currentSpeed = 0
 
 func SetCurrentSpeed(delta):
-	if (playerInputs.inputDirection == Vector2.ZERO):
+	if (playerInputs.movementInput == Vector2.ZERO):
 		currentSpeed-=decelerationPerSecond*delta
 		if (currentSpeed == 0):
 			currentDirection = Vector2.ZERO
@@ -29,7 +29,7 @@ func SetCurrentSpeed(delta):
 	
 func SetDirection(delta):
 	if (currentDirection == Vector2.ZERO):
-		currentDirection = playerInputs.inputDirection
+		currentDirection = playerInputs.movementInput
 	else:
 		CalculateRotationDirection()
 		SetNewDirection(delta)
@@ -38,26 +38,26 @@ func SetNewDirection(delta):
 	var minXValue: float
 	var maxXValue: float
 	if (xValue == -1):
-		minXValue = playerInputs.inputDirection.x
+		minXValue = playerInputs.movementInput.x
 		maxXValue = 1
 	else:
 		minXValue = -1
-		maxXValue = playerInputs.inputDirection.x
+		maxXValue = playerInputs.movementInput.x
 	currentDirection.x = clamp(currentDirection.x+(xValue*rotationSpeedPerSecond*delta), minXValue, maxXValue)
 	var minYValue
 	var maxYValue
 	if (yValue == -1):
-		minYValue = playerInputs.inputDirection.y
+		minYValue = playerInputs.movementInput.y
 		maxYValue = 1
 	else:
 		minYValue = -1
-		maxYValue = playerInputs.inputDirection.y
+		maxYValue = playerInputs.movementInput.y
 	currentDirection.y = clamp(currentDirection.y+(yValue*rotationSpeedPerSecond*delta), minYValue, maxYValue)
 
 func CalculateRotationDirection():
-	if (currentDirection.x > playerInputs.inputDirection.x): xValue = -1
+	if (currentDirection.x > playerInputs.movementInput.x): xValue = -1
 	else: xValue = 1
-	if (currentDirection.y > playerInputs.inputDirection.y): yValue = -1
+	if (currentDirection.y > playerInputs.movementInput.y): yValue = -1
 	else: yValue = 1
 
 func _physics_process(delta):
