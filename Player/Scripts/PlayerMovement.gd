@@ -8,6 +8,7 @@ extends Node
 @export var decelerationPerSecond: float
 @export var minDecelerationWhileSteering: float
 @export var maxDecelerationWhileSteering: float
+@export var decelerationWhileSteeringRequiredSpeed: float
 @export var decelerationWhileSteeringIncreasePerSecond: float
 @export var decelerationWhileSteeringDecreasePerSecond: float
 @export var rotationSpeedPerSecond: float
@@ -48,8 +49,11 @@ func SetCurrentSpeed(delta):
 			Accelerate(delta)
 			if (decelerationWhileSteeringActive): decelerationWhileSteeringActive = false
 		else:
-			if (!decelerationWhileSteeringActive): decelerationWhileSteeringActive = true
-			Decelerate(delta, currentDecelerationWhileSteering)
+			if (currentSpeed >= decelerationWhileSteeringRequiredSpeed):
+				if (!decelerationWhileSteeringActive): decelerationWhileSteeringActive = true
+				Decelerate(delta, currentDecelerationWhileSteering)
+			else:
+				Accelerate(delta)
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 	playerBody.velocity = currentDirection * currentSpeed
 
