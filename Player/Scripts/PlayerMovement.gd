@@ -1,11 +1,13 @@
 class_name PlayerMovements
 extends Node
 
+@export var playerCharacter: PlayerCharacter
 @export var playerBody: CharacterBody2D
 @export var playerInputs: PlayerInputs
 
 @export var accelerationPerSecond: float
 @export var decelerationPerSecond: float
+@export var decelerationWhileColliding: float
 @export var minDecelerationWhileSteering: float
 @export var maxDecelerationWhileSteering: float
 @export var decelerationWhileSteeringRequiredSpeed: float
@@ -33,7 +35,6 @@ func _process(delta):
 
 func _physics_process(delta):
 	SetCurrentSpeed(delta)
-	playerBody.move_and_slide()
 
 func SetCurrentSpeed(delta):
 	if (playerInputs.movementInput == Vector2.ZERO):
@@ -45,23 +46,29 @@ func SetCurrentSpeed(delta):
 			currentDirection = Vector2.ZERO
 	else:
 		SetDirection(delta)
-		if (!directionDifferent):
-			Accelerate(delta)
-			if (decelerationWhileSteeringActive): decelerationWhileSteeringActive = false
-		else:
-			if (currentSpeed >= decelerationWhileSteeringRequiredSpeed):
-				if (!decelerationWhileSteeringActive): decelerationWhileSteeringActive = true
-				Decelerate(delta, currentDecelerationWhileSteering)
-			else:
-				Accelerate(delta)
+		AccelerationCases(delta)
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 	playerBody.velocity = currentDirection * currentSpeed
+
+func AccelerationCases(delta):
+	if (playerCharacter.collisionResult):
+		Decelerate(delta, decelerationWhileColliding)
+		return
+	if (!directionDifferent):
+		Accelerate(delta)
+		if (decelerationWhileSteeringActive): decelerationWhileSteeringActive = false
+		return
+	if (currentSpeed >= decelerationWhileSteeringRequiredSpeed):
+		if (!decelerationWhileSteeringActive): decelerationWhileSteeringActive = true
+		Decelerate(delta, currentDecelerationWhileSteering)
+		return
+	Accelerate(delta)
 
 func Accelerate(delta):
 	currentSpeed = clamp(currentSpeed + (accelerationPerSecond * delta), minSpeed, maxSpeed)
 
 func Decelerate(delta, decelerationValue):
-	currentSpeed -= decelerationValue * delta
+	currentSpeed = clamp(currentSpeed - (decelerationValue * delta), minSpeed, maxSpeed)
 
 func DecelerationWhileSteering(delta):
 	if (decelerationWhileSteeringActive):
@@ -100,5 +107,3 @@ func CalculateRotationDirection():
 	else: xValue = 1
 	if (currentDirection.y > playerInputs.movementInput.y): yValue = -1
 	else: yValue = 1
-
-
