@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=13 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Texture2D" uid="uid://bdsu8mixci7tf" path="res://Player/Sprites/Brook.png" id="1_hl47a"]
+[ext_resource type="Script" path="res://Player/PlayerCharacter.gd" id="1_lc76b"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="3_fxyqo"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerSpeedThresholds.gd" id="4_33erx"]
@@ -13,7 +14,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 33.1361
 
+[sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
+font_color = Color(0.854902, 0, 0.854902, 1)
+
 [node name="PlayerCharacter" type="CharacterBody2D"]
+script = ExtResource("1_lc76b")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -27,21 +32,25 @@ shape = SubResource("CircleShape2D_upbqd")
 [node name="PlayerInputs" type="Node" parent="."]
 script = ExtResource("3_fxyqo")
 
-[node name="PlayerMovements" type="Node" parent="." node_paths=PackedStringArray("playerBody", "playerInputs")]
+[node name="PlayerMovements" type="Node" parent="." node_paths=PackedStringArray("playerCharacter", "playerBody", "playerInputs")]
 script = ExtResource("1_n46fh")
+playerCharacter = NodePath("..")
 playerBody = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
-accelerationPerSecond = 200.0
-decelerationPerSecond = 250.0
-minDecelerationWhileSteering = 10.0
-maxDecelerationWhileSteering = 100.0
-decelerationWhileSteeringIncreasePerSecond = 20.0
+accelerationPerSecond = 250.0
+decelerationPerSecond = 300.0
+decelerationWhileColliding = 250.0
+minDecelerationWhileSteering = 15.0
+maxDecelerationWhileSteering = 50.0
+decelerationWhileSteeringRequiredSpeed = 600.0
+decelerationWhileSteeringIncreasePerSecond = 7.5
 decelerationWhileSteeringDecreasePerSecond = 25.0
 rotationSpeedPerSecond = 1.0
 minSpeed = 50.0
 maxSpeed = 1500.0
 
 [node name="PlayerHUD" type="Control" parent="."]
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_left = -960.0
@@ -55,6 +64,7 @@ offset_left = 24.0
 offset_top = 24.0
 offset_right = 192.0
 offset_bottom = 56.0
+label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_hhy2o")
