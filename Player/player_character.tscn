@@ -91,6 +91,7 @@ playerMovements = NodePath("../../../PlayerMovements")
 damage = 1
 repelDistance = 500.0
 repelTime = 0.1
+lossOnImpact = 300.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -32, 32, -24, -32, 24, -32, 32, 32, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
@@ -104,6 +105,7 @@ playerMovements = NodePath("../../../PlayerMovements")
 damage = 3
 repelDistance = 800.0
 repelTime = 0.1
+lossOnImpact = 300.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
@@ -117,6 +119,7 @@ playerMovements = NodePath("../../../PlayerMovements")
 damage = 5
 repelDistance = 1200.0
 repelTime = 0.1
+lossOnImpact = 50.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)

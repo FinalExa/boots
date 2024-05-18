@@ -15,6 +15,8 @@ func GetInputs():
 		GetMovementInput()
 		if (Input.is_action_just_pressed("Reload")):
 			get_tree().reload_current_scene()
+		if (Input.is_action_just_pressed("Close")):
+			get_tree().quit()
 
 func GetMovementInput():
 	movementInput = Input.get_vector("left", "right", "up", "down")
