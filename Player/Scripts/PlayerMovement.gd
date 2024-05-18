@@ -2,7 +2,6 @@ class_name PlayerMovements
 extends Node
 
 @export var playerCharacter: PlayerCharacter
-@export var playerBody: CharacterBody2D
 @export var playerInputs: PlayerInputs
 
 @export var accelerationPerSecond: float
@@ -48,12 +47,11 @@ func SetCurrentSpeed(delta):
 		SetDirection(delta)
 		AccelerationCases(delta)
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
-	playerBody.velocity = currentDirection * currentSpeed
+	playerCharacter.velocity = currentDirection * currentSpeed
 
 func AccelerationCases(delta):
 	if (playerCharacter.collisionResult):
-		Decelerate(delta, decelerationWhileColliding)
-		return
+		currentSpeed -= decelerationWhileColliding * delta
 	if (!directionDifferent):
 		Accelerate(delta)
 		if (decelerationWhileSteeringActive): decelerationWhileSteeringActive = false
