@@ -21,6 +21,9 @@ func DealDamage(enemyController: EnemyController):
 			enemiesHit.erase(enemyController)
 		playerMovements.currentSpeed = clamp(playerMovements.currentSpeed - lossOnImpact, 0, playerMovements.maxSpeed)
 
+func TurnOffDamage():
+	damageEnabled = false
+	enemiesHit.clear()
 
 func _on_body_exited(body):
 	if (body is EnemyController && enemiesHit.has(body)):
