@@ -13,6 +13,8 @@ func _process(_delta):
 func GetInputs():
 	if (inputEnabled):
 		GetMovementInput()
+		if (Input.is_action_just_pressed("Reload")):
+			get_tree().reload_current_scene()
 
 func GetMovementInput():
 	movementInput = Input.get_vector("left", "right", "up", "down")

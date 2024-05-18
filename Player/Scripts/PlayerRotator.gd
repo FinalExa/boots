@@ -1,3 +1,4 @@
+class_name PlayerRotator
 extends Node2D
 
 @export var playerBody: CharacterBody2D

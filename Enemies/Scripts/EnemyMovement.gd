@@ -14,6 +14,7 @@ var currentMovementSpeed: float
 var target: Node2D
 var locationTarget: Vector2
 var locationTargetEnabled: bool
+var movementLocked: bool
 
 func _ready():
 	repathTimer = 0
@@ -23,11 +24,11 @@ func _update_navigation_path(end_position):
 	navigationAgent.target_position = end_position
 
 func _physics_process(delta):
-	if((target != null || locationTargetEnabled)):
-		navigation(delta)
-		navigate_on_path()
+	if(!movementLocked && (target != null || locationTargetEnabled)):
+		Navigation(delta)
+		NavigateOnPath()
 
-func navigate_on_path():
+func NavigateOnPath():
 	var movementSpeed = currentMovementSpeed
 	var dir = enemyController.global_position.direction_to(navigationAgent.get_next_path_position())
 	enemyController.velocity = dir * movementSpeed
@@ -37,26 +38,26 @@ func navigate_on_path():
 		enemyController.velocity = Vector2.ZERO
 		emit_signal("reached_destination")
 
-func set_new_target(newTarget):
+func SetNewTarget(newTarget):
 	target = newTarget
 	locationTarget = Vector2.ZERO
 	locationTargetEnabled = false
-	repath()
+	Repath()
 
-func set_location_target(locTarget: Vector2):
+func SetLocationTarget(locTarget: Vector2):
 	locationTarget = locTarget
 	target = null
 	locationTargetEnabled = true
-	repath()
+	Repath()
 
-func navigation(delta):
+func Navigation(delta):
 	if (repathTimer>0):
 		repathTimer-=delta
 	else:
-		repath()
+		Repath()
 		repathTimer = repathTimerDuration
 
-func repath():
+func Repath():
 	if(target != null):
 		_update_navigation_path(target.global_position)
 	else:
@@ -65,8 +66,14 @@ func repath():
 		else:
 			_update_navigation_path(enemyController.global_position)
 
-func set_movement_speed(newMovementSpeed: float):
+func SetMovementSpeed(newMovementSpeed: float):
 	currentMovementSpeed = newMovementSpeed
 
-func reset_movement_speed():
+func ResetMovementSpeed():
 	currentMovementSpeed = defaultMovementSpeed
+
+func _on_enemy_repelled():
+	SetNewTarget(null)
+	currentMovementSpeed = 0
+	enemyController.velocity = Vector2.ZERO
+	movementLocked = true

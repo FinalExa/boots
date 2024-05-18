@@ -69,4 +69,6 @@ angrySprite = NodePath("../EnemySpriteAngry")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
 shape = SubResource("CircleShape2D_j5l0v")
 
+[connection signal="damaged" from="." to="EnemyHealth" method="_on_enemy_damaged"]
+[connection signal="repelled" from="." to="EnemyMovement" method="_on_enemy_repelled"]
 [connection signal="body_entered" from="EnemyDetection" to="EnemyDetection" method="_on_body_entered"]

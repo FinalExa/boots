@@ -16,3 +16,7 @@ func HealthUpdate(valueChange: int):
 	label.text = str(currentHealth, "/", maxHealth)
 	if (currentHealth <= 0):
 		enemyController.get_parent().remove_child(enemyController)
+
+
+func _on_enemy_damaged(damageReceived):
+	HealthUpdate(-damageReceived)

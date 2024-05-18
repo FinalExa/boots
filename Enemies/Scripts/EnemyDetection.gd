@@ -10,7 +10,7 @@ var playerRef: PlayerCharacter
 func _ready():
 	angrySprite.hide()
 
-func _process(delta):
+func _process(_delta):
 	ChasePlayer()
 
 func _on_body_entered(body):
@@ -25,5 +25,5 @@ func SetChasePlayer(body):
 
 func ChasePlayer():
 	if (playerFound):
-		enemyMovement.reset_movement_speed()
-		enemyMovement.set_new_target(playerRef)
+		enemyMovement.ResetMovementSpeed()
+		enemyMovement.SetNewTarget(playerRef)
