@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo430me6x0rsp"]
+
+[ext_resource type="Texture2D" uid="uid://trs285f5u4mw" path="res://LevelDesign/Sprites/wallverticalshort1.png" id="1_2f28s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6p7y"]
+size = Vector2(16, 64)
+
+[node name="WallVerticalFullView" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y6p7y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2f28s")

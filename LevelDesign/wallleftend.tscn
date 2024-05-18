@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://p6qu5hgrxryo"]
+[gd_scene load_steps=3 format=3 uid="uid://40ldnmu68n4w"]
 
-[ext_resource type="Texture2D" uid="uid://cq62qk1hmpprd" path="res://LevelDesign/Sprites/wall1.png" id="1_gd567"]
+[ext_resource type="Texture2D" uid="uid://cip3clbbmgcyn" path="res://LevelDesign/Sprites/wallleftend1.png" id="1_ba3ej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6p7y"]
 size = Vector2(128, 64)
 
-[node name="Wall" type="StaticBody2D"]
+[node name="WallLeftEnd" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y6p7y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gd567")
+texture = ExtResource("1_ba3ej")

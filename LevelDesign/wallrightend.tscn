@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://qtmhrs16aupe"]
+
+[ext_resource type="Texture2D" uid="uid://df1r50psg8w0r" path="res://LevelDesign/Sprites/wallrightend1.png" id="1_gk3dg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6p7y"]
+size = Vector2(128, 64)
+
+[node name="WallRightEnd" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y6p7y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gk3dg")
