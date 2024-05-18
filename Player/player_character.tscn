@@ -19,8 +19,9 @@ radius = 16.0
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 font_color = Color(0.854902, 0, 0.854902, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D"]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements")]
 script = ExtResource("1_hu618")
+playerMovements = NodePath("PlayerMovements")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -48,6 +49,7 @@ decelerationWhileSteeringRequiredSpeed = 300.0
 decelerationWhileSteeringIncreasePerSecond = 100.0
 decelerationWhileSteeringDecreasePerSecond = 150.0
 rotationSpeedPerSecond = 1.5
+killSpeedValue = 200.0
 minSpeed = 50.0
 maxSpeed = 1500.0
 

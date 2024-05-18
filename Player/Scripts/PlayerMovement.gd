@@ -13,6 +13,7 @@ extends Node
 @export var decelerationWhileSteeringIncreasePerSecond: float
 @export var decelerationWhileSteeringDecreasePerSecond: float
 @export var rotationSpeedPerSecond: float
+@export var killSpeedValue: float
 @export var minSpeed: float
 @export var maxSpeed: float
 var currentDecelerationWhileSteering: float
