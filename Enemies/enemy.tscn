@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://bo585ed8eynti"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_d1ice"]
+[ext_resource type="Texture2D" uid="uid://cu1ng6o6iytvx" path="res://Enemies/Sprites/enemy.png" id="1_u7n81"]
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyMovement.gd" id="3_5yi6u"]
+[ext_resource type="Texture2D" uid="uid://driswdjyhfxn4" path="res://Enemies/Sprites/enemyangry.png" id="3_gky52"]
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyDetection.gd" id="4_bfq86"]
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyHealth.gd" id="4_hlpqe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vjwt"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
+radius = 448.0
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement")]
+script = ExtResource("1_d1ice")
+enemyMovement = NodePath("EnemyMovement")
+damageImmunityDuration = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_2vjwt")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_u7n81")
+
+[node name="EnemySpriteAngry" type="Sprite2D" parent="."]
+texture = ExtResource("3_gky52")
+
+[node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "label")]
+script = ExtResource("4_hlpqe")
+maxHealth = 10
+enemyController = NodePath("..")
+label = NodePath("../EnemyUI/Health")
+
+[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("enemyController", "navigationAgent")]
+script = ExtResource("3_5yi6u")
+enemyController = NodePath("..")
+navigationAgent = NodePath("../NavigationAgent2D")
+defaultMovementSpeed = 300.0
+distanceTolerance = 10.0
+repathTimerDuration = 0.25
+
+[node name="EnemyUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = -32.0
+
+[node name="Health" type="Label" parent="EnemyUI"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 32.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 100.0
+
+[node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyMovement", "normalSprite", "angrySprite")]
+script = ExtResource("4_bfq86")
+enemyMovement = NodePath("../EnemyMovement")
+normalSprite = NodePath("../EnemySprite")
+angrySprite = NodePath("../EnemySpriteAngry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
+shape = SubResource("CircleShape2D_j5l0v")
+
+[connection signal="damaged" from="." to="EnemyHealth" method="_on_enemy_damaged"]
+[connection signal="repelled" from="." to="EnemyMovement" method="_on_enemy_repelled"]
+[connection signal="body_entered" from="EnemyDetection" to="EnemyDetection" method="_on_body_entered"]

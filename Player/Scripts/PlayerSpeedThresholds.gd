@@ -3,7 +3,7 @@ extends Node2D
 
 @export var playerMovements: PlayerMovements
 @export var speedThresholds: Array[float]
-@export var thresholdHitboxes: Array[Area2D]
+@export var thresholdHitboxes: Array[PlayerHitboxData]
 var speedIndex: int
 
 func _ready():
@@ -42,7 +42,9 @@ func SetLowerSpeedLevel():
 func DectivateCurrentHitbox(index: int):
 	if (thresholdHitboxes[index] != null): 
 		thresholdHitboxes[index].hide()
+		thresholdHitboxes[index].damageEnabled = false
 
 func ActivateCurrentHitbox(index: int):
 	if (thresholdHitboxes[index] != null):
-		thresholdHitboxes[speedIndex].show()
+		thresholdHitboxes[index].show()
+		thresholdHitboxes[index].damageEnabled = true
