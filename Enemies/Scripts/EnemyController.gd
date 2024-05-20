@@ -6,9 +6,11 @@ signal repelled
 
 @export var enemyMovement: EnemyMovement
 @export var enemyRepelled: EnemyRepelled
+@export var enemyRotator: EnemyRotator
 @export var attackDistance: float
 @export var damageImmunityDuration: float
 
+var playerRef: PlayerCharacter
 var damageImmunityTimer: float
 var repelledTimer: float
 var repelledSpeed: float
@@ -35,3 +37,6 @@ func ImmunityTimer(delta):
 			damageImmunityTimer-=delta
 		else:
 			damageImmunity = false
+
+func GetRotator():
+	return enemyRotator

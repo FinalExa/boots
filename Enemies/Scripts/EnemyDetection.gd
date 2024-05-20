@@ -4,6 +4,7 @@ extends Area2D
 var playerFound: bool
 var playerRef: PlayerCharacter
 
+@export var enemyController: EnemyController
 @export var normalSprite: Sprite2D
 @export var angrySprite: Sprite2D
 
@@ -16,6 +17,7 @@ func _on_body_entered(body):
 func SetChasePlayer(body):
 	if (!playerFound && body is PlayerCharacter):
 		playerRef = body
+		enemyController.playerRef = playerRef
 		playerFound = true
 		normalSprite.hide()
 		angrySprite.show()

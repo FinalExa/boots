@@ -2,10 +2,6 @@ extends Area2D
 
 var playerRef: PlayerCharacter
 var playerIn: bool
-var killCheckActive: bool
-
-func _ready():
-	StopKillCheck()
 
 func _process(_delta):
 	CheckForPlayerKill()
@@ -21,13 +17,5 @@ func _on_body_exited(body):
 		playerIn = false
 
 func CheckForPlayerKill():
-	if (killCheckActive && playerIn && playerRef.playerMovements.currentSpeed < playerRef.playerMovements.killSpeedValue):
+	if (playerIn && playerRef.playerMovements.currentSpeed < playerRef.playerMovements.killSpeedValue):
 		get_tree().reload_current_scene()
-
-func ActivateKillCheck():
-	self.show()
-	killCheckActive = true
-
-func StopKillCheck():
-	self.hide()
-	killCheckActive = false
