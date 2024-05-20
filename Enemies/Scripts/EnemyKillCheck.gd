@@ -3,7 +3,7 @@ extends Area2D
 var playerRef: PlayerCharacter
 var playerIn: bool
 
-func _process(delta):
+func _process(_delta):
 	CheckForPlayerKill()
 
 func _on_body_entered(body):
