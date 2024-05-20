@@ -72,8 +72,11 @@ func SetMovementSpeed(newMovementSpeed: float):
 func ResetMovementSpeed():
 	currentMovementSpeed = defaultMovementSpeed
 
-func _on_enemy_repelled():
-	SetNewTarget(null)
+func StopMovement():
 	currentMovementSpeed = 0
 	enemyController.velocity = Vector2.ZERO
+	SetNewTarget(null)
+
+func _on_enemy_repelled():
+	StopMovement()
 	movementLocked = true
