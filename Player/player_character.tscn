@@ -91,7 +91,7 @@ thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHi
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 damage = 1
-repelDistance = 100.0
+repelDistance = 200.0
 repelTime = 0.1
 lossOnImpact = 200.0
 
@@ -105,7 +105,7 @@ texture = ExtResource("8_361qe")
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 damage = 3
-repelDistance = 200.0
+repelDistance = 400.0
 repelTime = 0.1
 lossOnImpact = 150.0
 
@@ -119,7 +119,7 @@ texture = ExtResource("7_ps88g")
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 damage = 5
-repelDistance = 400.0
+repelDistance = 800.0
 repelTime = 0.1
 lossOnImpact = 100.0
 
