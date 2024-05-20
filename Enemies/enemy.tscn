@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bo585ed8eynti"]
+[gd_scene load_steps=17 format=3 uid="uid://bo585ed8eynti"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_d1ice"]
 [ext_resource type="Texture2D" uid="uid://cu1ng6o6iytvx" path="res://Enemies/Sprites/enemy.png" id="1_u7n81"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://driswdjyhfxn4" path="res://Enemies/Sprites/enemyangry.png" id="3_gky52"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyDetection.gd" id="4_bfq86"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyHealth.gd" id="4_hlpqe"]
+[ext_resource type="Script" path="res://Enemies/EnemyRepelled.gd" id="6_c5qb2"]
 [ext_resource type="Texture2D" uid="uid://cmyel8womaj8h" path="res://Enemies/Sprites/enemyattack.png" id="6_wqwy8"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRotator.gd" id="6_xcinm"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyKillCheck.gd" id="7_xlcdy"]
@@ -20,9 +21,10 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 448.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled")]
 script = ExtResource("1_d1ice")
 enemyMovement = NodePath("EnemyMovement")
+enemyRepelled = NodePath("EnemyRepelled")
 attackDistance = 200.0
 damageImmunityDuration = 1.0
 
@@ -48,6 +50,10 @@ navigationAgent = NodePath("../NavigationAgent2D")
 defaultMovementSpeed = 300.0
 distanceTolerance = 30.0
 repathTimerDuration = 0.25
+
+[node name="EnemyRepelled" type="Node" parent="." node_paths=PackedStringArray("enemyController")]
+script = ExtResource("6_c5qb2")
+enemyController = NodePath("..")
 
 [node name="EnemyUI" type="Control" parent="."]
 layout_mode = 3
