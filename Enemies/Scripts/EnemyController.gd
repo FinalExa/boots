@@ -5,6 +5,7 @@ signal damaged
 signal repelled
 
 @export var enemyMovement: EnemyMovement
+@export var attackDistance: float
 @export var damageImmunityDuration: float
 var damageImmunityTimer: float
 var repelledTimer: float

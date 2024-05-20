@@ -9,6 +9,7 @@ signal reached_destination
 @export var defaultMovementSpeed: float
 @export var distanceTolerance: float
 @export var repathTimerDuration: float
+var dir: Vector2
 var repathTimer: float
 var currentMovementSpeed: float
 var target: Node2D
@@ -30,7 +31,7 @@ func _physics_process(delta):
 
 func NavigateOnPath():
 	var movementSpeed = currentMovementSpeed
-	var dir = enemyController.global_position.direction_to(navigationAgent.get_next_path_position())
+	dir = enemyController.global_position.direction_to(navigationAgent.get_next_path_position())
 	enemyController.velocity = dir * movementSpeed
 	if ((locationTargetEnabled && enemyController.global_position.distance_to(locationTarget) < distanceTolerance)
 	|| (target != null && enemyController.global_position.distance_to(target.global_position) < distanceTolerance)):
