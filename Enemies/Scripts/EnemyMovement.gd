@@ -9,6 +9,7 @@ signal reached_destination
 @export var defaultMovementSpeed: float
 @export var distanceTolerance: float
 @export var repathTimerDuration: float
+var dir: Vector2
 var repathTimer: float
 var currentMovementSpeed: float
 var target: Node2D
@@ -20,7 +21,7 @@ func _ready():
 	repathTimer = 0
 	currentMovementSpeed = defaultMovementSpeed
 
-func _update_navigation_path(end_position):
+func UpdateNavigationPath(end_position):
 	navigationAgent.target_position = end_position
 
 func _physics_process(delta):
@@ -30,7 +31,7 @@ func _physics_process(delta):
 
 func NavigateOnPath():
 	var movementSpeed = currentMovementSpeed
-	var dir = enemyController.global_position.direction_to(navigationAgent.get_next_path_position())
+	dir = enemyController.global_position.direction_to(navigationAgent.get_next_path_position())
 	enemyController.velocity = dir * movementSpeed
 	if ((locationTargetEnabled && enemyController.global_position.distance_to(locationTarget) < distanceTolerance)
 	|| (target != null && enemyController.global_position.distance_to(target.global_position) < distanceTolerance)):
@@ -52,19 +53,19 @@ func SetLocationTarget(locTarget: Vector2):
 
 func Navigation(delta):
 	if (repathTimer>0):
-		repathTimer-=delta
+		repathTimer -= delta
 	else:
 		Repath()
 		repathTimer = repathTimerDuration
 
 func Repath():
 	if(target != null):
-		_update_navigation_path(target.global_position)
+		UpdateNavigationPath(target.global_position)
 	else:
 		if (locationTargetEnabled):
-			_update_navigation_path(locationTarget)
+			UpdateNavigationPath(locationTarget)
 		else:
-			_update_navigation_path(enemyController.global_position)
+			UpdateNavigationPath(enemyController.global_position)
 
 func SetMovementSpeed(newMovementSpeed: float):
 	currentMovementSpeed = newMovementSpeed
@@ -72,8 +73,18 @@ func SetMovementSpeed(newMovementSpeed: float):
 func ResetMovementSpeed():
 	currentMovementSpeed = defaultMovementSpeed
 
-func _on_enemy_repelled():
-	SetNewTarget(null)
+func LockMovement():
+	StopMovement()
+	movementLocked = true
+
+func UnlockMovement():
+	movementLocked = false
+	ResetMovementSpeed()
+
+func StopMovement():
 	currentMovementSpeed = 0
 	enemyController.velocity = Vector2.ZERO
-	movementLocked = true
+	SetNewTarget(null)
+
+func _on_enemy_repelled():
+	LockMovement()

@@ -40,7 +40,7 @@ func SetCurrentSpeed(delta):
 	if (playerInputs.movementInput == Vector2.ZERO):
 		if (decelerationWhileSteeringActive): decelerationWhileSteeringActive = false
 		Decelerate(delta, decelerationPerSecond)
-		if (currentSpeed < minSpeed):
+		if (currentSpeed <= minSpeed):
 			currentSpeed = 0
 		if (currentSpeed == 0):
 			currentDirection = Vector2.ZERO
@@ -68,6 +68,9 @@ func Accelerate(delta):
 
 func Decelerate(delta, decelerationValue):
 	currentSpeed = clamp(currentSpeed - (decelerationValue * delta), minSpeed, maxSpeed)
+
+func UpdateCurrentSpeed(updateValue):
+	currentSpeed = clamp(currentSpeed + updateValue, 0, maxSpeed)
 
 func DecelerationWhileSteering(delta):
 	if (decelerationWhileSteeringActive):
