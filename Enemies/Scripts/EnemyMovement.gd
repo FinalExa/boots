@@ -21,7 +21,7 @@ func _ready():
 	repathTimer = 0
 	currentMovementSpeed = defaultMovementSpeed
 
-func _update_navigation_path(end_position):
+func UpdateNavigationPath(end_position):
 	navigationAgent.target_position = end_position
 
 func _physics_process(delta):
@@ -53,19 +53,19 @@ func SetLocationTarget(locTarget: Vector2):
 
 func Navigation(delta):
 	if (repathTimer>0):
-		repathTimer-=delta
+		repathTimer -= delta
 	else:
 		Repath()
 		repathTimer = repathTimerDuration
 
 func Repath():
 	if(target != null):
-		_update_navigation_path(target.global_position)
+		UpdateNavigationPath(target.global_position)
 	else:
 		if (locationTargetEnabled):
-			_update_navigation_path(locationTarget)
+			UpdateNavigationPath(locationTarget)
 		else:
-			_update_navigation_path(enemyController.global_position)
+			UpdateNavigationPath(enemyController.global_position)
 
 func SetMovementSpeed(newMovementSpeed: float):
 	currentMovementSpeed = newMovementSpeed
@@ -73,11 +73,18 @@ func SetMovementSpeed(newMovementSpeed: float):
 func ResetMovementSpeed():
 	currentMovementSpeed = defaultMovementSpeed
 
+func LockMovement():
+	StopMovement()
+	movementLocked = true
+
+func UnlockMovement():
+	movementLocked = false
+	ResetMovementSpeed()
+
 func StopMovement():
 	currentMovementSpeed = 0
 	enemyController.velocity = Vector2.ZERO
 	SetNewTarget(null)
 
 func _on_enemy_repelled():
-	StopMovement()
-	movementLocked = true
+	LockMovement()

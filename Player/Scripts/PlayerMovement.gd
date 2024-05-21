@@ -69,6 +69,9 @@ func Accelerate(delta):
 func Decelerate(delta, decelerationValue):
 	currentSpeed = clamp(currentSpeed - (decelerationValue * delta), minSpeed, maxSpeed)
 
+func UpdateCurrentSpeed(updateValue):
+	currentSpeed = clamp(currentSpeed + updateValue, 0, maxSpeed)
+
 func DecelerationWhileSteering(delta):
 	if (decelerationWhileSteeringActive):
 		currentDecelerationWhileSteering = clamp(currentDecelerationWhileSteering + (decelerationWhileSteeringIncreasePerSecond * delta), minDecelerationWhileSteering, maxDecelerationWhileSteering)

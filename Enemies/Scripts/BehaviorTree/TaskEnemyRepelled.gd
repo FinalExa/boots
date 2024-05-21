@@ -1,6 +1,6 @@
 extends EnemyNode
 
-func Evaluate(delta):
+func Evaluate(_delta):
 	if (enemyController.repelledActive):
 		return NodeState.FAILURE
 	return NodeState.SUCCESS

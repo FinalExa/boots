@@ -21,7 +21,7 @@ var damageImmunity: bool
 func _process(delta):
 	ImmunityTimer(delta)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
 
 func ReceiveDamage(damage: int, repelDistance: float, repelDirection: Vector2, repelTime: float):
@@ -34,7 +34,7 @@ func ReceiveDamage(damage: int, repelDistance: float, repelDirection: Vector2, r
 func ImmunityTimer(delta):
 	if (damageImmunity):
 		if (damageImmunityTimer>0):
-			damageImmunityTimer-=delta
+			damageImmunityTimer -= delta
 		else:
 			damageImmunity = false
 

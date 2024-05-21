@@ -1,21 +1,15 @@
-extends Area2D
+extends AttackHitbox
 
-var playerRef: PlayerCharacter
-var playerIn: bool
-
-func _process(_delta):
-	CheckForPlayerKill()
+@export var reducedSpeed: float
 
 func _on_body_entered(body):
 	if (body is PlayerCharacter):
-		if (playerRef == null):
-			playerRef = body
-		playerIn = true
+		if (!hitTargets.has(body)):
+			hitTargets.push_back(body)
+			CheckForPlayerKill(body)
 
-func _on_body_exited(body):
-	if (body is PlayerCharacter):
-		playerIn = false
-
-func CheckForPlayerKill():
-	if (playerIn && playerRef.playerMovements.currentSpeed < playerRef.playerMovements.killSpeedValue):
+func CheckForPlayerKill(playerRef: PlayerCharacter):
+	if (playerRef.playerMovements.currentSpeed < playerRef.playerMovements.killSpeedValue):
 		get_tree().reload_current_scene()
+	else:
+		playerRef.playerMovements.UpdateCurrentSpeed(-reducedSpeed)

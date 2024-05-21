@@ -5,7 +5,7 @@ var hitTargets: Array[Node2D]
 var characterRef: Node2D
 
 func _ready():
-	attack_end()
+	AttackEnd()
 
-func attack_end():
+func AttackEnd():
 	hitTargets.clear()

@@ -9,5 +9,5 @@ func _process(_delta):
 
 func SetText():
 	if (savedSpeedValue != playerMovements.currentSpeed):
-		savedSpeedValue = playerMovements.currentSpeed
+		savedSpeedValue = int(playerMovements.currentSpeed)
 		self.text = str(savedSpeedValue, " ", speedThresholds.speedIndex)
