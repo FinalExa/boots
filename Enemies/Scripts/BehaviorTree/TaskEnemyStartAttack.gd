@@ -4,8 +4,9 @@ extends EnemyNode
 @export var enemyAttack: ExecuteAttack
 
 func Evaluate(_delta):
-	if (enemyController.playerRef != null && !enemyAttack.attackLaunched && enemyController.global_position.distance_to(enemyController.playerRef.global_position) <= enemyController.attackDistance):
+	if (enemyController.playerRef != null && enemyController.global_position.distance_to(enemyController.playerRef.global_position) <= enemyController.attackDistance):
 		enemyMovement.StopMovement()
-		enemyAttack.StartAttack()
+		if (!enemyAttack.attackLaunched):
+			enemyAttack.StartAttack()
 		return NodeState.FAILURE
 	return NodeState.SUCCESS

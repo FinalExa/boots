@@ -69,6 +69,18 @@ func EndAttack():
 		else:
 			StartCooldown()
 
+func ForceEndAttack():
+	RemoveAttackHitboxes()
+	currentPhase = 0
+	if (attackCooldown == 0):
+		FinalizeAttack()
+	else:
+		StartCooldown()
+
+func ForceEndCooldown():
+	attackInCooldown = false
+	attackLaunched = false
+
 func FinalizeAttack():
 	attackLaunched = false
 

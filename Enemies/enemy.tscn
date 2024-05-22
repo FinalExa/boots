@@ -24,11 +24,12 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 448.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack")]
 script = ExtResource("1_d1ice")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
 enemyRotator = NodePath("EnemyRotator")
+enemyAttack = NodePath("EnemyRotator/EnemyAttack")
 attackDistance = 300.0
 damageImmunityDuration = 0.1
 
@@ -88,14 +89,14 @@ rotationOffset = 90.0
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("8_16hwb")
 attackDuration = 30
-attackCooldown = 30
+attackCooldown = 90
 attackPhasesLaunch = Array[int]([0])
 attackHitboxes = [NodePath("EnemyKillCheck")]
 attackSounds = [null]
 attackMovements = Array[float]([500.0])
 characterRef = NodePath("../..")
 
-[node name="EnemyKillCheck" type="Area2D" parent="EnemyRotator/EnemyAttack"]
+[node name="EnemyKillCheck" type="Area2D" parent="EnemyRotator/EnemyAttack" groups=["ClashArea"]]
 script = ExtResource("7_xlcdy")
 reducedSpeed = 50.0
 
