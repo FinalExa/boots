@@ -3,12 +3,14 @@ extends Node2D
 
 @export var scenesToShuffle: Array[String]
 @export var playerRef: PlayerCharacter
+@export var safePosition: Vector2
 var currentScene: GameplayScene
 
 func _ready():
 	ShuffleScene()
 
 func ShuffleScene():
+	playerRef.global_position = safePosition
 	if (currentScene != null):
 		remove_child(currentScene)
 		currentScene = null

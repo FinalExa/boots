@@ -5,3 +5,4 @@
 [node name="SceneSelector" type="Node2D"]
 script = ExtResource("1_mnunv")
 scenesToShuffle = Array[String](["res://Scenes/test_scene.tscn"])
+safePosition = Vector2(10000, 10000)
