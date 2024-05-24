@@ -33,7 +33,7 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 		if (enemyController == null):
 			enemiesHit.erase(enemyController)
 		if (clash):
-			enemyController.enemyAttack.ForceEndAttack()
+			enemyController.enemyAttack.ForceStartCooldown()
 		playerMovements.currentSpeed = clamp(playerMovements.currentSpeed - speedLoss, 0, playerMovements.maxSpeed)
 
 func TurnOffDamage():

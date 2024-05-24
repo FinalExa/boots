@@ -92,12 +92,11 @@ script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 clashGroupName = "ClashArea"
 damage = 2
-repelDistance = 200.0
-repelTime = 0.1
+repelDistance = 400.0
+repelTime = 0.3
 lossOnImpact = 100.0
-clashDamage = 1
-clashRepelDistance = 150.0
-clashRepelTime = 0.1
+clashRepelDistance = 300.0
+clashRepelTime = 0.3
 clashLossOnImpact = 200.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
@@ -111,12 +110,11 @@ script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 clashGroupName = "ClashArea"
 damage = 4
-repelDistance = 400.0
-repelTime = 0.1
+repelDistance = 600.0
+repelTime = 0.3
 lossOnImpact = 75.0
-clashDamage = 2
-clashRepelDistance = 300.0
-clashRepelTime = 0.1
+clashRepelDistance = 450.0
+clashRepelTime = 0.3
 clashLossOnImpact = 150.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
@@ -130,12 +128,12 @@ script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 clashGroupName = "ClashArea"
 damage = 6
-repelDistance = 800.0
-repelTime = 0.1
+repelDistance = 1000.0
+repelTime = 0.3
 lossOnImpact = 50.0
-clashDamage = 3
-clashRepelDistance = 600.0
-clashRepelTime = 0.1
+clashDamage = 2
+clashRepelDistance = 750.0
+clashRepelTime = 0.3
 clashLossOnImpact = 100.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]

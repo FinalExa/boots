@@ -69,7 +69,7 @@ func EndAttack():
 		else:
 			StartCooldown()
 
-func ForceEndAttack():
+func ForceStartCooldown():
 	RemoveAttackHitboxes()
 	currentPhase = 0
 	if (attackCooldown == 0):
