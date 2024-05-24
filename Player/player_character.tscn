@@ -90,10 +90,14 @@ thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHi
 [node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
-damage = 1
-repelDistance = 200.0
-repelTime = 0.1
-lossOnImpact = 200.0
+clashGroupName = "ClashArea"
+damage = 2
+repelDistance = 400.0
+repelTime = 0.3
+lossOnImpact = 100.0
+clashRepelDistance = 300.0
+clashRepelTime = 0.3
+clashLossOnImpact = 200.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -32, 32, -24, -32, 24, -32, 32, 32, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
@@ -104,10 +108,14 @@ texture = ExtResource("8_361qe")
 [node name="SecondSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
-damage = 3
-repelDistance = 400.0
-repelTime = 0.1
-lossOnImpact = 150.0
+clashGroupName = "ClashArea"
+damage = 4
+repelDistance = 600.0
+repelTime = 0.3
+lossOnImpact = 75.0
+clashRepelDistance = 450.0
+clashRepelTime = 0.3
+clashLossOnImpact = 150.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
@@ -118,10 +126,15 @@ texture = ExtResource("7_ps88g")
 [node name="ThirdSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
-damage = 5
-repelDistance = 800.0
-repelTime = 0.1
-lossOnImpact = 100.0
+clashGroupName = "ClashArea"
+damage = 6
+repelDistance = 1000.0
+repelTime = 0.3
+lossOnImpact = 50.0
+clashDamage = 2
+clashRepelDistance = 750.0
+clashRepelTime = 0.3
+clashLossOnImpact = 100.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
@@ -132,9 +145,15 @@ texture = ExtResource("8_alu1b")
 [node name="Arrow" type="Sprite2D" parent="PlayerRotator"]
 texture = ExtResource("5_s1pth")
 
+[connection signal="area_entered" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_area_exited"]
 [connection signal="body_entered" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_body_entered"]
 [connection signal="body_exited" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_body_exited"]
+[connection signal="area_entered" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_area_exited"]
 [connection signal="body_entered" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_body_entered"]
 [connection signal="body_exited" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_body_exited"]
+[connection signal="area_entered" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_area_exited"]
 [connection signal="body_entered" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_body_entered"]
 [connection signal="body_exited" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_body_exited"]

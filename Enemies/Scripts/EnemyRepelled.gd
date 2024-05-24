@@ -22,5 +22,6 @@ func RepelledTimer(delta):
 			repelledTimer -= delta
 			enemyController.velocity = repelledSpeed * repelledDirection
 		else:
+			enemyController.velocity = Vector2.ZERO
 			enemyController.enemyMovement.UnlockMovement()
 			repelledActive = false
