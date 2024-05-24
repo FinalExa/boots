@@ -1,8 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://de61jcfn57wpc"]
+[gd_scene load_steps=13 format=3 uid="uid://de61jcfn57wpc"]
 
-[ext_resource type="PackedScene" uid="uid://dqg13lpbwrv7" path="res://Player/player_character.tscn" id="1_ch2k2"]
-[ext_resource type="Script" path="res://Scenes/Scripts/SceneMaster.gd" id="1_rrfsp"]
-[ext_resource type="Script" path="res://WeaponTool/Scripts/FrameMaster.gd" id="2_pymkh"]
+[ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_p3qla"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_bx1r5"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="3_c6x4a"]
 [ext_resource type="PackedScene" uid="uid://qtmhrs16aupe" path="res://LevelDesign/wallrightend.tscn" id="4_0l640"]
@@ -26,19 +24,15 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_8u8m3")
 
-[node name="TestScene" type="Node2D" node_paths=PackedStringArray("frameMaster")]
-script = ExtResource("1_rrfsp")
-frameMaster = NodePath("FrameMaster")
-
-[node name="FrameMaster" type="Node" parent="."]
-script = ExtResource("2_pymkh")
-framesPerSecond = 60.0
+[node name="TestScene" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint")]
+script = ExtResource("1_p3qla")
+playerSpawnPoint = NodePath("SpawnPoint")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_xo468")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_ch2k2")]
-position = Vector2(572, 317)
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(640, 384)
 
 [node name="Walls" type="Node2D" parent="."]
 
