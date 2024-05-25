@@ -109,3 +109,8 @@ func CalculateRotationDirection():
 	else: xValue = 1
 	if (currentDirection.y > playerInputs.movementInput.y): yValue = -1
 	else: yValue = 1
+
+func SetToZero():
+	currentSpeed = 0
+	playerCharacter.velocity = Vector2.ZERO
+	playerCharacter.playerSpeedThresholds.Startup()
