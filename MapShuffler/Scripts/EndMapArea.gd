@@ -7,4 +7,4 @@ func _on_body_entered(body):
 
 func GoToNextMap():
 	var sceneMaster: SceneMaster = get_tree().root.get_child(0)
-	sceneMaster.sceneSelector.ShuffleScene()
+	sceneMaster.sceneSelector.call_deferred("ShuffleScene")

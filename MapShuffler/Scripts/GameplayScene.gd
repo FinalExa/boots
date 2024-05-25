@@ -13,4 +13,4 @@ func RegisterDoor(receivedDoor: Door):
 
 func SetCompleted():
 	for i in doors.size():
-		doors[i].OpenDoor()
+		doors[i].call_deferred("OpenDoor")

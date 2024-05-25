@@ -7,7 +7,7 @@ extends Node2D
 var currentScene: GameplayScene
 
 func _ready():
-	ShuffleScene()
+	call_deferred("ShuffleScene")
 
 func ShuffleScene():
 	playerRef.global_position = safePosition
@@ -19,3 +19,4 @@ func ShuffleScene():
 	currentScene = obj
 	add_child(currentScene)
 	currentScene.SetPlayerSpawn(playerRef)
+	playerRef.playerMovements.SetToZero()
