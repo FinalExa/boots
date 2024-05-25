@@ -14,7 +14,7 @@ func ShuffleScene():
 	if (currentScene != null):
 		remove_child(currentScene)
 		currentScene = null
-	var obj_scene = load(scenesToShuffle[randf_range(0, scenesToShuffle.size() - 1)])
+	var obj_scene = load(scenesToShuffle[randf_range(0, scenesToShuffle.size())])
 	var obj = obj_scene.instantiate()
 	currentScene = obj
 	add_child(currentScene)
