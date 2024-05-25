@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg2cwuvs8ltmo"]
+[gd_scene load_steps=3 format=3 uid="uid://bg2cwuvs8ltmo"]
+
+[ext_resource type="Script" path="res://MapShuffler/EndMapArea.gd" id="1_1ejkb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vh2bo"]
 size = Vector2(96, 48)
 
 [node name="EndMapArea" type="Area2D"]
+script = ExtResource("1_1ejkb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_vh2bo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
