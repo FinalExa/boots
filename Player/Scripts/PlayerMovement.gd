@@ -113,3 +113,4 @@ func CalculateRotationDirection():
 func SetToZero():
 	currentSpeed = 0
 	playerCharacter.velocity = Vector2.ZERO
+	playerCharacter.playerSpeedThresholds.Startup()

@@ -20,10 +20,11 @@ radius = 16.0
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 font_color = Color(0.854902, 0, 0.854902, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerHUD/Objective")
+playerSpeedThresholds = NodePath("PlayerRotator/PlayerSpeedThresholds")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 z_index = 1
