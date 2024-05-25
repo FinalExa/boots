@@ -1,6 +1,7 @@
 extends MapObjective
 
 @export var objectiveDescription: String
+@export var objectiveNotCompletedDescription: String
 @export var objectiveCompletedDescription: String
 @export var enemies: Array[EnemyController]
 var startingSize: int
@@ -12,7 +13,7 @@ func RegisterMapObjective():
 	for i in enemies.size():
 		enemies[i].enemyHealth.currentObjective = self
 	startingSize = enemies.size()
-	playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str("Enemies left: ", enemies.size(), "/", startingSize))
+	playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str(objectiveNotCompletedDescription, enemies.size(), "/", startingSize))
 
 func RequestEnemyData(enemyController: EnemyController):
 	RemoveEnemy(enemyController)
@@ -24,4 +25,4 @@ func RemoveEnemy(enemyToRemove: EnemyController):
 			ObjectiveCompleted()
 			playerRef.currentObjectiveUI.UpdateText(objectiveDescription, objectiveCompletedDescription)
 		else:
-			playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str("Enemies left: ", enemies.size(), "/", startingSize))
+			playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str(objectiveNotCompletedDescription, enemies.size(), "/", startingSize))
