@@ -3,11 +3,12 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/SceneMaster.gd" id="1_22w62"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/FrameMaster.gd" id="1_ruj1e"]
 [ext_resource type="PackedScene" uid="uid://dqg13lpbwrv7" path="res://Player/player_character.tscn" id="3_r2b1q"]
-[ext_resource type="PackedScene" uid="uid://w355ff52l2m8" path="res://scene_selector.tscn" id="4_3coog"]
+[ext_resource type="PackedScene" uid="uid://w355ff52l2m8" path="res://MapShuffler/scene_selector.tscn" id="4_3coog"]
 
-[node name="ActiveLevel" type="Node2D" node_paths=PackedStringArray("frameMaster")]
+[node name="ActiveLevel" type="Node2D" node_paths=PackedStringArray("frameMaster", "sceneSelector")]
 script = ExtResource("1_22w62")
 frameMaster = NodePath("FrameMaster")
+sceneSelector = NodePath("SceneSelector")
 
 [node name="FrameMaster" type="Node" parent="."]
 script = ExtResource("1_ruj1e")

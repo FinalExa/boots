@@ -16,6 +16,6 @@ func ShuffleScene():
 		currentScene = null
 	var obj_scene = load(scenesToShuffle[randf_range(0, scenesToShuffle.size() - 1)])
 	var obj = obj_scene.instantiate()
-	add_child(obj)
-	currentScene = get_child(0)
+	currentScene = obj
+	add_child(currentScene)
 	currentScene.SetPlayerSpawn(playerRef)
