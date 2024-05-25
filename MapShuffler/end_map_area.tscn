@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg2cwuvs8ltmo"]
 
-[ext_resource type="Script" path="res://MapShuffler/EndMapArea.gd" id="1_1ejkb"]
+[ext_resource type="Script" path="res://MapShuffler/Scripts/EndMapArea.gd" id="1_1ejkb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vh2bo"]
 size = Vector2(96, 48)

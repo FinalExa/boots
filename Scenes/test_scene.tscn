@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://de61jcfn57wpc"]
+[gd_scene load_steps=15 format=3 uid="uid://de61jcfn57wpc"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_p3qla"]
+[ext_resource type="Script" path="res://Scenes/DefeatEnemiesObjective.gd" id="2_w2h80"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_bx1r5"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="3_c6x4a"]
 [ext_resource type="PackedScene" uid="uid://qtmhrs16aupe" path="res://LevelDesign/wallrightend.tscn" id="4_0l640"]
@@ -28,6 +29,11 @@ sources/0 = SubResource("TileSetAtlasSource_8u8m3")
 [node name="TestScene" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint")]
 script = ExtResource("1_p3qla")
 playerSpawnPoint = NodePath("SpawnPoint")
+
+[node name="MapObjective" type="Node" parent="." node_paths=PackedStringArray("enemies", "gameplayScene")]
+script = ExtResource("2_w2h80")
+enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7")]
+gameplayScene = NodePath("..")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_xo468")
