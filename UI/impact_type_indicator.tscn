@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://colo7tub66py5"]
+
+[ext_resource type="Script" path="res://UI/Scripts/ImpactTypeIndicator.gd" id="1_7hpm3"]
+
+[sub_resource type="SystemFont" id="SystemFont_h6pft"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_go6i3"]
+font = SubResource("SystemFont_h6pft")
+font_size = 24
+font_color = Color(0.819608, 0.823529, 0, 1)
+
+[node name="ImpactTypeIndicator" type="Node2D" node_paths=PackedStringArray("textLabel")]
+z_index = 50
+script = ExtResource("1_7hpm3")
+textLabel = NodePath("Control/Label")
+directText = "DIRECT!"
+clashText = "CLASH!"
+ascendingSpeed = 200.0
+lifeTime = 0.5
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -64.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+label_settings = SubResource("LabelSettings_go6i3")
+horizontal_alignment = 1
+vertical_alignment = 1

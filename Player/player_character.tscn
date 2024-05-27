@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Player/Scripts/HUD/SpeedValue.gd" id="4_hhy2o"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerRotator.gd" id="4_mluyg"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
-[ext_resource type="Script" path="res://Player/CurrentObjectiveUI.gd" id="6_im8ru"]
+[ext_resource type="Script" path="res://Player/Scripts/CurrentObjectiveUI.gd" id="6_vo4ho"]
 [ext_resource type="Texture2D" uid="uid://bhk565yga7gwp" path="res://Player/Sprites/level2.png" id="7_ps88g"]
 [ext_resource type="Texture2D" uid="uid://c18kyrevn3t0j" path="res://Player/Sprites/level1.png" id="8_361qe"]
 [ext_resource type="Texture2D" uid="uid://c8wbw6m22ou1j" path="res://Player/Sprites/level3.png" id="8_alu1b"]
@@ -87,7 +87,7 @@ offset_bottom = 152.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_im8ru")
+script = ExtResource("6_vo4ho")
 
 [node name="PlayerRotator" type="Node2D" parent="." node_paths=PackedStringArray("playerBody", "playerMovements")]
 script = ExtResource("4_mluyg")
@@ -98,7 +98,7 @@ offsetDegrees = 90
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
 playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = Array[float]([200.0, 550.0, 1250.0, 1500.0])
+speedThresholds = Array[float]([200.0, 550.0, 1350.0, 1500.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
 [node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
@@ -112,6 +112,7 @@ lossOnImpact = 100.0
 clashRepelDistance = 300.0
 clashRepelTime = 0.3
 clashLossOnImpact = 200.0
+impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -32, 32, -24, -32, 24, -32, 32, 32, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
@@ -130,6 +131,7 @@ lossOnImpact = 75.0
 clashRepelDistance = 450.0
 clashRepelTime = 0.3
 clashLossOnImpact = 150.0
+impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
@@ -149,6 +151,7 @@ clashDamage = 2
 clashRepelDistance = 750.0
 clashRepelTime = 0.3
 clashLossOnImpact = 100.0
+impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]
 polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
