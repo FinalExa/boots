@@ -459,30 +459,23 @@ layer_0/tile_data = PackedInt32Array(720880, 0, 0, 655375, 0, 0, 196623, 0, 0, 1
 [node name="Enemy" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(-824, 256)
 
-[node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("enemyMovement") instance=ExtResource("9_41iie")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(-448, 256)
-enemyMovement = NodePath("../Enemy/EnemyMovement")
 
-[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("enemyMovement") instance=ExtResource("9_41iie")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(-832, 648)
-enemyMovement = NodePath("../Enemy/EnemyMovement")
 
-[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("enemyMovement") instance=ExtResource("9_41iie")]
+[node name="Enemy4" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(544, -1568)
-enemyMovement = NodePath("../Enemy/EnemyMovement")
 
-[node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("enemyMovement") instance=ExtResource("9_41iie")]
+[node name="Enemy5" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(-1936, -328)
-enemyMovement = NodePath("../Enemy/EnemyMovement")
 
-[node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("enemyMovement") instance=ExtResource("9_41iie")]
+[node name="Enemy6" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(1768, 1304)
-enemyMovement = NodePath("../Enemy/EnemyMovement")
 
-[node name="Enemy7" parent="Enemies" node_paths=PackedStringArray("enemyMovement") instance=ExtResource("9_41iie")]
+[node name="Enemy7" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(-1944, 1328)
-enemyMovement = NodePath("../Enemy/EnemyMovement")
 
-[node name="Enemy8" parent="Enemies" node_paths=PackedStringArray("enemyMovement") instance=ExtResource("9_41iie")]
+[node name="Enemy8" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(608, 80)
-enemyMovement = NodePath("../Enemy/EnemyMovement")

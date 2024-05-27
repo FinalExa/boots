@@ -11,6 +11,7 @@ extends Area2D
 @export var clashRepelDistance: float
 @export var clashRepelTime: float
 @export var clashLossOnImpact: float
+@export var impactTypeIndicator: String
 var enemiesHit: Array[EnemyController]
 var damageEnabled: bool
 
@@ -34,7 +35,14 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 			enemiesHit.erase(enemyController)
 		if (clash):
 			enemyController.enemyAttack.ForceStartCooldown()
+		CreateImpactTypeIndicator(clash, self.global_position)
 		playerMovements.currentSpeed = clamp(playerMovements.currentSpeed - speedLoss, 0, playerMovements.maxSpeed)
+
+func CreateImpactTypeIndicator(clash: bool, currentPosition: Vector2):
+	var obj_scene = load(impactTypeIndicator)
+	var obj: ImpactTypeIndicator = obj_scene.instantiate()
+	obj.Initialize(clash, currentPosition)
+	get_tree().root.get_child(0).sceneSelector.currentScene.add_child(obj)
 
 func TurnOffDamage():
 	damageEnabled = false
