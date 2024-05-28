@@ -13,9 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bo585ed8eynti" path="res://Enemies/enemy.tscn" id="9_41iie"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oq6ai"]
-vertices = PackedVector2Array(-768, 960, 0, 384, 1200, 320, 1984, 320, 1984, 1472, 552, -704, 1200, -1728, 0, 320, 552, -1344, -176, -1728, 536, -1344, -176, -512, 536, -704, -784, 320, -2112, -512, -2112, 1472, -784, 960, -768, 384)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 2, 1, 7), PackedInt32Array(6, 5, 8), PackedInt32Array(9, 6, 8, 10), PackedInt32Array(11, 9, 10, 12, 7), PackedInt32Array(12, 5, 7), PackedInt32Array(11, 7, 13, 14), PackedInt32Array(15, 14, 13, 16), PackedInt32Array(4, 15, 16, 0), PackedInt32Array(1, 0, 17)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-2112, 1472, -2112, -512, -176, -512, -176, -1728, 1200, -1728, 1200, 320, 1984, 320, 1984, 1472), PackedVector2Array(-784, 960, -784, 320, 0, 320, 0, 384, -768, 384, -768, 960), PackedVector2Array(536, -704, 536, -1344, 552, -1344, 552, -704)])
+vertices = PackedVector2Array(-752, 1040, 16, 400, 1184, 336, 1968, 336, 1968, 1456, 568, -624, 1184, -1712, 568, -1360, -160, -1712, 520, -1360, 16, 304, 520, -624, -160, -496, -800, 304, -2096, -496, -2096, 1456, -800, 1040, -752, 400)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 2, 1), PackedInt32Array(6, 5, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(5, 1, 10, 11), PackedInt32Array(12, 8, 9, 11, 10), PackedInt32Array(12, 10, 13, 14), PackedInt32Array(15, 14, 13, 16), PackedInt32Array(4, 15, 16, 0), PackedInt32Array(1, 0, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2096, 1456, -2096, -496, -160, -496, -160, -1712, 1184, -1712, 1184, 336, 1968, 336, 1968, 1456), PackedVector2Array(-800, 1040, -800, 304, 16, 304, 16, 400, -752, 400, -752, 1040), PackedVector2Array(520, -624, 520, -1360, 568, -1360, 568, -624)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8u8m3"]
 texture = ExtResource("2_bl8cg")
@@ -146,6 +146,12 @@ position = Vector2(-184, -1536)
 
 [node name="WallVertical25" parent="Walls" instance=ExtResource("2_1rn25")]
 position = Vector2(-184, -1664)
+
+[node name="WallVerticalFullView4" parent="Walls" instance=ExtResource("4_ncr2h")]
+position = Vector2(544, -672)
+
+[node name="WallVerticalFullView6" parent="Walls" instance=ExtResource("4_ncr2h")]
+position = Vector2(-776, 992)
 
 [node name="Wall" parent="Walls" instance=ExtResource("3_io7qq")]
 position = Vector2(0, 1504)

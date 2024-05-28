@@ -43,18 +43,18 @@ script = ExtResource("3_fxyqo")
 script = ExtResource("1_n46fh")
 playerCharacter = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
-accelerationPerSecond = 400.0
-decelerationPerSecond = 600.0
-decelerationWhileColliding = 500.0
-minDecelerationWhileSteering = -50.0
-maxDecelerationWhileSteering = 100.0
+accelerationPerSecond = 700.0
+decelerationPerSecond = 900.0
+decelerationWhileColliding = 800.0
+minDecelerationWhileSteering = -100.0
+maxDecelerationWhileSteering = 200.0
 decelerationWhileSteeringRequiredSpeed = 300.0
-decelerationWhileSteeringIncreasePerSecond = 100.0
+decelerationWhileSteeringIncreasePerSecond = 150.0
 decelerationWhileSteeringDecreasePerSecond = 150.0
 rotationSpeedPerSecond = 1.5
-killSpeedValue = 150.0
-minSpeed = 50.0
-maxSpeed = 1500.0
+killSpeedValue = 300.0
+minSpeed = 100.0
+maxSpeed = 2000.0
 
 [node name="PlayerHUD" type="Control" parent="."]
 z_index = 100
@@ -98,7 +98,7 @@ offsetDegrees = 90
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
 playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = Array[float]([200.0, 550.0, 1350.0, 1500.0])
+speedThresholds = Array[float]([400.0, 700.0, 1800.0, 2000.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
 [node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
@@ -108,10 +108,10 @@ clashGroupName = "ClashArea"
 damage = 2
 repelDistance = 400.0
 repelTime = 0.3
-lossOnImpact = 100.0
+lossOnImpact = 200.0
 clashRepelDistance = 300.0
 clashRepelTime = 0.3
-clashLossOnImpact = 200.0
+clashLossOnImpact = 400.0
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
@@ -127,10 +127,10 @@ clashGroupName = "ClashArea"
 damage = 4
 repelDistance = 600.0
 repelTime = 0.3
-lossOnImpact = 75.0
+lossOnImpact = 150.0
 clashRepelDistance = 450.0
 clashRepelTime = 0.3
-clashLossOnImpact = 150.0
+clashLossOnImpact = 300.0
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
@@ -146,11 +146,11 @@ clashGroupName = "ClashArea"
 damage = 6
 repelDistance = 1000.0
 repelTime = 0.3
-lossOnImpact = 50.0
+lossOnImpact = 100.0
 clashDamage = 2
 clashRepelDistance = 750.0
 clashRepelTime = 0.3
-clashLossOnImpact = 100.0
+clashLossOnImpact = 200.0
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]

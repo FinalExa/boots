@@ -13,9 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bo585ed8eynti" path="res://Enemies/enemy.tscn" id="9_vpcjp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xo468"]
-vertices = PackedVector2Array(1472, -1152, 832, -1472, 832, -1536, 2352, -1664, 2368, -1664, 2496, -1152, 704, -256, -192, 576, -192, -832, 192, -832, 704, -320, 192, -896, -192, -896, -192, -2176, 448, -1536, 448, -1472, 2352, -2176, 2368, -2176, 4016, -2176, 4016, -64, 3136, -768, 2496, -64, 2496, -704, 3136, -704, 2496, -768, 1472, -320, 1472, -256, 1472, 576)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(13, 16, 3, 2, 14), PackedInt32Array(4, 17, 18, 19, 20), PackedInt32Array(19, 21, 22, 23), PackedInt32Array(20, 24, 5), PackedInt32Array(0, 25, 10, 9, 11, 15, 1), PackedInt32Array(6, 26, 27, 7), PackedInt32Array(19, 23, 20), PackedInt32Array(5, 4, 20)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-192, 576, 1472, 576, 1472, -256, 704, -256, 704, -320, 1472, -320, 1472, -1152, 2496, -1152, 2496, -768, 3136, -768, 3136, -704, 2496, -704, 2496, -64, 4016, -64, 4016, -2176, 2368, -2176, 2368, -1664, 2352, -1664, 2352, -2176, -192, -2176, -192, -896, 192, -896, 192, -832, -192, -832), PackedVector2Array(448, -1536, 832, -1536, 832, -1472, 448, -1472)])
+vertices = PackedVector2Array(1456, -1168, 848, -1456, 848, -1552, 2336, -1648, 2384, -1648, 2512, -1168, -176, 560, -176, 144, 336, 144, 1456, 560, 688, -240, 1456, -240, 336, 48, -176, 48, -176, -816, 208, -816, 688, -336, 208, -912, -176, -912, -176, -2160, 432, -1552, 432, -1456, 2336, -2160, 2384, -2160, 4000, -2160, 4000, -80, 3152, -784, 2512, -80, 2512, -688, 3152, -688, 2512, -784, 1456, -336)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 9, 8, 12), PackedInt32Array(10, 12, 13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20, 21), PackedInt32Array(19, 22, 3, 2, 20), PackedInt32Array(4, 23, 24, 25, 26), PackedInt32Array(25, 27, 28, 29), PackedInt32Array(26, 30, 5), PackedInt32Array(0, 31, 16, 15, 17, 21, 1), PackedInt32Array(25, 29, 26), PackedInt32Array(5, 4, 26)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-176, 560, 1456, 560, 1456, -240, 688, -240, 688, -336, 1456, -336, 1456, -1168, 2512, -1168, 2512, -784, 3152, -784, 3152, -688, 2512, -688, 2512, -80, 4000, -80, 4000, -2160, 2384, -2160, 2384, -1648, 2336, -1648, 2336, -2160, -176, -2160, -176, -912, 208, -912, 208, -816, -176, -816, -176, 48, 336, 48, 336, 144, -176, 144), PackedVector2Array(432, -1552, 848, -1552, 848, -1456, 432, -1456)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vi4rl"]
 texture = ExtResource("7_n6avi")
@@ -30,12 +30,12 @@ sources/0 = SubResource("TileSetAtlasSource_vi4rl")
 script = ExtResource("1_p3qla")
 playerSpawnPoint = NodePath("SpawnPoint")
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_xo468")
+
 [node name="DefeatEnemiesObjective" parent="." node_paths=PackedStringArray("enemies", "gameplayScene") instance=ExtResource("2_2eajk")]
 enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7")]
 gameplayScene = NodePath("..")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_xo468")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(640, 384)

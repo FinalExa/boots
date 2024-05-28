@@ -14,7 +14,11 @@ z_index = 50
 script = ExtResource("1_7hpm3")
 textLabel = NodePath("Control/Label")
 directText = "DIRECT!"
+directColor = Color(0.898039, 0, 0, 1)
+directSize = 32
 clashText = "CLASH!"
+clashColor = Color(0.819608, 0.823529, 0, 1)
+clashSize = 24
 ascendingSpeed = 200.0
 lifeTime = 0.5
 

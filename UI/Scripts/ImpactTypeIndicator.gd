@@ -3,7 +3,11 @@ extends Node2D
 
 @export var textLabel: Label
 @export var directText: String
+@export var directColor: Color
+@export var directSize: int
 @export var clashText: String
+@export var clashColor: Color
+@export var clashSize: int
 @export var ascendingSpeed: float
 @export var lifeTime: float
 var lifeTimer: float
@@ -16,9 +20,14 @@ func _ready():
 func Initialize(isClash: bool, position: Vector2):
 	startPos = position
 	if (!isClash):
-		textLabel.text = directText
+		SetLabel(directText, directColor, directSize)
 		return
-	textLabel.text = clashText
+	SetLabel(clashText, clashColor, clashSize)
+
+func SetLabel(text: String, color: Color, size: int):
+	textLabel.label_settings.font_size = size
+	textLabel.label_settings.font_color = color
+	textLabel.text = text
 
 func _process(delta):
 	LifeTimer(delta)
