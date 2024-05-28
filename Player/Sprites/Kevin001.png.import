@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdsu8mixci7tf"
-path="res://.godot/imported/Brook.png-160cf3bde42d1af453af8f47831385a5.ctex"
+uid="uid://bvqgx56x7mcw3"
+path="res://.godot/imported/Kevin001.png-6a77c7b1062917ec24861beb030ca30a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Sprites/Brook.png"
-dest_files=["res://.godot/imported/Brook.png-160cf3bde42d1af453af8f47831385a5.ctex"]
+source_file="res://Player/Sprites/Kevin001.png"
+dest_files=["res://.godot/imported/Kevin001.png-6a77c7b1062917ec24861beb030ca30a.ctex"]
 
 [params]
 

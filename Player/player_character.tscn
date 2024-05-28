@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://dqg13lpbwrv7"]
 
-[ext_resource type="Texture2D" uid="uid://bdsu8mixci7tf" path="res://Player/Sprites/Brook.png" id="1_hl47a"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
+[ext_resource type="Texture2D" uid="uid://bvqgx56x7mcw3" path="res://Player/Sprites/Kevin001.png" id="2_hhyy6"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="3_fxyqo"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerSpeedThresholds.gd" id="4_33erx"]
 [ext_resource type="Script" path="res://Player/Scripts/HUD/SpeedValue.gd" id="4_hhy2o"]
@@ -28,7 +28,7 @@ playerSpeedThresholds = NodePath("PlayerRotator/PlayerSpeedThresholds")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("1_hl47a")
+texture = ExtResource("2_hhyy6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 24)
