@@ -13,5 +13,9 @@ func SetRotation():
 		look_at(enemyController.global_position + enemyMovement.dir)
 		rotation_degrees += rotationOffset
 
+func LookAtPlayer():
+	if (enemyController.playerRef != null):
+		look_at(enemyController.playerRef.global_position)
+
 func GetCurrentLookDirection():
 	return enemyMovement.dir
