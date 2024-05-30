@@ -17,7 +17,11 @@ var damageEnabled: bool
 
 func _on_body_entered(body):
 	if (body is EnemyController):
-		DealDamage(body, damage, repelDistance, playerMovements.currentDirection, repelTime, lossOnImpact, false)
+		if (body.enemyShielded.shieldedBy == null):
+			DealDamage(body, damage, repelDistance, playerMovements.currentDirection, repelTime, lossOnImpact, false)
+		else:
+			DealDamage(body, clashDamage, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
+			body.enemyShielded.RemoveShielded()
 		return
 	if (body is Projectile):
 		ProjectileCollision(body)

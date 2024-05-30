@@ -1,15 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctah4a62uicsr"]
+[gd_scene load_steps=23 format=3 uid="uid://ctah4a62uicsr"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_exjgg"]
 [ext_resource type="Texture2D" uid="uid://cnfsx1070f5on" path="res://Enemies/Sprites/shielderEnemy.png" id="2_duyna"]
 [ext_resource type="Texture2D" uid="uid://mgj6axcwfnc3" path="res://Enemies/Sprites/shielderEnemyShielding.png" id="3_vnovu"]
+[ext_resource type="Texture2D" uid="uid://btho6rt15jl8m" path="res://Enemies/Sprites/shielderEnemyShield.png" id="4_gh761"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyHealth.gd" id="4_m8tui"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyMovement.gd" id="5_rxfv0"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRepelled.gd" id="6_psjxy"]
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyShielded.gd" id="7_p0pxy"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRotator.gd" id="7_tptxh"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="8_kkojn"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="9_k4uc8"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyDetection.gd" id="11_u72jk"]
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyShielding.gd" id="11_yk7xc"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BehaviorTree.gd" id="12_3iutp"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="13_nse1o"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="14_3uc3q"]
@@ -23,13 +26,17 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 832.038
 
-[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2qao"]
+radius = 576.0
+
+[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded")]
 script = ExtResource("1_exjgg")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
 enemyRotator = NodePath("EnemyRotator")
 enemyAttack = NodePath("EnemyRotator/EnemyAttack")
 enemyHealth = NodePath("EnemyHealth")
+enemyShielded = NodePath("EnemyShielded")
 attackDistance = 500.0
 damageImmunityDuration = 0.1
 
@@ -42,9 +49,12 @@ texture = ExtResource("2_duyna")
 [node name="EnemySpriteShielding" type="Sprite2D" parent="."]
 texture = ExtResource("3_vnovu")
 
+[node name="ShieldSprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_gh761")
+
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "label")]
 script = ExtResource("4_m8tui")
-maxHealth = 7
+maxHealth = 15
 enemyController = NodePath("..")
 label = NodePath("../EnemyUI/Health")
 
@@ -59,6 +69,10 @@ repathTimerDuration = 0.25
 [node name="EnemyRepelled" type="Node" parent="." node_paths=PackedStringArray("enemyController")]
 script = ExtResource("6_psjxy")
 enemyController = NodePath("..")
+
+[node name="EnemyShielded" type="Node" parent="." node_paths=PackedStringArray("shieldSprite")]
+script = ExtResource("7_p0pxy")
+shieldSprite = NodePath("../ShieldSprite")
 
 [node name="EnemyUI" type="Control" parent="."]
 layout_mode = 3
@@ -93,7 +107,7 @@ position = Vector2(0, -64)
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("8_kkojn")
 attackDuration = 30
-attackCooldown = 60
+attackCooldown = 90
 attackPhasesLaunch = Array[int]([0, 10, 20])
 attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
 attackSounds = [null, null, null]
@@ -122,9 +136,21 @@ script = ExtResource("11_u72jk")
 enemyController = NodePath("..")
 normalSprite = NodePath("../EnemySprite")
 angrySprite = NodePath("../EnemySpriteShielding")
+stopSwapSprite = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
 shape = SubResource("CircleShape2D_j5l0v")
+
+[node name="EnemyShielding" type="Area2D" parent="." node_paths=PackedStringArray("controllerRef", "baseSprite", "shieldingSprite")]
+script = ExtResource("11_yk7xc")
+controllerRef = NodePath("..")
+baseSprite = NodePath("../EnemySprite")
+shieldingSprite = NodePath("../EnemySpriteShielding")
+shieldCooldown = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyShielding"]
+shape = SubResource("CircleShape2D_n2qao")
+debug_color = Color(0.533333, 0.568627, 0.152941, 0.419608)
 
 [node name="BehaviorTree" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("12_3iutp")
@@ -157,4 +183,7 @@ enemyController = NodePath("../../..")
 
 [connection signal="damaged" from="." to="EnemyHealth" method="_on_enemy_damaged"]
 [connection signal="repelled" from="." to="EnemyMovement" method="_on_enemy_repelled"]
+[connection signal="enemyDeath" from="EnemyHealth" to="EnemyShielding" method="_on_enemy_health_enemy_death"]
 [connection signal="body_entered" from="EnemyDetection" to="EnemyDetection" method="_on_body_entered"]
+[connection signal="body_entered" from="EnemyShielding" to="EnemyShielding" method="_on_body_entered"]
+[connection signal="body_exited" from="EnemyShielding" to="EnemyShielding" method="_on_body_exited"]
