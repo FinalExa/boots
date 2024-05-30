@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmog7jcw2mfrl"]
+[gd_scene load_steps=6 format=3 uid="uid://bmog7jcw2mfrl"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/Projectile.gd" id="1_4747s"]
 [ext_resource type="Texture2D" uid="uid://tq1p3djcrwo7" path="res://Enemies/Sprites/shielderEnemyBullet.png" id="1_da886"]
+[ext_resource type="AudioStream" uid="uid://ba4eq7x3pc5vg" path="res://Enemies/Sounds/enemyDirect.wav" id="2_pmtjw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3ka6"]
 radius = 16.0
@@ -9,13 +10,20 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_w7qvx"]
 radius = 24.0
 
-[node name="Projectile" type="CharacterBody2D" node_paths=PackedStringArray("forward")]
+[node name="Projectile" type="CharacterBody2D" node_paths=PackedStringArray("forward", "collisionSound")]
 script = ExtResource("1_4747s")
 movementSpeed = 500.0
 rotationOffset = 90.0
 lifeTime = 1.0
 forward = NodePath("Forward")
 speedDecrease = 600.0
+collisionSound = NodePath("Sounds/EnemyDirect")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="EnemyDirect" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("2_pmtjw")
+volume_db = -20.0
 
 [node name="ProjectileSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_da886")

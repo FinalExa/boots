@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=18 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
 [ext_resource type="Texture2D" uid="uid://bvqgx56x7mcw3" path="res://Player/Sprites/Kevin001.png" id="2_hhyy6"]
+[ext_resource type="AudioStream" uid="uid://dllifgwyd1d7a" path="res://Player/Sounds/playerDirect.wav" id="3_1xc12"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="3_fxyqo"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerSpeedThresholds.gd" id="4_33erx"]
+[ext_resource type="AudioStream" uid="uid://bsbd0jhfpears" path="res://Player/Sounds/playerClash.wav" id="4_ce281"]
 [ext_resource type="Script" path="res://Player/Scripts/HUD/SpeedValue.gd" id="4_hhy2o"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerRotator.gd" id="4_mluyg"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
@@ -25,6 +27,16 @@ script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerHUD/Objective")
 playerSpeedThresholds = NodePath("PlayerRotator/PlayerSpeedThresholds")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="PlayerDirect" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_1xc12")
+volume_db = -20.0
+
+[node name="PlayerClash" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_ce281")
+volume_db = -20.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -101,7 +113,7 @@ playerMovements = NodePath("../../PlayerMovements")
 speedThresholds = Array[float]([400.0, 700.0, 1800.0, 2000.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
-[node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
+[node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound")]
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 clashGroupName = "ClashArea"
@@ -109,9 +121,11 @@ damage = 2
 repelDistance = 400.0
 repelTime = 0.3
 lossOnImpact = 200.0
+directSound = NodePath("../../../Sounds/PlayerDirect")
 clashRepelDistance = 300.0
 clashRepelTime = 0.3
 clashLossOnImpact = 400.0
+clashSound = NodePath("../../../Sounds/PlayerClash")
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
@@ -120,7 +134,7 @@ polygon = PackedVector2Array(-64, 32, -32, 32, -24, -32, 24, -32, 32, 32, 64, 32
 [node name="Sprite2D" type="Sprite2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
 texture = ExtResource("8_361qe")
 
-[node name="SecondSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
+[node name="SecondSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound")]
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 clashGroupName = "ClashArea"
@@ -128,9 +142,11 @@ damage = 4
 repelDistance = 600.0
 repelTime = 0.3
 lossOnImpact = 150.0
+directSound = NodePath("../../../Sounds/PlayerDirect")
 clashRepelDistance = 450.0
 clashRepelTime = 0.3
 clashLossOnImpact = 300.0
+clashSound = NodePath("../../../Sounds/PlayerClash")
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
@@ -139,7 +155,7 @@ polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -
 [node name="Sprite2D" type="Sprite2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
 texture = ExtResource("7_ps88g")
 
-[node name="ThirdSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements")]
+[node name="ThirdSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound")]
 script = ExtResource("8_xetj4")
 playerMovements = NodePath("../../../PlayerMovements")
 clashGroupName = "ClashArea"
@@ -147,10 +163,12 @@ damage = 6
 repelDistance = 1000.0
 repelTime = 0.3
 lossOnImpact = 100.0
+directSound = NodePath("../../../Sounds/PlayerDirect")
 clashDamage = 2
 clashRepelDistance = 750.0
 clashRepelTime = 0.3
 clashLossOnImpact = 200.0
+clashSound = NodePath("../../../Sounds/PlayerClash")
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]

@@ -16,6 +16,7 @@ extends Node
 @export var killSpeedValue: float
 @export var minSpeed: float
 @export var maxSpeed: float
+@export var enemyDirectSound: AudioStreamPlayer
 var currentDecelerationWhileSteering: float
 var decelerationWhileSteeringActive: bool
 var currentSpeed: float
