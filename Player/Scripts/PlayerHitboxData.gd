@@ -18,6 +18,11 @@ var damageEnabled: bool
 func _on_body_entered(body):
 	if (body is EnemyController):
 		DealDamage(body, damage, repelDistance, playerMovements.currentDirection, repelTime, lossOnImpact, false)
+		return
+	if (body is Projectile):
+		body.DeleteSelf()
+		CreateImpactTypeIndicator(true, self.global_position)
+		playerMovements.UpdateCurrentSpeed(-clashLossOnImpact)
 
 func _on_area_entered(area):
 	if (area.is_in_group(clashGroupName)):
@@ -36,7 +41,7 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 		if (clash):
 			enemyController.enemyAttack.ForceStartCooldown()
 		CreateImpactTypeIndicator(clash, self.global_position)
-		playerMovements.currentSpeed = clamp(playerMovements.currentSpeed - speedLoss, 0, playerMovements.maxSpeed)
+		playerMovements.UpdateCurrentSpeed(-speedLoss)
 
 func CreateImpactTypeIndicator(clash: bool, currentPosition: Vector2):
 	var obj_scene = load(impactTypeIndicator)
