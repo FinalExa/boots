@@ -9,7 +9,5 @@ func _on_body_entered(body):
 			CheckForPlayerKill(body)
 
 func CheckForPlayerKill(playerRef: PlayerCharacter):
-	if (playerRef.playerMovements.currentSpeed < playerRef.playerMovements.killSpeedValue):
-		get_tree().reload_current_scene()
-	else:
-		playerRef.playerMovements.UpdateCurrentSpeed(-reducedSpeed)
+	playerRef.playerMovements.CheckForGameOver()
+	playerRef.playerMovements.UpdateCurrentSpeed(-reducedSpeed)
