@@ -17,8 +17,8 @@ func _ready():
 	lifeTimer = lifeTime
 	self.global_position = startPos
 
-func Initialize(isClash: bool, position: Vector2):
-	startPos = position
+func Initialize(isClash: bool, receivedPosition: Vector2):
+	startPos = receivedPosition
 	if (!isClash):
 		SetLabel(directText, directColor, directSize)
 		return

@@ -35,6 +35,9 @@ func AddAttackHitbox(index):
 			attackHitboxInstance = self.get_child(0)
 			if (attackHitboxInstance is AttackHitbox):
 				attackHitboxInstance.characterRef = characterRef
+			else:
+				if (attackHitboxInstance is ObjectSpawner):
+					attackHitboxInstance.call_deferred("SpawnObject")
 		if (attackSounds[index] != null && !attackSounds[index].playing): attackSounds[index].play()
 
 func RemoveAttackHitbox(index):
