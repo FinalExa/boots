@@ -81,11 +81,15 @@ avoidance_enabled = true
 radius = 100.0
 max_speed = 300.0
 
-[node name="EnemyRotator" type="Node2D" parent="." node_paths=PackedStringArray("enemyController", "enemyMovement")]
+[node name="EnemyRotator" type="Node2D" parent="." node_paths=PackedStringArray("enemyController", "enemyMovement", "pointer")]
 script = ExtResource("6_xcinm")
 enemyController = NodePath("..")
 enemyMovement = NodePath("../EnemyMovement")
 rotationOffset = 90.0
+pointer = NodePath("Pointer")
+
+[node name="Pointer" type="Node2D" parent="EnemyRotator"]
+position = Vector2(0, -64)
 
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("8_16hwb")
