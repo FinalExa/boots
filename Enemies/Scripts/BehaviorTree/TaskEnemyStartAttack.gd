@@ -6,7 +6,12 @@ extends EnemyNode
 func Evaluate(_delta):
 	if (enemyController.playerRef != null && enemyController.global_position.distance_to(enemyController.playerRef.global_position) <= enemyController.attackDistance):
 		enemyMovement.StopMovement()
-		if (!enemyAttack.attackLaunched):
+		if (!enemyAttack.attackLaunched && !enemyAttack.cooldownActive):
+			enemyController.enemyRotator.LookAtPlayer()
 			enemyAttack.StartAttack()
 		return NodeState.FAILURE
+	if (enemyMovement.movementLocked):
+		enemyMovement.UnlockMovement()
+	if (enemyController.enemyRotator.rotationLocked):
+		enemyController.enemyRotator.UnlockRotation()
 	return NodeState.SUCCESS

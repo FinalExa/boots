@@ -14,7 +14,7 @@ var movementValue: float
 var movementDirection: Vector2
 
 var attackLaunched: bool
-var attackInCooldown: bool
+var cooldownActive: bool
 var attackFrame: int
 var currentPhase: int
 
@@ -28,6 +28,30 @@ func _ready():
 func ExtraReadyOperations():
 	pass
 
+func Attacking():
+	if (cooldownActive):
+		CooldownExecute()
+		return
+	if (attackLaunched):
+		AttackExecute()
+
+func AttackExecute():
+	if (attackFrame < attackDuration):
+		AttackMovement(currentPhase - 1)
+		attackFrame += 1
+		return
+	if (currentPhase < attackPhasesLaunch.size() && attackFrame > attackPhasesLaunch[currentPhase]):
+		ExecuteAttackPhase()
+	else:
+		EndAttack()
+
+func CooldownExecute():
+	if (attackFrame < attackCooldown):
+		ActiveCooldownFeedback()
+		attackFrame += 1
+	else:
+		EndCooldown()
+
 func AddAttackHitbox(index):
 	if (index < attackHitboxes.size()):
 		if (attackHitboxes[index] != null):
@@ -35,6 +59,9 @@ func AddAttackHitbox(index):
 			attackHitboxInstance = self.get_child(0)
 			if (attackHitboxInstance is AttackHitbox):
 				attackHitboxInstance.characterRef = characterRef
+			else:
+				if (attackHitboxInstance is ObjectSpawner):
+					attackHitboxInstance.call_deferred("SpawnObject")
 		if (attackSounds[index] != null && !attackSounds[index].playing): attackSounds[index].play()
 
 func RemoveAttackHitbox(index):
@@ -64,6 +91,7 @@ func EndAttack():
 	if (currentPhase >= attackPhasesLaunch.size()):
 		RemoveAttackHitbox(attackPhasesLaunch.size()-1)
 		currentPhase = 0
+		attackLaunched = false
 		if (attackCooldown == 0):
 			FinalizeAttack()
 		else:
@@ -78,37 +106,19 @@ func ForceStartCooldown():
 		StartCooldown()
 
 func ForceEndCooldown():
-	attackInCooldown = false
+	cooldownActive = false
 	attackLaunched = false
 
 func FinalizeAttack():
 	attackLaunched = false
 
 func StartCooldown():
-	attackInCooldown = true
+	cooldownActive = true
 	attackFrame = 0
 
 func EndCooldown():
-	attackInCooldown = false
-	attackLaunched = false
+	cooldownActive = false
 	EndCooldownFeedback()
-
-func Attacking():
-	if (attackLaunched):
-		if (!attackInCooldown):
-			if (attackFrame < attackDuration):
-				AttackMovement(currentPhase - 1)
-				attackFrame += 1
-				if (currentPhase < attackPhasesLaunch.size() && attackFrame > attackPhasesLaunch[currentPhase]):
-					ExecuteAttackPhase()
-			else:
-				EndAttack()
-		else:
-			if (attackFrame < attackCooldown):
-				ActiveCooldownFeedback()
-				attackFrame += 1
-			else:
-				EndCooldown()
 
 func RemoveAttackHitboxes():
 	for i in attackHitboxes.size():

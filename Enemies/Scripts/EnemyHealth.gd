@@ -1,6 +1,8 @@
 class_name EnemyHealth
 extends Node
 
+signal enemyDeath
+
 @export var maxHealth: int
 @export var enemyController: EnemyController
 @export var label: Label
@@ -19,6 +21,7 @@ func HealthUpdate(valueChange: int):
 	if (currentHealth <= 0):
 		if (currentObjective != null):
 			currentObjective.RequestEnemyData(enemyController)
+		emit_signal("enemyDeath")
 		enemyController.get_parent().remove_child(enemyController)
 
 

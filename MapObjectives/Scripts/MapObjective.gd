@@ -14,7 +14,7 @@ func ReadyOperations():
 func GetPlayer():
 	playerRef = get_tree().root.get_child(0).sceneSelector.playerRef
 
-func RequestEnemyData(enemyController: EnemyController):
+func RequestEnemyData(_enemyController: EnemyController):
 	pass
 
 func ObjectiveCompleted():

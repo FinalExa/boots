@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://lvyfy0ogget5"]
+[gd_scene load_steps=16 format=3 uid="uid://lvyfy0ogget5"]
 
 [ext_resource type="PackedScene" uid="uid://dol7rouwbn8i3" path="res://MapObjectives/defeat_enemies_objective.tscn" id="1_oe4qj"]
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_q03js"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://40ldnmu68n4w" path="res://LevelDesign/wallleftend.tscn" id="7_88b74"]
 [ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="8_545nc"]
 [ext_resource type="PackedScene" uid="uid://bo585ed8eynti" path="res://Enemies/enemy.tscn" id="9_41iie"]
+[ext_resource type="PackedScene" uid="uid://ctah4a62uicsr" path="res://Enemies/shielder_enemy.tscn" id="12_ppvic"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_oq6ai"]
 vertices = PackedVector2Array(-752, 1040, 16, 400, 1184, 336, 1968, 336, 1968, 1456, 568, -624, 1184, -1712, 568, -1360, -160, -1712, 520, -1360, 16, 304, 520, -624, -160, -496, -800, 304, -2096, -496, -2096, 1456, -800, 1040, -752, 400)
@@ -31,7 +32,7 @@ script = ExtResource("1_q03js")
 playerSpawnPoint = NodePath("SpawnPoint")
 
 [node name="DefeatEnemiesObjective" parent="." node_paths=PackedStringArray("enemies", "gameplayScene") instance=ExtResource("1_oe4qj")]
-enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7"), NodePath("../Enemies/Enemy8")]
+enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7"), NodePath("../Enemies/Enemy8"), NodePath("../Enemies/ShielderEnemy")]
 gameplayScene = NodePath("..")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -485,3 +486,6 @@ position = Vector2(-1944, 1328)
 
 [node name="Enemy8" parent="Enemies" instance=ExtResource("9_41iie")]
 position = Vector2(608, 80)
+
+[node name="ShielderEnemy" parent="Enemies" instance=ExtResource("12_ppvic")]
+position = Vector2(1600, 576)

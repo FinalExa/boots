@@ -9,6 +9,7 @@ signal repelled
 @export var enemyRotator: EnemyRotator
 @export var enemyAttack: ExecuteAttack
 @export var enemyHealth: EnemyHealth
+@export var enemyShielded: EnemyShielded
 @export var attackDistance: float
 @export var damageImmunityDuration: float
 

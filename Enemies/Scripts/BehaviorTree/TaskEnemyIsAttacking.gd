@@ -3,8 +3,6 @@ extends EnemyNode
 @export var enemyAttack: ExecuteAttack
 
 func Evaluate(_delta):
-	if (enemyAttack.attackLaunched):
+	if (enemyAttack.attackLaunched || enemyAttack.cooldownActive):
 		return NodeState.FAILURE
-	if (enemyController.enemyMovement.movementLocked):
-		enemyController.enemyMovement.UnlockMovement()
 	return NodeState.SUCCESS

@@ -7,6 +7,7 @@ var playerRef: PlayerCharacter
 @export var enemyController: EnemyController
 @export var normalSprite: Sprite2D
 @export var angrySprite: Sprite2D
+@export var stopSwapSprite: bool
 
 func _ready():
 	angrySprite.hide()
@@ -19,5 +20,6 @@ func SetChasePlayer(body):
 		playerRef = body
 		enemyController.playerRef = playerRef
 		playerFound = true
-		normalSprite.hide()
-		angrySprite.show()
+		if (!stopSwapSprite):
+			normalSprite.hide()
+			angrySprite.show()
