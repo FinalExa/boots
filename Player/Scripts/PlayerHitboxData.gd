@@ -7,10 +7,12 @@ extends Area2D
 @export var repelDistance: float
 @export var repelTime: float
 @export var lossOnImpact: float
+@export var directSound: AudioStreamPlayer
 @export var clashDamage: int
 @export var clashRepelDistance: float
 @export var clashRepelTime: float
 @export var clashLossOnImpact: float
+@export var clashSound: AudioStreamPlayer
 @export var impactTypeIndicator: String
 var enemiesHit: Array[EnemyController]
 var damageEnabled: bool
@@ -41,7 +43,10 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 		if (enemyController == null):
 			enemiesHit.erase(enemyController)
 		if (clash):
+			clashSound.play()
 			enemyController.enemyAttack.ForceStartCooldown()
+		else:
+			directSound.play()
 		CreateImpactTypeIndicator(clash, self.global_position)
 		playerMovements.UpdateCurrentSpeed(-speedLoss)
 
