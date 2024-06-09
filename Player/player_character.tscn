@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=17 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -11,10 +11,9 @@
 [ext_resource type="Script" path="res://Player/Scripts/PlayerRotator.gd" id="4_mluyg"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
 [ext_resource type="Script" path="res://Player/Scripts/CurrentObjectiveUI.gd" id="6_vo4ho"]
-[ext_resource type="Texture2D" uid="uid://bhk565yga7gwp" path="res://Player/Sprites/level2.png" id="7_ps88g"]
-[ext_resource type="Texture2D" uid="uid://c18kyrevn3t0j" path="res://Player/Sprites/level1.png" id="8_361qe"]
-[ext_resource type="Texture2D" uid="uid://c8wbw6m22ou1j" path="res://Player/Sprites/level3.png" id="8_alu1b"]
-[ext_resource type="Script" path="res://Player/Scripts/PlayerHitboxData.gd" id="8_xetj4"]
+[ext_resource type="PackedScene" uid="uid://y1tyx8ap1e4c" path="res://Player/first_speed_hitbox.tscn" id="11_tk2g5"]
+[ext_resource type="PackedScene" uid="uid://b71q2rjh5oown" path="res://Player/second_speed_hitbox.tscn" id="12_psnq3"]
+[ext_resource type="PackedScene" uid="uid://3bj114kxasu7" path="res://Player/third_speed_hitbox.tscn" id="13_gt5g5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -58,12 +57,11 @@ playerInputs = NodePath("../PlayerInputs")
 accelerationPerSecond = 700.0
 decelerationPerSecond = 900.0
 decelerationWhileColliding = 800.0
-minDecelerationWhileSteering = -100.0
 maxDecelerationWhileSteering = 200.0
 decelerationWhileSteeringRequiredSpeed = 300.0
 decelerationWhileSteeringIncreasePerSecond = 150.0
 decelerationWhileSteeringDecreasePerSecond = 150.0
-rotationSpeedPerSecond = 2.0
+rotationSpeedPerSecond = 3.0
 killSpeedValue = 300.0
 minSpeed = 100.0
 maxSpeed = 2000.0
@@ -113,82 +111,20 @@ playerMovements = NodePath("../../PlayerMovements")
 speedThresholds = Array[float]([400.0, 700.0, 1800.0, 2000.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
-[node name="FirstSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound")]
-script = ExtResource("8_xetj4")
+[node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
 playerMovements = NodePath("../../../PlayerMovements")
-clashGroupName = "ClashArea"
-damage = 2
-repelDistance = 400.0
-repelTime = 0.3
-lossOnImpact = 200.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
-clashRepelDistance = 300.0
-clashRepelTime = 0.3
-clashLossOnImpact = 400.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
-impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
-polygon = PackedVector2Array(-64, 32, -32, 32, -24, -32, 24, -32, 32, 32, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox"]
-texture = ExtResource("8_361qe")
-
-[node name="SecondSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound")]
-script = ExtResource("8_xetj4")
+[node name="SecondSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("12_psnq3")]
 playerMovements = NodePath("../../../PlayerMovements")
-clashGroupName = "ClashArea"
-damage = 4
-repelDistance = 600.0
-repelTime = 0.3
-lossOnImpact = 150.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
-clashRepelDistance = 450.0
-clashRepelTime = 0.3
-clashLossOnImpact = 300.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
-impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
-polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox"]
-texture = ExtResource("7_ps88g")
-
-[node name="ThirdSpeedHitbox" type="Area2D" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound")]
-script = ExtResource("8_xetj4")
+[node name="ThirdSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("13_gt5g5")]
 playerMovements = NodePath("../../../PlayerMovements")
-clashGroupName = "ClashArea"
-damage = 6
-repelDistance = 1000.0
-repelTime = 0.3
-lossOnImpact = 100.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
-clashDamage = 2
-clashRepelDistance = 750.0
-clashRepelTime = 0.3
-clashLossOnImpact = 200.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
-impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]
-polygon = PackedVector2Array(-64, 32, -40, 64, -16, 64, -32, 32, -24, -32, 24, -32, 32, 32, 16, 64, 40, 64, 64, 32, 48, -48, 32, -64, -32, -64, -48, -48)
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox"]
-texture = ExtResource("8_alu1b")
 
 [node name="Arrow" type="Sprite2D" parent="PlayerRotator"]
 texture = ExtResource("5_s1pth")
-
-[connection signal="area_entered" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_area_entered"]
-[connection signal="area_exited" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_area_exited"]
-[connection signal="body_entered" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_body_entered"]
-[connection signal="body_exited" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" method="_on_body_exited"]
-[connection signal="area_entered" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_area_entered"]
-[connection signal="area_exited" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_area_exited"]
-[connection signal="body_entered" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_body_entered"]
-[connection signal="body_exited" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" method="_on_body_exited"]
-[connection signal="area_entered" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_area_entered"]
-[connection signal="area_exited" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_area_exited"]
-[connection signal="body_entered" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_body_entered"]
-[connection signal="body_exited" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" method="_on_body_exited"]
