@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by26x7jxmgdvm"
-path="res://.godot/imported/enemyAttack.png-6a7368ccb023856c8e1e24236fabaf86.ctex"
+uid="uid://ckt4risrkxjw1"
+path="res://.godot/imported/speedHitbox2.png-dd1a0b351a8450b70a1343dbe87cfd7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Sprites/enemyAttack.png"
-dest_files=["res://.godot/imported/enemyAttack.png-6a7368ccb023856c8e1e24236fabaf86.ctex"]
+source_file="res://Player/Sprites/speedHitbox2.png"
+dest_files=["res://.godot/imported/speedHitbox2.png-dd1a0b351a8450b70a1343dbe87cfd7a.ctex"]
 
 [params]
 

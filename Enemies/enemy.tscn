@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyHealth.gd" id="4_hlpqe"]
 [ext_resource type="Texture2D" uid="uid://btho6rt15jl8m" path="res://Enemies/Sprites/shielderEnemyShield.png" id="4_mv6rc"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRepelled.gd" id="6_ld5kg"]
-[ext_resource type="Texture2D" uid="uid://cmyel8womaj8h" path="res://Enemies/Sprites/enemyattack.png" id="6_wqwy8"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRotator.gd" id="6_xcinm"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyShielded.gd" id="7_lfdda"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyKillCheck.gd" id="7_xlcdy"]
@@ -18,6 +17,7 @@
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="9_5t5mk"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="10_456kg"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="12_wbpqb"]
+[ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyAttack.png" id="13_jg0ip"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyStartAttack.gd" id="14_tl21x"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyIsAttacking.gd" id="15_iqhbn"]
 
@@ -124,10 +124,10 @@ reducedSpeed = 700.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck"]
-texture = ExtResource("6_wqwy8")
+texture = ExtResource("13_jg0ip")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck"]
-polygon = PackedVector2Array(-56, 0, -32, 16, -32, -24, -24, -32, 24, -32, 32, -24, 32, 16, 56, 0, 48, -24, 32, -48, -32, -48, -48, -24)
+polygon = PackedVector2Array(-32, -32, 32, -32, 24, -56, 8, -64, -8, -64, -24, -56)
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController", "normalSprite", "angrySprite")]
 script = ExtResource("4_bfq86")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://b71q2rjh5oown"]
+
+[ext_resource type="Script" path="res://Player/Scripts/PlayerHitboxData.gd" id="1_4ielu"]
+[ext_resource type="Texture2D" uid="uid://ckt4risrkxjw1" path="res://Player/Sprites/speedHitbox2.png" id="2_7v6fv"]
+
+[node name="SecondSpeedHitbox" type="Area2D"]
+script = ExtResource("1_4ielu")
+playerHitboxType = 1
+clashGroupName = "ClashArea"
+damage = 4
+repelDistance = 600.0
+repelTime = 0.3
+lossOnImpact = 150.0
+clashRepelDistance = 450.0
+clashRepelTime = 0.3
+clashLossOnImpact = 300.0
+impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, -56, 16, -64, -16, -64, -32, -56)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7v6fv")
+
+[node name="LeftWeakHitbox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftWeakHitbox"]
+polygon = PackedVector2Array(-32, 0, -32, -48, -40, -48, -56, -24, -48, 0)
+
+[node name="RightWeakHitbox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWeakHitbox"]
+polygon = PackedVector2Array(32, -48, 40, -48, 56, -24, 48, 0, 32, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="LeftWeakHitbox" to="." method="OnAreaEnteredWeak"]
+[connection signal="area_exited" from="LeftWeakHitbox" to="." method="_on_area_exited"]
+[connection signal="body_entered" from="LeftWeakHitbox" to="." method="OnBodyEnteredWeak"]
+[connection signal="body_exited" from="LeftWeakHitbox" to="." method="_on_body_exited"]
+[connection signal="area_entered" from="RightWeakHitbox" to="." method="OnAreaEnteredWeak"]
+[connection signal="area_exited" from="RightWeakHitbox" to="." method="_on_area_exited"]
+[connection signal="body_entered" from="RightWeakHitbox" to="." method="OnBodyEnteredWeak"]
+[connection signal="body_exited" from="RightWeakHitbox" to="." method="_on_body_exited"]

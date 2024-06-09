@@ -1,7 +1,15 @@
 class_name PlayerHitboxData
 extends Area2D
 
+enum PlayerHitboxType
+{
+	WEAK,
+	NORMAL,
+	STRONG
+}
+
 @export var playerMovements: PlayerMovements
+@export var playerHitboxType: PlayerHitboxType
 @export var clashGroupName: String
 @export var damage: int
 @export var repelDistance: float
@@ -18,23 +26,44 @@ var enemiesHit: Array[EnemyController]
 var damageEnabled: bool
 
 func _on_body_entered(body):
-	if (body is EnemyController):
-		if (body.enemyShielded.shieldedBy == null):
-			DealDamage(body, damage, repelDistance, playerMovements.currentDirection, repelTime, lossOnImpact, false)
-		else:
-			DealDamage(body, clashDamage, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
-			body.enemyShielded.RemoveShielded()
-		return
-	if (body is Projectile):
-		ProjectileCollision(body)
+	CheckCollision(body, playerHitboxType)
 
 func _on_area_entered(area):
-	if (area.is_in_group(clashGroupName)):
-		AssignAreaType(area)
+	CheckArea(area, playerHitboxType)
 
-func AssignAreaType(area):
-	if (area is AttackHitbox):
-		DealDamage(area.get_parent().characterRef, clashDamage, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
+func CheckCollision(body, type: PlayerHitboxType):
+	if (body is EnemyController):
+		DetermineDamage(body, type)
+		return
+	if (body is Projectile):
+		ProjectileCollision(body, type)
+
+func CheckArea(area, type: PlayerHitboxType):
+	if (area.is_in_group(clashGroupName)):
+		if (area is AttackHitbox):
+			AssignAreaType(area.characterRef, type)
+
+func AssignAreaType(enemyController: EnemyController, type: PlayerHitboxType):
+	if (type == PlayerHitboxType.STRONG):
+		Direct(enemyController)
+		return
+	Clash(enemyController)
+
+func DetermineDamage(enemyController: EnemyController, type: PlayerHitboxType):
+	if (enemyController.enemyShielded.shieldedBy != null):
+		if (type == PlayerHitboxType.STRONG):
+			Clash(enemyController)
+		else:
+			DealDamage(enemyController, 0, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
+		enemyController.enemyShielded.RemoveShielded()
+		return
+	Direct(enemyController)
+
+func Direct(enemyController: EnemyController):
+	DealDamage(enemyController, damage, repelDistance, playerMovements.currentDirection, repelTime, lossOnImpact, false)
+
+func Clash(enemyController: EnemyController):
+	DealDamage(enemyController, clashDamage, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
 
 func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: float, direction: Vector2, time: float, speedLoss: float, clash: bool):
 	if (damageEnabled && !enemyController.damageImmunity && !enemiesHit.has(enemyController)):
@@ -50,9 +79,14 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 		CreateImpactTypeIndicator(clash, self.global_position)
 		playerMovements.UpdateCurrentSpeed(-speedLoss)
 
-func ProjectileCollision(projectile: Projectile):
+func ProjectileCollision(projectile: Projectile, type: PlayerHitboxType):
 	if (damageEnabled):
 		projectile.DeleteSelf()
+		if (type != PlayerHitboxType.WEAK):
+			CreateImpactTypeIndicator(false, self.global_position)
+			if (type == PlayerHitboxType.NORMAL):
+				playerMovements.UpdateCurrentSpeed(-lossOnImpact)
+			return
 		CreateImpactTypeIndicator(true, self.global_position)
 		playerMovements.UpdateCurrentSpeed(-clashLossOnImpact)
 
@@ -74,3 +108,15 @@ func _on_area_exited(area):
 	if (area.is_in_group(clashGroupName)):
 		if (area is AttackHitbox && enemiesHit.has(area.get_parent().characterRef)):
 			enemiesHit.erase(area.get_parent().characterRef)
+
+func OnBodyEnteredWeak(body):
+	CheckCollision(body, PlayerHitboxType.WEAK)
+
+func OnBodyEnteredNormal(body):
+	CheckCollision(body, PlayerHitboxType.NORMAL)
+
+func OnAreaEnteredWeak(area):
+	CheckArea(area, PlayerHitboxType.WEAK)
+
+func OnAreaEnteredNormal(area):
+	CheckArea(area, PlayerHitboxType.NORMAL)
