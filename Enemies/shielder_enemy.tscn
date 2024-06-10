@@ -107,7 +107,7 @@ position = Vector2(0, -64)
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("8_kkojn")
 attackDuration = 30
-attackCooldown = 90
+attackCooldown = 60
 attackPhasesLaunch = Array[int]([0, 10, 20])
 attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
 attackSounds = [null, null, null]
