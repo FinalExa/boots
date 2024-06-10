@@ -108,15 +108,3 @@ func _on_area_exited(area):
 	if (area.is_in_group(clashGroupName)):
 		if (area is AttackHitbox && enemiesHit.has(area.get_parent().characterRef)):
 			enemiesHit.erase(area.get_parent().characterRef)
-
-func OnBodyEnteredWeak(body):
-	CheckCollision(body, PlayerHitboxType.WEAK)
-
-func OnBodyEnteredNormal(body):
-	CheckCollision(body, PlayerHitboxType.NORMAL)
-
-func OnAreaEnteredWeak(area):
-	CheckArea(area, PlayerHitboxType.WEAK)
-
-func OnAreaEnteredNormal(area):
-	CheckArea(area, PlayerHitboxType.NORMAL)

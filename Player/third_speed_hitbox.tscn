@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://3bj114kxasu7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerHitboxData.gd" id="1_bs061"]
-[ext_resource type="Texture2D" uid="uid://ddq0mrfasy4j2" path="res://Player/Sprites/speedHitbox3.png" id="2_uyywn"]
+[ext_resource type="Texture2D" uid="uid://0yg2r6hvwsk8" path="res://Player/Sprites/speedHitbox3.png" id="2_uyywn"]
 
 [node name="ThirdSpeedHitbox" type="Area2D"]
 script = ExtResource("1_bs061")
@@ -10,56 +10,21 @@ clashGroupName = "ClashArea"
 damage = 6
 repelDistance = 1000.0
 repelTime = 0.3
-lossOnImpact = 100.0
+lossOnImpact = 50.0
 clashDamage = 2
 clashRepelDistance = 750.0
 clashRepelTime = 0.3
-clashLossOnImpact = 200.0
+clashLossOnImpact = 100.0
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-32, -32, 32, -32, 32, -56, 16, -64, -16, -64, -32, -56)
+polygon = PackedVector2Array(-56, -32, -56, 0, -32, 0, -24, -32, 24, -32, 32, 0, 56, 0, 56, -32, 48, -56, 32, -64, -32, -64, -48, -56)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
 texture = ExtResource("2_uyywn")
-
-[node name="LeftNormalArea" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftNormalArea"]
-polygon = PackedVector2Array(-32, -48, -40, -48, -56, -24, -56, 0, -32, 0)
-
-[node name="RightNormalArea" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightNormalArea"]
-polygon = PackedVector2Array(32, -48, 40, -48, 56, -24, 56, 0, 32, 0)
-
-[node name="LeftWeakArea" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftWeakArea"]
-polygon = PackedVector2Array(-56, 0, -32, 0, -32, 32, -40, 32, -56, 16)
-
-[node name="RightWeakArea" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWeakArea"]
-polygon = PackedVector2Array(32, 0, 56, 0, 56, 16, 40, 32, 32, 32)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="area_entered" from="LeftNormalArea" to="." method="OnAreaEnteredNormal"]
-[connection signal="area_exited" from="LeftNormalArea" to="." method="_on_area_exited"]
-[connection signal="body_entered" from="LeftNormalArea" to="." method="OnBodyEnteredNormal"]
-[connection signal="body_exited" from="LeftNormalArea" to="." method="_on_body_exited"]
-[connection signal="area_entered" from="RightNormalArea" to="." method="OnAreaEnteredNormal"]
-[connection signal="area_exited" from="RightNormalArea" to="." method="_on_area_exited"]
-[connection signal="body_entered" from="RightNormalArea" to="." method="OnBodyEnteredNormal"]
-[connection signal="body_exited" from="RightNormalArea" to="." method="_on_body_exited"]
-[connection signal="area_entered" from="LeftWeakArea" to="." method="OnAreaEnteredWeak"]
-[connection signal="area_exited" from="LeftWeakArea" to="." method="_on_area_exited"]
-[connection signal="body_entered" from="LeftWeakArea" to="." method="OnBodyEnteredWeak"]
-[connection signal="body_exited" from="LeftWeakArea" to="." method="_on_body_exited"]
-[connection signal="area_entered" from="RightWeakArea" to="." method="OnAreaEnteredWeak"]
-[connection signal="area_exited" from="RightWeakArea" to="." method="_on_area_exited"]
-[connection signal="body_entered" from="RightWeakArea" to="." method="OnBodyEnteredWeak"]
-[connection signal="body_exited" from="RightWeakArea" to="." method="_on_body_exited"]

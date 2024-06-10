@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="9_5t5mk"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="10_456kg"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="12_wbpqb"]
-[ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyAttack.png" id="13_jg0ip"]
+[ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyattack.png" id="13_jg0ip"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyStartAttack.gd" id="14_tl21x"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyIsAttacking.gd" id="15_iqhbn"]
 
@@ -111,7 +111,7 @@ position = Vector2(0, -64)
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("8_16hwb")
 attackDuration = 30
-attackCooldown = 60
+attackCooldown = 75
 attackPhasesLaunch = Array[int]([0])
 attackHitboxes = [NodePath("EnemyKillCheck")]
 attackSounds = [null]
