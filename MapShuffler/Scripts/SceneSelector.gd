@@ -21,3 +21,4 @@ func ShuffleScene():
 	add_child(currentScene)
 	currentScene.SetPlayerSpawn(playerRef)
 	playerRef.playerMovements.SetToZero()
+	currentScene.rewardSpawn.GenerateRewardType()

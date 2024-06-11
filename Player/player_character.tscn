@@ -66,6 +66,8 @@ killSpeedValue = 200.0
 minSpeed = 100.0
 maxSpeed = 1500.0
 
+[node name="PowerUps" type="Node" parent="."]
+
 [node name="PlayerHUD" type="Control" parent="."]
 z_index = 100
 layout_mode = 3
