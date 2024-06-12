@@ -20,23 +20,33 @@ func _process(delta):
 
 func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp.powerUpType == PowerUp.PowerUpType.CONTACT):
+		ReplaceOldPowerUp(contactPowerUp)
 		contactPowerUp = powerUp
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.UP_SWITCH):
+		ReplaceOldPowerUp(upSwitchPowerUp)
 		upSwitchPowerUp = powerUp
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.DOWN_SWITCH):
+		ReplaceOldPowerUp(downSwitchPowerUp)
 		downSwitchPowerUp = powerUp
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.TRAIL):
+		ReplaceOldPowerUp(trailPowerUp)
 		trailPowerUp = powerUp
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.SPEED_CHARGE):
+		ReplaceOldPowerUp(speedChargePowerUp)
 		speedChargePowerUp = powerUp
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.PASSIVE):
 		powerUpPassives.push_back(powerUp)
 		return
+
+func ReplaceOldPowerUp(powerUp: PowerUp):
+	if (powerUp != null):
+		remove_child(powerUp)
+		powerUp.queue_free()
 
 func SwitchDown():
 	downSwitchPowerUp.ExecutePowerUpEffect()
