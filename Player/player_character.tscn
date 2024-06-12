@@ -141,6 +141,7 @@ texture = ExtResource("5_s1pth")
 [node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements")]
 script = ExtResource("16_aa0yx")
 playerMovements = NodePath("../../PlayerMovements")
+trailCooldown = 0.3
 
 [connection signal="switchDown" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchDown"]
 [connection signal="switchUp" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchUp"]
