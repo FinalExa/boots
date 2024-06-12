@@ -21,9 +21,6 @@ enum PowerUpType {
 
 var powerUpManager: PowerUpManager
 
-func _ready():
-	Register()
-
 func Register():
 	powerUpManager.AssignPowerUp(self)
 

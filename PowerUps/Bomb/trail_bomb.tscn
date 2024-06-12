@@ -6,3 +6,4 @@
 script = ExtResource("1_t0tkm")
 powerUpName = "Trail Bomb"
 powerUpDescription = "While running, releases mini bombs behind at fixed time intervals."
+powerUpType = 4

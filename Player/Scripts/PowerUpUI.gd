@@ -18,6 +18,7 @@ func OnButtonPressed(extra_arg_0):
 	var selectedPowerUp: PowerUp = powerUpButtons[extra_arg_0].get_child(0)
 	selectedPowerUp.reparent(playerRef.powerUpManager)
 	selectedPowerUp.powerUpManager = selectedPowerUp.get_parent()
+	selectedPowerUp.Register()
 	ClearPowerUps()
 	get_tree().paused = false
 	self.hide()

@@ -6,3 +6,4 @@
 script = ExtResource("1_488ed")
 powerUpName = "Down Switch Bomb"
 powerUpDescription = "When switching down speed levels, creates a weak bomb behind."
+powerUpType = 1

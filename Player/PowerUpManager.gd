@@ -49,19 +49,24 @@ func ReplaceOldPowerUp(powerUp: PowerUp):
 		powerUp.queue_free()
 
 func SwitchDown():
-	downSwitchPowerUp.ExecutePowerUpEffect()
+	if (downSwitchPowerUp != null):
+		downSwitchPowerUp.ExecutePowerUpEffect()
 
 func SwitchUp():
-	upSwitchPowerUp.ExecutePowerUpEffect()
+	if (upSwitchPowerUp != null):
+		upSwitchPowerUp.ExecutePowerUpEffect()
 
 func HitClash():
-	contactPowerUp.SecondaryExecutePowerUpEffect()
+	if (contactPowerUp != null):
+		contactPowerUp.SecondaryExecutePowerUpEffect()
 
 func HitDirect():
-	contactPowerUp.ExecutePowerUpEffect()
+	if (contactPowerUp != null):
+		contactPowerUp.ExecutePowerUpEffect()
 
 func ChargeWithSpeed():
-	speedChargePowerUp.ExecutePowerUpEffectWithValue(playerMovements.currentSpeed)
+	if (speedChargePowerUp != null):
+		speedChargePowerUp.ExecutePowerUpEffectWithValue(playerMovements.currentSpeed)
 
 func ExecuteTrail(delta):
 	if (trailPowerUp != null && playerMovements.currentSpeed > playerMovements.killSpeedValue):

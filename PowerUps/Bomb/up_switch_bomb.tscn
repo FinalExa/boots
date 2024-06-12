@@ -6,3 +6,4 @@
 script = ExtResource("1_hj622")
 powerUpName = "Up Switch Bomb"
 powerUpDescription = "When increasing speed levels, generates a strong bomb behind the player."
+powerUpType = 2

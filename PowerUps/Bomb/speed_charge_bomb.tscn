@@ -6,3 +6,4 @@
 script = ExtResource("1_fw88a")
 powerUpName = "Speed Charge Bomb"
 powerUpDescription = "Releases two bombs at the sides when it's fully charged, charge level depends on current speed."
+powerUpType = 3
