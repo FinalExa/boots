@@ -22,7 +22,8 @@ func HealthUpdate(valueChange: int):
 		if (currentObjective != null):
 			currentObjective.RequestEnemyData(enemyController)
 		emit_signal("enemyDeath")
-		enemyController.get_parent().remove_child(enemyController)
+		enemyController.enemyAttack.frameMaster.RemoveAttack(enemyController.enemyAttack)
+		enemyController.queue_free()
 
 
 func _on_enemy_damaged(damageReceived):

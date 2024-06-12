@@ -12,4 +12,4 @@ powerUpDescription = "Adds an explosive effect on Clashes and Directs."
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, -64)
 script = ExtResource("2_1kt6i")
-objectPath = "res://PowerUps/Bomb/SpawnedObjects/bomb.tscn"
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/mini_bomb.tscn"

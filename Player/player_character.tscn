@@ -59,9 +59,9 @@ script = ExtResource("3_fxyqo")
 script = ExtResource("1_n46fh")
 playerCharacter = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
-accelerationPerSecond = 650.0
-decelerationPerSecond = 700.0
-decelerationWhileColliding = 675.0
+accelerationPerSecond = 750.0
+decelerationPerSecond = 800.0
+decelerationWhileColliding = 775.0
 minDecelerationWhileSteering = -50.0
 maxDecelerationWhileSteering = 100.0
 decelerationWhileSteeringRequiredSpeed = 300.0
@@ -94,6 +94,16 @@ script = ExtResource("4_hhy2o")
 playerMovements = NodePath("../../PlayerMovements")
 speedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
 
+[node name="SpeedChargeValue" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 192.0
+offset_bottom = 88.0
+label_settings = SubResource("LabelSettings_fvdlt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 24.0
@@ -117,7 +127,7 @@ offsetDegrees = 90
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
 playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = Array[float]([300.0, 1000.0, 1800.0, 2000.0])
+speedThresholds = Array[float]([300.0, 800.0, 1800.0, 2000.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
 [node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
@@ -138,10 +148,11 @@ clashSound = NodePath("../../../Sounds/PlayerClash")
 [node name="Arrow" type="Sprite2D" parent="PlayerRotator"]
 texture = ExtResource("5_s1pth")
 
-[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements")]
+[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "speedChargeLabel")]
 script = ExtResource("16_aa0yx")
 playerMovements = NodePath("../../PlayerMovements")
-trailCooldown = 0.3
+trailCooldown = 0.5
+speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
 
 [connection signal="switchDown" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchDown"]
 [connection signal="switchUp" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchUp"]

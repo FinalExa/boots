@@ -1,5 +1,5 @@
 class_name Bomb
-extends CharacterBody2D
+extends Node2D
 
 @export var explosionCooldown: float
 @export var explosionDuration: float
@@ -36,9 +36,10 @@ func BombTimer(delta):
 
 func DamageEnemies():
 	for i in enemiesInRange.size():
-		enemiesInRange[i].ReceiveDamage(explosionDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime)
-		damagedEnemies.push_back(enemiesInRange[i])
-	pass
+		if (enemiesInRange[i] != null):
+			enemiesInRange[i].ReceiveDamage(explosionDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime)
+			damagedEnemies.push_back(enemiesInRange[i])
+	enemiesInRange.clear()
 
 func DeleteSelf():
 	self.get_parent().remove_child(self)
@@ -50,4 +51,4 @@ func _on_explosion_area_body_entered(body):
 
 func _on_explosion_area_body_exited(body):
 	if (body is EnemyController && enemiesInRange.has(body)):
-		enemiesInRange.push_back(body)
+		enemiesInRange.erase(body)

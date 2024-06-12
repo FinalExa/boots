@@ -54,10 +54,7 @@ func AssignAreaType(enemyController: EnemyController, type: PlayerHitboxType):
 
 func DetermineDamage(enemyController: EnemyController, type: PlayerHitboxType):
 	if (enemyController.enemyShielded.shieldedBy != null):
-		if (type == PlayerHitboxType.STRONG):
-			Clash(enemyController)
-		else:
-			DealDamage(enemyController, 0, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
+		DealDamage(enemyController, 0, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
 		enemyController.enemyShielded.RemoveShielded()
 		return
 	Direct(enemyController)

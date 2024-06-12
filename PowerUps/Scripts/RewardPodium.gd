@@ -33,6 +33,7 @@ func SpawnRewards():
 func ListenForPlayerInput():
 	if (playerInsideArea && playerRef.playerInputs.interactionInput):
 		playerRef.powerUpUI.RegisterPowerUps(generatedPowerUps)
+		call_deferred("DeleteSelf")
 
 func _on_player_interaction_detect_body_entered(body):
 	if (body is PlayerCharacter):
@@ -45,3 +46,8 @@ func _on_player_interaction_detect_body_exited(body):
 		playerInsideArea = false
 		playerRef = null
 		label.hide()
+
+func DeleteSelf():
+	get_tree().root.get_child(0).sceneSelector.currentScene.SetCompleted()
+	self.get_parent().remove_child(self)
+	queue_free()

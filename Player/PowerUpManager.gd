@@ -3,6 +3,7 @@ extends Node2D
 
 @export var playerMovements: PlayerMovements
 @export var trailCooldown: float
+@export var speedChargeLabel: Label
 var contactPowerUp: PowerUp
 var upSwitchPowerUp: PowerUp
 var downSwitchPowerUp: PowerUp
