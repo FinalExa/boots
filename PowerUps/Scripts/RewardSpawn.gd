@@ -47,4 +47,4 @@ func GeneratePodium():
 	var obj = obj_scene.instantiate()
 	add_child(obj)
 	obj.global_position = self.global_position
-	obj.ReceiveRewards(rewardType, powerUpFaction, selectedPowerUps)
+	obj.ReceiveRewards(rewardType, powerUpFaction, powerUpNumber, selectedPowerUps)

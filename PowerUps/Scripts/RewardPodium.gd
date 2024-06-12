@@ -8,6 +8,7 @@ var playerRef: PlayerCharacter
 
 var rewardType: RewardSpawn.RewardType
 var powerUpFaction: RewardSpawn.PowerUpFaction
+var powerUpNumber: int
 var selectedPowerUps: Array[String]
 
 func _ready():
@@ -16,10 +17,11 @@ func _ready():
 func _process(delta):
 	ListenForPlayerInput()
 
-func ReceiveRewards(type: RewardSpawn.RewardType, faction: RewardSpawn.PowerUpFaction, powerUps: Array[String]):
+func ReceiveRewards(type: RewardSpawn.RewardType, faction: RewardSpawn.PowerUpFaction, number: int, powerUps: Array[String]):
 	rewardType = type
 	if (rewardType == RewardSpawn.RewardType.POWERUP):
 		powerUpFaction = faction
+		powerUpNumber = number
 		selectedPowerUps = powerUps
 
 func ListenForPlayerInput():
