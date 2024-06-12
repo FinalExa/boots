@@ -18,4 +18,4 @@ func RequestEnemyData(_enemyController: EnemyController):
 	pass
 
 func ObjectiveCompleted():
-	gameplayScene.SetCompleted()
+	gameplayScene.SetObjectiveCompleted()

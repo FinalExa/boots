@@ -32,3 +32,6 @@ func LaunchFrame():
 
 func RegisterAttack(attack: ExecuteAttack):
 	attackSources.push_back(attack)
+
+func RemoveAttack(attack: ExecuteAttack):
+	attackSources.erase(attack)

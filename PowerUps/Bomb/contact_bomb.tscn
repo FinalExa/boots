@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2fdktwhixwui"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/Scripts/ContactBomb.gd" id="1_qulgi"]
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_1kt6i"]
+
+[node name="ContactBomb" type="Node2D" node_paths=PackedStringArray("spawner")]
+script = ExtResource("1_qulgi")
+spawner = NodePath("Spawner")
+powerUpName = "Contact Bomb"
+powerUpDescription = "Adds an explosive effect on Clashes and Directs."
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_1kt6i")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/mini_bomb.tscn"

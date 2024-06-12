@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjn4y2vm7ph0y"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/RewardSpawn.gd" id="1_o8bcu"]
+
+[node name="RewardSpawn" type="Node2D"]
+script = ExtResource("1_o8bcu")
+powerUpNumber = 3
+rewardPodiumPath = "res://PowerUps/reward_podium.tscn"
+bombRewards = Array[String](["res://PowerUps/Bomb/contact_bomb.tscn", "res://PowerUps/Bomb/down_switch_bomb.tscn", "res://PowerUps/Bomb/speed_charge_bomb.tscn", "res://PowerUps/Bomb/trail_bomb.tscn", "res://PowerUps/Bomb/up_switch_bomb.tscn"])

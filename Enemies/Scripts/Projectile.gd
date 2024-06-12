@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var speedDecrease: float
 @export var collisionSound: AudioStreamPlayer
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = movementSpeed * self.global_position.direction_to(forward.global_position)
 	var collisionCheck: bool = move_and_slide()
 	if (collisionCheck):

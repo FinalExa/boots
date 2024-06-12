@@ -10,11 +10,11 @@ clashGroupName = "ClashArea"
 damage = 4
 repelDistance = 600.0
 repelTime = 0.3
-lossOnImpact = 100.0
+lossOnImpact = 150.0
 clashDamage = 1
 clashRepelDistance = 450.0
 clashRepelTime = 0.3
-clashLossOnImpact = 200.0
+clashLossOnImpact = 300.0
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

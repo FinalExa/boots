@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuulpltahpg5"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/Scripts/DownSwitchBomb.gd" id="1_488ed"]
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_wycvg"]
+
+[node name="DownSwitchBomb" type="Node2D" node_paths=PackedStringArray("spawner")]
+script = ExtResource("1_488ed")
+spawner = NodePath("Spawner")
+powerUpName = "Down Switch Bomb"
+powerUpDescription = "When switching down speed levels, creates a weak bomb behind."
+powerUpType = 1
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(0, 96)
+script = ExtResource("2_wycvg")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/bomb.tscn"

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ypddybr35owe"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/Scripts/UpSwitchBomb.gd" id="1_hj622"]
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_wrm6o"]
+
+[node name="UpSwitchBomb" type="Node2D" node_paths=PackedStringArray("spawner")]
+script = ExtResource("1_hj622")
+spawner = NodePath("Spawner")
+powerUpName = "Up Switch Bomb"
+powerUpDescription = "When increasing speed levels, generates a strong bomb behind the player."
+powerUpType = 2
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(0, 96)
+script = ExtResource("2_wrm6o")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/bomb.tscn"
