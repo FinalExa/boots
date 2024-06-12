@@ -32,3 +32,6 @@ func ExecutePowerUpEffect():
 
 func SecondaryExecutePowerUpEffect():
 	pass
+
+func ExecutePowerUpEffectWithValue(value):
+	pass

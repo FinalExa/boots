@@ -9,6 +9,14 @@ var downSwitchPowerUp: PowerUp
 var trailPowerUp: PowerUp
 var speedChargePowerUp: PowerUp
 var powerUpPassives: Array[PowerUp]
+var trailTimer: float
+
+func _ready():
+	trailTimer = trailCooldown
+
+func _process(delta):
+	ExecuteTrail(delta)
+	ChargeWithSpeed()
 
 func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp.powerUpType == PowerUp.PowerUpType.CONTACT):
@@ -41,3 +49,14 @@ func HitClash():
 
 func HitDirect():
 	contactPowerUp.ExecutePowerUpEffect()
+
+func ChargeWithSpeed():
+	speedChargePowerUp.ExecutePowerUpEffectWithValue(playerMovements.currentSpeed)
+
+func ExecuteTrail(delta):
+	if (trailPowerUp != null && playerMovements.currentSpeed > playerMovements.killSpeedValue):
+		if (trailTimer > 0):
+			trailTimer -= delta
+			return
+		trailTimer = trailCooldown
+		trailPowerUp.ExecutePowerUpEffect()
