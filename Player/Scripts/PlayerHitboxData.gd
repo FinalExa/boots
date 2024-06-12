@@ -1,6 +1,9 @@
 class_name PlayerHitboxData
 extends Area2D
 
+signal hitClash
+signal hitDirect
+
 enum PlayerHitboxType
 {
 	WEAK,
@@ -74,8 +77,10 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 		if (clash):
 			clashSound.play()
 			enemyController.enemyAttack.ForceStartCooldown()
+			emit_signal("hitClash")
 		else:
 			directSound.play()
+			emit_signal("hitDirect")
 		CreateImpactTypeIndicator(clash, self.global_position)
 		playerMovements.UpdateCurrentSpeed(-speedLoss)
 

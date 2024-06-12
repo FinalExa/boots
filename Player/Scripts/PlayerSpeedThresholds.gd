@@ -1,6 +1,9 @@
 class_name PlayerSpeedThresholds
 extends Node2D
 
+signal switchUp
+signal switchDown
+
 @export var playerMovements: PlayerMovements
 @export var speedThresholds: Array[float]
 @export var thresholdHitboxes: Array[PlayerHitboxData]
@@ -32,12 +35,14 @@ func SetHigherSpeedLevel():
 		DectivateCurrentHitbox(speedIndex)
 		speedIndex += 1
 		ActivateCurrentHitbox(speedIndex)
+		emit_signal("switchUp")
 
 func SetLowerSpeedLevel():
 	if (speedIndex > 0 && playerMovements.currentSpeed < speedThresholds[speedIndex - 1]):
 		DectivateCurrentHitbox(speedIndex)
 		speedIndex -= 1
 		ActivateCurrentHitbox(speedIndex)
+		emit_signal("switchDown")
 
 func DectivateCurrentHitbox(index: int):
 	if (thresholdHitboxes[index] != null): 
