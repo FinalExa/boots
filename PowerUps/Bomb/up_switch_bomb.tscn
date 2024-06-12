@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ypddybr35owe"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/Scripts/UpSwitchBomb.gd" id="1_hj622"]
+
+[node name="UpSwitchBomb" type="Node2D"]
+script = ExtResource("1_hj622")
+powerUpName = "Up Switch Bomb"
+powerUpDescription = "When increasing speed levels, generates a strong bomb behind the player."

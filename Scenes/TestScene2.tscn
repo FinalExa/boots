@@ -41,6 +41,7 @@ gameplayScene = NodePath("..")
 navigation_polygon = SubResource("NavigationPolygon_oq6ai")
 
 [node name="RewardSpawn" parent="." instance=ExtResource("3_53btu")]
+position = Vector2(-128, 1216)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(192, 1344)

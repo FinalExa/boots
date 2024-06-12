@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2fdktwhixwui"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/Scripts/ContactBomb.gd" id="1_qulgi"]
+
+[node name="ContactBomb" type="Node2D"]
+script = ExtResource("1_qulgi")
+powerUpName = "Contact Bomb"
+powerUpDescription = "Adds an explosive effect on Clashes and Directs."

@@ -7,26 +7,32 @@ var playerInsideArea: bool
 var playerRef: PlayerCharacter
 
 var rewardType: RewardSpawn.RewardType
-var powerUpFaction: RewardSpawn.PowerUpFaction
-var powerUpNumber: int
+var powerUpFaction: PowerUp.PowerUpFaction
 var selectedPowerUps: Array[String]
+var generatedPowerUps: Array[PowerUp]
 
 func _ready():
 	label.hide()
 
-func _process(delta):
+func _process(_delta):
 	ListenForPlayerInput()
 
-func ReceiveRewards(type: RewardSpawn.RewardType, faction: RewardSpawn.PowerUpFaction, number: int, powerUps: Array[String]):
+func ReceiveRewards(type: RewardSpawn.RewardType, faction: PowerUp.PowerUpFaction, powerUps: Array[String]):
 	rewardType = type
 	if (rewardType == RewardSpawn.RewardType.POWERUP):
 		powerUpFaction = faction
-		powerUpNumber = number
 		selectedPowerUps = powerUps
+
+func SpawnRewards():
+	for i in selectedPowerUps.size():
+		var obj_scene = load(selectedPowerUps[i])
+		var obj = obj_scene.instantiate()
+		generatedPowerUps.push_back(obj)
+		add_child(obj)
 
 func ListenForPlayerInput():
 	if (playerInsideArea && playerRef.playerInputs.interactionInput):
-		print("ciao")
+		playerRef.powerUpUI.RegisterPowerUps(generatedPowerUps)
 
 func _on_player_interaction_detect_body_entered(body):
 	if (body is PlayerCharacter):

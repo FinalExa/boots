@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdjwha4ch7lm0"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/Scripts/SpeedChargeBomb.gd" id="1_fw88a"]
+
+[node name="SpeedChargeBomb" type="Node2D"]
+script = ExtResource("1_fw88a")
+powerUpName = "Speed Charge Bomb"
+powerUpDescription = "Releases two bombs at the sides when it's fully charged, charge level depends on current speed."

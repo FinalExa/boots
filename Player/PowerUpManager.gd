@@ -1,0 +1,2 @@
+class_name PowerUpManager
+extends Node2D

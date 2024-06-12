@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxn2uta6y2ij0"]
+
+[ext_resource type="Script" path="res://Player/Scripts/PowerUpUI.gd" id="1_n5f2l"]
+
+[node name="PowerUpUI" type="Control" node_paths=PackedStringArray("powerUpButtons")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_left = 512.0
+offset_top = 280.0
+offset_right = 1408.0
+offset_bottom = 792.0
+script = ExtResource("1_n5f2l")
+powerUpButtons = [NodePath("PowerUpSelector1/Button"), NodePath("PowerUpSelector2/Button"), NodePath("PowerUpSelector3/Button")]
+
+[node name="PowerUpSelector1" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_top = -24.0
+offset_right = 896.0
+offset_bottom = 104.0
+
+[node name="Button" type="Button" parent="PowerUpSelector1"]
+layout_mode = 2
+
+[node name="PowerUpSelector2" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_top = 168.0
+offset_right = 896.0
+offset_bottom = 296.0
+
+[node name="Button" type="Button" parent="PowerUpSelector2"]
+layout_mode = 2
+
+[node name="PowerUpSelector3" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_top = 360.0
+offset_right = 896.0
+offset_bottom = 488.0
+
+[node name="Button" type="Button" parent="PowerUpSelector3"]
+layout_mode = 2
+
+[connection signal="button_up" from="PowerUpSelector1/Button" to="." method="OnButtonPressed" binds= [0]]
+[connection signal="button_up" from="PowerUpSelector2/Button" to="." method="OnButtonPressed" binds= [1]]
+[connection signal="button_up" from="PowerUpSelector3/Button" to="." method="OnButtonPressed" binds= [2]]
