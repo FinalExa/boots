@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dol7rouwbn8i3" path="res://MapObjectives/defeat_enemies_objective.tscn" id="2_2eajk"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_bx1r5"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="3_c6x4a"]
-[ext_resource type="Script" path="res://PowerUps/Scripts/RewardSpawn.gd" id="3_k2laj"]
+[ext_resource type="PackedScene" uid="uid://bjn4y2vm7ph0y" path="res://PowerUps/reward_spawn.tscn" id="3_qkneh"]
 [ext_resource type="PackedScene" uid="uid://qtmhrs16aupe" path="res://LevelDesign/wallrightend.tscn" id="4_0l640"]
 [ext_resource type="PackedScene" uid="uid://ceg01pefr0xb7" path="res://LevelDesign/wallverticalfullview.tscn" id="5_fqhh1"]
 [ext_resource type="PackedScene" uid="uid://40ldnmu68n4w" path="res://LevelDesign/wallleftend.tscn" id="5_y5c8y"]
@@ -40,12 +40,7 @@ navigation_polygon = SubResource("NavigationPolygon_xo468")
 enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7"), NodePath("../Enemies/ShielderEnemy")]
 gameplayScene = NodePath("..")
 
-[node name="RewardSpawn" type="Node2D" parent="."]
-position = Vector2(1280, -1792)
-script = ExtResource("3_k2laj")
-rewardNumber = 3
-
-[node name="Reward" type="Node2D" parent="RewardSpawn"]
+[node name="RewardSpawn" parent="." instance=ExtResource("3_qkneh")]
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(640, 384)

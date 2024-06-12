@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://coq5ufbmql554"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/RewardPodium.gd" id="1_63obd"]
+[ext_resource type="Texture2D" uid="uid://cxfay1fjn5wdk" path="res://PowerUps/Sprites/rewardPodium.png" id="2_ol77k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7pbg"]
+radius = 32.0
+
+[sub_resource type="SystemFont" id="SystemFont_0wjqx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mchpt"]
+font = SubResource("SystemFont_0wjqx")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yleb6"]
+radius = 128.0
+
+[node name="RewardPodium" type="StaticBody2D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_63obd")
+label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ol77k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r7pbg")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = -32.0
+text = "PRESS E"
+label_settings = SubResource("LabelSettings_mchpt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerInteractionDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractionDetect"]
+shape = SubResource("CircleShape2D_yleb6")
+
+[connection signal="body_entered" from="PlayerInteractionDetect" to="." method="_on_player_interaction_detect_body_entered"]
+[connection signal="body_exited" from="PlayerInteractionDetect" to="." method="_on_player_interaction_detect_body_exited"]
