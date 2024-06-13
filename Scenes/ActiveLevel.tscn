@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://be383digmia26"]
+[gd_scene load_steps=6 format=3 uid="uid://be383digmia26"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/SceneMaster.gd" id="1_22w62"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/FrameMaster.gd" id="1_ruj1e"]
+[ext_resource type="AudioStream" uid="uid://dv5wtt2gpi6ca" path="res://Soundtrack/TestSoundtrack.mp3" id="2_5y1wu"]
 [ext_resource type="PackedScene" uid="uid://dqg13lpbwrv7" path="res://Player/player_character.tscn" id="3_r2b1q"]
 [ext_resource type="PackedScene" uid="uid://w355ff52l2m8" path="res://MapShuffler/scene_selector.tscn" id="4_3coog"]
 
@@ -9,6 +10,11 @@
 script = ExtResource("1_22w62")
 frameMaster = NodePath("FrameMaster")
 sceneSelector = NodePath("SceneSelector")
+
+[node name="Soundtrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5y1wu")
+volume_db = -25.0
+autoplay = true
 
 [node name="FrameMaster" type="Node" parent="."]
 script = ExtResource("1_ruj1e")

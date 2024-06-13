@@ -38,7 +38,7 @@ func _on_area_entered(area):
 
 func CheckCollision(body, type: PlayerHitboxType):
 	if (body is EnemyController):
-		DetermineDamage(body, type)
+		DetermineDamage(body)
 		return
 	if (body is Projectile):
 		ProjectileCollision(body, type)
@@ -54,7 +54,7 @@ func AssignAreaType(enemyController: EnemyController, type: PlayerHitboxType):
 		return
 	Clash(enemyController)
 
-func DetermineDamage(enemyController: EnemyController, type: PlayerHitboxType):
+func DetermineDamage(enemyController: EnemyController):
 	if (enemyController.enemyShielded.shieldedBy != null):
 		Clash(enemyController)
 		return
