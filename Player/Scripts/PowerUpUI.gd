@@ -17,6 +17,8 @@ func RegisterPowerUps(receivedPowerUps: Array[PowerUp]):
 func OnButtonPressed(extra_arg_0):
 	var selectedPowerUp: PowerUp = powerUpButtons[extra_arg_0].get_child(0)
 	selectedPowerUp.reparent(playerRef.powerUpManager)
+	selectedPowerUp.global_position = playerRef.powerUpManager.global_position
+	selectedPowerUp.global_rotation = playerRef.powerUpManager.global_rotation
 	selectedPowerUp.powerUpManager = selectedPowerUp.get_parent()
 	selectedPowerUp.Register()
 	ClearPowerUps()
