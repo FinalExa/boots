@@ -5,6 +5,7 @@ signal enemyDeath
 
 @export var maxHealth: int
 @export var enemyController: EnemyController
+@export var enemyShielded: EnemyShielded
 @export var label: Label
 var currentObjective: MapObjective
 var currentHealth: int = 0
@@ -16,6 +17,9 @@ func HealthStartup():
 	HealthUpdate(maxHealth)
 
 func HealthUpdate(valueChange: int):
+	if (valueChange <= 0 && enemyShielded.shieldedBy != null):
+		valueChange = 0
+		enemyShielded.RemoveShielded()
 	currentHealth = clamp(currentHealth + valueChange, 0, maxHealth)
 	label.text = str(currentHealth, "/", maxHealth)
 	if (currentHealth <= 0):

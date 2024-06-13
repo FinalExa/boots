@@ -52,10 +52,11 @@ texture = ExtResource("3_vnovu")
 [node name="ShieldSprite" type="Sprite2D" parent="."]
 texture = ExtResource("4_gh761")
 
-[node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "label")]
+[node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "label")]
 script = ExtResource("4_m8tui")
 maxHealth = 15
 enemyController = NodePath("..")
+enemyShielded = NodePath("../EnemyShielded")
 label = NodePath("../EnemyUI/Health")
 
 [node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("enemyController", "navigationAgent")]

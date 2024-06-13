@@ -29,10 +29,12 @@ var enemiesHit: Array[EnemyController]
 var damageEnabled: bool
 
 func _on_body_entered(body):
-	CheckCollision(body, playerHitboxType)
+	if (damageEnabled):
+		CheckCollision(body, playerHitboxType)
 
 func _on_area_entered(area):
-	CheckArea(area, playerHitboxType)
+	if (damageEnabled):
+		CheckArea(area, playerHitboxType)
 
 func CheckCollision(body, type: PlayerHitboxType):
 	if (body is EnemyController):
@@ -54,8 +56,7 @@ func AssignAreaType(enemyController: EnemyController, type: PlayerHitboxType):
 
 func DetermineDamage(enemyController: EnemyController, type: PlayerHitboxType):
 	if (enemyController.enemyShielded.shieldedBy != null):
-		DealDamage(enemyController, 0, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
-		enemyController.enemyShielded.RemoveShielded()
+		Clash(enemyController)
 		return
 	Direct(enemyController)
 
@@ -66,7 +67,7 @@ func Clash(enemyController: EnemyController):
 	DealDamage(enemyController, clashDamage, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
 
 func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: float, direction: Vector2, time: float, speedLoss: float, clash: bool):
-	if (damageEnabled && !enemyController.damageImmunity && !enemiesHit.has(enemyController)):
+	if (!enemyController.damageImmunity && !enemiesHit.has(enemyController)):
 		enemiesHit.push_back(enemyController)
 		enemyController.ReceiveDamage(damageDealt, repelDist, direction, time)
 		if (enemyController == null):
@@ -82,15 +83,14 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 		playerMovements.UpdateCurrentSpeed(-speedLoss)
 
 func ProjectileCollision(projectile: Projectile, type: PlayerHitboxType):
-	if (damageEnabled):
-		projectile.DeleteSelf()
-		if (type != PlayerHitboxType.WEAK):
-			CreateImpactTypeIndicator(false, self.global_position)
-			if (type == PlayerHitboxType.NORMAL):
-				playerMovements.UpdateCurrentSpeed(-lossOnImpact)
-			return
-		CreateImpactTypeIndicator(true, self.global_position)
-		playerMovements.UpdateCurrentSpeed(-clashLossOnImpact)
+	projectile.DeleteSelf()
+	if (type != PlayerHitboxType.WEAK):
+		CreateImpactTypeIndicator(false, self.global_position)
+		if (type == PlayerHitboxType.NORMAL):
+			playerMovements.UpdateCurrentSpeed(-lossOnImpact)
+		return
+	CreateImpactTypeIndicator(true, playerMovements.playerCharacter.global_position)
+	playerMovements.UpdateCurrentSpeed(-clashLossOnImpact)
 
 func CreateImpactTypeIndicator(clash: bool, currentPosition: Vector2):
 	var obj_scene = load(impactTypeIndicator)
