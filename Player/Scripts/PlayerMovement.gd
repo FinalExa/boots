@@ -4,7 +4,10 @@ extends Node
 @export var playerCharacter: PlayerCharacter
 @export var playerInputs: PlayerInputs
 
-@export var accelerationPerSecond: float
+@export var maxAccelerationPerSecond: float
+@export var maxAccelerationPerSecondEndPoint: float
+@export var minAccelerationPerSecond: float
+@export var minAccelerationPerSecondEndPoint: float
 @export var decelerationPerSecond: float
 @export var decelerationWhileColliding: float
 @export var minDecelerationWhileSteering: float
@@ -16,6 +19,8 @@ extends Node
 @export var killSpeedValue: float
 @export var minSpeed: float
 @export var maxSpeed: float
+var currentAcceleration: float
+var accelerationMultiplier: float
 var currentDecelerationWhileSteering: float
 var decelerationWhileSteeringActive: bool
 var currentSpeed: float
@@ -28,13 +33,26 @@ var yValue: float
 func _ready():
 	currentSpeed = 0
 	currentDecelerationWhileSteering = minDecelerationWhileSteering
+	accelerationMultiplier = (maxAccelerationPerSecond - minAccelerationPerSecond)/(minAccelerationPerSecondEndPoint - maxAccelerationPerSecondEndPoint)
+	print(accelerationMultiplier)
 	lastDirection = Vector2.ZERO
 
 func _process(delta):
+	SetCurrentAcceleration()
+	SetCurrentSpeed(delta)
 	DecelerationWhileSteering(delta)
 
-func _physics_process(delta):
-	SetCurrentSpeed(delta)
+func _physics_process(_delta):
+	MovePlayerCharacter()
+
+func SetCurrentAcceleration():
+	if (currentSpeed < maxAccelerationPerSecondEndPoint):
+		currentAcceleration = maxAccelerationPerSecond
+		return
+	if (currentSpeed > minAccelerationPerSecondEndPoint):
+		currentAcceleration = minAccelerationPerSecond
+		return
+	currentAcceleration = maxAccelerationPerSecond - ((currentSpeed - maxAccelerationPerSecondEndPoint) * accelerationMultiplier)
 
 func SetCurrentSpeed(delta):
 	if (playerInputs.movementInput == Vector2.ZERO):
@@ -48,6 +66,8 @@ func SetCurrentSpeed(delta):
 		SetDirection(delta)
 		AccelerationCases(delta)
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
+
+func MovePlayerCharacter():
 	playerCharacter.velocity = currentDirection * currentSpeed
 
 func AccelerationCases(delta):
@@ -64,7 +84,7 @@ func AccelerationCases(delta):
 	Accelerate(delta)
 
 func Accelerate(delta):
-	currentSpeed = clamp(currentSpeed + (accelerationPerSecond * delta), minSpeed, maxSpeed)
+	currentSpeed = clamp(currentSpeed + (currentAcceleration * delta), minSpeed, maxSpeed)
 
 func Decelerate(delta, decelerationValue):
 	currentSpeed = clamp(currentSpeed - (decelerationValue * delta), minSpeed, maxSpeed)

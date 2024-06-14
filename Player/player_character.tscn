@@ -59,16 +59,18 @@ script = ExtResource("3_fxyqo")
 script = ExtResource("1_n46fh")
 playerCharacter = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
-accelerationPerSecond = 750.0
+maxAccelerationPerSecond = 1500.0
+maxAccelerationPerSecondEndPoint = 500.0
+minAccelerationPerSecond = 200.0
+minAccelerationPerSecondEndPoint = 1800.0
 decelerationPerSecond = 800.0
 decelerationWhileColliding = 775.0
-minDecelerationWhileSteering = -50.0
-maxDecelerationWhileSteering = 100.0
-decelerationWhileSteeringRequiredSpeed = 300.0
+maxDecelerationWhileSteering = 200.0
+decelerationWhileSteeringRequiredSpeed = 500.0
 decelerationWhileSteeringIncreasePerSecond = 100.0
 decelerationWhileSteeringDecreasePerSecond = 100.0
-rotationSpeedPerSecond = 1.5
-killSpeedValue = 300.0
+rotationSpeedPerSecond = 1.75
+killSpeedValue = 500.0
 minSpeed = 100.0
 maxSpeed = 2000.0
 
@@ -127,7 +129,7 @@ offsetDegrees = 90
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
 playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = Array[float]([300.0, 800.0, 1800.0, 2000.0])
+speedThresholds = Array[float]([500.0, 1000.0, 1800.0, 2000.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
 [node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
