@@ -11,6 +11,6 @@ powerUpDescription = "While running, releases mini bombs behind at fixed time in
 powerUpType = 4
 
 [node name="Spawner" type="Node2D" parent="."]
-position = Vector2(0, 96)
+position = Vector2(0, 64)
 script = ExtResource("2_06qph")
 objectPath = "res://PowerUps/Bomb/SpawnedObjects/mini_bomb.tscn"

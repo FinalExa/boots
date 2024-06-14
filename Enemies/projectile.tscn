@@ -16,7 +16,7 @@ movementSpeed = 500.0
 rotationOffset = 90.0
 lifeTime = 5.0
 forward = NodePath("Forward")
-speedDecrease = 600.0
+speedDecrease = 800.0
 collisionSound = NodePath("Sounds/EnemyDirect")
 
 [node name="Sounds" type="Node" parent="."]

@@ -13,7 +13,7 @@ sceneSelector = NodePath("SceneSelector")
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_5y1wu")
-volume_db = -25.0
+volume_db = -40.0
 autoplay = true
 
 [node name="FrameMaster" type="Node" parent="."]

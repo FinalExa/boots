@@ -34,7 +34,7 @@ playerSpawnPoint = NodePath("SpawnPoint")
 rewardSpawn = NodePath("RewardSpawn")
 
 [node name="DefeatEnemiesObjective" parent="." node_paths=PackedStringArray("enemies", "gameplayScene") instance=ExtResource("1_oe4qj")]
-enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7"), NodePath("../Enemies/Enemy8"), NodePath("../Enemies/ShielderEnemy")]
+enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7"), NodePath("../Enemies/Enemy8"), NodePath("../Enemies/ShielderEnemy"), NodePath("../Enemies/ShielderEnemy2")]
 gameplayScene = NodePath("..")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -494,3 +494,6 @@ position = Vector2(608, 80)
 
 [node name="ShielderEnemy" parent="Enemies" instance=ExtResource("12_ppvic")]
 position = Vector2(1600, 576)
+
+[node name="ShielderEnemy2" parent="Enemies" instance=ExtResource("12_ppvic")]
+position = Vector2(-960, 256)

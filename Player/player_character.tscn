@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=21 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -15,13 +15,17 @@
 [ext_resource type="PackedScene" uid="uid://y1tyx8ap1e4c" path="res://Player/first_speed_hitbox.tscn" id="11_tk2g5"]
 [ext_resource type="PackedScene" uid="uid://b71q2rjh5oown" path="res://Player/second_speed_hitbox.tscn" id="12_psnq3"]
 [ext_resource type="PackedScene" uid="uid://3bj114kxasu7" path="res://Player/third_speed_hitbox.tscn" id="13_gt5g5"]
-[ext_resource type="Script" path="res://Player/PowerUpManager.gd" id="16_aa0yx"]
+[ext_resource type="Script" path="res://Player/Scripts/PowerUpManager.gd" id="16_1u6or"]
+[ext_resource type="Script" path="res://Player/Scripts/UnstuckEntities.gd" id="17_hev26"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 font_color = Color(0.854902, 0, 0.854902, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xymdd"]
+radius = 18.0
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "powerUpManager")]
 script = ExtResource("1_hu618")
@@ -59,16 +63,18 @@ script = ExtResource("3_fxyqo")
 script = ExtResource("1_n46fh")
 playerCharacter = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
-accelerationPerSecond = 750.0
+maxAccelerationPerSecond = 1500.0
+maxAccelerationPerSecondEndPoint = 500.0
+minAccelerationPerSecond = 325.0
+minAccelerationPerSecondEndPoint = 1800.0
 decelerationPerSecond = 800.0
 decelerationWhileColliding = 775.0
-minDecelerationWhileSteering = -50.0
 maxDecelerationWhileSteering = 100.0
-decelerationWhileSteeringRequiredSpeed = 300.0
+decelerationWhileSteeringRequiredSpeed = 500.0
 decelerationWhileSteeringIncreasePerSecond = 100.0
 decelerationWhileSteeringDecreasePerSecond = 100.0
-rotationSpeedPerSecond = 1.5
-killSpeedValue = 300.0
+rotationSpeedPerSecond = 1.75
+killSpeedValue = 500.0
 minSpeed = 100.0
 maxSpeed = 2000.0
 
@@ -127,7 +133,7 @@ offsetDegrees = 90
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
 playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = Array[float]([300.0, 800.0, 1800.0, 2000.0])
+speedThresholds = Array[float]([500.0, 1000.0, 1800.0, 2000.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
 [node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
@@ -149,10 +155,18 @@ clashSound = NodePath("../../../Sounds/PlayerClash")
 texture = ExtResource("5_s1pth")
 
 [node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "speedChargeLabel")]
-script = ExtResource("16_aa0yx")
+script = ExtResource("16_1u6or")
 playerMovements = NodePath("../../PlayerMovements")
 trailCooldown = 0.5
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
+
+[node name="UnstuckEntities" type="Area2D" parent="."]
+position = Vector2(0, 24)
+script = ExtResource("17_hev26")
+distMultiplier = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnstuckEntities"]
+shape = SubResource("CircleShape2D_xymdd")
 
 [connection signal="switchDown" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchDown"]
 [connection signal="switchUp" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchUp"]
@@ -162,3 +176,5 @@ speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
+[connection signal="body_entered" from="UnstuckEntities" to="UnstuckEntities" method="_on_body_entered"]
+[connection signal="body_exited" from="UnstuckEntities" to="UnstuckEntities" method="_on_body_exited"]
