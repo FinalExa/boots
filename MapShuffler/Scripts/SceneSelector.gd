@@ -4,6 +4,7 @@ extends Node2D
 @export var scenesToShuffle: Array[String]
 @export var playerRef: PlayerCharacter
 @export var safePosition: Vector2
+@export var rewardSpawn: RewardSpawn
 var currentScene: GameplayScene
 
 func _ready():
@@ -21,4 +22,6 @@ func ShuffleScene():
 	add_child(currentScene)
 	currentScene.SetPlayerSpawn(playerRef)
 	playerRef.playerMovements.SetToZero()
-	currentScene.rewardSpawn.GenerateRewardType()
+	rewardSpawn.reparent(currentScene.rewardSpawnPosition)
+	rewardSpawn.global_position = currentScene.rewardSpawnPosition.global_position
+	rewardSpawn.GenerateRewardType()

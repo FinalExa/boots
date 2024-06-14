@@ -5,8 +5,6 @@ enum RewardType {
 	POWERUP
 }
 
-
-
 @export var powerUpNumber: int
 @export var rewardPodiumPath: String
 @export var bombRewards: Array[String]
@@ -16,14 +14,13 @@ enum RewardType {
 var rewardType: RewardType
 var powerUpFaction: PowerUp.PowerUpFaction
 var selectedPowerUps: Array[String]
-
-func _ready():
-	GeneratePowerUp()
+var bannedPowerUps: Array[String]
 
 func GenerateRewardType():
 	rewardType = RewardType.values().pick_random()
 	if (rewardType == RewardType.POWERUP):
 		powerUpFaction = PowerUp.PowerUpFaction.values().pick_random()
+		GeneratePowerUp()
 
 func SpawnReward():
 	call_deferred("GeneratePodium")
@@ -34,7 +31,7 @@ func GeneratePowerUp():
 			selectedPowerUps = SetupRewardArray(bombRewards)
 
 func SetupRewardArray(receivedArray: Array[String]):
-	var rewardArray: Array[String] = receivedArray
+	var rewardArray: Array[String] = GenerateRewardArrayWithoutBannedPowerUps(receivedArray)
 	var selectedArray: Array[String]
 	var randomIndex: int
 	for i in powerUpNumber:
@@ -43,6 +40,19 @@ func SetupRewardArray(receivedArray: Array[String]):
 			selectedArray.push_back(rewardArray[randomIndex])
 			rewardArray.remove_at(randomIndex)
 	return selectedArray
+
+func GenerateRewardArrayWithoutBannedPowerUps(receivedArray: Array[String]):
+	var rewardArray: Array[String]
+	for i in receivedArray.size():
+		if (!bannedPowerUps.has(receivedArray[i])):
+			rewardArray.push_back(receivedArray[i])
+	return rewardArray
+
+func BanPowerUp(receivedPath: String):
+	bannedPowerUps.push_back(receivedPath)
+
+func UnbanPowerUp(receivedPath: String):
+	bannedPowerUps.erase(receivedPath)
 
 func GeneratePodium():
 	var obj_scene = load(rewardPodiumPath)

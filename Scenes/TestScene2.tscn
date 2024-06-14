@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://lvyfy0ogget5"]
+[gd_scene load_steps=16 format=3 uid="uid://lvyfy0ogget5"]
 
 [ext_resource type="PackedScene" uid="uid://dol7rouwbn8i3" path="res://MapObjectives/defeat_enemies_objective.tscn" id="1_oe4qj"]
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_q03js"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="2_1rn25"]
 [ext_resource type="Texture2D" uid="uid://rg08k2ig50ro" path="res://LevelDesign/Sprites/groundtile1.png" id="2_bl8cg"]
-[ext_resource type="PackedScene" uid="uid://bjn4y2vm7ph0y" path="res://PowerUps/reward_spawn.tscn" id="3_53btu"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_io7qq"]
 [ext_resource type="PackedScene" uid="uid://ceg01pefr0xb7" path="res://LevelDesign/wallverticalfullview.tscn" id="4_ncr2h"]
 [ext_resource type="PackedScene" uid="uid://bo430me6x0rsp" path="res://LevelDesign/wallverticalshort.tscn" id="5_gu6ye"]
@@ -28,10 +27,10 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_8u8m3")
 
-[node name="TestScene2" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawn")]
+[node name="TestScene2" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
 script = ExtResource("1_q03js")
 playerSpawnPoint = NodePath("SpawnPoint")
-rewardSpawn = NodePath("RewardSpawn")
+rewardSpawnPosition = NodePath("RewardSpawnPosition")
 
 [node name="DefeatEnemiesObjective" parent="." node_paths=PackedStringArray("enemies", "gameplayScene") instance=ExtResource("1_oe4qj")]
 enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/Enemy7"), NodePath("../Enemies/Enemy8"), NodePath("../Enemies/ShielderEnemy"), NodePath("../Enemies/ShielderEnemy2")]
@@ -40,7 +39,7 @@ gameplayScene = NodePath("..")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_oq6ai")
 
-[node name="RewardSpawn" parent="." instance=ExtResource("3_53btu")]
+[node name="RewardSpawnPosition" type="Node2D" parent="."]
 position = Vector2(-128, 1216)
 
 [node name="SpawnPoint" type="Node2D" parent="."]

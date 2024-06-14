@@ -34,7 +34,6 @@ func _ready():
 	currentSpeed = 0
 	currentDecelerationWhileSteering = minDecelerationWhileSteering
 	accelerationMultiplier = (maxAccelerationPerSecond - minAccelerationPerSecond)/(minAccelerationPerSecondEndPoint - maxAccelerationPerSecondEndPoint)
-	print(accelerationMultiplier)
 	lastDirection = Vector2.ZERO
 
 func _process(delta):

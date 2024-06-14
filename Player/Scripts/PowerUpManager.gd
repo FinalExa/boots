@@ -46,6 +46,7 @@ func AssignPowerUp(powerUp: PowerUp):
 
 func ReplaceOldPowerUp(powerUp: PowerUp):
 	if (powerUp != null):
+		get_tree().root.get_child(0).sceneSelector.rewardSpawn.UnbanPowerUp(powerUp.scene_file_path)
 		remove_child(powerUp)
 		powerUp.queue_free()
 
