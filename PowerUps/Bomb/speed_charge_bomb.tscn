@@ -5,18 +5,28 @@
 
 [node name="SpeedChargeBomb" type="Node2D" node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_fw88a")
-spawners = [NodePath("Spawner"), NodePath("Spawner2")]
+spawners = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4")]
 speedCapValue = 5000.0
 powerUpName = "Speed Charge Bomb"
 powerUpDescription = "Releases two bombs at the sides when it's fully charged, charge level depends on current speed."
 powerUpType = 3
 
 [node name="Spawner" type="Node2D" parent="."]
-position = Vector2(-128, 0)
+position = Vector2(-64, -64)
 script = ExtResource("2_k6ko7")
 objectPath = "res://PowerUps/Bomb/SpawnedObjects/strong_bomb.tscn"
 
 [node name="Spawner2" type="Node2D" parent="."]
-position = Vector2(128, 0)
+position = Vector2(64, -64)
+script = ExtResource("2_k6ko7")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/strong_bomb.tscn"
+
+[node name="Spawner3" type="Node2D" parent="."]
+position = Vector2(-64, 64)
+script = ExtResource("2_k6ko7")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/strong_bomb.tscn"
+
+[node name="Spawner4" type="Node2D" parent="."]
+position = Vector2(64, 64)
 script = ExtResource("2_k6ko7")
 objectPath = "res://PowerUps/Bomb/SpawnedObjects/strong_bomb.tscn"
