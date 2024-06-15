@@ -6,4 +6,4 @@
 script = ExtResource("1_o8bcu")
 powerUpNumber = 3
 rewardPodiumPath = "res://PowerUps/reward_podium.tscn"
-bombRewards = Array[String](["res://PowerUps/Bomb/contact_bomb.tscn", "res://PowerUps/Bomb/down_switch_bomb.tscn", "res://PowerUps/Bomb/speed_charge_bomb.tscn", "res://PowerUps/Bomb/trail_bomb.tscn", "res://PowerUps/Bomb/up_switch_bomb.tscn"])
+bombRewards = Array[String](["res://PowerUps/Bomb/contact_bomb.tscn", "res://PowerUps/Bomb/down_switch_bomb.tscn", "res://PowerUps/Bomb/speed_charge_bomb.tscn", "res://PowerUps/Bomb/trail_bomb.tscn", "res://PowerUps/Bomb/up_switch_bomb.tscn", "res://PowerUps/Bomb/area_passive_bomb.tscn", "res://PowerUps/Bomb/damage_passive_bomb.tscn", "res://PowerUps/Bomb/timer_passive_bomb.tscn"])

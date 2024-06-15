@@ -103,14 +103,15 @@ func SetDirection(delta):
 		currentDirection = playerInputs.movementInput
 	else:
 		CalculateRotationDirection()
-		SetNewDirection(delta)
+		currentDirection = SetNewDirection(delta)
 		if (lastDirection != currentDirection): directionDifferent = true
 		else: directionDifferent = false
 		lastDirection = currentDirection
 
 func SetNewDirection(delta):
-	currentDirection.x = SetDirectionValue(playerInputs.movementInput.x, currentDirection.x, xValue, delta)
-	currentDirection.y = SetDirectionValue(playerInputs.movementInput.y, currentDirection.y, yValue, delta)
+	var x: float = SetDirectionValue(playerInputs.movementInput.x, currentDirection.x, xValue, delta)
+	var y: float = SetDirectionValue(playerInputs.movementInput.y, currentDirection.y, yValue, delta)
+	return Vector2(x, y)
 
 func SetDirectionValue(movementValue: float, directionValue: float, value: int, delta):
 	var minValue: float

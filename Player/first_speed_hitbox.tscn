@@ -6,10 +6,11 @@
 [node name="FirstSpeedHitbox" type="Area2D"]
 script = ExtResource("1_ekgv8")
 clashGroupName = "ClashArea"
-damage = 2
+damage = 30.0
 repelDistance = 600.0
 repelTime = 0.3
 lossOnImpact = 300.0
+clashDamage = 10.0
 clashRepelDistance = 450.0
 clashRepelTime = 0.3
 clashLossOnImpact = 600.0
@@ -23,6 +24,4 @@ position = Vector2(0, -48)
 texture = ExtResource("2_mfcri")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

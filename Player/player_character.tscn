@@ -157,8 +157,9 @@ texture = ExtResource("5_s1pth")
 [node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "speedChargeLabel")]
 script = ExtResource("16_1u6or")
 playerMovements = NodePath("../../PlayerMovements")
-trailCooldown = 0.5
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
+upSwitchAbuseTime = 0.3
+downSwitchAbuseTime = 0.3
 
 [node name="UnstuckEntities" type="Area2D" parent="."]
 position = Vector2(0, 24)

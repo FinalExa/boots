@@ -3,7 +3,7 @@ extends Area2D
 @export var distMultiplier: float
 var entitiesInArea: Array[Node2D]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	UnstuckEntities()
 
 func _on_body_entered(body):

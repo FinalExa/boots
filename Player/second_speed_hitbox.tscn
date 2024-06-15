@@ -7,11 +7,11 @@
 script = ExtResource("1_4ielu")
 playerHitboxType = 1
 clashGroupName = "ClashArea"
-damage = 4
+damage = 50.0
 repelDistance = 900.0
 repelTime = 0.3
 lossOnImpact = 200.0
-clashDamage = 1
+clashDamage = 15.0
 clashRepelDistance = 600.0
 clashRepelTime = 0.3
 clashLossOnImpact = 400.0
@@ -25,6 +25,4 @@ position = Vector2(0, -48)
 texture = ExtResource("2_7v6fv")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
