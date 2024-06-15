@@ -72,9 +72,9 @@ func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: f
 		enemyController.ReceiveDamage(damageDealt, repelDist, direction, time)
 		if (enemyController == null):
 			enemiesHit.erase(enemyController)
+		enemyController.enemyAttack.ForceStartCooldown()
 		if (clash):
 			clashSound.play()
-			enemyController.enemyAttack.ForceStartCooldown()
 			emit_signal("hitClash")
 		else:
 			directSound.play()
