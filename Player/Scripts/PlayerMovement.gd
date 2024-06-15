@@ -33,7 +33,7 @@ var yValue: float
 func _ready():
 	currentSpeed = 0
 	currentDecelerationWhileSteering = minDecelerationWhileSteering
-	accelerationMultiplier = (maxAccelerationPerSecond - minAccelerationPerSecond)/(minAccelerationPerSecondEndPoint - maxAccelerationPerSecondEndPoint)
+	accelerationMultiplier = (maxAccelerationPerSecond - minAccelerationPerSecond) / (minAccelerationPerSecondEndPoint - maxAccelerationPerSecondEndPoint)
 	lastDirection = Vector2.ZERO
 
 func _process(delta):
