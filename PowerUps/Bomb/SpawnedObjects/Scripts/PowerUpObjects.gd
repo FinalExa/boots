@@ -11,7 +11,7 @@ func ApplyPowerUps(powerUpManager: PowerUpManager):
 func SetBaseStats():
 	pass
 
-func IncreaseStats(damage: float, size: float, time: float, specialObject: String):
+func IncreaseStats(_damage: float, _size: float, _time: float, _specialObject: String):
 	pass
 
 func SpawnSpecialObject(specialObject: String):

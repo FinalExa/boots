@@ -3,20 +3,30 @@ extends Node2D
 
 @export var playerMovements: PlayerMovements
 @export var speedChargeLabel: Label
+@export var upSwitchAbuseTime: float
+@export var downSwitchAbuseTime: float
 var trailCooldown: float
+var upSwitchAbuseTimer: float
+var downSwitchAbuseTimer: float
 var contactPowerUp: PowerUp
 var upSwitchPowerUp: PowerUp
 var downSwitchPowerUp: PowerUp
 var trailPowerUp: PowerUp
 var speedChargePowerUp: PowerUp
 var powerUpPassives: Array[PowerUp]
+var lastDownIndex: int
+var lastUpIndex: int
 var trailTimer: float
 
 func _ready():
 	trailTimer = trailCooldown
+	lastDownIndex = -1
+	lastUpIndex = -1
 
 func _process(delta):
 	ExecuteTrail(delta)
+	UpSwitchAbuseTimer(delta)
+	DownSwitchAbuseTimer(delta)
 	ChargeWithSpeed()
 
 func AssignPowerUp(powerUp: PowerUp):
@@ -51,13 +61,19 @@ func ReplaceOldPowerUp(powerUp: PowerUp):
 		remove_child(powerUp)
 		powerUp.queue_free()
 
-func SwitchDown():
+func SwitchDown(receivedIndex: int):
 	if (downSwitchPowerUp != null):
-		downSwitchPowerUp.ExecutePowerUpEffect()
+		if (receivedIndex != lastDownIndex || (receivedIndex == lastDownIndex && downSwitchAbuseTimer <= 0)):
+			downSwitchPowerUp.ExecutePowerUpEffect()
+			downSwitchAbuseTimer = downSwitchAbuseTime
+		lastDownIndex = receivedIndex
 
-func SwitchUp():
+func SwitchUp(receivedIndex: int):
 	if (upSwitchPowerUp != null):
-		upSwitchPowerUp.ExecutePowerUpEffect()
+		if (receivedIndex != lastUpIndex || (receivedIndex == lastUpIndex && upSwitchAbuseTimer <= 0)):
+			upSwitchPowerUp.ExecutePowerUpEffect()
+			upSwitchAbuseTimer = upSwitchAbuseTime
+		lastUpIndex = receivedIndex
 
 func HitClash():
 	if (contactPowerUp != null):
@@ -78,3 +94,11 @@ func ExecuteTrail(delta):
 			return
 		trailTimer = trailCooldown
 		trailPowerUp.ExecutePowerUpEffect()
+
+func UpSwitchAbuseTimer(delta):
+	if (upSwitchAbuseTimer > 0):
+		upSwitchAbuseTimer -= delta
+
+func DownSwitchAbuseTimer(delta):
+	if (downSwitchAbuseTimer > 0):
+		downSwitchAbuseTimer -= delta
