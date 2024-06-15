@@ -14,12 +14,12 @@ enum PlayerHitboxType
 @export var playerMovements: PlayerMovements
 @export var playerHitboxType: PlayerHitboxType
 @export var clashGroupName: String
-@export var damage: int
+@export var damage: float
 @export var repelDistance: float
 @export var repelTime: float
 @export var lossOnImpact: float
 @export var directSound: AudioStreamPlayer
-@export var clashDamage: int
+@export var clashDamage: float
 @export var clashRepelDistance: float
 @export var clashRepelTime: float
 @export var clashLossOnImpact: float
@@ -57,7 +57,7 @@ func Direct(enemyController: EnemyController):
 func Clash(enemyController: EnemyController):
 	DealDamage(enemyController, clashDamage, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
 
-func DealDamage(enemyController: EnemyController, damageDealt: int, repelDist: float, direction: Vector2, time: float, speedLoss: float, clash: bool):
+func DealDamage(enemyController: EnemyController, damageDealt: float, repelDist: float, direction: Vector2, time: float, speedLoss: float, clash: bool):
 	if (!enemyController.damageImmunity):
 		enemyController.ReceiveDamage(damageDealt, repelDist, direction, time)
 		if (clash):

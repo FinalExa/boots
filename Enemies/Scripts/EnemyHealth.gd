@@ -3,12 +3,12 @@ extends Node
 
 signal enemyDeath
 
-@export var maxHealth: int
+@export var maxHealth: float
 @export var enemyController: EnemyController
 @export var enemyShielded: EnemyShielded
 @export var label: Label
 var currentObjective: MapObjective
-var currentHealth: int = 0
+var currentHealth: float = 0
 
 func _ready():
 	HealthStartup()
@@ -16,7 +16,7 @@ func _ready():
 func HealthStartup():
 	HealthUpdate(maxHealth)
 
-func HealthUpdate(valueChange: int):
+func HealthUpdate(valueChange: float):
 	if (valueChange <= 0 && enemyShielded.shieldedBy != null):
 		valueChange = 0
 		enemyShielded.RemoveShielded()

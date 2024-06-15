@@ -27,7 +27,7 @@ func _process(delta):
 func _physics_process(_delta):
 	move_and_slide()
 
-func ReceiveDamage(damage: int, repelDistance: float, repelDirection: Vector2, repelTime: float):
+func ReceiveDamage(damage: float, repelDistance: float, repelDirection: Vector2, repelTime: float):
 	emit_signal("damaged", damage)
 	emit_signal("repelled")
 	enemyRepelled.SetRepelled(repelDistance, repelDirection, repelTime)
