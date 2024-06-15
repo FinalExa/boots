@@ -84,12 +84,12 @@ func ExecuteAttackPhase():
 
 func PrepareHitboxes():
 	if (currentPhase > 0):
-		RemoveAttackHitbox(currentPhase-1)
+		RemoveAttackHitbox(currentPhase - 1)
 	AddAttackHitbox(currentPhase)
 
 func EndAttack():
 	if (currentPhase >= attackPhasesLaunch.size()):
-		RemoveAttackHitbox(attackPhasesLaunch.size()-1)
+		RemoveAttackHitbox(attackPhasesLaunch.size() - 1)
 		currentPhase = 0
 		attackLaunched = false
 		if (attackCooldown == 0):

@@ -2,8 +2,8 @@ class_name PowerUpManager
 extends Node2D
 
 @export var playerMovements: PlayerMovements
-@export var trailCooldown: float
 @export var speedChargeLabel: Label
+var trailCooldown: float
 var contactPowerUp: PowerUp
 var upSwitchPowerUp: PowerUp
 var downSwitchPowerUp: PowerUp
@@ -35,6 +35,7 @@ func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp.powerUpType == PowerUp.PowerUpType.TRAIL):
 		ReplaceOldPowerUp(trailPowerUp)
 		trailPowerUp = powerUp
+		trailCooldown = trailPowerUp.trailInterval
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.SPEED_CHARGE):
 		ReplaceOldPowerUp(speedChargePowerUp)

@@ -1,14 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://eslqbrcvag7j"]
 
-[ext_resource type="Script" path="res://PowerUps/Bomb/Scripts/TrailBomb.gd" id="1_t0tkm"]
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUp.gd" id="1_2qe4o"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_06qph"]
 
-[node name="TrailBomb" type="Node2D" node_paths=PackedStringArray("spawner")]
-script = ExtResource("1_t0tkm")
-spawner = NodePath("Spawner")
+[node name="TrailBomb" type="Node2D" node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_2qe4o")
 powerUpName = "Trail Bomb"
 powerUpDescription = "While running, releases mini bombs behind at fixed time intervals."
 powerUpType = 4
+spawners = [NodePath("Spawner")]
+trailInterval = 0.3
 
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, 64)
