@@ -7,13 +7,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_836y0"]
 radius = 256.0
 
-[node name="StrongBomb" type="Node2D" node_paths=PackedStringArray("bombSprite", "explosionSprite")]
+[node name="StrongBomb" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
 script = ExtResource("1_c1lao")
 explosionCooldown = 0.5
 explosionDuration = 0.1
 explosionDamage = 50
 explosionRepelDistance = 50.0
 explosionRepelTime = 0.1
+explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
 

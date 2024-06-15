@@ -32,15 +32,15 @@ func Register():
 
 func ExecutePowerUpEffect():
 	for i in spawners.size():
-		spawners[i].call_deferred("SpawnObject")
+		CreatePowerUpEffect(spawners[i])
 
 func SecondaryExecutePowerUpEffect():
 	for i in secondarySpawners.size():
-		secondarySpawners[i].call_deferred("SpawnObject")
+		CreatePowerUpEffect(spawners[i])
 
 func TertiaryExecutePowerUpEffect():
 	for i in tertiarySpawners.size():
-		tertiarySpawners[i].call_deferred("SpawnObject")
+		CreatePowerUpEffect(spawners[i])
 
 func ExecutePowerUpEffectWithValue(value):
 	speedChargeCurrentValue += value * get_process_delta_time()
@@ -48,4 +48,14 @@ func ExecutePowerUpEffectWithValue(value):
 	if (speedChargeCurrentValue >= speedChargeMaxValue):
 		speedChargeCurrentValue -= speedChargeMaxValue
 		for i in spawners.size():
-			spawners[i].call_deferred("SpawnObject")
+			CreatePowerUpEffect(spawners[i])
+
+func CreatePowerUpEffect(spawner: ObjectSpawner):
+	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
+	if (spawnedPowerUpObject != null):
+		spawnedPowerUpObject.SetBaseStats()
+		ApplyPassives(spawnedPowerUpObject)
+		spawnedPowerUpObject.Finalize()
+
+func ApplyPassives(spawnedPowerUpObject: PowerUpObjects):
+	spawnedPowerUpObject.ApplyPowerUps(powerUpManager)

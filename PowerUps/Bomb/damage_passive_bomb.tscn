@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjn1c3owhijvx"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PassivePowerUp.gd" id="1_644nn"]
+
+[node name="DamagePassiveBomb" type="Node2D"]
+script = ExtResource("1_644nn")
+damageChangePercentage = 30.0
+powerUpName = "Bomb Damage Increase"
+powerUpDescription = "Increases the damage of all bombs by 30%"
+powerUpType = 5

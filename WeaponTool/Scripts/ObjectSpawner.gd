@@ -13,5 +13,7 @@ func SpawnObject():
 			obj.global_rotation = self.global_rotation
 			if (sceneMaster != null):
 				sceneMaster.sceneSelector.currentScene.add_child(obj)
+			return obj
 	else:
 		queue_free()
+		return null
