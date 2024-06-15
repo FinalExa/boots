@@ -32,7 +32,7 @@ func GeneratePowerUp():
 
 func SetupRewardArray(receivedArray: Array[String]):
 	var rewardArray: Array[String] = GenerateRewardArrayWithoutBannedPowerUps(receivedArray)
-	var selectedArray: Array[String]
+	var selectedArray: Array[String] = []
 	var randomIndex: int
 	for i in powerUpNumber:
 		if (rewardArray.size() > 0):
@@ -42,7 +42,7 @@ func SetupRewardArray(receivedArray: Array[String]):
 	return selectedArray
 
 func GenerateRewardArrayWithoutBannedPowerUps(receivedArray: Array[String]):
-	var rewardArray: Array[String]
+	var rewardArray: Array[String] = []
 	for i in receivedArray.size():
 		if (!bannedPowerUps.has(receivedArray[i])):
 			rewardArray.push_back(receivedArray[i])

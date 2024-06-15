@@ -36,7 +36,7 @@ enemyAttack = NodePath("EnemyRotator/EnemyAttack")
 enemyHealth = NodePath("EnemyHealth")
 enemyShielded = NodePath("EnemyShielded")
 attackDistance = 300.0
-damageImmunityDuration = 0.1
+damageImmunityDuration = 0.3
 
 [node name="Sounds" type="Node" parent="."]
 

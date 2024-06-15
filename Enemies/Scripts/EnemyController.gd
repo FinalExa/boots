@@ -33,6 +33,7 @@ func ReceiveDamage(damage: int, repelDistance: float, repelDirection: Vector2, r
 	enemyRepelled.SetRepelled(repelDistance, repelDirection, repelTime)
 	damageImmunityTimer = damageImmunityDuration
 	damageImmunity = true
+	enemyAttack.ForceStartCooldown()
 
 func ImmunityTimer(delta):
 	if (damageImmunity):
