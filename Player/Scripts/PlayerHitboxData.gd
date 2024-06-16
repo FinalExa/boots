@@ -35,8 +35,10 @@ func _process(delta):
 func DecideOutcome():
 	if (damageEnabled):
 		var alreadyHitEnemies: Array[Node2D]
-		alreadyHitEnemies = CheckAreas(playerHitboxType, alreadyHitEnemies)
-		CheckCollisions(playerHitboxType, alreadyHitEnemies)
+		if (areasInArea.size() > 0):
+			alreadyHitEnemies = CheckAreas(playerHitboxType, alreadyHitEnemies)
+		if (nodesInArea.size() > 0):
+			CheckCollisions(playerHitboxType, alreadyHitEnemies)
 		alreadyHitEnemies.clear()
 
 func CheckCollisions(type: PlayerHitboxType, hitEnemies: Array[Node2D]):
@@ -68,8 +70,10 @@ func ProjectileCollision(projectile: Projectile, type: PlayerHitboxType):
 	playerMovements.UpdateCurrentSpeed(-clashLossOnImpact)
 
 func CheckAreas(type: PlayerHitboxType, hitEnemies: Array[Node2D]):
-	if (areasInArea.size() > 0):
-		for i in areasInArea.size():
+	for i in areasInArea.size():
+		if (i >= areasInArea.size()):
+			break
+		if (!hitEnemies.has(areasInArea[i].characterRef)):
 			hitEnemies.push_back(areasInArea[i].characterRef)
 			AssignAreaType(areasInArea[i].characterRef, type)
 	return hitEnemies
