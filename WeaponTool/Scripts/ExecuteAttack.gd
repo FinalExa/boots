@@ -98,7 +98,7 @@ func EndAttack():
 			StartCooldown()
 
 func ForceStartCooldown():
-	attackLaunched = true
+	attackLaunched = false
 	RemoveAttackHitboxes()
 	currentPhase = 0
 	if (attackCooldown == 0):
