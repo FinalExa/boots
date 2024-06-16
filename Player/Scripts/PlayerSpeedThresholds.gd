@@ -46,10 +46,8 @@ func SetLowerSpeedLevel():
 
 func DectivateCurrentHitbox(index: int):
 	if (thresholdHitboxes[index] != null): 
-		thresholdHitboxes[index].hide()
 		thresholdHitboxes[index].TurnOffDamage()
 
 func ActivateCurrentHitbox(index: int):
 	if (thresholdHitboxes[index] != null):
-		thresholdHitboxes[index].show()
-		thresholdHitboxes[index].damageEnabled = true
+		thresholdHitboxes[index].TurnOnDamage()
