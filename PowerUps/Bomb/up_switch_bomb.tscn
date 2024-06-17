@@ -5,7 +5,7 @@
 
 [node name="UpSwitchBomb" type="Node2D" node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_upghl")
-powerUpName = "Up Switch"
+powerUpName = "Up Switch Bomb"
 powerUpDescription = "When increasing speed levels, generates a strong bomb behind the player."
 powerUpType = 2
 spawners = [NodePath("Spawner")]
