@@ -76,11 +76,21 @@ func CheckAreas(type: PlayerHitboxType, hitEnemies: Array[Node2D]):
 		if (i >= areasInArea.size()):
 			break
 		if (!hitEnemies.has(areasInArea[i].characterRef)):
-			hitEnemies.push_back(areasInArea[i].characterRef)
-			AssignAreaType(areasInArea[i].characterRef, type)
+			hitEnemies = AreaCases(areasInArea[i], hitEnemies, type)
 	return hitEnemies
 
-func AssignAreaType(enemyController: EnemyController, type: PlayerHitboxType):
+func AreaCases(area: Area2D, hitEnemies: Array[Node2D], type: PlayerHitboxType):
+	if (area is EnemySideShield && area.isActive):
+		hitEnemies.push_back(area.characterRef)
+		area.TurnOff()
+		DealDamage(area.characterRef, 0, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
+		return hitEnemies
+	if (area is AttackHitbox):
+		hitEnemies.push_back(area.characterRef)
+		AreaCollision(area.characterRef, type)
+	return hitEnemies
+
+func AreaCollision(enemyController: EnemyController, type: PlayerHitboxType):
 	if (type == PlayerHitboxType.STRONG):
 		Direct(enemyController)
 		return
@@ -124,9 +134,8 @@ func _on_body_entered(body):
 		nodesInArea.push_back(body)
 
 func _on_area_entered(area):
-	if (area.is_in_group(clashGroupName) && area is AttackHitbox && !areasInArea.has(area)):
-		if (CheckIfAreaHasCharacterRef(area)):
-			areasInArea.push_back(area)
+	if (area.is_in_group(clashGroupName) && !areasInArea.has(area)):
+		areasInArea.push_back(area)
 
 func _on_body_exited(body):
 	if (nodesInArea.has(body)):
@@ -135,9 +144,3 @@ func _on_body_exited(body):
 func _on_area_exited(area):
 	if (areasInArea.has(area)):
 		areasInArea.erase(area)
-
-func CheckIfAreaHasCharacterRef(area):
-	for i in areasInArea.size():
-		if (areasInArea[i].characterRef == area.characterRef):
-			return false
-	return true

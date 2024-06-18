@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://djss860huseff"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemySideShield.gd" id="1_grgq3"]
+[ext_resource type="Texture2D" uid="uid://itad1qi1j647" path="res://Enemies/Sprites/enemySideShield.png" id="2_4dou5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_su8x5"]
+size = Vector2(16, 96)
+
+[node name="EnemySideShield" type="Area2D" groups=["ClashArea"]]
+position = Vector2(88, 0)
+script = ExtResource("1_grgq3")
+timeOff = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_su8x5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4dou5")

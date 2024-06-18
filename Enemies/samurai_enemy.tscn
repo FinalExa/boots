@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwnhkggey5jg3"]
+[gd_scene load_steps=24 format=3 uid="uid://7ocoxcgcjqje"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_tjy26"]
 [ext_resource type="AudioStream" uid="uid://ba4eq7x3pc5vg" path="res://Enemies/Sounds/enemyDirect.wav" id="2_egj01"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyKillCheck.gd" id="12_w46t3"]
 [ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyattack.png" id="13_qt1ww"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyDetection.gd" id="14_2jqyl"]
+[ext_resource type="PackedScene" uid="uid://djss860huseff" path="res://enemy_side_shield.tscn" id="14_p7rgi"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BehaviorTree.gd" id="15_0578m"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="16_eacfw"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="17_h51ge"]
@@ -60,7 +61,7 @@ texture = ExtResource("5_2c7nn")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "label")]
 script = ExtResource("6_avu8j")
-maxHealth = 250.0
+maxHealth = 500.0
 enemyController = NodePath("..")
 enemyShielded = NodePath("../EnemyShielded")
 label = NodePath("../EnemyUI/Health")
@@ -85,9 +86,9 @@ shieldSprite = NodePath("../ShieldSprite")
 layout_mode = 3
 anchors_preset = 0
 offset_left = -32.0
-offset_top = -64.0
+offset_top = -96.0
 offset_right = 32.0
-offset_bottom = -32.0
+offset_bottom = -64.0
 
 [node name="Health" type="Label" parent="EnemyUI"]
 layout_mode = 0
@@ -113,9 +114,9 @@ position = Vector2(0, -64)
 
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("11_mlnjp")
-attackDuration = 60
-attackCooldown = 90
-attackPhasesLaunch = Array[int]([0, 15, 30])
+attackDuration = 30
+attackCooldown = 30
+attackPhasesLaunch = Array[int]([0, 10, 20])
 attackHitboxes = [null, NodePath("EnemyKillCheck"), NodePath("EnemyKillCheck2"), NodePath("EnemyKillCheck3")]
 attackSounds = [null, null, null]
 attackMovements = Array[float]([200.0, 200.0, 300.0])
@@ -158,6 +159,13 @@ texture = ExtResource("13_qt1ww")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck3"]
 polygon = PackedVector2Array(-64, -32, 64, -32, 48, -56, 16, -64, -16, -64, -40, -56)
+
+[node name="EnemySideShield" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("14_p7rgi")]
+characterRef = NodePath("../..")
+
+[node name="EnemySideShield2" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("14_p7rgi")]
+position = Vector2(-88, 0)
+characterRef = NodePath("../..")
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController", "normalSprite", "angrySprite")]
 script = ExtResource("14_2jqyl")
