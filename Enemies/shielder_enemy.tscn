@@ -54,7 +54,7 @@ texture = ExtResource("4_gh761")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "label")]
 script = ExtResource("4_m8tui")
-maxHealth = 200.0
+maxHealth = 150.0
 enemyController = NodePath("..")
 enemyShielded = NodePath("../EnemyShielded")
 label = NodePath("../EnemyUI/Health")

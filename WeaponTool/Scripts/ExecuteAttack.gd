@@ -36,14 +36,13 @@ func Attacking():
 		AttackExecute()
 
 func AttackExecute():
+	if (currentPhase < attackPhasesLaunch.size() && attackFrame >= attackPhasesLaunch[currentPhase]):
+		ExecuteAttackPhase()
 	if (attackFrame < attackDuration):
 		AttackMovement(currentPhase - 1)
 		attackFrame += 1
 		return
-	if (currentPhase < attackPhasesLaunch.size() && attackFrame > attackPhasesLaunch[currentPhase]):
-		ExecuteAttackPhase()
-	else:
-		EndAttack()
+	EndAttack()
 
 func CooldownExecute():
 	if (attackFrame < attackCooldown):
@@ -69,7 +68,8 @@ func RemoveAttackHitbox(index):
 		attackHitboxInstance = attackHitboxes[index]
 		if (attackHitboxInstance is AttackHitbox):
 			attackHitboxInstance.AttackEnd()
-		self.remove_child(attackHitboxInstance)
+		if (attackHitboxInstance.get_parent() == self):
+			self.remove_child(attackHitboxInstance)
 
 func StartAttack():
 	attackLaunched = true
