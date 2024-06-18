@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://de61jcfn57wpc"]
+[gd_scene load_steps=17 format=3 uid="uid://de61jcfn57wpc"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_p3qla"]
 [ext_resource type="PackedScene" uid="uid://dol7rouwbn8i3" path="res://MapObjectives/defeat_enemies_objective.tscn" id="2_2eajk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://rg08k2ig50ro" path="res://LevelDesign/Sprites/groundtile1.png" id="7_n6avi"]
 [ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="8_dgtcf"]
 [ext_resource type="PackedScene" uid="uid://bo585ed8eynti" path="res://Enemies/enemy.tscn" id="9_vpcjp"]
+[ext_resource type="PackedScene" uid="uid://dwnhkggey5jg3" path="res://Enemies/samurai_enemy.tscn" id="12_lg2al"]
 [ext_resource type="PackedScene" uid="uid://ctah4a62uicsr" path="res://Enemies/shielder_enemy.tscn" id="13_o5kuj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xo468"]
@@ -36,7 +37,7 @@ rewardSpawnPosition = NodePath("RewardSpawnPosition")
 navigation_polygon = SubResource("NavigationPolygon_xo468")
 
 [node name="DefeatEnemiesObjective" parent="." node_paths=PackedStringArray("enemies", "gameplayScene") instance=ExtResource("2_2eajk")]
-enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/Enemy6"), NodePath("../Enemies/ShielderEnemy")]
+enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath("../Enemies/Enemy3"), NodePath("../Enemies/Enemy4"), NodePath("../Enemies/Enemy5"), NodePath("../Enemies/SamuraiEnemy"), NodePath("../Enemies/ShielderEnemy")]
 gameplayScene = NodePath("..")
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
@@ -535,8 +536,8 @@ position = Vector2(2632, -1856)
 [node name="Enemy5" parent="Enemies" instance=ExtResource("9_vpcjp")]
 position = Vector2(3776, -1856)
 
-[node name="Enemy6" parent="Enemies" instance=ExtResource("9_vpcjp")]
-position = Vector2(3008, -576)
+[node name="SamuraiEnemy" parent="Enemies" instance=ExtResource("12_lg2al")]
+position = Vector2(3072, -576)
 
 [node name="ShielderEnemy" parent="Enemies" instance=ExtResource("13_o5kuj")]
 position = Vector2(640, -1856)
