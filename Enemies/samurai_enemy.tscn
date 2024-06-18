@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyKillCheck.gd" id="12_w46t3"]
 [ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyattack.png" id="13_qt1ww"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyDetection.gd" id="14_2jqyl"]
-[ext_resource type="PackedScene" uid="uid://djss860huseff" path="res://enemy_side_shield.tscn" id="14_p7rgi"]
+[ext_resource type="PackedScene" uid="uid://djss860huseff" path="res://Enemies/enemy_side_shield.tscn" id="14_n55my"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BehaviorTree.gd" id="15_0578m"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="16_eacfw"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="17_h51ge"]
@@ -160,10 +160,11 @@ texture = ExtResource("13_qt1ww")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck3"]
 polygon = PackedVector2Array(-64, -32, 64, -32, 48, -56, 16, -64, -16, -64, -40, -56)
 
-[node name="EnemySideShield" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("14_p7rgi")]
+[node name="EnemySideShield" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("14_n55my")]
+position = Vector2(88, 0)
 characterRef = NodePath("../..")
 
-[node name="EnemySideShield2" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("14_p7rgi")]
+[node name="EnemySideShield2" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("14_n55my")]
 position = Vector2(-88, 0)
 characterRef = NodePath("../..")
 
