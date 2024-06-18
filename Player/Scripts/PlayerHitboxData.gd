@@ -29,7 +29,7 @@ var damageEnabled: bool
 var nodesInArea: Array[Node2D]
 var areasInArea: Array[Area2D]
 
-func _process(delta):
+func _process(_delta):
 	DecideOutcome()
 
 func DecideOutcome():

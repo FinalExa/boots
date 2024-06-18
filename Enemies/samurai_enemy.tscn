@@ -35,7 +35,7 @@ enemyRotator = NodePath("EnemyRotator")
 enemyAttack = NodePath("EnemyRotator/EnemyAttack")
 enemyHealth = NodePath("EnemyHealth")
 enemyShielded = NodePath("EnemyShielded")
-attackDistance = 300.0
+attackDistance = 500.0
 damageImmunityDuration = 0.3
 
 [node name="Sounds" type="Node" parent="."]
@@ -54,6 +54,8 @@ texture = ExtResource("3_413h5")
 texture = ExtResource("4_hbl2s")
 
 [node name="ShieldSprite" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 1.90735e-06)
+scale = Vector2(2, 2)
 texture = ExtResource("5_2c7nn")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "label")]
@@ -111,12 +113,12 @@ position = Vector2(0, -64)
 
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("11_mlnjp")
-attackDuration = 90
-attackCooldown = 120
-attackPhasesLaunch = Array[int]([0, 15, 30, 45])
+attackDuration = 60
+attackCooldown = 90
+attackPhasesLaunch = Array[int]([0, 15, 30])
 attackHitboxes = [null, NodePath("EnemyKillCheck"), NodePath("EnemyKillCheck2"), NodePath("EnemyKillCheck3")]
-attackSounds = [null, null, null, null]
-attackMovements = Array[float]([0.0, 200.0, 200.0, 300.0])
+attackSounds = [null, null, null]
+attackMovements = Array[float]([200.0, 200.0, 300.0])
 characterRef = NodePath("../..")
 
 [node name="EnemyKillCheck" type="Area2D" parent="EnemyRotator/EnemyAttack" node_paths=PackedStringArray("hitSound") groups=["ClashArea"]]
