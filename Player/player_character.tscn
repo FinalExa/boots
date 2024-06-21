@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=22 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bsbd0jhfpears" path="res://Player/Sounds/playerClash.wav" id="4_ce281"]
 [ext_resource type="Script" path="res://Player/Scripts/HUD/SpeedValue.gd" id="4_hhy2o"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerRotator.gd" id="4_mluyg"]
+[ext_resource type="Script" path="res://Player/PlayerHealth.gd" id="5_3txhn"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
 [ext_resource type="Script" path="res://Player/Scripts/CurrentObjectiveUI.gd" id="6_vo4ho"]
 [ext_resource type="PackedScene" uid="uid://bxn2uta6y2ij0" path="res://Player/power_up_ui.tscn" id="9_055o7"]
@@ -27,7 +28,7 @@ font_color = Color(0.854902, 0, 0.854902, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xymdd"]
 radius = 18.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "powerUpManager")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "powerUpManager", "playerHealth")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerHUD/Objective")
@@ -35,6 +36,7 @@ playerSpeedThresholds = NodePath("PlayerRotator/PlayerSpeedThresholds")
 playerInputs = NodePath("PlayerInputs")
 powerUpUI = NodePath("PlayerHUD/PowerUpUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
+playerHealth = NodePath("PlayerHealth")
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -55,6 +57,14 @@ position = Vector2(0, 24)
 shape = SubResource("CircleShape2D_upbqd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("healthLabel", "playerMovements")]
+script = ExtResource("5_3txhn")
+healthLabel = NodePath("../PlayerHUD/HealthValue")
+maxHealth = 100.0
+partialThreshold = 20.0
+playerMovements = NodePath("../PlayerMovements")
+invulnerabilityTime = 0.1
 
 [node name="PlayerInputs" type="Node" parent="."]
 script = ExtResource("3_fxyqo")
@@ -87,12 +97,20 @@ offset_top = -536.0
 offset_right = 960.0
 offset_bottom = 536.0
 
-[node name="SpeedValue" type="Label" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "speedThresholds")]
+[node name="HealthValue" type="Label" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 24.0
 offset_right = 192.0
 offset_bottom = 56.0
+label_settings = SubResource("LabelSettings_fvdlt")
+
+[node name="SpeedValue" type="Label" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "speedThresholds")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 192.0
+offset_bottom = 88.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -103,9 +121,9 @@ speedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
 [node name="SpeedChargeValue" type="Label" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 56.0
+offset_top = 88.0
 offset_right = 192.0
-offset_bottom = 88.0
+offset_bottom = 120.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -113,9 +131,9 @@ vertical_alignment = 1
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 88.0
+offset_top = 120.0
 offset_right = 192.0
-offset_bottom = 152.0
+offset_bottom = 184.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
