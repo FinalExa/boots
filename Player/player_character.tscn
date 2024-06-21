@@ -64,6 +64,7 @@ healthLabel = NodePath("../PlayerHUD/HealthValue")
 maxHealth = 100.0
 partialThreshold = 20.0
 playerMovements = NodePath("../PlayerMovements")
+invulnerabilityTime = 0.1
 
 [node name="PlayerInputs" type="Node" parent="."]
 script = ExtResource("3_fxyqo")

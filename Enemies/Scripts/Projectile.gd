@@ -34,7 +34,8 @@ func _on_projectile_area_body_entered(body):
 		DecreasePlayerSpeed(body)
 
 func DecreasePlayerSpeed(playerCharacter: PlayerCharacter):
-	collisionSound.play()
-	playerCharacter.playerHealth.CheckForDamageType(fullDamage, partialDamage)
-	playerCharacter.playerMovements.UpdateCurrentSpeed(-speedDecrease)
+	if (!playerCharacter.playerHealth.invulnerabilityActive):
+		collisionSound.play()
+		playerCharacter.playerHealth.CheckForDamageType(fullDamage, partialDamage)
+		playerCharacter.playerMovements.UpdateCurrentSpeed(-speedDecrease)
 	call_deferred("DeleteSelf")

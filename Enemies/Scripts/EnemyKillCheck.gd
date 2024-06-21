@@ -12,6 +12,7 @@ func _on_body_entered(body):
 			CheckForPlayerKill(body)
 
 func CheckForPlayerKill(playerRef: PlayerCharacter):
-	hitSound.play()
-	playerRef.playerHealth.CheckForDamageType(fullDamage, partialDamage)
-	playerRef.playerMovements.UpdateCurrentSpeed(-reducedSpeed)
+	if (!playerRef.playerHealth.invulnerabilityActive):
+		hitSound.play()
+		playerRef.playerHealth.CheckForDamageType(fullDamage, partialDamage)
+		playerRef.playerMovements.UpdateCurrentSpeed(-reducedSpeed)
