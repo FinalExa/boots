@@ -126,6 +126,8 @@ characterRef = NodePath("../..")
 position = Vector2(32, -32)
 script = ExtResource("12_w46t3")
 reducedSpeed = 1000.0
+fullDamage = 30.0
+partialDamage = 5.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck"]
@@ -138,6 +140,8 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 24, -56, 8, -64, -8, -64, -24, -
 position = Vector2(-32, -32)
 script = ExtResource("12_w46t3")
 reducedSpeed = 1000.0
+fullDamage = 30.0
+partialDamage = 5.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck2"]
@@ -150,6 +154,8 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 24, -56, 8, -64, -8, -64, -24, -
 position = Vector2(0, -32)
 script = ExtResource("12_w46t3")
 reducedSpeed = 1000.0
+fullDamage = 30.0
+partialDamage = 5.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck3"]

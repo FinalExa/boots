@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var playerInputs: PlayerInputs
 @export var powerUpUI: PowerUpUI
 @export var powerUpManager: PowerUpManager
+@export var playerHealth: PlayerHealth
 var collisionResult: bool
 
 func _physics_process(_delta):

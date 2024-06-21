@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var lifeTime: float
 @export var forward: Node2D
 @export var speedDecrease: float
+@export var fullDamage: float
+@export var partialDamage: float
 @export var collisionSound: AudioStreamPlayer
 
 func _physics_process(_delta):
@@ -33,6 +35,6 @@ func _on_projectile_area_body_entered(body):
 
 func DecreasePlayerSpeed(playerCharacter: PlayerCharacter):
 	collisionSound.play()
-	playerCharacter.playerMovements.CheckForGameOver()
+	playerCharacter.playerHealth.CheckForDamageType(fullDamage, partialDamage)
 	playerCharacter.playerMovements.UpdateCurrentSpeed(-speedDecrease)
 	call_deferred("DeleteSelf")

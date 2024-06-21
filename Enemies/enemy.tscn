@@ -122,6 +122,8 @@ characterRef = NodePath("../..")
 [node name="EnemyKillCheck" type="Area2D" parent="EnemyRotator/EnemyAttack" node_paths=PackedStringArray("hitSound") groups=["ClashArea"]]
 script = ExtResource("7_xlcdy")
 reducedSpeed = 1000.0
+fullDamage = 30.0
+partialDamage = 5.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck"]

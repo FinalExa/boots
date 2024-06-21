@@ -134,7 +134,3 @@ func SetToZero():
 	currentSpeed = 0
 	playerCharacter.velocity = Vector2.ZERO
 	playerCharacter.playerSpeedThresholds.Startup()
-
-func CheckForGameOver():
-	if (currentSpeed <= killSpeedValue):
-		get_tree().reload_current_scene()
