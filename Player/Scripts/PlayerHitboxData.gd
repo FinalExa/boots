@@ -91,6 +91,7 @@ func AreaCases(area: Area2D, hitEnemies: Array[Node2D], type: PlayerHitboxType):
 	return hitEnemies
 
 func AreaCollision(enemyController: EnemyController, type: PlayerHitboxType):
+	enemyController.enemyAttack.ForceStartCooldown()
 	if (type == PlayerHitboxType.STRONG):
 		Direct(enemyController)
 		return
