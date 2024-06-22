@@ -30,6 +30,8 @@ func _physics_process(_delta):
 func ReceiveDamage(damage: float, repelDistance: float, repelDirection: Vector2, repelTime: float):
 	emit_signal("damaged", damage)
 	emit_signal("repelled")
+	if (enemyAttack.attackLaunched):
+		enemyAttack.ForceStartCooldown()
 	enemyRepelled.SetRepelled(repelDistance, repelDirection, repelTime)
 	damageImmunityTimer = damageImmunityDuration
 	damageImmunity = true
