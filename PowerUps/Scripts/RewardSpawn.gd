@@ -42,7 +42,7 @@ func SetupRewardArray(receivedArray: Array[PowerUp]):
 func GenerateRewardArrayWithoutBannedPowerUps(receivedArray: Array[PowerUp]):
 	var rewardArray: Array[PowerUp] = []
 	for i in receivedArray.size():
-		if (!bannedPowerUps.has(receivedArray[i])):
+		if (!bannedPowerUps.has(receivedArray[i]) && receivedArray[i].powerUpFaction == powerUpFaction):
 			rewardArray.push_back(receivedArray[i])
 	return rewardArray
 
@@ -50,6 +50,7 @@ func BanPowerUp(receivedPowerUp: PowerUp):
 	bannedPowerUps.push_back(receivedPowerUp)
 
 func UnbanPowerUp(receivedPowerUp: PowerUp):
+	receivedPowerUp.reparent(self)
 	bannedPowerUps.erase(receivedPowerUp)
 
 func GeneratePodium():

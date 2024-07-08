@@ -30,6 +30,9 @@ var powerUpManager: PowerUpManager
 func Register():
 	powerUpManager.AssignPowerUp(self)
 
+func Unregister():
+	pass
+
 func ExecutePowerUpEffect():
 	for i in spawners.size():
 		CreatePowerUpEffect(spawners[i])
