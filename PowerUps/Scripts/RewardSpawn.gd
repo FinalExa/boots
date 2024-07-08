@@ -7,14 +7,12 @@ enum RewardType {
 
 @export var powerUpNumber: int
 @export var rewardPodiumPath: String
-@export var bombRewards: Array[String]
-@export var fireRewards: Array[String]
-@export var iceRewards: Array[String]
+@export var powerUps: Array[PowerUp]
 
 var rewardType: RewardType
 var powerUpFaction: PowerUp.PowerUpFaction
-var selectedPowerUps: Array[String]
-var bannedPowerUps: Array[String]
+var selectedPowerUps: Array[PowerUp]
+var bannedPowerUps: Array[PowerUp]
 
 func GenerateRewardType():
 	rewardType = RewardType.values().pick_random()
@@ -28,11 +26,11 @@ func SpawnReward():
 func GeneratePowerUp():
 	if (rewardType == RewardType.POWERUP):
 		if (powerUpFaction == PowerUp.PowerUpFaction.BOMB):
-			selectedPowerUps = SetupRewardArray(bombRewards)
+			selectedPowerUps = SetupRewardArray(powerUps)
 
-func SetupRewardArray(receivedArray: Array[String]):
-	var rewardArray: Array[String] = GenerateRewardArrayWithoutBannedPowerUps(receivedArray)
-	var selectedArray: Array[String] = []
+func SetupRewardArray(receivedArray: Array[PowerUp]):
+	var rewardArray: Array[PowerUp] = GenerateRewardArrayWithoutBannedPowerUps(receivedArray)
+	var selectedArray: Array[PowerUp] = []
 	var randomIndex: int
 	for i in powerUpNumber:
 		if (rewardArray.size() > 0):
@@ -41,23 +39,23 @@ func SetupRewardArray(receivedArray: Array[String]):
 			rewardArray.remove_at(randomIndex)
 	return selectedArray
 
-func GenerateRewardArrayWithoutBannedPowerUps(receivedArray: Array[String]):
-	var rewardArray: Array[String] = []
+func GenerateRewardArrayWithoutBannedPowerUps(receivedArray: Array[PowerUp]):
+	var rewardArray: Array[PowerUp] = []
 	for i in receivedArray.size():
 		if (!bannedPowerUps.has(receivedArray[i])):
 			rewardArray.push_back(receivedArray[i])
 	return rewardArray
 
-func BanPowerUp(receivedPath: String):
-	bannedPowerUps.push_back(receivedPath)
+func BanPowerUp(receivedPowerUp: PowerUp):
+	bannedPowerUps.push_back(receivedPowerUp)
 
-func UnbanPowerUp(receivedPath: String):
-	bannedPowerUps.erase(receivedPath)
+func UnbanPowerUp(receivedPowerUp: PowerUp):
+	bannedPowerUps.erase(receivedPowerUp)
 
 func GeneratePodium():
 	var obj_scene = load(rewardPodiumPath)
-	var obj = obj_scene.instantiate()
-	add_child(obj)
-	obj.global_position = self.global_position
-	obj.ReceiveRewards(rewardType, powerUpFaction, selectedPowerUps)
-	obj.SpawnRewards()
+	var podium: RewardPodium = obj_scene.instantiate()
+	add_child(podium)
+	podium.global_position = self.global_position
+	podium.ReceiveRewards(rewardType, powerUpFaction, selectedPowerUps)
+	podium.SpawnRewards()
