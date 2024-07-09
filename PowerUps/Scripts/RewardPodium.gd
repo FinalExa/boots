@@ -8,8 +8,7 @@ var playerRef: PlayerCharacter
 
 var rewardType: RewardSpawn.RewardType
 var powerUpFaction: PowerUp.PowerUpFaction
-var selectedPowerUps: Array[String]
-var generatedPowerUps: Array[PowerUp]
+var selectedPowerUps: Array[PowerUp]
 
 func _ready():
 	label.hide()
@@ -17,7 +16,7 @@ func _ready():
 func _process(_delta):
 	ListenForPlayerInput()
 
-func ReceiveRewards(type: RewardSpawn.RewardType, faction: PowerUp.PowerUpFaction, powerUps: Array[String]):
+func ReceiveRewards(type: RewardSpawn.RewardType, faction: PowerUp.PowerUpFaction, powerUps: Array[PowerUp]):
 	rewardType = type
 	if (rewardType == RewardSpawn.RewardType.POWERUP):
 		powerUpFaction = faction
@@ -25,14 +24,11 @@ func ReceiveRewards(type: RewardSpawn.RewardType, faction: PowerUp.PowerUpFactio
 
 func SpawnRewards():
 	for i in selectedPowerUps.size():
-		var obj_scene = load(selectedPowerUps[i])
-		var obj = obj_scene.instantiate()
-		generatedPowerUps.push_back(obj)
-		add_child(obj)
+		selectedPowerUps[i].reparent(self)
 
 func ListenForPlayerInput():
 	if (playerInsideArea && playerRef.playerInputs.interactionInput):
-		playerRef.powerUpUI.RegisterPowerUps(generatedPowerUps)
+		playerRef.powerUpUI.RegisterPowerUps(selectedPowerUps)
 		call_deferred("DeleteSelf")
 
 func _on_player_interaction_detect_body_entered(body):
@@ -49,5 +45,4 @@ func _on_player_interaction_detect_body_exited(body):
 
 func DeleteSelf():
 	get_tree().root.get_child(0).sceneSelector.currentScene.SetCompleted()
-	self.get_parent().remove_child(self)
 	queue_free()

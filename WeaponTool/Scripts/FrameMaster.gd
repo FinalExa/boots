@@ -2,6 +2,7 @@ class_name FrameMaster
 extends Node
 
 var attackSources: Array[ExecuteAttack]
+var nullIndexes: Array[int]
 
 @export var framesPerSecond: float
 var frameTime: float
@@ -28,7 +29,13 @@ func PrepareLaunchFrame(delta):
 
 func LaunchFrame():
 	for i in attackSources.size():
-		attackSources[i].Attacking()
+		if (i >= attackSources.size()):
+			break
+		if (attackSources[i] != null):
+			attackSources[i].Attacking()
+		else:
+			attackSources.remove_at(i)
+			i -= 1
 
 func RegisterAttack(attack: ExecuteAttack):
 	attackSources.push_back(attack)

@@ -12,15 +12,17 @@ script = ExtResource("1_22w62")
 frameMaster = NodePath("FrameMaster")
 sceneSelector = NodePath("SceneSelector")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("3_r2b1q")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("rewardSpawn") instance=ExtResource("3_r2b1q")]
 position = Vector2(10000, 10000)
+rewardSpawn = NodePath("../RewardSpawn")
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_5y1wu")
 volume_db = -40.0
 autoplay = true
 
-[node name="RewardSpawn" parent="." instance=ExtResource("4_n2klx")]
+[node name="RewardSpawn" parent="." node_paths=PackedStringArray("playerRef") instance=ExtResource("4_n2klx")]
+playerRef = NodePath("../PlayerCharacter")
 
 [node name="FrameMaster" type="Node" parent="."]
 script = ExtResource("1_ruj1e")
