@@ -26,7 +26,7 @@ func OnButtonPressed(extra_arg_0):
 	selectedPowerUp.global_rotation = playerRef.powerUpManager.global_rotation
 	selectedPowerUp.powerUpManager = selectedPowerUp.get_parent()
 	selectedPowerUp.Register()
-	get_tree().root.get_child(0).sceneSelector.rewardSpawn.BanPowerUp(selectedPowerUp.scene_file_path)
+	get_tree().root.get_child(0).sceneSelector.rewardSpawn.BanPowerUp(selectedPowerUp)
 	ClearPowerUps()
 	get_tree().paused = false
 	self.hide()
@@ -34,7 +34,6 @@ func OnButtonPressed(extra_arg_0):
 func ClearPowerUps():
 	for i in powerUpButtons.size():
 		if (powerUpButtons[i].get_child_count() > 0):
-			var objToRemove = powerUpButtons[i].get_child(0)
-			powerUpButtons[i].remove_child(objToRemove)
-			objToRemove.queue_free()
+			var powerUpToRemove: PowerUp = powerUpButtons[i].get_child(0)
+			powerUpToRemove.reparent(playerRef.rewardSpawn)
 			powerUpButtons[i].text = ""

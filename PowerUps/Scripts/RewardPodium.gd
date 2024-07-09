@@ -45,5 +45,4 @@ func _on_player_interaction_detect_body_exited(body):
 
 func DeleteSelf():
 	get_tree().root.get_child(0).sceneSelector.currentScene.SetCompleted()
-	self.get_parent().remove_child(self)
 	queue_free()

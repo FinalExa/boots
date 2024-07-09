@@ -1,6 +1,7 @@
 class_name PowerUpManager
 extends Node2D
 
+@export var playerRef: PlayerCharacter
 @export var playerMovements: PlayerMovements
 @export var speedChargeLabel: Label
 @export var upSwitchAbuseTime: float
@@ -55,11 +56,45 @@ func AssignPowerUp(powerUp: PowerUp):
 		powerUpPassives.push_back(powerUp)
 		return
 
+func RemovePowerUp(powerUp: PowerUp):
+	powerUp.powerUpManager = null
+	playerRef.rewardSpawn.UnbanPowerUp(powerUp)
+	powerUp.reparent(playerRef.rewardSpawn)
+	if (powerUp == contactPowerUp):
+		contactPowerUp = null
+		return
+	if (powerUp == upSwitchPowerUp):
+		upSwitchPowerUp = null
+		return
+	if (powerUp == downSwitchPowerUp):
+		downSwitchPowerUp = null
+		return
+	if (powerUp == trailPowerUp):
+		trailPowerUp = null
+		return
+	if (powerUp == speedChargePowerUp):
+		speedChargePowerUp = null
+		return
+	if (powerUpPassives.has(powerUp)):
+		powerUpPassives.erase(powerUp)
+		return
+
+func PlayerHasAnyBasePowerUpOfFaction(faction: PowerUp.PowerUpFaction):
+	if (contactPowerUp != null && contactPowerUp.powerUpFaction == faction):
+		return true
+	if (upSwitchPowerUp != null && upSwitchPowerUp.powerUpFaction == faction):
+		return true
+	if (downSwitchPowerUp != null && downSwitchPowerUp.powerUpFaction == faction):
+		return true
+	if (trailPowerUp != null && trailPowerUp.powerUpFaction == faction):
+		return true
+	if (speedChargePowerUp != null && speedChargePowerUp.powerUpFaction == faction):
+		return true
+	return false
+
 func ReplaceOldPowerUp(powerUp: PowerUp):
 	if (powerUp != null):
-		get_tree().root.get_child(0).sceneSelector.rewardSpawn.UnbanPowerUp(powerUp.scene_file_path)
-		remove_child(powerUp)
-		powerUp.queue_free()
+		powerUp.UnRegister()
 
 func SwitchDown(receivedIndex: int):
 	if (downSwitchPowerUp != null):

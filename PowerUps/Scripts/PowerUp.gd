@@ -30,8 +30,8 @@ var powerUpManager: PowerUpManager
 func Register():
 	powerUpManager.AssignPowerUp(self)
 
-func Unregister():
-	pass
+func UnRegister():
+	powerUpManager.RemovePowerUp(self)
 
 func ExecutePowerUpEffect():
 	for i in spawners.size():

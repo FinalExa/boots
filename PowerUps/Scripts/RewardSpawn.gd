@@ -8,6 +8,7 @@ enum RewardType {
 @export var powerUpNumber: int
 @export var rewardPodiumPath: String
 @export var powerUps: Array[PowerUp]
+@export var playerRef: PlayerCharacter
 
 var rewardType: RewardType
 var powerUpFaction: PowerUp.PowerUpFaction
@@ -25,8 +26,7 @@ func SpawnReward():
 
 func GeneratePowerUp():
 	if (rewardType == RewardType.POWERUP):
-		if (powerUpFaction == PowerUp.PowerUpFaction.BOMB):
-			selectedPowerUps = SetupRewardArray(powerUps)
+		selectedPowerUps = SetupRewardArray(powerUps)
 
 func SetupRewardArray(receivedArray: Array[PowerUp]):
 	var rewardArray: Array[PowerUp] = GenerateRewardArrayWithoutBannedPowerUps(receivedArray)
@@ -41,9 +41,11 @@ func SetupRewardArray(receivedArray: Array[PowerUp]):
 
 func GenerateRewardArrayWithoutBannedPowerUps(receivedArray: Array[PowerUp]):
 	var rewardArray: Array[PowerUp] = []
+	var hasBase: bool = playerRef.powerUpManager.PlayerHasAnyBasePowerUpOfFaction(powerUpFaction)
 	for i in receivedArray.size():
 		if (!bannedPowerUps.has(receivedArray[i]) && receivedArray[i].powerUpFaction == powerUpFaction):
-			rewardArray.push_back(receivedArray[i])
+			if (hasBase || (!hasBase && receivedArray[i].powerUpType != PowerUp.PowerUpType.PASSIVE)):
+				rewardArray.push_back(receivedArray[i])
 	return rewardArray
 
 func BanPowerUp(receivedPowerUp: PowerUp):
