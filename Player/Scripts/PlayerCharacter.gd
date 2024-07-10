@@ -8,8 +8,18 @@ extends CharacterBody2D
 @export var powerUpUI: PowerUpUI
 @export var powerUpManager: PowerUpManager
 @export var playerHealth: PlayerHealth
+@export var moneyLabel: Label
 @export var rewardSpawn: RewardSpawn
 var collisionResult: bool
+var currentMoney: float
+
+func _ready():
+	currentMoney = 0
+	UpdateMoney(0)
 
 func _physics_process(_delta):
 	collisionResult = move_and_slide()
+
+func UpdateMoney(valueToAdd):
+	currentMoney += valueToAdd
+	moneyLabel.text = str("ECHOCRYSTALS: ", currentMoney)

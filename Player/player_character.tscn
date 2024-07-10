@@ -28,7 +28,7 @@ font_color = Color(0.854902, 0, 0.854902, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xymdd"]
 radius = 18.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "powerUpManager", "playerHealth")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "powerUpManager", "playerHealth", "moneyLabel")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerHUD/Objective")
@@ -37,6 +37,7 @@ playerInputs = NodePath("PlayerInputs")
 powerUpUI = NodePath("PlayerHUD/PowerUpUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
+moneyLabel = NodePath("PlayerHUD/MoneyValue")
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -103,6 +104,14 @@ offset_left = 24.0
 offset_top = 24.0
 offset_right = 192.0
 offset_bottom = 56.0
+label_settings = SubResource("LabelSettings_fvdlt")
+
+[node name="MoneyValue" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 1736.0
+offset_top = 1000.0
+offset_right = 1904.0
+offset_bottom = 1032.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
 [node name="SpeedValue" type="Label" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "speedThresholds")]

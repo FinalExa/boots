@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://coq5ufbmql554"]
+[gd_scene load_steps=10 format=3 uid="uid://coq5ufbmql554"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/RewardPodium.gd" id="1_63obd"]
 [ext_resource type="Texture2D" uid="uid://cxfay1fjn5wdk" path="res://PowerUps/Sprites/rewardPodium.png" id="2_ol77k"]
+[ext_resource type="Texture2D" uid="uid://bnw5a6dro5eof" path="res://PowerUps/Sprites/healPodium.png" id="3_y1siy"]
+[ext_resource type="Texture2D" uid="uid://bhesk1s7es8tx" path="res://PowerUps/Sprites/moneyPodium.png" id="4_7gspc"]
+[ext_resource type="Texture2D" uid="uid://c0q0jmv0e3fi8" path="res://PowerUps/Sprites/shopPodium.png" id="5_paf2x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7pbg"]
 radius = 32.0
@@ -14,12 +17,24 @@ font = SubResource("SystemFont_0wjqx")
 [sub_resource type="CircleShape2D" id="CircleShape2D_yleb6"]
 radius = 128.0
 
-[node name="RewardPodium" type="StaticBody2D" node_paths=PackedStringArray("label")]
+[node name="RewardPodium" type="StaticBody2D" node_paths=PackedStringArray("label", "sprites")]
 script = ExtResource("1_63obd")
 label = NodePath("Label")
+sprites = [NodePath("PowerUpSprite"), NodePath("HealSprite"), NodePath("MoneySprite"), NodePath("ShopSprite")]
+healAmount = 20.0
+moneyAmount = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PowerUpSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ol77k")
+
+[node name="HealSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_y1siy")
+
+[node name="MoneySprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_7gspc")
+
+[node name="ShopSprite" type="Sprite2D" parent="."]
+texture = ExtResource("5_paf2x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r7pbg")

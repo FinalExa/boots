@@ -15,6 +15,8 @@ script = ExtResource("1_o8bcu")
 powerUpNumber = 3
 rewardPodiumPath = "res://PowerUps/reward_podium.tscn"
 powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("DownSwitchBomb"), NodePath("SpeedChargeBomb"), NodePath("TimerPassiveBomb"), NodePath("TrailBomb"), NodePath("UpSwitchBomb")]
+rewardTypes = Array[int]([0, 1, 2, 3])
+rewardChances = Array[int]([40, 10, 50, 0])
 
 [node name="AreaPassiveBomb" parent="." instance=ExtResource("2_llb4d")]
 

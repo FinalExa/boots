@@ -2,24 +2,49 @@ class_name RewardSpawn
 extends Node2D
 
 enum RewardType {
-	POWERUP
+	POWERUP,
+	HEAL,
+	MONEY,
+	SHOP
 }
 
 @export var powerUpNumber: int
 @export var rewardPodiumPath: String
 @export var powerUps: Array[PowerUp]
+@export var rewardTypes: Array[RewardType]
+@export var rewardChances: Array[int]
 @export var playerRef: PlayerCharacter
 
+var maxChance: int
 var rewardType: RewardType
 var powerUpFaction: PowerUp.PowerUpFaction
 var selectedPowerUps: Array[PowerUp]
 var bannedPowerUps: Array[PowerUp]
 
+func _ready():
+	CalculateMaxChance()
+
+func CalculateMaxChance():
+	maxChance = 0
+	for i in rewardChances.size():
+		maxChance += rewardChances[i]
+
 func GenerateRewardType():
-	rewardType = RewardType.values().pick_random()
+	rewardType = rewardTypes[SelectRewardType()]
 	if (rewardType == RewardType.POWERUP):
 		powerUpFaction = PowerUp.PowerUpFaction.values().pick_random()
 		GeneratePowerUp()
+
+func SelectRewardType():
+	var randomNumber: int = randi_range(1, maxChance)
+	var currentRange: int = 0
+	var savedInt: int = 0
+	for i in rewardChances.size():
+		if (randomNumber > currentRange && randomNumber <= currentRange + rewardChances[i]):
+			savedInt = i
+			break
+		currentRange += rewardChances[i]
+	return savedInt
 
 func SpawnReward():
 	call_deferred("GeneratePodium")
