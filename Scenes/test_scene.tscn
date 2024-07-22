@@ -41,7 +41,7 @@ enemies = [NodePath("../Enemies/Enemy"), NodePath("../Enemies/Enemy2"), NodePath
 gameplayScene = NodePath("..")
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
-position = Vector2(1280, -1984)
+position = Vector2(1568, -1664)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(640, 384)
@@ -459,9 +459,6 @@ position = Vector2(3712, -32)
 [node name="Wall92" parent="Walls" instance=ExtResource("3_bx1r5")]
 position = Vector2(1664, -1120)
 
-[node name="Wall93" parent="Walls" instance=ExtResource("3_bx1r5")]
-position = Vector2(1792, -1120)
-
 [node name="Wall94" parent="Walls" instance=ExtResource("3_bx1r5")]
 position = Vector2(1920, -1120)
 
@@ -513,6 +510,9 @@ position = Vector2(1408, -288)
 [node name="Door" parent="Walls" instance=ExtResource("8_dgtcf")]
 position = Vector2(1280, -2208)
 
+[node name="Door2" parent="Walls" instance=ExtResource("8_dgtcf")]
+position = Vector2(1792, -1128)
+
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
 position = Vector2(-64, 0)
@@ -540,4 +540,5 @@ position = Vector2(3776, -1856)
 position = Vector2(3072, -576)
 
 [node name="ShielderEnemy" parent="Enemies" instance=ExtResource("13_o5kuj")]
+visible = false
 position = Vector2(640, -1856)

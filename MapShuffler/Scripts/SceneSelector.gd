@@ -25,3 +25,4 @@ func ShuffleScene():
 	rewardSpawn.reparent(currentScene.rewardSpawnPosition)
 	rewardSpawn.global_position = currentScene.rewardSpawnPosition.global_position
 	rewardSpawn.GenerateRewardType()
+	playerRef.UpdateCurrentRoomCount(str(rewardSpawn.roomNumber))
