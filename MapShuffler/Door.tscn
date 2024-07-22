@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdbtps27g0ql8"]
+[gd_scene load_steps=11 format=3 uid="uid://bdbtps27g0ql8"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/Door.gd" id="1_2g6hh"]
 [ext_resource type="Texture2D" uid="uid://ypiwgyqblfk1" path="res://MapShuffler/Sprites/doorActive.png" id="2_ywqs2"]
 [ext_resource type="Texture2D" uid="uid://wd6i6rjn2k1j" path="res://MapShuffler/Sprites/doorOff.png" id="3_rfvcy"]
+[ext_resource type="Texture2D" uid="uid://bnw5a6dro5eof" path="res://PowerUps/Sprites/healPodium.png" id="4_wb0s1"]
+[ext_resource type="Texture2D" uid="uid://bhesk1s7es8tx" path="res://PowerUps/Sprites/moneyPodium.png" id="5_2uws4"]
+[ext_resource type="Texture2D" uid="uid://c0q0jmv0e3fi8" path="res://PowerUps/Sprites/shopPodium.png" id="6_u2n0c"]
+[ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="7_gmjac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ue01"]
 size = Vector2(16, 56)
@@ -13,12 +17,14 @@ size = Vector2(16, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kakpx"]
 size = Vector2(96, 48)
 
-[node name="Door" type="Node2D" node_paths=PackedStringArray("activeSprite", "offSprite", "centralCollider")]
+[node name="Door" type="Node2D" node_paths=PackedStringArray("activeSprite", "offSprite", "centralCollider", "rewardTypeSprites", "powerUpFactionSprites")]
 script = ExtResource("1_2g6hh")
 activeSprite = NodePath("DoorActive")
 offSprite = NodePath("DoorOff")
 centralCollider = NodePath("CentralCollider")
 endMapArea = "res://MapShuffler/end_map_area.tscn"
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
+powerUpFactionSprites = [NodePath("RewardSpritePosition/PowerUpFaction/Bomb")]
 
 [node name="DoorActive" type="Sprite2D" parent="."]
 texture = ExtResource("2_ywqs2")
@@ -43,3 +49,22 @@ shape = SubResource("RectangleShape2D_57m3h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CentralCollider"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_kakpx")
+
+[node name="RewardSpritePosition" type="Node2D" parent="."]
+position = Vector2(0, -40)
+
+[node name="RewardType" type="Node2D" parent="RewardSpritePosition"]
+
+[node name="Heal" type="Sprite2D" parent="RewardSpritePosition/RewardType"]
+texture = ExtResource("4_wb0s1")
+
+[node name="Money" type="Sprite2D" parent="RewardSpritePosition/RewardType"]
+texture = ExtResource("5_2uws4")
+
+[node name="Shop" type="Sprite2D" parent="RewardSpritePosition/RewardType"]
+texture = ExtResource("6_u2n0c")
+
+[node name="PowerUpFaction" type="Node2D" parent="RewardSpritePosition"]
+
+[node name="Bomb" type="Sprite2D" parent="RewardSpritePosition/PowerUpFaction"]
+texture = ExtResource("7_gmjac")

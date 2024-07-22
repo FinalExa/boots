@@ -41,7 +41,7 @@ gameplayScene = NodePath("..")
 navigation_polygon = SubResource("NavigationPolygon_oq6ai")
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
-position = Vector2(-128, 1216)
+position = Vector2(320, 1216)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(192, 1344)
@@ -176,9 +176,6 @@ position = Vector2(512, 1504)
 
 [node name="Wall6" parent="Walls" instance=ExtResource("3_io7qq")]
 position = Vector2(640, 1504)
-
-[node name="Wall7" parent="Walls" instance=ExtResource("3_io7qq")]
-position = Vector2(768, 1504)
 
 [node name="Wall8" parent="Walls" instance=ExtResource("3_io7qq")]
 position = Vector2(896, 1504)
@@ -458,6 +455,9 @@ position = Vector2(-128, -1760)
 
 [node name="Door" parent="Walls" instance=ExtResource("8_545nc")]
 position = Vector2(-128, 1496)
+
+[node name="Door2" parent="Walls" instance=ExtResource("8_545nc")]
+position = Vector2(768, 1496)
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1

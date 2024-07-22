@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bsbd0jhfpears" path="res://Player/Sounds/playerClash.wav" id="4_ce281"]
 [ext_resource type="Script" path="res://Player/Scripts/HUD/SpeedValue.gd" id="4_hhy2o"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerRotator.gd" id="4_mluyg"]
-[ext_resource type="Script" path="res://Player/PlayerHealth.gd" id="5_3txhn"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerHealth.gd" id="5_dqtuw"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
 [ext_resource type="Script" path="res://Player/Scripts/CurrentObjectiveUI.gd" id="6_vo4ho"]
 [ext_resource type="PackedScene" uid="uid://bxn2uta6y2ij0" path="res://Player/power_up_ui.tscn" id="9_055o7"]
@@ -28,7 +28,7 @@ font_color = Color(0.854902, 0, 0.854902, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xymdd"]
 radius = 18.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "powerUpManager", "playerHealth", "moneyLabel")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerHUD/Objective")
@@ -38,6 +38,7 @@ powerUpUI = NodePath("PlayerHUD/PowerUpUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 moneyLabel = NodePath("PlayerHUD/MoneyValue")
+currentRoomLabel = NodePath("PlayerHUD/CurrentRoomValue")
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -60,7 +61,7 @@ shape = SubResource("CircleShape2D_upbqd")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("healthLabel", "playerMovements")]
-script = ExtResource("5_3txhn")
+script = ExtResource("5_dqtuw")
 healthLabel = NodePath("../PlayerHUD/HealthValue")
 maxHealth = 100.0
 partialThreshold = 20.0
@@ -112,6 +113,14 @@ offset_left = 1736.0
 offset_top = 1000.0
 offset_right = 1904.0
 offset_bottom = 1032.0
+label_settings = SubResource("LabelSettings_fvdlt")
+
+[node name="CurrentRoomValue" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 1728.0
+offset_top = 24.0
+offset_right = 1896.0
+offset_bottom = 56.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
 [node name="SpeedValue" type="Label" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "speedThresholds")]

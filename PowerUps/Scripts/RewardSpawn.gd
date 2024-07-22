@@ -15,6 +15,7 @@ enum RewardType {
 @export var rewardChances: Array[int]
 @export var playerRef: PlayerCharacter
 
+var roomNumber: int
 var maxChance: int
 var rewardType: RewardType
 var powerUpFaction: PowerUp.PowerUpFaction
@@ -23,6 +24,7 @@ var bannedPowerUps: Array[PowerUp]
 
 func _ready():
 	CalculateMaxChance()
+	roomNumber = 0
 
 func CalculateMaxChance():
 	maxChance = 0
@@ -30,10 +32,23 @@ func CalculateMaxChance():
 		maxChance += rewardChances[i]
 
 func GenerateRewardType():
-	rewardType = rewardTypes[SelectRewardType()]
-	if (rewardType == RewardType.POWERUP):
-		powerUpFaction = PowerUp.PowerUpFaction.values().pick_random()
+	if (roomNumber == 0):
+		rewardType = GetRandomRewardType()
+		if (rewardType == RewardType.POWERUP):
+			powerUpFaction = GetRandomPowerUpFaction()
 		GeneratePowerUp()
+	roomNumber += 1
+
+func AssignRewardType(receivedType: RewardType, receivedFaction: PowerUp.PowerUpFaction):
+	rewardType = receivedType
+	powerUpFaction = receivedFaction
+	GeneratePowerUp()
+
+func GetRandomRewardType():
+	return rewardTypes[SelectRewardType()]
+
+func GetRandomPowerUpFaction():
+	return PowerUp.PowerUpFaction.values().pick_random()
 
 func SelectRewardType():
 	var randomNumber: int = randi_range(1, maxChance)
