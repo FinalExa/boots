@@ -507,11 +507,13 @@ position = Vector2(1280, -288)
 [node name="Wall15" parent="Walls" instance=ExtResource("3_bx1r5")]
 position = Vector2(1408, -288)
 
-[node name="Door" parent="Walls" instance=ExtResource("8_dgtcf")]
+[node name="Door" parent="Walls" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("8_dgtcf")]
 position = Vector2(1280, -2208)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
-[node name="Door2" parent="Walls" instance=ExtResource("8_dgtcf")]
+[node name="Door2" parent="Walls" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("8_dgtcf")]
 position = Vector2(1792, -1128)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -540,5 +542,4 @@ position = Vector2(3776, -1856)
 position = Vector2(3072, -576)
 
 [node name="ShielderEnemy" parent="Enemies" instance=ExtResource("13_o5kuj")]
-visible = false
 position = Vector2(640, -1856)
