@@ -1,0 +1,171 @@
+[gd_scene load_steps=10 format=3 uid="uid://7wl5vrj0ggr6"]
+
+[ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_utrhi"]
+[ext_resource type="Texture2D" uid="uid://rg08k2ig50ro" path="res://LevelDesign/Sprites/groundtile1.png" id="2_xqpio"]
+[ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_ns0m6"]
+[ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="4_ol7qc"]
+[ext_resource type="PackedScene" uid="uid://bo430me6x0rsp" path="res://LevelDesign/wallverticalshort.tscn" id="5_5lohv"]
+[ext_resource type="PackedScene" uid="uid://ceg01pefr0xb7" path="res://LevelDesign/wallverticalfullview.tscn" id="6_lwf2v"]
+[ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="7_2roas"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8u8m3"]
+texture = ExtResource("2_xqpio")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_j7p0v"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_8u8m3")
+
+[node name="ShopScene" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
+script = ExtResource("1_utrhi")
+playerSpawnPoint = NodePath("SpawnPoint")
+rewardSpawnPosition = NodePath("RewardSpawnPosition")
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -1
+tile_set = SubResource("TileSet_j7p0v")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 0, 0, -1, 0, 0, -65536, 0, 0, 0, 0, 0, 327675, 0, 0, -327676, 0, 0, 262148, 0, 0, -262149, 0, 0, 131068, 0, 0, 65532, 0, 0, -4, 0, 0, -65540, 0, 0, -131076, 0, 0, -196612, 0, 0, -262148, 0, 0, -262147, 0, 0, -196611, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 131069, 0, 0, 196605, 0, 0, 196604, 0, 0, 196603, 0, 0, 131067, 0, 0, 65531, 0, 0, -5, 0, 0, -65541, 0, 0, -131077, 0, 0, -196613, 0, 0, 262139, 0, 0, 262140, 0, 0, 327676, 0, 0, 327677, 0, 0, 262141, 0, 0, 262142, 0, 0, 196606, 0, 0, 131070, 0, 0, 65534, 0, 0, -2, 0, 0, -65538, 0, 0, -131074, 0, 0, -196610, 0, 0, -262146, 0, 0, -262145, 0, 0, -196609, 0, 0, -131073, 0, 0, -65537, 0, 0, -131072, 0, 0, -196608, 0, 0, -262144, 0, 0, -327680, 0, 0, -327679, 0, 0, -262143, 0, 0, -196607, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 0, 0, 65537, 0, 0, 65536, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, 327679, 0, 0, 327678, 0, 0, 262144, 0, 0, 196608, 0, 0, 131072, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 262146, 0, 0, 196610, 0, 0, 131074, 0, 0, 65538, 0, 0, 2, 0, 0, -65534, 0, 0, -131070, 0, 0, -196606, 0, 0, -262142, 0, 0, -327678, 0, 0, -327677, 0, 0, -262141, 0, 0, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 196612, 0, 0, 131076, 0, 0, 65540, 0, 0, 4, 0, 0, -65532, 0, 0, -131068, 0, 0, -196604, 0, 0, -262140, 0, 0)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(0, 512)
+
+[node name="RewardSpawnPosition" type="Node2D" parent="."]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-576, 672)
+
+[node name="Wall2" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-448, 672)
+
+[node name="Wall3" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-320, 672)
+
+[node name="Wall4" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-192, 672)
+
+[node name="Wall5" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-64, 672)
+
+[node name="Wall6" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(64, 672)
+
+[node name="Wall7" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(192, 672)
+
+[node name="Wall8" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(320, 672)
+
+[node name="Wall9" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(448, 672)
+
+[node name="Wall10" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(576, 672)
+
+[node name="Wall11" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-576, -672)
+
+[node name="Wall12" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-448, -672)
+
+[node name="Wall13" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-320, -672)
+
+[node name="Wall15" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(-64, -672)
+
+[node name="Wall16" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(64, -672)
+
+[node name="Wall18" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(320, -672)
+
+[node name="Wall19" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(448, -672)
+
+[node name="Wall20" parent="Walls" instance=ExtResource("3_ns0m6")]
+position = Vector2(576, -672)
+
+[node name="WallVertical" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, -576)
+
+[node name="WallVertical2" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, -448)
+
+[node name="WallVertical3" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, -320)
+
+[node name="WallVertical4" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, -192)
+
+[node name="WallVertical5" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, -64)
+
+[node name="WallVertical6" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, 64)
+
+[node name="WallVertical7" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, 192)
+
+[node name="WallVertical8" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, 320)
+
+[node name="WallVertical9" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, 448)
+
+[node name="WallVertical10" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(-648, 576)
+
+[node name="WallVertical11" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, -576)
+
+[node name="WallVertical12" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, -448)
+
+[node name="WallVertical13" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, -320)
+
+[node name="WallVertical14" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, -192)
+
+[node name="WallVertical15" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, -64)
+
+[node name="WallVertical16" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, 64)
+
+[node name="WallVertical17" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, 192)
+
+[node name="WallVertical18" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, 320)
+
+[node name="WallVertical19" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, 448)
+
+[node name="WallVertical20" parent="Walls" instance=ExtResource("4_ol7qc")]
+position = Vector2(648, 576)
+
+[node name="WallVerticalShort" parent="Walls" instance=ExtResource("5_5lohv")]
+position = Vector2(648, -672)
+
+[node name="WallVerticalShort2" parent="Walls" instance=ExtResource("5_5lohv")]
+position = Vector2(-648, -672)
+
+[node name="WallVerticalFullView" parent="Walls" instance=ExtResource("6_lwf2v")]
+position = Vector2(648, 672)
+
+[node name="WallVerticalFullView2" parent="Walls" instance=ExtResource("6_lwf2v")]
+position = Vector2(-648, 672)
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("7_2roas")]
+position = Vector2(192, -672)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
+
+[node name="Door2" parent="Doors" instance=ExtResource("7_2roas")]
+position = Vector2(-192, -672)
