@@ -22,7 +22,6 @@ volume_db = -40.0
 autoplay = true
 
 [node name="RewardSpawn" parent="." node_paths=PackedStringArray("playerRef") instance=ExtResource("4_n2klx")]
-rewardChances = Array[int]([60, 10, 30, 0])
 playerRef = NodePath("../PlayerCharacter")
 
 [node name="FrameMaster" type="Node" parent="."]
@@ -30,5 +29,6 @@ script = ExtResource("1_ruj1e")
 framesPerSecond = 60.0
 
 [node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn") instance=ExtResource("4_3coog")]
+shopScene = "res://Scenes/ShopScene.tscn"
 playerRef = NodePath("../PlayerCharacter")
 rewardSpawn = NodePath("../RewardSpawn")

@@ -6,16 +6,16 @@ extends CharacterBody2D
 @export var playerSpeedThresholds: PlayerSpeedThresholds
 @export var playerInputs: PlayerInputs
 @export var powerUpUI: PowerUpUI
+@export var shopUI: ShopUI
 @export var powerUpManager: PowerUpManager
 @export var playerHealth: PlayerHealth
 @export var moneyLabel: Label
 @export var currentRoomLabel: Label
 @export var rewardSpawn: RewardSpawn
 var collisionResult: bool
-var currentMoney: float
+@export var currentMoney: float
 
 func _ready():
-	currentMoney = 0
 	UpdateMoney(0)
 
 func _physics_process(_delta):

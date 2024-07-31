@@ -38,17 +38,26 @@ func SpawnRewards():
 func ListenForPlayerInput():
 	if (playerInsideArea && playerRef.playerInputs.interactionInput):
 		RewardType()
-		call_deferred("DeleteSelf")
 
 func RewardType():
 	if (rewardType == RewardSpawn.RewardType.POWERUP):
 		playerRef.powerUpUI.RegisterPowerUps(selectedPowerUps)
+		call_deferred("DeleteSelf")
 		return
 	if (rewardType == RewardSpawn.RewardType.HEAL):
 		playerRef.playerHealth.UpdateHealthValue(healAmount, 0)
+		call_deferred("DeleteSelf")
 		return
 	if (rewardType == RewardSpawn.RewardType.MONEY):
 		playerRef.UpdateMoney(moneyAmount)
+		call_deferred("DeleteSelf")
+		return
+	if (rewardType == RewardSpawn.RewardType.SHOP):
+		var rewardSpawnLocation: Node2D = self.get_parent().get_parent()
+		self.reparent(rewardSpawnLocation)
+		get_tree().root.get_child(0).sceneSelector.playerRef.shopUI.SetUpShop(get_tree().root.get_child(0).sceneSelector.rewardSpawn)
+		get_tree().root.get_child(0).sceneSelector.currentScene.SetCompleted()
+		pass
 
 func _on_player_interaction_detect_body_entered(body):
 	if (body is PlayerCharacter):

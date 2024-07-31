@@ -13,6 +13,7 @@ enum RewardType {
 @export var powerUps: Array[PowerUp]
 @export var rewardTypes: Array[RewardType]
 @export var rewardChances: Array[int]
+@export var firstRoomChances: Array[int]
 @export var playerRef: PlayerCharacter
 
 var roomNumber: int
@@ -45,20 +46,23 @@ func AssignRewardType(receivedType: RewardType, receivedFaction: PowerUp.PowerUp
 	GeneratePowerUp()
 
 func GetRandomRewardType():
-	return rewardTypes[SelectRewardType()]
+	var arrayToUse: Array[int] = rewardChances
+	if (roomNumber == 0):
+		arrayToUse = firstRoomChances
+	return rewardTypes[SelectRewardType(arrayToUse)]
 
 func GetRandomPowerUpFaction():
 	return PowerUp.PowerUpFaction.values().pick_random()
 
-func SelectRewardType():
+func SelectRewardType(arrayToUse: Array[int]):
 	var randomNumber: int = randi_range(1, maxChance)
 	var currentRange: int = 0
 	var savedInt: int = 0
-	for i in rewardChances.size():
-		if (randomNumber > currentRange && randomNumber <= currentRange + rewardChances[i]):
+	for i in arrayToUse.size():
+		if (randomNumber > currentRange && randomNumber <= currentRange + arrayToUse[i]):
 			savedInt = i
 			break
-		currentRange += rewardChances[i]
+		currentRange += arrayToUse[i]
 	return savedInt
 
 func SpawnReward():

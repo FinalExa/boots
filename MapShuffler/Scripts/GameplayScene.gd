@@ -3,6 +3,7 @@ extends Node2D
 
 @export var playerSpawnPoint: Node2D
 @export var rewardSpawnPosition: Node2D
+var completedObjective: bool
 var doors: Array[Door]
 
 func SetPlayerSpawn(playerRef: PlayerCharacter):
@@ -13,9 +14,13 @@ func RegisterDoor(receivedDoor: Door):
 		doors.push_back(receivedDoor)
 
 func SetObjectiveCompleted():
-	rewardSpawnPosition.get_child(0).SpawnReward()
+	if (!completedObjective):
+		rewardSpawnPosition.get_child(0).SpawnReward()
+		completedObjective = true
 
 func SetCompleted():
-	rewardSpawnPosition.get_child(0).reparent(get_tree().root.get_child(0))
+	var rewardSpawn: RewardSpawn = rewardSpawnPosition.get_child(0)
+	if (rewardSpawn != null):
+		rewardSpawn.reparent(get_tree().root.get_child(0))
 	for i in doors.size():
 		doors[i].call_deferred("OpenDoor")
