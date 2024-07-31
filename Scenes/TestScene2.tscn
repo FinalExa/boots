@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://lvyfy0ogget5"]
+[gd_scene load_steps=17 format=3 uid="uid://lvyfy0ogget5"]
 
 [ext_resource type="PackedScene" uid="uid://dol7rouwbn8i3" path="res://MapObjectives/defeat_enemies_objective.tscn" id="1_oe4qj"]
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_q03js"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="2_1rn25"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_io7qq"]
+[ext_resource type="Texture2D" uid="uid://rg08k2ig50ro" path="res://LevelDesign/Sprites/groundtile1.png" id="3_twffr"]
 [ext_resource type="PackedScene" uid="uid://ceg01pefr0xb7" path="res://LevelDesign/wallverticalfullview.tscn" id="4_ncr2h"]
 [ext_resource type="PackedScene" uid="uid://bo430me6x0rsp" path="res://LevelDesign/wallverticalshort.tscn" id="5_gu6ye"]
 [ext_resource type="PackedScene" uid="uid://qtmhrs16aupe" path="res://LevelDesign/wallrightend.tscn" id="6_yjb0u"]
@@ -18,8 +19,14 @@ vertices = PackedVector2Array(-752, 1040, 16, 400, 1184, 336, 1968, 336, 1968, 1
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 2, 1), PackedInt32Array(6, 5, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(5, 1, 10, 11), PackedInt32Array(12, 8, 9, 11, 10), PackedInt32Array(12, 10, 13, 14), PackedInt32Array(15, 14, 13, 16), PackedInt32Array(4, 15, 16, 0), PackedInt32Array(1, 0, 17)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-2096, 1456, -2096, -496, -160, -496, -160, -1712, 1184, -1712, 1184, 336, 1968, 336, 1968, 1456), PackedVector2Array(-800, 1040, -800, 304, 16, 304, 16, 400, -752, 400, -752, 1040), PackedVector2Array(520, -624, 520, -1360, 568, -1360, 568, -624)])
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ts4cq"]
+texture = ExtResource("3_twffr")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_qudt8"]
 tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_ts4cq")
 
 [node name="TestScene2" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
 script = ExtResource("1_q03js")

@@ -22,7 +22,6 @@ volume_db = -40.0
 autoplay = true
 
 [node name="RewardSpawn" parent="." node_paths=PackedStringArray("playerRef") instance=ExtResource("4_n2klx")]
-rewardChances = Array[int]([0, 0, 0, 1])
 playerRef = NodePath("../PlayerCharacter")
 
 [node name="FrameMaster" type="Node" parent="."]

@@ -167,5 +167,6 @@ position = Vector2(-648, 672)
 position = Vector2(192, -672)
 rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
-[node name="Door2" parent="Doors" instance=ExtResource("7_2roas")]
+[node name="Door2" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("7_2roas")]
 position = Vector2(-192, -672)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]

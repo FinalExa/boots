@@ -19,6 +19,8 @@ func SetObjectiveCompleted():
 		completedObjective = true
 
 func SetCompleted():
-	rewardSpawnPosition.get_child(0).reparent(get_tree().root.get_child(0))
+	var rewardSpawn: RewardSpawn = rewardSpawnPosition.get_child(0)
+	if (rewardSpawn != null):
+		rewardSpawn.reparent(get_tree().root.get_child(0))
 	for i in doors.size():
 		doors[i].call_deferred("OpenDoor")

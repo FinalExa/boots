@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://wdxseiaaybud"]
+
+[ext_resource type="Script" path="res://Player/Scripts/ShopUI.gd" id="1_2idad"]
+
+[node name="ShopUI" type="Control" node_paths=PackedStringArray("powerUpButton", "healingButton")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_left = 512.0
+offset_top = 280.0
+offset_right = 1408.0
+offset_bottom = 792.0
+script = ExtResource("1_2idad")
+powerUpButton = NodePath("PowerUpButtonContainer/PowerUpButton")
+powerUpPrice = 200.0
+healingButton = NodePath("HealingButtonContainer/HealingButtonContainer")
+healingValue = 30.0
+healingPrice = 150.0
+
+[node name="PowerUpButtonContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_top = 40.0
+offset_right = 896.0
+offset_bottom = 168.0
+
+[node name="PowerUpButton" type="Button" parent="PowerUpButtonContainer"]
+layout_mode = 2
+
+[node name="HealingButtonContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_top = 296.0
+offset_right = 896.0
+offset_bottom = 424.0
+
+[node name="HealingButtonContainer" type="Button" parent="HealingButtonContainer"]
+layout_mode = 2
+
+[node name="BackButtonContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 384.0
+offset_top = 552.0
+offset_right = 512.0
+offset_bottom = 616.0
+
+[node name="BackButton" type="Button" parent="BackButtonContainer"]
+layout_mode = 2
+text = "BACK"
+
+[connection signal="button_up" from="PowerUpButtonContainer/PowerUpButton" to="." method="PowerUpButtonPressed"]
+[connection signal="button_up" from="HealingButtonContainer/HealingButtonContainer" to="." method="HealingButtonPressed"]
+[connection signal="button_up" from="BackButtonContainer/BackButton" to="." method="BackButtonPressed"]
