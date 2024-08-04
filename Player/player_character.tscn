@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=26 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" path="res://Player/Scripts/PowerUpManager.gd" id="16_1u6or"]
 [ext_resource type="Script" path="res://Player/Scripts/UnstuckEntities.gd" id="17_hev26"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAim.gd" id="19_44plk"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="20_cfw71"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -72,7 +74,7 @@ partialThreshold = 20.0
 playerMovements = NodePath("../PlayerMovements")
 invulnerabilityTime = 0.1
 
-[node name="PlayerInputs" type="Node" parent="."]
+[node name="PlayerInputs" type="Node2D" parent="."]
 script = ExtResource("3_fxyqo")
 
 [node name="PlayerMovements" type="Node" parent="." node_paths=PackedStringArray("playerCharacter", "playerInputs")]
@@ -150,6 +152,16 @@ label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ProjectileCount" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 1016.0
+offset_right = 232.0
+offset_bottom = 1048.0
+label_settings = SubResource("LabelSettings_fvdlt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 24.0
@@ -202,9 +214,22 @@ speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
 upSwitchAbuseTime = 0.3
 downSwitchAbuseTime = 0.3
 
-[node name="PlayerAim" type="Node2D" parent="."]
+[node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
 script = ExtResource("19_44plk")
+playerInputs = NodePath("../PlayerInputs")
 offsetDegrees = 90.0
+
+[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "projectileSpawner", "projectileCountLabel")]
+script = ExtResource("19_aegdj")
+playerInputs = NodePath("../../PlayerInputs")
+projectileSpawner = NodePath("ObjectSpawner")
+baseMaxProjectiles = 3
+baseProjectileICD = 5.0
+projectileCountLabel = NodePath("../../PlayerHUD/ProjectileCount")
+
+[node name="ObjectSpawner" type="Node2D" parent="PlayerAim/PlayerShooting"]
+position = Vector2(0, -64)
+script = ExtResource("20_cfw71")
 
 [node name="Arrow" type="Sprite2D" parent="PlayerAim"]
 texture = ExtResource("5_s1pth")

@@ -1,9 +1,11 @@
 class_name PlayerInputs
-extends Node
+extends Node2D
 
 var movementInput: Vector2
 var interactionInput: bool
 var inputEnabled: bool
+var aimInput: Vector2
+var shootInput: bool
 var sceneMaster: SceneMaster
 
 func _ready():
@@ -16,6 +18,8 @@ func _process(_delta):
 func GetInputs():
 	if (inputEnabled):
 		GetMovementInput()
+		GetAimInput()
+		GetShootInput()
 		GetInteractionInput()
 		if (Input.is_action_just_pressed("Reload")):
 			get_tree().reload_current_scene()
@@ -30,6 +34,16 @@ func GetInteractionInput():
 		interactionInput = true
 		return
 	interactionInput = false
+
+func GetAimInput():
+	aimInput = get_global_mouse_position()
+	return
+
+func GetShootInput():
+	if (Input.is_action_just_pressed("Shoot")):
+		shootInput = true
+		return
+	shootInput = false
 
 func WinMap():
 	if (Input.is_action_just_pressed("Win")):
