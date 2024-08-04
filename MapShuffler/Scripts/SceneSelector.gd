@@ -13,6 +13,7 @@ func _ready():
 
 func ShuffleScene():
 	playerRef.global_position = safePosition
+	playerRef.playerShooting.Refull()
 	rewardSpawn.GenerateRewardType()
 	if (currentScene != null):
 		remove_child(currentScene)

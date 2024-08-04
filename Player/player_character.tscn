@@ -32,12 +32,13 @@ font_color = Color(0.854902, 0, 0.854902, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xymdd"]
 radius = 18.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerHUD/Objective")
 playerSpeedThresholds = NodePath("PlayerRotator/PlayerSpeedThresholds")
 playerInputs = NodePath("PlayerInputs")
+playerShooting = NodePath("PlayerAim/PlayerShooting")
 powerUpUI = NodePath("PlayerHUD/PowerUpUI")
 shopUI = NodePath("PlayerHUD/ShopUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
@@ -225,6 +226,7 @@ playerInputs = NodePath("../../PlayerInputs")
 projectileSpawner = NodePath("ObjectSpawner")
 baseMaxProjectiles = 3
 baseProjectileICD = 5.0
+baseProjectilePrefabPath = "res://Player/PlayerProjectile.tscn"
 projectileCountLabel = NodePath("../../PlayerHUD/ProjectileCount")
 
 [node name="ObjectSpawner" type="Node2D" parent="PlayerAim/PlayerShooting"]

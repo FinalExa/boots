@@ -10,16 +10,16 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_w7qvx"]
 radius = 24.0
 
-[node name="ShielderProjectile" type="CharacterBody2D" node_paths=PackedStringArray("forward", "collisionSound")]
+[node name="ShielderProjectile" type="CharacterBody2D" node_paths=PackedStringArray("collisionSound", "forward")]
 script = ExtResource("1_575ey")
+speedDecrease = 800.0
+partialDamage = 3.0
+collisionSound = NodePath("Sounds/EnemyDirect")
 movementSpeed = 500.0
 rotationOffset = 90.0
 lifeTime = 5.0
 forward = NodePath("Forward")
-speedDecrease = 800.0
-fullDamage = 20.0
-partialDamage = 3.0
-collisionSound = NodePath("Sounds/EnemyDirect")
+damage = 20.0
 
 [node name="Sounds" type="Node" parent="."]
 
