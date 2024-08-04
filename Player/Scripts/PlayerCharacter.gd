@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var currentObjectiveUI: CurrentObjectiveUI
 @export var playerSpeedThresholds: PlayerSpeedThresholds
 @export var playerInputs: PlayerInputs
+@export var playerShooting: PlayerShooting
 @export var powerUpUI: PowerUpUI
 @export var shopUI: ShopUI
 @export var powerUpManager: PowerUpManager

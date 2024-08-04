@@ -118,19 +118,19 @@ characterRef = NodePath("../..")
 [node name="ObjectSpawner" type="Node2D" parent="EnemyRotator/EnemyAttack"]
 position = Vector2(0, -64)
 script = ExtResource("9_k4uc8")
-objectPath = "res://Enemies/projectile.tscn"
+objectPath = "res://Enemies/shielder_projectile.tscn"
 
 [node name="ObjectSpawner2" type="Node2D" parent="EnemyRotator/EnemyAttack"]
 position = Vector2(-32, -48)
 rotation = -0.785398
 script = ExtResource("9_k4uc8")
-objectPath = "res://Enemies/projectile.tscn"
+objectPath = "res://Enemies/shielder_projectile.tscn"
 
 [node name="ObjectSpawner3" type="Node2D" parent="EnemyRotator/EnemyAttack"]
 position = Vector2(32, -48)
 rotation = 0.785398
 script = ExtResource("9_k4uc8")
-objectPath = "res://Enemies/projectile.tscn"
+objectPath = "res://Enemies/shielder_projectile.tscn"
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController", "normalSprite", "angrySprite")]
 script = ExtResource("11_u72jk")

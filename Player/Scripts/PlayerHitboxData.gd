@@ -52,7 +52,7 @@ func CollisionNodeCases(receivedNode: Node2D, type: PlayerHitboxType, hitEnemies
 	if (receivedNode is EnemyController && !hitEnemies.has(receivedNode)):
 		DetermineDamage(receivedNode)
 		return
-	if (receivedNode is Projectile):
+	if (receivedNode is EnemyProjectile):
 		ProjectileCollision(receivedNode, type)
 
 func DetermineDamage(enemyController: EnemyController):
@@ -61,7 +61,7 @@ func DetermineDamage(enemyController: EnemyController):
 		return
 	Direct(enemyController)
 
-func ProjectileCollision(projectile: Projectile, type: PlayerHitboxType):
+func ProjectileCollision(projectile: EnemyProjectile, type: PlayerHitboxType):
 	projectile.DeleteSelf()
 	if (type != PlayerHitboxType.WEAK):
 		CreateImpactTypeIndicator(false, self.global_position)
@@ -130,7 +130,7 @@ func TurnOnDamage():
 	damageEnabled = true
 
 func _on_body_entered(body):
-	if ((body is EnemyController || body is Projectile) && !nodesInArea.has(body)):
+	if ((body is EnemyController || body is EnemyProjectile) && !nodesInArea.has(body)):
 		nodesInArea.push_back(body)
 
 func _on_area_entered(area):

@@ -5,10 +5,8 @@ extends CharacterBody2D
 @export var rotationOffset: float
 @export var lifeTime: float
 @export var forward: Node2D
-@export var speedDecrease: float
-@export var fullDamage: float
-@export var partialDamage: float
-@export var collisionSound: AudioStreamPlayer
+@export var damage: float
+
 
 func _physics_process(_delta):
 	velocity = movementSpeed * self.global_position.direction_to(forward.global_position)
@@ -28,14 +26,10 @@ func LifeTime(delta):
 func DeleteSelf():
 	if (get_parent() != null):
 		get_parent().remove_child(self)
+		queue_free()
 
 func _on_projectile_area_body_entered(body):
-	if (body is PlayerCharacter):
-		DecreasePlayerSpeed(body)
+	pass
 
-func DecreasePlayerSpeed(playerCharacter: PlayerCharacter):
-	if (!playerCharacter.playerHealth.invulnerabilityActive):
-		collisionSound.play()
-		playerCharacter.playerHealth.CheckForDamageType(fullDamage, partialDamage)
-		playerCharacter.playerMovements.UpdateCurrentSpeed(-speedDecrease)
-	call_deferred("DeleteSelf")
+func _on_projectile_area_area_entered(area):
+	pass
