@@ -20,3 +20,6 @@ func SpawnSpecialObject(specialObject: String):
 
 func Finalize():
 	pass
+
+func AlternativeOutcome():
+	pass

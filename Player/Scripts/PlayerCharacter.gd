@@ -14,10 +14,11 @@ extends CharacterBody2D
 @export var currentRoomLabel: Label
 @export var rewardSpawn: RewardSpawn
 var collisionResult: bool
-@export var currentMoney: float
+@export var startingMoney: float
+var currentMoney: float
 
 func _ready():
-	UpdateMoney(0)
+	UpdateMoney(startingMoney)
 
 func _physics_process(_delta):
 	collisionResult = move_and_slide()

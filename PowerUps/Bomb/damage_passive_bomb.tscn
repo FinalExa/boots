@@ -7,4 +7,4 @@ script = ExtResource("1_644nn")
 damageChangePercentage = 30.0
 powerUpName = "Bomb Damage Increase"
 powerUpDescription = "Increases the damage of all bombs by 30%"
-powerUpType = 5
+powerUpType = 4

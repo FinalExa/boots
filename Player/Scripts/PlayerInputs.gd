@@ -1,9 +1,10 @@
 class_name PlayerInputs
 extends Node2D
 
+var inputEnabled: bool
 var movementInput: Vector2
 var interactionInput: bool
-var inputEnabled: bool
+var releaseSpeedCharge: bool
 var aimInput: Vector2
 var shootInput: bool
 var sceneMaster: SceneMaster
@@ -20,6 +21,7 @@ func GetInputs():
 		GetMovementInput()
 		GetAimInput()
 		GetShootInput()
+		GetReleaseSpeedChargeInput()
 		GetInteractionInput()
 		if (Input.is_action_just_pressed("Reload")):
 			get_tree().reload_current_scene()
@@ -34,6 +36,12 @@ func GetInteractionInput():
 		interactionInput = true
 		return
 	interactionInput = false
+
+func GetReleaseSpeedChargeInput():
+	if (Input.is_action_just_pressed("ReleaseSpeedCharge")):
+		releaseSpeedCharge = true
+		return
+	releaseSpeedCharge = false
 
 func GetAimInput():
 	aimInput = get_global_mouse_position()

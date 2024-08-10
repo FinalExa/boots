@@ -7,4 +7,4 @@ script = ExtResource("1_0jysd")
 sizeChangePercentage = 30.0
 powerUpName = "Bomb Area Increase"
 powerUpDescription = "Increases the Area radius of all bombs by 30%"
-powerUpType = 5
+powerUpType = 4

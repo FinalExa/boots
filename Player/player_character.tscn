@@ -45,7 +45,7 @@ powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 moneyLabel = NodePath("PlayerHUD/MoneyValue")
 currentRoomLabel = NodePath("PlayerHUD/CurrentRoomValue")
-currentMoney = 100.0
+startingMoney = 100.0
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -207,22 +207,22 @@ playerMovements = NodePath("../../../PlayerMovements")
 directSound = NodePath("../../../Sounds/PlayerDirect")
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
-[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "speedChargeLabel")]
+[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeLabel")]
 script = ExtResource("16_1u6or")
 playerRef = NodePath("../..")
 playerMovements = NodePath("../../PlayerMovements")
+playerShooting = NodePath("../../PlayerAim/PlayerShooting")
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
-upSwitchAbuseTime = 0.3
-downSwitchAbuseTime = 0.3
 
 [node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
 script = ExtResource("19_44plk")
 playerInputs = NodePath("../PlayerInputs")
 offsetDegrees = 90.0
 
-[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "projectileSpawner", "projectileCountLabel")]
+[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "powerUpManager", "projectileSpawner", "projectileCountLabel")]
 script = ExtResource("19_aegdj")
 playerInputs = NodePath("../../PlayerInputs")
+powerUpManager = NodePath("../../PlayerRotator/PowerUpManager")
 projectileSpawner = NodePath("ObjectSpawner")
 baseMaxProjectiles = 3
 baseProjectileICD = 5.0
@@ -244,8 +244,6 @@ distMultiplier = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnstuckEntities"]
 shape = SubResource("CircleShape2D_xymdd")
 
-[connection signal="switchDown" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchDown"]
-[connection signal="switchUp" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchUp"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]

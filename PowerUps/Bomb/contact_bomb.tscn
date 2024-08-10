@@ -6,11 +6,11 @@
 [node name="ContactBomb" type="Node2D" node_paths=PackedStringArray("spawners", "secondarySpawners")]
 script = ExtResource("1_sgqlw")
 powerUpName = "Contact Bomb"
-powerUpDescription = "Generates a bomb on Clashes and Directs."
+powerUpDescription = "Generates an explosion on Clashes and Directs."
 spawners = [NodePath("Spawner")]
 secondarySpawners = [NodePath("Spawner")]
 
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, -64)
 script = ExtResource("2_1kt6i")
-objectPath = "res://PowerUps/Bomb/SpawnedObjects/mini_bomb.tscn"
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/contact_explosion.tscn"

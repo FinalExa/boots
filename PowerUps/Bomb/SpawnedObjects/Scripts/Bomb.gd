@@ -9,6 +9,8 @@ extends PowerUpObjects
 @export var explosionCollider: Node2D
 @export var bombSprite: Sprite2D
 @export var explosionSprite: Sprite2D
+@export var explodeWhenOneEnemyIsInRange: bool
+@export var destroyOnEnd: Node2D
 var baseDamage: float
 var baseCooldown: float
 var baseColliderSize: Vector2
@@ -73,13 +75,25 @@ func DamageEnemies():
 	enemiesInRange.clear()
 
 func DeleteSelf():
-	self.get_parent().remove_child(self)
-	queue_free()
+	if (destroyOnEnd == null):
+		self.get_parent().remove_child(self)
+		queue_free()
+	else:
+		destroyOnEnd.get_parent().remove_child(destroyOnEnd)
+		destroyOnEnd.queue_free()
+
+func AutoTriggerExplosion():
+	if (explodeWhenOneEnemyIsInRange && enemiesInRange.size() > 0):
+		timer = 0
 
 func _on_explosion_area_body_entered(body):
 	if (body is EnemyController && !enemiesInRange.has(body) && !damagedEnemies.has(body)):
 		enemiesInRange.push_back(body)
+		AutoTriggerExplosion()
 
 func _on_explosion_area_body_exited(body):
 	if (body is EnemyController && enemiesInRange.has(body)):
 		enemiesInRange.erase(body)
+
+func AlternativeOutcome():
+	timer = 0
