@@ -6,7 +6,7 @@
 [node name="ContactBomb" type="Node2D" node_paths=PackedStringArray("spawners", "secondarySpawners")]
 script = ExtResource("1_sgqlw")
 powerUpName = "Contact Bomb"
-powerUpDescription = "Generates a bomb on Clashes and Directs."
+powerUpDescription = "Generates an explosion on Clashes and Directs."
 spawners = [NodePath("Spawner")]
 secondarySpawners = [NodePath("Spawner")]
 

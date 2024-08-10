@@ -6,12 +6,12 @@
 [node name="TrailBomb" type="Node2D" node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_2qe4o")
 powerUpName = "Trail Bomb"
-powerUpDescription = "While running, releases mini bombs behind at fixed time intervals."
-powerUpType = 4
+powerUpDescription = "While running, releases mini bombs behind at fixed time intervals. The mini bombs will explode once an enemy enters the explosion area."
+powerUpType = 3
 spawners = [NodePath("Spawner")]
-trailInterval = 0.3
+trailInterval = 0.75
 
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, 64)
 script = ExtResource("2_06qph")
-objectPath = "res://PowerUps/Bomb/SpawnedObjects/mini_bomb.tscn"
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/trail_bomb_instance.tscn"

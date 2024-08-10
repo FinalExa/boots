@@ -242,8 +242,6 @@ distMultiplier = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnstuckEntities"]
 shape = SubResource("CircleShape2D_xymdd")
 
-[connection signal="switchDown" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchDown"]
-[connection signal="switchUp" from="PlayerRotator/PlayerSpeedThresholds" to="PlayerRotator/PowerUpManager" method="SwitchUp"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
