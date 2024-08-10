@@ -13,4 +13,4 @@ secondarySpawners = [NodePath("Spawner")]
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, -64)
 script = ExtResource("2_1kt6i")
-objectPath = "res://PowerUps/Bomb/SpawnedObjects/mini_bomb.tscn"
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/contact_explosion.tscn"

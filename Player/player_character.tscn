@@ -212,8 +212,6 @@ script = ExtResource("16_1u6or")
 playerRef = NodePath("../..")
 playerMovements = NodePath("../../PlayerMovements")
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
-upSwitchAbuseTime = 0.3
-downSwitchAbuseTime = 0.3
 
 [node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
 script = ExtResource("19_44plk")
