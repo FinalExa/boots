@@ -1,17 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjn4y2vm7ph0y"]
+[gd_scene load_steps=8 format=3 uid="uid://bjn4y2vm7ph0y"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/RewardSpawn.gd" id="1_o8bcu"]
 [ext_resource type="PackedScene" uid="uid://c3632ikuev61a" path="res://PowerUps/Bomb/area_passive_bomb.tscn" id="2_llb4d"]
 [ext_resource type="PackedScene" uid="uid://b2fdktwhixwui" path="res://PowerUps/Bomb/contact_bomb.tscn" id="3_cdxvg"]
 [ext_resource type="PackedScene" uid="uid://bjn1c3owhijvx" path="res://PowerUps/Bomb/damage_passive_bomb.tscn" id="4_ocu5l"]
 [ext_resource type="PackedScene" uid="uid://bdjwha4ch7lm0" path="res://PowerUps/Bomb/speed_charge_bomb.tscn" id="6_hig1n"]
+[ext_resource type="PackedScene" uid="uid://s6ijvut8ln2f" path="res://PowerUps/Bomb/shoot_bomb.tscn" id="7_3tn58"]
 [ext_resource type="PackedScene" uid="uid://eslqbrcvag7j" path="res://PowerUps/Bomb/trail_bomb.tscn" id="8_7y01j"]
 
 [node name="RewardSpawn" type="Node2D" node_paths=PackedStringArray("powerUps")]
 script = ExtResource("1_o8bcu")
 powerUpNumber = 3
 rewardPodiumPath = "res://PowerUps/reward_podium.tscn"
-powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb")]
+powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb"), NodePath("ShootBomb")]
 rewardTypes = Array[int]([0, 1, 2, 3])
 rewardChances = Array[int]([40, 10, 50, 20])
 firstRoomChances = Array[int]([1, 0, 0, 0])
@@ -25,3 +26,5 @@ firstRoomChances = Array[int]([1, 0, 0, 0])
 [node name="SpeedChargeBomb" parent="." instance=ExtResource("6_hig1n")]
 
 [node name="TrailBomb" parent="." instance=ExtResource("8_7y01j")]
+
+[node name="ShootBomb" parent="." instance=ExtResource("7_3tn58")]

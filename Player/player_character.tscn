@@ -207,10 +207,11 @@ playerMovements = NodePath("../../../PlayerMovements")
 directSound = NodePath("../../../Sounds/PlayerDirect")
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
-[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "speedChargeLabel")]
+[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeLabel")]
 script = ExtResource("16_1u6or")
 playerRef = NodePath("../..")
 playerMovements = NodePath("../../PlayerMovements")
+playerShooting = NodePath("../../PlayerAim/PlayerShooting")
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
 
 [node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
@@ -218,9 +219,10 @@ script = ExtResource("19_44plk")
 playerInputs = NodePath("../PlayerInputs")
 offsetDegrees = 90.0
 
-[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "projectileSpawner", "projectileCountLabel")]
+[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "powerUpManager", "projectileSpawner", "projectileCountLabel")]
 script = ExtResource("19_aegdj")
 playerInputs = NodePath("../../PlayerInputs")
+powerUpManager = NodePath("../../PlayerRotator/PowerUpManager")
 projectileSpawner = NodePath("ObjectSpawner")
 baseMaxProjectiles = 3
 baseProjectileICD = 5.0

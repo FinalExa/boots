@@ -23,6 +23,9 @@ enum PowerUpType {
 @export var trailInterval: float
 @export var speedChargeMaxValue: float
 @export var speedChargeMaxStacks: int
+@export var shootMaxProjectiles: int
+@export var shootProjectileRechargeTime: float
+@export var shootObjectPath: String
 var speedChargeCurrentValue: float
 var speedChargeCurrentStacks: int
 
@@ -63,9 +66,9 @@ func SpeedChargeActivate():
 func CreatePowerUpEffect(spawner: ObjectSpawner):
 	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
 	if (spawnedPowerUpObject != null):
-		spawnedPowerUpObject.SetBaseStats()
-		ApplyPassives(spawnedPowerUpObject)
-		spawnedPowerUpObject.Finalize()
+		InitializePowerUpObject(spawnedPowerUpObject)
 
-func ApplyPassives(spawnedPowerUpObject: PowerUpObjects):
-	spawnedPowerUpObject.ApplyPowerUps(powerUpManager)
+func InitializePowerUpObject(powerUpObject: PowerUpObjects):
+	powerUpObject.SetBaseStats()
+	powerUpObject.ApplyPowerUps(powerUpManager)
+	powerUpObject.Finalize()

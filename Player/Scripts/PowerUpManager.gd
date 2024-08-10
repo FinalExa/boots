@@ -3,6 +3,7 @@ extends Node2D
 
 @export var playerRef: PlayerCharacter
 @export var playerMovements: PlayerMovements
+@export var playerShooting: PlayerShooting
 @export var speedChargeLabel: Label
 var trailCooldown: float
 var contactPowerUp: PowerUp
@@ -32,6 +33,7 @@ func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp.powerUpType == PowerUp.PowerUpType.SHOOT):
 		ReplaceOldPowerUp(shootPowerUp)
 		shootPowerUp = powerUp
+		playerShooting.SetCurrentShootingSettings(shootPowerUp.shootMaxProjectiles, shootPowerUp.shootProjectileRechargeTime, shootPowerUp.shootObjectPath, true)
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.TRAIL):
 		ReplaceOldPowerUp(trailPowerUp)
@@ -56,6 +58,7 @@ func RemovePowerUp(powerUp: PowerUp):
 		return
 	if (powerUp == shootPowerUp):
 		shootPowerUp = null
+		playerShooting.SetToBase()
 		return
 	if (powerUp == trailPowerUp):
 		trailPowerUp = null
