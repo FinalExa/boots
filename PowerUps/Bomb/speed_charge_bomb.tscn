@@ -10,6 +10,7 @@ powerUpDescription = "Releases two bombs at the sides when it's fully charged, c
 powerUpType = 2
 spawners = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4")]
 speedChargeMaxValue = 7500.0
+speedChargeMaxStacks = 1
 
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(-64, -64)

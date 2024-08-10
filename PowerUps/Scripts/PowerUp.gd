@@ -22,7 +22,9 @@ enum PowerUpType {
 @export var tertiarySpawners: Array[ObjectSpawner]
 @export var trailInterval: float
 @export var speedChargeMaxValue: float
+@export var speedChargeMaxStacks: int
 var speedChargeCurrentValue: float
+var speedChargeCurrentStacks: int
 
 var powerUpManager: PowerUpManager
 
@@ -45,12 +47,18 @@ func TertiaryExecutePowerUpEffect():
 		CreatePowerUpEffect(spawners[i])
 
 func ExecutePowerUpEffectWithValue(value):
-	speedChargeCurrentValue += value * get_process_delta_time()
-	powerUpManager.speedChargeLabel.text = str(int(speedChargeCurrentValue), "/", speedChargeMaxValue)
-	if (speedChargeCurrentValue >= speedChargeMaxValue):
-		speedChargeCurrentValue -= speedChargeMaxValue
+	if (speedChargeCurrentStacks < speedChargeMaxStacks):
+		speedChargeCurrentValue = clamp(speedChargeCurrentValue + value * get_process_delta_time(), 0, speedChargeMaxValue)
+		if (speedChargeCurrentValue >= speedChargeMaxValue):
+			speedChargeCurrentStacks += 1
+			speedChargeCurrentValue -= speedChargeMaxValue
+		powerUpManager.speedChargeLabel.text = str(int(speedChargeCurrentValue), "/", speedChargeMaxValue, " Stacks: ", speedChargeCurrentStacks, "/", speedChargeMaxStacks)
+
+func SpeedChargeActivate():
+	if (speedChargeCurrentStacks > 0):
 		for i in spawners.size():
-			CreatePowerUpEffect(spawners[i])
+				CreatePowerUpEffect(spawners[i])
+		speedChargeCurrentStacks -= 1
 
 func CreatePowerUpEffect(spawner: ObjectSpawner):
 	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()

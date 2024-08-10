@@ -24,7 +24,7 @@ func UpdateHealthValue(valueToAdd: float, minValue: float):
 		get_tree().reload_current_scene()
 
 func UpdateLabel():
-	healthLabel.text = str("Health: ", currentHealth, "/", maxHealth)
+	healthLabel.text = str("Integrity: ", currentHealth, "/", maxHealth)
 
 func CheckForDamageType(fullDamage: float, partialDamage: float):
 	if (playerMovements.currentSpeed > playerMovements.killSpeedValue && currentHealth > partialThreshold):

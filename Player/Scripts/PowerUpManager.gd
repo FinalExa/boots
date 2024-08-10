@@ -21,6 +21,7 @@ func _ready():
 
 func _process(delta):
 	ExecuteTrail(delta)
+	ReleaseSpeedCharge()
 	ChargeWithSpeed()
 
 func AssignPowerUp(powerUp: PowerUp):
@@ -40,6 +41,7 @@ func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp.powerUpType == PowerUp.PowerUpType.SPEED_CHARGE):
 		ReplaceOldPowerUp(speedChargePowerUp)
 		speedChargePowerUp = powerUp
+		speedChargePowerUp.speedChargeCurrentStacks = 0
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.PASSIVE):
 		powerUpPassives.push_back(powerUp)
@@ -99,3 +101,7 @@ func ExecuteTrail(delta):
 			return
 		trailTimer = trailCooldown
 		trailPowerUp.ExecutePowerUpEffect()
+
+func ReleaseSpeedCharge():
+	if (speedChargePowerUp != null && playerRef.playerInputs.releaseSpeedCharge):
+		speedChargePowerUp.SpeedChargeActivate()

@@ -11,7 +11,7 @@ radius = 32.0
 
 [node name="PlayerProjectile" type="CharacterBody2D" node_paths=PackedStringArray("forward")]
 script = ExtResource("1_jcrj8")
-movementSpeed = 2000.0
+movementSpeed = 2500.0
 rotationOffset = 90.0
 lifeTime = 10.0
 forward = NodePath("Forward")

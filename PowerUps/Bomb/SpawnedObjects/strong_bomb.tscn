@@ -9,9 +9,9 @@ radius = 256.0
 
 [node name="StrongBomb" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
 script = ExtResource("1_c1lao")
-explosionCooldown = 1.5
+explosionCooldown = 0.75
 explosionDuration = 0.1
-explosionDamage = 50
+explosionDamage = 25
 explosionRepelDistance = 50.0
 explosionRepelTime = 0.1
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
