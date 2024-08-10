@@ -1,20 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjn4y2vm7ph0y"]
+[gd_scene load_steps=8 format=3 uid="uid://bjn4y2vm7ph0y"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/RewardSpawn.gd" id="1_o8bcu"]
 [ext_resource type="PackedScene" uid="uid://c3632ikuev61a" path="res://PowerUps/Bomb/area_passive_bomb.tscn" id="2_llb4d"]
 [ext_resource type="PackedScene" uid="uid://b2fdktwhixwui" path="res://PowerUps/Bomb/contact_bomb.tscn" id="3_cdxvg"]
 [ext_resource type="PackedScene" uid="uid://bjn1c3owhijvx" path="res://PowerUps/Bomb/damage_passive_bomb.tscn" id="4_ocu5l"]
-[ext_resource type="PackedScene" uid="uid://cuulpltahpg5" path="res://PowerUps/Bomb/down_switch_bomb.tscn" id="5_i12ry"]
 [ext_resource type="PackedScene" uid="uid://bdjwha4ch7lm0" path="res://PowerUps/Bomb/speed_charge_bomb.tscn" id="6_hig1n"]
 [ext_resource type="PackedScene" uid="uid://6t3w65kbkjmj" path="res://PowerUps/Bomb/timer_passive_bomb.tscn" id="7_tq4ng"]
 [ext_resource type="PackedScene" uid="uid://eslqbrcvag7j" path="res://PowerUps/Bomb/trail_bomb.tscn" id="8_7y01j"]
-[ext_resource type="PackedScene" uid="uid://ypddybr35owe" path="res://PowerUps/Bomb/up_switch_bomb.tscn" id="9_wihks"]
 
 [node name="RewardSpawn" type="Node2D" node_paths=PackedStringArray("powerUps")]
 script = ExtResource("1_o8bcu")
 powerUpNumber = 3
 rewardPodiumPath = "res://PowerUps/reward_podium.tscn"
-powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("DownSwitchBomb"), NodePath("SpeedChargeBomb"), NodePath("TimerPassiveBomb"), NodePath("TrailBomb"), NodePath("UpSwitchBomb")]
+powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TimerPassiveBomb"), NodePath("TrailBomb")]
 rewardTypes = Array[int]([0, 1, 2, 3])
 rewardChances = Array[int]([40, 10, 50, 20])
 firstRoomChances = Array[int]([1, 0, 0, 0])
@@ -25,12 +23,8 @@ firstRoomChances = Array[int]([1, 0, 0, 0])
 
 [node name="DamagePassiveBomb" parent="." instance=ExtResource("4_ocu5l")]
 
-[node name="DownSwitchBomb" parent="." instance=ExtResource("5_i12ry")]
-
 [node name="SpeedChargeBomb" parent="." instance=ExtResource("6_hig1n")]
 
 [node name="TimerPassiveBomb" parent="." instance=ExtResource("7_tq4ng")]
 
 [node name="TrailBomb" parent="." instance=ExtResource("8_7y01j")]
-
-[node name="UpSwitchBomb" parent="." instance=ExtResource("9_wihks")]

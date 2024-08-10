@@ -45,7 +45,7 @@ powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 moneyLabel = NodePath("PlayerHUD/MoneyValue")
 currentRoomLabel = NodePath("PlayerHUD/CurrentRoomValue")
-currentMoney = 100.0
+startingMoney = 100.0
 
 [node name="Sounds" type="Node" parent="."]
 

@@ -7,8 +7,7 @@ enum PowerUpFaction {
 
 enum PowerUpType {
 	CONTACT,
-	DOWN_SWITCH,
-	UP_SWITCH,
+	SHOOT,
 	SPEED_CHARGE,
 	TRAIL,
 	PASSIVE
