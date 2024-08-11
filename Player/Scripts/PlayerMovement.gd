@@ -9,7 +9,7 @@ extends Node
 @export var minAccelerationPerSecond: float
 @export var minAccelerationPerSecondEndPoint: float
 @export var decelerationPerSecond: float
-@export var decelerationWhileColliding: float
+@export var decelerationDecreaseOnCollision: float
 @export var minDecelerationWhileSteering: float
 @export var maxDecelerationWhileSteering: float
 @export var decelerationWhileSteeringRequiredSpeed: float
@@ -19,6 +19,9 @@ extends Node
 @export var killSpeedValue: float
 @export var minSpeed: float
 @export var maxSpeed: float
+@export var distanceDifferenceTolerance: float
+@export var distanceDifferenceToleranceMinSpeed: float
+@export var decelerationForDistanceDifference: float
 var currentAcceleration: float
 var accelerationMultiplier: float
 var currentDecelerationWhileSteering: float
@@ -26,6 +29,8 @@ var decelerationWhileSteeringActive: bool
 var currentSpeed: float
 var currentDirection: Vector2
 var lastDirection: Vector2
+var lastPosition: Vector2
+var distanceToLastPos: float
 var directionDifferent: bool
 var xValue: float
 var yValue: float
@@ -35,6 +40,7 @@ func _ready():
 	currentDecelerationWhileSteering = minDecelerationWhileSteering
 	accelerationMultiplier = (maxAccelerationPerSecond - minAccelerationPerSecond) / (minAccelerationPerSecondEndPoint - maxAccelerationPerSecondEndPoint)
 	lastDirection = Vector2.ZERO
+	lastPosition = playerCharacter.global_position
 
 func _process(delta):
 	SetCurrentAcceleration()
@@ -45,6 +51,7 @@ func _physics_process(_delta):
 	MovePlayerCharacter()
 
 func SetCurrentAcceleration():
+	lastPosition = playerCharacter.global_position
 	if (currentSpeed < maxAccelerationPerSecondEndPoint):
 		currentAcceleration = maxAccelerationPerSecond
 		return
@@ -56,7 +63,7 @@ func SetCurrentAcceleration():
 func SetCurrentSpeed(delta):
 	if (playerInputs.movementInput == Vector2.ZERO):
 		if (decelerationWhileSteeringActive): decelerationWhileSteeringActive = false
-		Decelerate(delta, decelerationPerSecond)
+		Decelerate(delta, decelerationForDistanceDifference)
 		if (currentSpeed <= minSpeed):
 			currentSpeed = 0
 		if (currentSpeed == 0):
@@ -68,10 +75,12 @@ func SetCurrentSpeed(delta):
 
 func MovePlayerCharacter():
 	playerCharacter.velocity = currentDirection * currentSpeed
+	distanceToLastPos = lastPosition.distance_to(playerCharacter.global_position)
 
 func AccelerationCases(delta):
-	if (playerCharacter.collisionResult):
-		currentSpeed -= decelerationWhileColliding * delta
+	if (distanceToLastPos < distanceDifferenceTolerance && currentSpeed > distanceDifferenceToleranceMinSpeed):
+		Decelerate(delta, decelerationPerSecond)
+		return
 	if (!directionDifferent):
 		Accelerate(delta)
 		if (decelerationWhileSteeringActive): decelerationWhileSteeringActive = false
@@ -134,3 +143,6 @@ func SetToZero():
 	currentSpeed = 0
 	playerCharacter.velocity = Vector2.ZERO
 	playerCharacter.playerSpeedThresholds.Startup()
+
+func OnCollisionDetected():
+	UpdateCurrentSpeed(-decelerationDecreaseOnCollision)

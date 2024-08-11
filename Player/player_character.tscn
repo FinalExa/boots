@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=27 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAim.gd" id="19_44plk"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="20_cfw71"]
+[ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -86,16 +87,20 @@ maxAccelerationPerSecond = 1500.0
 maxAccelerationPerSecondEndPoint = 500.0
 minAccelerationPerSecond = 300.0
 minAccelerationPerSecondEndPoint = 1800.0
-decelerationPerSecond = 800.0
-decelerationWhileColliding = 775.0
+decelerationPerSecond = 1000.0
+decelerationDecreaseOnCollision = 300.0
+minDecelerationWhileSteering = -500.0
 maxDecelerationWhileSteering = 300.0
 decelerationWhileSteeringRequiredSpeed = 500.0
-decelerationWhileSteeringIncreasePerSecond = 300.0
-decelerationWhileSteeringDecreasePerSecond = 250.0
+decelerationWhileSteeringIncreasePerSecond = 1000.0
+decelerationWhileSteeringDecreasePerSecond = 450.0
 rotationSpeedPerSecond = 2.5
 killSpeedValue = 500.0
 minSpeed = 100.0
 maxSpeed = 2000.0
+distanceDifferenceTolerance = 4.5
+distanceDifferenceToleranceMinSpeed = 300.0
+decelerationForDistanceDifference = 3000.0
 
 [node name="PlayerHUD" type="Control" parent="."]
 z_index = 100
@@ -244,6 +249,38 @@ distMultiplier = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnstuckEntities"]
 shape = SubResource("CircleShape2D_xymdd")
 
+[node name="PlayerCollisionDetects" type="Node2D" parent="."]
+
+[node name="PlayerCollisionDetect1" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(0, 8)
+
+[node name="PlayerCollisionDetect2" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(0, 40)
+
+[node name="PlayerCollisionDetect3" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(16, 24)
+rotation = 1.5708
+
+[node name="PlayerCollisionDetect4" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(-16, 24)
+rotation = 1.5708
+
+[node name="PlayerCollisionDetect5" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(11, 13)
+rotation = 0.785398
+
+[node name="PlayerCollisionDetect6" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(11, 35)
+rotation = -0.785398
+
+[node name="PlayerCollisionDetect7" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(-11, 35)
+rotation = 0.785398
+
+[node name="PlayerCollisionDetect8" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(-11, 13)
+rotation = -0.785398
+
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
@@ -252,3 +289,11 @@ shape = SubResource("CircleShape2D_xymdd")
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="body_entered" from="UnstuckEntities" to="UnstuckEntities" method="_on_body_entered"]
 [connection signal="body_exited" from="UnstuckEntities" to="UnstuckEntities" method="_on_body_exited"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect1" to="PlayerMovements" method="OnCollisionDetected"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect2" to="PlayerMovements" method="OnCollisionDetected"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect3" to="PlayerMovements" method="OnCollisionDetected"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect4" to="PlayerMovements" method="OnCollisionDetected"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect5" to="PlayerMovements" method="OnCollisionDetected"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect6" to="PlayerMovements" method="OnCollisionDetected"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect7" to="PlayerMovements" method="OnCollisionDetected"]
+[connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect8" to="PlayerMovements" method="OnCollisionDetected"]
