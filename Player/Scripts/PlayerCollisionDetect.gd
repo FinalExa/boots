@@ -18,8 +18,9 @@ func CollisionICD(delta):
 		collisionTimer -= delta
 
 func _on_body_entered(body):
-	if !(body is PlayerCharacter && !currentCollisions.has(body)):
+	if (!((body is PlayerCharacter) || (body is EnemyController))  && !currentCollisions.has(body)):
 		if (currentCollisions.size() == 0 && collisionTimer <= 0):
+			print("hit")
 			emit_signal("hit")
 		currentCollisions.push_back(body)
 
