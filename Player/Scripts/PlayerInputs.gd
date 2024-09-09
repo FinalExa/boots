@@ -23,6 +23,7 @@ func GetInputs():
 		GetShootInput()
 		GetReleaseSpeedChargeInput()
 		GetInteractionInput()
+		WinMap()
 		if (Input.is_action_just_pressed("Reload")):
 			get_tree().reload_current_scene()
 		if (Input.is_action_just_pressed("Close")):
