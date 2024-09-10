@@ -114,7 +114,6 @@ func DealDamage(enemyController: EnemyController, damageDealt: float, repelDist:
 		CreateImpactTypeIndicator(clash, self.global_position)
 		playerMovements.UpdateCurrentSpeed(-speedLoss)
 
-
 func CreateImpactTypeIndicator(clash: bool, currentPosition: Vector2):
 	var obj_scene = load(impactTypeIndicator)
 	var obj: ImpactTypeIndicator = obj_scene.instantiate()
