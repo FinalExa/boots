@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var moneyLabel: Label
 @export var currentRoomLabel: Label
 @export var rewardSpawn: RewardSpawn
+@export var mapProgressionSelector: MapProgressionSelector
 var collisionResult: bool
 @export var startingMoney: float
 var currentMoney: float

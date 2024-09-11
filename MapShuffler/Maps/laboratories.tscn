@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c71amm3r0ykyv"]
+
+[ext_resource type="Script" path="res://MapShuffler/Scripts/MapData.gd" id="1_cdydq"]
+[ext_resource type="Script" path="res://MapShuffler/Scripts/MapDifficultyLevel.gd" id="2_esyvp"]
+
+[node name="Laboratories" type="Node" node_paths=PackedStringArray("mapDifficultyLevels")]
+script = ExtResource("1_cdydq")
+mapName = "Laboratory"
+mapDifficultyLevels = [NodePath("DifficultyLevels0"), NodePath("DifficultyLevels1"), NodePath("DifficultyLevels2"), NodePath("DifficultyLevels3"), NodePath("DifficultyLevels4")]
+
+[node name="DifficultyLevels0" type="Node" parent="."]
+script = ExtResource("2_esyvp")
+
+[node name="DifficultyLevels1" type="Node" parent="."]
+script = ExtResource("2_esyvp")
+
+[node name="DifficultyLevels2" type="Node" parent="."]
+script = ExtResource("2_esyvp")
+
+[node name="DifficultyLevels3" type="Node" parent="."]
+script = ExtResource("2_esyvp")
+
+[node name="DifficultyLevels4" type="Node" parent="."]
+script = ExtResource("2_esyvp")
