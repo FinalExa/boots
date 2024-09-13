@@ -6,6 +6,8 @@ extends Node
 @export var mapFloors: Array[FloorTypes]
 @export var mapMinDifficulty: Array[float]
 @export var mapMaxDifficulty: Array[float]
+var mapProgressionSelector: MapProgressionSelector
+var currentFloor: int
 
 enum FloorTypes
 {
@@ -15,5 +17,17 @@ enum FloorTypes
 	BOSS
 }
 
+func PickLevel():
+	LevelSelectionCases()
+
+func LevelSelectionCases():
+	if (mapFloors[currentFloor] == FloorTypes.START):
+		mapProgressionSelector.rewardSpawn.roomNumber = 0
+		mapProgressionSelector.rewardSpawn.GenerateRewardType()
+
 func CompleteMap():
-	pass
+	ResetBannedLevels()
+
+func ResetBannedLevels():
+	for i in mapDifficultyLevels.size():
+		mapDifficultyLevels[i].ResetSelectedLevels()

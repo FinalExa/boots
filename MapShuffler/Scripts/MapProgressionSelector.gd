@@ -2,6 +2,7 @@ class_name MapProgressionSelector
 extends Node
 
 @export var sceneSelector: SceneSelector
+@export var rewardSpawn: RewardSpawn
 
 @export var startingDifficultyValue: float
 @export var difficultyValueIncreaseOnComplete: float
@@ -13,6 +14,11 @@ var currentMap: MapData
 
 func _ready():
 	PickNewMap()
+	InitalizeMaps()
+
+func InitalizeMaps():
+	for i in maps.size():
+		maps[i].mapProgressionSelector = self
 	currentDifficultyValue = startingDifficultyValue
 
 func PickNewMap():
