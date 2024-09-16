@@ -3,13 +3,11 @@
 [ext_resource type="Script" path="res://MapShuffler/Scripts/MapProgressionSelector.gd" id="1_x7im7"]
 [ext_resource type="PackedScene" uid="uid://c71amm3r0ykyv" path="res://MapShuffler/Maps/laboratories.tscn" id="2_di3xb"]
 
-[node name="MapProgressionSelector" type="Node"]
+[node name="MapProgressionSelector" type="Node" node_paths=PackedStringArray("maps")]
 script = ExtResource("1_x7im7")
-startingDifficultyValue = null
 difficultyValueIncreaseOnComplete = 0.5
-difficultyValueMaxValue = 3.0
+difficultyValueMaxValue = 2.0
+gameMaxDifficulty = 4.0
+maps = [NodePath("Laboratories")]
 
 [node name="Laboratories" parent="." instance=ExtResource("2_di3xb")]
-mapFloors = null
-mapMinDifficulty = null
-mapMaxDifficulty = null

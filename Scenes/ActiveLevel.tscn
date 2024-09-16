@@ -30,10 +30,12 @@ playerRef = NodePath("../PlayerCharacter")
 script = ExtResource("1_ruj1e")
 framesPerSecond = 60.0
 
-[node name="MapProgressionSelector" parent="." node_paths=PackedStringArray("sceneSelector") instance=ExtResource("6_30f6p")]
+[node name="MapProgressionSelector" parent="." node_paths=PackedStringArray("sceneSelector", "rewardSpawn") instance=ExtResource("6_30f6p")]
 sceneSelector = NodePath("../SceneSelector")
+rewardSpawn = NodePath("../RewardSpawn")
 
-[node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn") instance=ExtResource("4_3coog")]
+[node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn", "mapProgressionSelector") instance=ExtResource("4_3coog")]
 shopScene = "res://Scenes/ShopScene.tscn"
 playerRef = NodePath("../PlayerCharacter")
 rewardSpawn = NodePath("../RewardSpawn")
+mapProgressionSelector = NodePath("../MapProgressionSelector")

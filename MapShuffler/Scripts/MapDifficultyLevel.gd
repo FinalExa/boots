@@ -2,15 +2,13 @@ class_name MapDifficultyLevel
 extends Node
 
 @export var associatedLevels: Array[String]
-@export var bannedLevels: Array[String]
+var bannedLevels: Array[String]
 
-func SelectLevel():
-	var levelSelected: String = associatedLevels.pick_random()
+func SelectLevel(levelSelected: String):
 	if (associatedLevels.has(levelSelected)):
 		associatedLevels.erase(levelSelected)
 		if (!bannedLevels.has(levelSelected)):
 			bannedLevels.push_back(levelSelected)
-	return levelSelected
 
 func ResetSelectedLevels():
 	for i in bannedLevels.size():

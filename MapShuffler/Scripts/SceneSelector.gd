@@ -6,12 +6,14 @@ extends Node2D
 @export var playerRef: PlayerCharacter
 @export var safePosition: Vector2
 @export var rewardSpawn: RewardSpawn
+@export var mapProgressionSelector: MapProgressionSelector
 var currentScene: GameplayScene
 
 func _ready():
 	call_deferred("ShuffleScene")
 
 func ShuffleScene():
+	mapProgressionSelector.ProgressMap()
 	playerRef.global_position = safePosition
 	playerRef.playerShooting.Refull()
 	rewardSpawn.GenerateRewardType()
