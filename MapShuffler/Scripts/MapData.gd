@@ -34,7 +34,7 @@ func LevelSelectionCases():
 func GetMapInDifficultyRange():
 	var minRange = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapMinDifficulty[currentFloor])
 	var maxRange = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapMaxDifficulty[currentFloor])
-	var possibleMaps: Array[String]
+	var possibleMaps: Array[String] = []
 	for difficultyIndex in mapDifficultyLevels.size():
 		if (difficultyIndex >= minRange && difficultyIndex <= maxRange):
 			var arrayToAdd: Array[String] = mapDifficultyLevels[difficultyIndex].associatedLevels
