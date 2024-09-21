@@ -67,7 +67,7 @@ shape = SubResource("CircleShape2D_upbqd")
 [node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("healthLabel", "playerMovements")]
 script = ExtResource("5_dqtuw")
 healthLabel = NodePath("../PlayerHUD/HealthValue")
-maxHealth = 100.0
+maxHealth = 200.0
 partialThreshold = 20.0
 playerMovements = NodePath("../PlayerMovements")
 invulnerabilityTime = 0.1

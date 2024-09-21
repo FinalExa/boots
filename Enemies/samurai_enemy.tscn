@@ -115,11 +115,11 @@ position = Vector2(0, -64)
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("11_mlnjp")
 attackDuration = 30
-attackCooldown = 30
-attackPhasesLaunch = Array[int]([0, 10, 20])
-attackHitboxes = [null, NodePath("EnemyKillCheck"), NodePath("EnemyKillCheck2"), NodePath("EnemyKillCheck3")]
-attackSounds = [null, null, null]
-attackMovements = Array[float]([200.0, 200.0, 300.0])
+attackCooldown = 90
+attackPhasesLaunch = Array[int]([0, 5, 10, 25])
+attackHitboxes = [null, NodePath("EnemyKillCheck"), NodePath("EnemyKillCheck2"), NodePath("EnemyKillCheck3"), null]
+attackSounds = [null, null, null, null]
+attackMovements = Array[float]([0.0, 800.0, 800.0, 1200.0])
 characterRef = NodePath("../..")
 
 [node name="EnemyKillCheck" type="Area2D" parent="EnemyRotator/EnemyAttack" node_paths=PackedStringArray("hitSound") groups=["ClashArea"]]
