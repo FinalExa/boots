@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=25 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://b71q2rjh5oown" path="res://Player/second_speed_hitbox.tscn" id="12_psnq3"]
 [ext_resource type="PackedScene" uid="uid://3bj114kxasu7" path="res://Player/third_speed_hitbox.tscn" id="13_gt5g5"]
 [ext_resource type="Script" path="res://Player/Scripts/PowerUpManager.gd" id="16_1u6or"]
-[ext_resource type="Script" path="res://Player/Scripts/UnstuckEntities.gd" id="17_hev26"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAim.gd" id="19_44plk"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="20_cfw71"]
@@ -29,9 +28,6 @@ radius = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 font_color = Color(0.854902, 0, 0.854902, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xymdd"]
-radius = 18.0
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel")]
 script = ExtResource("1_hu618")
@@ -241,14 +237,6 @@ script = ExtResource("20_cfw71")
 [node name="Arrow" type="Sprite2D" parent="PlayerAim"]
 texture = ExtResource("5_s1pth")
 
-[node name="UnstuckEntities" type="Area2D" parent="."]
-position = Vector2(0, 24)
-script = ExtResource("17_hev26")
-distMultiplier = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UnstuckEntities"]
-shape = SubResource("CircleShape2D_xymdd")
-
 [node name="PlayerCollisionDetects" type="Node2D" parent="."]
 
 [node name="PlayerCollisionDetect1" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
@@ -287,8 +275,6 @@ rotation = -0.785398
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
-[connection signal="body_entered" from="UnstuckEntities" to="UnstuckEntities" method="_on_body_entered"]
-[connection signal="body_exited" from="UnstuckEntities" to="UnstuckEntities" method="_on_body_exited"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect1" to="PlayerMovements" method="OnCollisionDetected"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect2" to="PlayerMovements" method="OnCollisionDetected"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect3" to="PlayerMovements" method="OnCollisionDetected"]
