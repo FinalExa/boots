@@ -7,6 +7,7 @@ extends Node2D
 @export var attackHitboxes: Array[Node2D]
 @export var attackSounds: Array[AudioStreamPlayer]
 @export var attackMovements: Array[float]
+@export var ignoreAttackMovement: bool
 @export var characterRef: CharacterBody2D
 var frameMaster: FrameMaster
 var attackHitboxInstance: Node2D
@@ -74,10 +75,10 @@ func RemoveAttackHitbox(index):
 func StartAttack():
 	attackLaunched = true
 	attackFrame = 0
-	characterRef.velocity = Vector2.ZERO
 	ExecuteAttackPhase()
 
 func ExecuteAttackPhase():
+	if (!ignoreAttackMovement): characterRef.velocity = Vector2.ZERO
 	PrepareHitboxes()
 	currentPhase += 1
 	movementDirection = characterRef.GetRotator().GetCurrentLookDirection()
@@ -127,7 +128,7 @@ func RemoveAttackHitboxes():
 		RemoveAttackHitbox(i)
 
 func AttackMovement(index: int):
-	if (attackMovements.size() > 0 && index < attackMovements.size() && attackMovements[index] != null):
+	if (!ignoreAttackMovement && attackMovements.size() > 0 && index < attackMovements.size() && attackMovements[index] != null):
 		var velocityValue: Vector2 = attackMovements[index] * movementDirection
 		characterRef.velocity = velocityValue
 

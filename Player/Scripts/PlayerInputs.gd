@@ -5,6 +5,8 @@ var inputEnabled: bool
 var movementInput: Vector2
 var interactionInput: bool
 var releaseSpeedCharge: bool
+var ability1: bool
+var ability2: bool
 var aimInput: Vector2
 var shootInput: bool
 var sceneMaster: SceneMaster
@@ -22,6 +24,8 @@ func GetInputs():
 		GetAimInput()
 		GetShootInput()
 		GetReleaseSpeedChargeInput()
+		GetAbility1Input()
+		GetAbility2Input()
 		GetInteractionInput()
 		WinMap()
 		if (Input.is_action_just_pressed("Reload")):
@@ -43,6 +47,18 @@ func GetReleaseSpeedChargeInput():
 		releaseSpeedCharge = true
 		return
 	releaseSpeedCharge = false
+
+func GetAbility1Input():
+	if (Input.is_action_just_pressed("Ability1")):
+		ability1 = true
+		return
+	ability1 = false
+
+func GetAbility2Input():
+	if (Input.is_action_just_pressed("Ability2")):
+		ability2 = true
+		return
+	ability2 = false
 
 func GetAimInput():
 	aimInput = get_global_mouse_position()

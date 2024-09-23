@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=26 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b71q2rjh5oown" path="res://Player/second_speed_hitbox.tscn" id="12_psnq3"]
 [ext_resource type="PackedScene" uid="uid://3bj114kxasu7" path="res://Player/third_speed_hitbox.tscn" id="13_gt5g5"]
 [ext_resource type="Script" path="res://Player/Scripts/PowerUpManager.gd" id="16_1u6or"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerAbilities.gd" id="18_d34mc"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAim.gd" id="19_44plk"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="20_cfw71"]
@@ -117,10 +118,10 @@ label_settings = SubResource("LabelSettings_fvdlt")
 
 [node name="MoneyValue" type="Label" parent="PlayerHUD"]
 layout_mode = 0
-offset_left = 1736.0
-offset_top = 1000.0
-offset_right = 1904.0
-offset_bottom = 1032.0
+offset_left = 1728.0
+offset_top = 88.0
+offset_right = 1896.0
+offset_bottom = 120.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
 [node name="CurrentRoomValue" type="Label" parent="PlayerHUD"]
@@ -156,10 +157,30 @@ vertical_alignment = 1
 
 [node name="ProjectileCount" type="Label" parent="PlayerHUD"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 1016.0
-offset_right = 232.0
-offset_bottom = 1048.0
+offset_left = 1664.0
+offset_top = 920.0
+offset_right = 1832.0
+offset_bottom = 952.0
+label_settings = SubResource("LabelSettings_fvdlt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability1Data" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 1664.0
+offset_top = 920.0
+offset_right = 1832.0
+offset_bottom = 952.0
+label_settings = SubResource("LabelSettings_fvdlt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ability2Data" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 1664.0
+offset_top = 920.0
+offset_right = 1832.0
+offset_bottom = 952.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -214,6 +235,12 @@ playerRef = NodePath("../..")
 playerMovements = NodePath("../../PlayerMovements")
 playerShooting = NodePath("../../PlayerAim/PlayerShooting")
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
+
+[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1Label", "ability2Label")]
+script = ExtResource("18_d34mc")
+playerInputs = NodePath("../../PlayerInputs")
+ability1Label = NodePath("../../PlayerHUD/Ability1Data")
+ability2Label = NodePath("../../PlayerHUD/Ability2Data")
 
 [node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
 script = ExtResource("19_44plk")
