@@ -12,3 +12,6 @@ func SetRotation():
 	if (playerMovements.currentDirection != Vector2.ZERO):
 		look_at(playerBody.global_position + playerMovements.currentDirection)
 		rotation_degrees += offsetDegrees
+
+func GetCurrentLookDirection():
+	return playerMovements.currentDirection
