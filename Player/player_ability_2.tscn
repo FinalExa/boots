@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3fgotociy2vg"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_80sxv"]
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_02bay"]
+
+[node name="PlayerAbility2" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_80sxv")
+attackDuration = 10
+attackPhasesLaunch = Array[int]([0, 1, 2, 3, 4])
+attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5")]
+attackSounds = [null, null, null, null, null]
+attackMovements = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0])
+ignoreAttackMovement = true
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+position = Vector2(0, -128)
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+position = Vector2(64, -64)
+rotation = 0.785398
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+position = Vector2(-64, -64)
+rotation = -0.785397
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="."]
+position = Vector2(128, 0)
+rotation = 1.5708
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="."]
+position = Vector2(-128, 0)
+rotation = -1.5708
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"

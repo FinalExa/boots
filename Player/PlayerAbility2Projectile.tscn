@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dysi7i8kwtdbc"]
+
+[ext_resource type="Script" path="res://Player/Scripts/PlayerProjectile.gd" id="1_ic0j6"]
+[ext_resource type="Texture2D" uid="uid://cc03wlu11n8sp" path="res://Player/Sprites/ability2Projectile.png" id="2_gyf5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vp0y"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ktxtq"]
+radius = 32.0
+
+[node name="PlayerAbility2Projectile" type="CharacterBody2D" node_paths=PackedStringArray("forward")]
+script = ExtResource("1_ic0j6")
+movementSpeed = 2000.0
+rotationOffset = 90.0
+lifeTime = 15.0
+forward = NodePath("Forward")
+damage = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0vp0y")
+
+[node name="Forward" type="Node2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="ProjectileSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_gyf5w")
+
+[node name="ProjectileArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileArea"]
+shape = SubResource("CircleShape2D_ktxtq")
+
+[connection signal="area_entered" from="ProjectileArea" to="." method="_on_projectile_area_area_entered"]
+[connection signal="body_entered" from="ProjectileArea" to="." method="_on_projectile_area_body_entered"]

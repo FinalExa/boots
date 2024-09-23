@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var playerSpeedThresholds: PlayerSpeedThresholds
 @export var playerInputs: PlayerInputs
 @export var playerShooting: PlayerShooting
+@export var playerRotator: PlayerRotator
 @export var powerUpUI: PowerUpUI
 @export var shopUI: ShopUI
 @export var powerUpManager: PowerUpManager
@@ -30,3 +31,6 @@ func UpdateMoney(valueToAdd):
 
 func UpdateCurrentRoomCount(currentRoomValue: String):
 	currentRoomLabel.text = str("Current Room: ", currentRoomValue)
+
+func GetRotator():
+	return playerRotator
