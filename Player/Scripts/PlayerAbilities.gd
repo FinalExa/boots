@@ -38,7 +38,7 @@ func AbilityIsUsed():
 		ability1CurrentStacks -= 1
 	if (playerInputs.ability2 && ability2CurrentStacks > 0):
 		ability2.StartAttack()
-		ability2CurrentStacks -= 2
+		ability2CurrentStacks -= 1
 
 func AbilityCooldowns(delta):
 	Ability1Cooldown(delta)
@@ -62,7 +62,7 @@ func Ability2Cooldown(delta):
 	if (ability2CurrentStacks < ability2Stacks):
 		if (ability2Timer > 0):
 			ability2Timer -= delta
-			ability1Label.text = str("Charges: ", ability2CurrentStacks, "/", ability2Stacks, "\n", snapped(ability2Timer, 0.1))
+			ability2Label.text = str("Charges: ", ability2CurrentStacks, "/", ability2Stacks, "\n", snapped(ability2Timer, 0.1))
 			return
 		else:
 			ability2CurrentStacks += 1

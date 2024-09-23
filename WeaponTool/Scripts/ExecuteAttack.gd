@@ -37,13 +37,16 @@ func Attacking():
 		AttackExecute()
 
 func AttackExecute():
-	if (currentPhase < attackPhasesLaunch.size() && attackFrame >= attackPhasesLaunch[currentPhase]):
-		ExecuteAttackPhase()
+	LaunchNewPhase()
 	if (attackFrame < attackDuration):
 		AttackMovement(currentPhase - 1)
 		attackFrame += 1
 		return
 	EndAttack()
+
+func LaunchNewPhase():
+	if (currentPhase < attackPhasesLaunch.size() && attackFrame >= attackPhasesLaunch[currentPhase]):
+		ExecuteAttackPhase()
 
 func CooldownExecute():
 	if (attackFrame < attackCooldown):
