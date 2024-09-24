@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://buw1ifal2wysn"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUp.gd" id="1_i16bd"]
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_umpek"]
+
+[node name="Ability1Bomb" type="Node2D" node_paths=PackedStringArray("spawners", "secondarySpawners")]
+script = ExtResource("1_i16bd")
+powerUpName = "Ability 1 Bomb"
+powerUpDescription = "Creates a huge explosion when the ability 1 is used."
+powerUpType = 5
+spawners = [NodePath("Spawner")]
+secondarySpawners = [NodePath("Spawner")]
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("2_umpek")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/ability1_explosion.tscn"
