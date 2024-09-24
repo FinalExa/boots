@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpqirn4qxle6j"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/PowerUpObjectProjectile.gd" id="1_qg81w"]
+[ext_resource type="PackedScene" uid="uid://ba3s68pc8r0h5" path="res://PowerUps/Bomb/SpawnedObjects/ability2_bomb_instance.tscn" id="2_alvn1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhk8h"]
+radius = 16.0
+
+[node name="ShootBombProjectile" type="CharacterBody2D" node_paths=PackedStringArray("powerUpObjectRef", "forward")]
+script = ExtResource("1_qg81w")
+powerUpObjectRef = NodePath("ShootBombInstance")
+alternativeDestroyOutcome = true
+movementSpeed = 1500.0
+rotationOffset = 90.0
+lifeTime = 15.0
+forward = NodePath("Forward")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fhk8h")
+
+[node name="Forward" type="Node2D" parent="."]
+position = Vector2(0, -64)
+
+[node name="ShootBombInstance" parent="." node_paths=PackedStringArray("destroyOnEnd") instance=ExtResource("2_alvn1")]
+destroyOnEnd = NodePath("..")

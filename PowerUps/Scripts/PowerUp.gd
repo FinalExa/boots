@@ -10,7 +10,9 @@ enum PowerUpType {
 	SHOOT,
 	SPEED_CHARGE,
 	TRAIL,
-	PASSIVE
+	PASSIVE,
+	ABILITY1,
+	ABILITY2
 }
 
 @export var powerUpName: String

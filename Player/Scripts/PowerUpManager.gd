@@ -10,6 +10,8 @@ var contactPowerUp: PowerUp
 var shootPowerUp: PowerUp
 var trailPowerUp: PowerUp
 var speedChargePowerUp: PowerUp
+var ability1PowerUp: PowerUp
+var ability2PowerUp: PowerUp
 var powerUpPassives: Array[PowerUp]
 var lastDownIndex: int
 var lastUpIndex: int
@@ -48,6 +50,12 @@ func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp.powerUpType == PowerUp.PowerUpType.PASSIVE):
 		powerUpPassives.push_back(powerUp)
 		return
+	if (powerUp.powerUpType == PowerUp.PowerUpType.ABILITY1):
+		ReplaceOldPowerUp(ability1PowerUp)
+		ability1PowerUp = powerUp
+	if (powerUp.powerUpType == PowerUp.PowerUpType.ABILITY2):
+		ReplaceOldPowerUp(ability2PowerUp)
+		ability2PowerUp = powerUp
 
 func RemovePowerUp(powerUp: PowerUp):
 	powerUp.powerUpManager = null
@@ -65,6 +73,12 @@ func RemovePowerUp(powerUp: PowerUp):
 		return
 	if (powerUp == speedChargePowerUp):
 		speedChargePowerUp = null
+		return
+	if (powerUp == ability1PowerUp):
+		ability1PowerUp = null
+		return
+	if (powerUp == ability2PowerUp):
+		ability2PowerUp = null
 		return
 	if (powerUpPassives.has(powerUp)):
 		powerUpPassives.erase(powerUp)
@@ -106,5 +120,13 @@ func ExecuteTrail(delta):
 		trailPowerUp.ExecutePowerUpEffect()
 
 func ReleaseSpeedCharge():
-	if (speedChargePowerUp != null && playerRef.playerInputs.releaseSpeedCharge):
+	if (playerRef.playerInputs.releaseSpeedCharge && speedChargePowerUp != null):
 		speedChargePowerUp.SpeedChargeActivate()
+
+func Ability1Used():
+	if (ability1PowerUp != null):
+		ability1PowerUp.ExecutePowerUpEffect()
+
+func Ability2Used():
+	if (ability2PowerUp != null):
+		ability2PowerUp.ExecutePowerUpEffect()

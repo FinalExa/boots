@@ -243,15 +243,13 @@ speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
 script = ExtResource("18_d34mc")
 playerInputs = NodePath("../../PlayerInputs")
 ability1 = NodePath("PlayerAbility1")
-ability1Cooldown = 5.0
-ability1Stacks = 2
+ability1Cooldown = 15.0
 ability1Label = NodePath("../../PlayerHUD/Ability1Data")
 ability2 = NodePath("PlayerAbility2")
 ability2Cooldown = 10.0
 ability2Label = NodePath("../../PlayerHUD/Ability2Data")
 
-[node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
-attackSounds = [null]
+[node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("19_bpc71")]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbility2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_6myp7")]
@@ -318,6 +316,8 @@ rotation = -0.785398
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
+[connection signal="ability1Used" from="PlayerRotator/PlayerAbilities" to="PlayerRotator/PowerUpManager" method="Ability1Used"]
+[connection signal="ability2Used" from="PlayerRotator/PlayerAbilities" to="PlayerRotator/PowerUpManager" method="Ability2Used"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect1" to="PlayerMovements" method="OnCollisionDetected"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect2" to="PlayerMovements" method="OnCollisionDetected"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect3" to="PlayerMovements" method="OnCollisionDetected"]

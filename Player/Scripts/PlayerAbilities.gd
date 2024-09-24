@@ -1,6 +1,9 @@
 class_name PlayerAbilities
 extends Node2D
 
+signal ability1Used
+signal ability2Used
+
 @export var playerInputs: PlayerInputs
 
 @export var ability1: ExecuteAttack
@@ -34,9 +37,11 @@ func StartupAbilities():
 
 func AbilityIsUsed():
 	if (playerInputs.ability1 && ability1CurrentStacks > 0):
+		emit_signal("ability1Used")
 		ability1.StartAttack()
 		ability1CurrentStacks -= 1
 	if (playerInputs.ability2 && ability2CurrentStacks > 0):
+		emit_signal("ability2Used")
 		ability2.StartAttack()
 		ability2CurrentStacks -= 1
 
