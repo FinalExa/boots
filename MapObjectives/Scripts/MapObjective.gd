@@ -1,6 +1,9 @@
 class_name MapObjective
 extends Node
 
+@export var objectiveDescription: String
+@export var objectiveNotCompletedDescription: String
+@export var objectiveCompletedDescription: String
 @export var gameplayScene: GameplayScene
 var playerRef: PlayerCharacter
 

@@ -249,7 +249,8 @@ ability2 = NodePath("PlayerAbility2")
 ability2Cooldown = 10.0
 ability2Label = NodePath("../../PlayerHUD/Ability2Data")
 
-[node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("19_bpc71")]
+[node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbility2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_6myp7")]

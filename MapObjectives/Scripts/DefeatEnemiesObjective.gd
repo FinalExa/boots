@@ -1,8 +1,5 @@
 extends MapObjective
 
-@export var objectiveDescription: String
-@export var objectiveNotCompletedDescription: String
-@export var objectiveCompletedDescription: String
 @export var enemies: Array[EnemyController]
 var startingSize: int
 
