@@ -20,6 +20,7 @@ var repelledSpeed: float
 var repelledDirection: Vector2
 var repelledActive: bool
 var damageImmunity: bool
+var spawnerRef: ObjectSpawner
 
 func _process(delta):
 	ImmunityTimer(delta)
@@ -46,3 +47,10 @@ func ImmunityTimer(delta):
 
 func GetRotator():
 	return enemyRotator
+
+func SetSpawnerRef(receivedRef: ObjectSpawner):
+	spawnerRef = receivedRef
+
+func EnemyDeath():
+	if (spawnerRef != null):
+		spawnerRef.ReceivedCallFromDeletedSpawnedObject(self)
