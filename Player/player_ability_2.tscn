@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3fgotociy2vg"]
 
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_80sxv"]
-[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_02bay"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_02bay"]
 
 [node name="PlayerAbility2" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
 script = ExtResource("1_80sxv")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://buw1ifal2wysn"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUp.gd" id="1_i16bd"]
-[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_umpek"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_umpek"]
 
 [node name="Ability1Bomb" type="Node2D" node_paths=PackedStringArray("spawners", "secondarySpawners")]
 script = ExtResource("1_i16bd")

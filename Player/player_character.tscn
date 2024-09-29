@@ -23,7 +23,7 @@
 [ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
 [ext_resource type="PackedScene" uid="uid://bqksn2ryw4yw4" path="res://Player/player_ability_1.tscn" id="19_bpc71"]
 [ext_resource type="PackedScene" uid="uid://d3fgotociy2vg" path="res://Player/player_ability_2.tscn" id="20_6myp7"]
-[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="20_cfw71"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
@@ -274,7 +274,7 @@ projectileCountLabel = NodePath("../../PlayerHUD/ProjectileCount")
 
 [node name="ObjectSpawner" type="Node2D" parent="PlayerAim/PlayerShooting"]
 position = Vector2(0, -64)
-script = ExtResource("20_cfw71")
+script = ExtResource("23_3xtsy")
 
 [node name="Arrow" type="Sprite2D" parent="PlayerAim"]
 texture = ExtResource("5_s1pth")
