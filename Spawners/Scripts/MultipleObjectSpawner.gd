@@ -25,3 +25,8 @@ func ReceivedCallFromDeletedSpawnedObject(object):
 	if (activeObjects.has(object)):
 		if (object is EnemyController): mapObjective.RequestEnemyData(object)
 		activeObjects.erase(object)
+
+func ReturnCount():
+	if (objectPaths.size() > 0 && objectPaths.size() == objectSpawnLocations.size()):
+		return objectPaths.size()
+	return 0
