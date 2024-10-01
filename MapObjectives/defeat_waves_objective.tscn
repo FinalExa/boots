@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4co2byvhl15v"]
+
+[ext_resource type="Script" path="res://MapObjectives/Scripts/DefeatWavesObjective.gd" id="1_ljh3k"]
+
+[node name="DefeatWavesObjective" type="Node" node_paths=PackedStringArray("gameplayScene")]
+script = ExtResource("1_ljh3k")
+objectiveDescription = "Defeat all enemy waves"
+objectiveNotCompletedDescription = "Wave: "
+objectiveCompletedDescription = "COMPLETED"
+gameplayScene = NodePath("")

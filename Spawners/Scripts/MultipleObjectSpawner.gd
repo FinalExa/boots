@@ -25,6 +25,9 @@ func ReceivedCallFromDeletedSpawnedObject(object):
 	if (activeObjects.has(object)):
 		if (object is EnemyController): mapObjective.RequestEnemyData(object)
 		activeObjects.erase(object)
+		if (activeObjects.size() == 0 && mapObjective != null):
+			if (mapObjective is DefeatWavesObjective):
+				mapObjective.SpawnAndAdvanceWave()
 
 func ReturnCount():
 	if (objectPaths.size() > 0 && objectPaths.size() == objectSpawnLocations.size()):

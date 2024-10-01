@@ -19,7 +19,7 @@ func RemoveEnemy(enemyToRemove: EnemyController):
 	if (enemies.has(enemyToRemove)):
 		enemies.erase(enemyToRemove)
 		if (enemies.size() == 0):
-			ObjectiveCompleted()
 			playerRef.currentObjectiveUI.UpdateText(objectiveDescription, objectiveCompletedDescription)
+			ObjectiveCompleted()
 		else:
 			playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str(objectiveNotCompletedDescription, enemies.size(), "/", startingSize))
