@@ -10,10 +10,9 @@ func ReadyOperations():
 
 func Setup():
 	currentWave = 0
-	startingSize = 0
-	for index in multipleObjectSpawners.size():
-		startingSize += multipleObjectSpawners[index].ReturnCount()
-		multipleObjectSpawners[index].mapObjective = self
+	startingSize = multipleObjectSpawners.size()
+	for i in multipleObjectSpawners.size():
+		multipleObjectSpawners[i].mapObjective = self
 	SpawnAndAdvanceWave()
 
 func SpawnAndAdvanceWave():
