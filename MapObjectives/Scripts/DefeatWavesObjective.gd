@@ -11,9 +11,12 @@ func ReadyOperations():
 func Setup():
 	currentWave = 0
 	startingSize = multipleObjectSpawners.size()
+	RegisterSpawners()
+	SpawnAndAdvanceWave()
+
+func RegisterSpawners():
 	for i in multipleObjectSpawners.size():
 		multipleObjectSpawners[i].mapObjective = self
-	SpawnAndAdvanceWave()
 
 func SpawnAndAdvanceWave():
 	if (currentWave < multipleObjectSpawners.size()):

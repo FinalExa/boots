@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgmio138nhjj2"]
+
+[ext_resource type="Script" path="res://MapObjectives/Scripts/SurviveObjective.gd" id="1_yokrl"]
+
+[node name="SurviveObjective" type="Node"]
+script = ExtResource("1_yokrl")
+objectiveDescription = "Survive"
+objectiveNotCompletedDescription = "Remaining: "
+objectiveCompletedDescription = "COMPLETED"
