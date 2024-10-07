@@ -32,7 +32,7 @@ radius = 16.0
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 font_color = Color(0.854902, 0, 0.854902, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel", "followItem")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerHUD/Objective")
@@ -46,6 +46,7 @@ powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 moneyLabel = NodePath("PlayerHUD/MoneyValue")
 currentRoomLabel = NodePath("PlayerHUD/CurrentRoomValue")
+followItem = NodePath("PlayerRotator/FollowItem")
 startingMoney = 100.0
 
 [node name="Sounds" type="Node" parent="."]
@@ -256,6 +257,9 @@ characterRef = NodePath("../../..")
 [node name="PlayerAbility2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_6myp7")]
 attackSounds = [null, null, null, null, null]
 characterRef = NodePath("../../..")
+
+[node name="FollowItem" type="Node2D" parent="PlayerRotator"]
+position = Vector2(0, 72)
 
 [node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
 script = ExtResource("19_44plk")

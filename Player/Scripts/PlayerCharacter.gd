@@ -13,10 +13,11 @@ extends CharacterBody2D
 @export var playerHealth: PlayerHealth
 @export var moneyLabel: Label
 @export var currentRoomLabel: Label
+@export var followItem: Node2D
 @export var rewardSpawn: RewardSpawn
 @export var mapProgressionSelector: MapProgressionSelector
-var collisionResult: bool
 @export var startingMoney: float
+var collisionResult: bool
 var currentMoney: float
 
 func _ready():
