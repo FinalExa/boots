@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bacrqpknryb8l"]
+
+[ext_resource type="Script" path="res://MapObjectives/Scripts/TransportObjectObjective.gd" id="1_wimws"]
+
+[node name="TransportObjectObjective" type="Node"]
+script = ExtResource("1_wimws")
+objectiveDescription = "Sabotage Towers"
+objectiveNotCompletedDescription = "Towers Remaining: "
+objectiveCompletedDescription = "COMPLETED"
