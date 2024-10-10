@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_q03js"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="2_1rn25"]
-[ext_resource type="PackedScene" uid="uid://bgmio138nhjj2" path="res://MapObjectives/survive_objective.tscn" id="2_1wmfi"]
+[ext_resource type="PackedScene" uid="uid://bacrqpknryb8l" path="res://MapObjectives/transport_object_objective.tscn" id="2_hte64"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_io7qq"]
 [ext_resource type="Texture2D" uid="uid://rg08k2ig50ro" path="res://LevelDesign/Sprites/groundtile1.png" id="3_twffr"]
 [ext_resource type="Script" path="res://Spawners/Scripts/MultipleObjectSpawner.gd" id="3_w6kkd"]
@@ -34,10 +34,7 @@ rewardSpawnPosition = NodePath("RewardSpawnPosition")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_oq6ai")
 
-[node name="SurviveObjective" parent="." node_paths=PackedStringArray("multipleObjectSpawners", "gameplayScene") instance=ExtResource("2_1wmfi")]
-surviveTime = 45.0
-spawnNewWaveCD = 5.0
-multipleObjectSpawners = [NodePath("../Spawners/MultipleObjectSpawner"), NodePath("../Spawners/MultipleObjectSpawner2")]
+[node name="TransportObjectObjective" parent="." node_paths=PackedStringArray("gameplayScene") instance=ExtResource("2_hte64")]
 gameplayScene = NodePath("..")
 
 [node name="Spawners" type="Node2D" parent="."]
