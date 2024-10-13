@@ -259,7 +259,7 @@ attackSounds = [null, null, null, null, null]
 characterRef = NodePath("../../..")
 
 [node name="FollowItem" type="Node2D" parent="PlayerRotator"]
-position = Vector2(0, 72)
+position = Vector2(0, 128)
 
 [node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
 script = ExtResource("19_44plk")

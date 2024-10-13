@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://lvyfy0ogget5"]
+[gd_scene load_steps=17 format=3 uid="uid://lvyfy0ogget5"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_q03js"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="2_1rn25"]
 [ext_resource type="PackedScene" uid="uid://bacrqpknryb8l" path="res://MapObjectives/transport_object_objective.tscn" id="2_hte64"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="3_cirmm"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_io7qq"]
 [ext_resource type="Texture2D" uid="uid://rg08k2ig50ro" path="res://LevelDesign/Sprites/groundtile1.png" id="3_twffr"]
 [ext_resource type="Script" path="res://Spawners/Scripts/MultipleObjectSpawner.gd" id="3_w6kkd"]
 [ext_resource type="PackedScene" uid="uid://ceg01pefr0xb7" path="res://LevelDesign/wallverticalfullview.tscn" id="4_ncr2h"]
+[ext_resource type="PackedScene" uid="uid://ddjg6y7krodau" path="res://MapObjectives/ObjectiveObjects/transport_destination.tscn" id="5_dxfm6"]
 [ext_resource type="PackedScene" uid="uid://bo430me6x0rsp" path="res://LevelDesign/wallverticalshort.tscn" id="5_gu6ye"]
 [ext_resource type="PackedScene" uid="uid://qtmhrs16aupe" path="res://LevelDesign/wallrightend.tscn" id="6_yjb0u"]
 [ext_resource type="PackedScene" uid="uid://40ldnmu68n4w" path="res://LevelDesign/wallleftend.tscn" id="7_88b74"]
@@ -34,10 +36,19 @@ rewardSpawnPosition = NodePath("RewardSpawnPosition")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_oq6ai")
 
-[node name="TransportObjectObjective" parent="." node_paths=PackedStringArray("gameplayScene") instance=ExtResource("2_hte64")]
+[node name="TransportObjectObjective" parent="." node_paths=PackedStringArray("transportObjectSpawner", "transportDestinations", "multipleObjectSpawners", "gameplayScene") instance=ExtResource("2_hte64")]
+transportObjectSpawner = NodePath("../Spawners/TransportObjectSpawner")
+transportDestinations = [NodePath("../TransportDestination"), NodePath("../TransportDestination2")]
+multipleObjectSpawners = [NodePath("../Spawners/MultipleObjectSpawner"), NodePath("../Spawners/MultipleObjectSpawner2")]
+spawnNewWaveCD = 7.0
 gameplayScene = NodePath("..")
 
 [node name="Spawners" type="Node2D" parent="."]
+
+[node name="TransportObjectSpawner" type="Node2D" parent="Spawners"]
+position = Vector2(512, 1216)
+script = ExtResource("3_cirmm")
+objectPath = "res://MapObjectives/ObjectiveObjects/transport_object.tscn"
 
 [node name="MultipleObjectSpawner" type="Node2D" parent="Spawners" node_paths=PackedStringArray("objectSpawnLocations")]
 script = ExtResource("3_w6kkd")
@@ -78,6 +89,12 @@ position = Vector2(224, 832)
 
 [node name="3" type="Node2D" parent="Spawners/MultipleObjectSpawner2"]
 position = Vector2(512, -1536)
+
+[node name="TransportDestination" parent="." instance=ExtResource("5_dxfm6")]
+position = Vector2(-1856, -320)
+
+[node name="TransportDestination2" parent="." instance=ExtResource("5_dxfm6")]
+position = Vector2(0, -1152)
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
 position = Vector2(320, 1216)

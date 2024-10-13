@@ -1,15 +1,15 @@
 class_name TransportObject
-extends Node2D
+extends Area2D
 
+@export var activateOnClosePlayer: Label
 var playerIsIn: bool
 var playerRef: PlayerCharacter
 var isAttachedToPlayer: bool
-var activateOnPlayerClose: Node2D
 var originalParent: Node2D
 
 func _ready():
 	originalParent = self.get_parent()
-	activateOnPlayerClose.hide()
+	activateOnClosePlayer.hide()
 
 func _process(_delta):
 	AttachToPlayer()
@@ -17,21 +17,27 @@ func _process(_delta):
 func AttachToPlayer():
 	if (playerIsIn && playerRef != null && playerRef.playerInputs.interactionInput):
 		isAttachedToPlayer = true
-		playerRef.followItem.add_child(self)
+		reparent(playerRef.followItem)
+		global_position = playerRef.followItem.global_position
+		activateOnClosePlayer.hide()
 
 func DetachFromPlayer():
 	if (isAttachedToPlayer):
 		isAttachedToPlayer = false
-		originalParent.add_child(self)
+		reparent(originalParent)
 
-func _on_area_2d_body_entered(body):
+func SelfDestruct():
+	DetachFromPlayer()
+	queue_free()
+
+func _on_body_entered(body):
 	if (body is PlayerCharacter && !playerIsIn):
-		activateOnPlayerClose.show()
+		activateOnClosePlayer.show()
 		playerIsIn = true
 		playerRef = body
 
-func _on_area_2d_body_exited(body):
+func _on_body_exited(body):
 	if (!isAttachedToPlayer && body is PlayerCharacter && playerIsIn):
-		activateOnPlayerClose.hide()
+		activateOnClosePlayer.hide()
 		playerIsIn = false
 		playerRef = null

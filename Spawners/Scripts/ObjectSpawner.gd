@@ -24,5 +24,5 @@ func AddObjectToScene(object):
 	if (sceneMaster != null):
 		sceneMaster.sceneSelector.currentScene.add_child(object)
 
-func ReceivedCallFromDeletedSpawnedObject(object):
+func ReceivedCallFromDeletedSpawnedObject(_object):
 	pass
