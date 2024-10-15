@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0n7tsikmh4cj"]
+
+[ext_resource type="Script" path="res://MapObjectives/Scripts/AreaCaptureObjective.gd" id="1_v1gu1"]
+
+[node name="CaptureAreasObjective" type="Node"]
+script = ExtResource("1_v1gu1")
+spawnNewWaveCD = 7.0
+objectiveDescription = "Capture all areas"
+objectiveNotCompletedDescription = "Areas captured: "
+objectiveCompletedDescription = "COMPLETED"

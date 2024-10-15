@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkn8xhsp2ws37"]
+
+[ext_resource type="Script" path="res://MapObjectives/ObjectiveObjects/Scripts/TransportObject.gd" id="1_0ofcj"]
+[ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="2_0oc5e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52f73"]
+radius = 64.0
+
+[sub_resource type="SystemFont" id="SystemFont_0wjqx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2haj"]
+font = SubResource("SystemFont_0wjqx")
+
+[node name="TransportObject" type="Area2D" node_paths=PackedStringArray("activateOnClosePlayer")]
+script = ExtResource("1_0ofcj")
+activateOnClosePlayer = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_52f73")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_0oc5e")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = -32.0
+text = "PRESS F"
+label_settings = SubResource("LabelSettings_s2haj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

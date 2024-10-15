@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://eslqbrcvag7j"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUp.gd" id="1_2qe4o"]
-[ext_resource type="Script" path="res://WeaponTool/Scripts/ObjectSpawner.gd" id="2_06qph"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_06qph"]
 
 [node name="TrailBomb" type="Node2D" node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_2qe4o")
