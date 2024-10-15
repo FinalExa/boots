@@ -37,10 +37,11 @@ func ClearSpawners():
 		multipleObjectSpawners[i].ClearActiveObjects()
 
 func WaveCooldown(delta):
-	if (waveTimer > 0):
-		waveTimer -= delta
-		return
-	SpawnWave()
+	if (surviveTimer > 0):
+		if (waveTimer > 0):
+			waveTimer -= delta
+			return
+		SpawnWave()
 
 func SpawnWave():
 	if (currentSpawnerIndex >= multipleObjectSpawners.size()):

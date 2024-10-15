@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://jex0wgah5kno"]
+
+[ext_resource type="Script" path="res://MapObjectives/ObjectiveObjects/Scripts/CaptureArea.gd" id="1_q1b4u"]
+[ext_resource type="Texture2D" uid="uid://b8qt8l8h6ysit" path="res://Player/Sprites/ability1Area.png" id="2_gxakw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hdob"]
+radius = 1024.28
+
+[node name="CaptureArea" type="Area2D" node_paths=PackedStringArray("chargeLabel")]
+script = ExtResource("1_q1b4u")
+maxCharge = 100.0
+playerSpeedDivideValue = 250.0
+chargeLabel = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7hdob")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -88.0
+offset_right = 40.0
+offset_bottom = -65.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(4.14848e-05, 1.52588e-05)
+scale = Vector2(10.6667, 10.6667)
+texture = ExtResource("2_gxakw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
