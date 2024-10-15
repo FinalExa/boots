@@ -1,14 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://lvyfy0ogget5"]
+[gd_scene load_steps=16 format=3 uid="uid://lvyfy0ogget5"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_q03js"]
 [ext_resource type="PackedScene" uid="uid://cugkjfm0mqlxr" path="res://LevelDesign/wallvertical.tscn" id="2_1rn25"]
-[ext_resource type="PackedScene" uid="uid://b0n7tsikmh4cj" path="res://MapObjectives/capture_areas_objective.tscn" id="2_8yg0s"]
-[ext_resource type="PackedScene" uid="uid://jex0wgah5kno" path="res://MapObjectives/ObjectiveObjects/capture_area.tscn" id="3_27cea"]
+[ext_resource type="PackedScene" uid="uid://b55c7jchpedws" path="res://MapObjectives/bounty_objective.tscn" id="2_i4w60"]
 [ext_resource type="PackedScene" uid="uid://p6qu5hgrxryo" path="res://LevelDesign/wall.tscn" id="3_io7qq"]
 [ext_resource type="Texture2D" uid="uid://rg08k2ig50ro" path="res://LevelDesign/Sprites/groundtile1.png" id="3_twffr"]
+[ext_resource type="PackedScene" uid="uid://7ocoxcgcjqje" path="res://Enemies/samurai_enemy.tscn" id="3_vcpkg"]
 [ext_resource type="Script" path="res://Spawners/Scripts/MultipleObjectSpawner.gd" id="3_w6kkd"]
 [ext_resource type="PackedScene" uid="uid://ceg01pefr0xb7" path="res://LevelDesign/wallverticalfullview.tscn" id="4_ncr2h"]
-[ext_resource type="PackedScene" uid="uid://ddjg6y7krodau" path="res://MapObjectives/ObjectiveObjects/transport_destination.tscn" id="5_dxfm6"]
 [ext_resource type="PackedScene" uid="uid://bo430me6x0rsp" path="res://LevelDesign/wallverticalshort.tscn" id="5_gu6ye"]
 [ext_resource type="PackedScene" uid="uid://qtmhrs16aupe" path="res://LevelDesign/wallrightend.tscn" id="6_yjb0u"]
 [ext_resource type="PackedScene" uid="uid://40ldnmu68n4w" path="res://LevelDesign/wallleftend.tscn" id="7_88b74"]
@@ -36,16 +35,14 @@ rewardSpawnPosition = NodePath("RewardSpawnPosition")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_oq6ai")
 
-[node name="CaptureAreasObjective" parent="." node_paths=PackedStringArray("captureAreas", "multipleObjectSpawners", "gameplayScene") instance=ExtResource("2_8yg0s")]
-captureAreas = [NodePath("../CaptureArea"), NodePath("../CaptureArea2")]
+[node name="BountyObjective" parent="." node_paths=PackedStringArray("enemies", "multipleObjectSpawners", "gameplayScene") instance=ExtResource("2_i4w60")]
+enemies = [NodePath("../SamuraiEnemy")]
 multipleObjectSpawners = [NodePath("../Spawners/MultipleObjectSpawner"), NodePath("../Spawners/MultipleObjectSpawner2")]
+spawnNewWaveCD = 5.0
 gameplayScene = NodePath("..")
 
-[node name="CaptureArea" parent="." instance=ExtResource("3_27cea")]
-position = Vector2(-1472, 1024)
-
-[node name="CaptureArea2" parent="." instance=ExtResource("3_27cea")]
-position = Vector2(960, -256)
+[node name="SamuraiEnemy" parent="." instance=ExtResource("3_vcpkg")]
+position = Vector2(1728, 1216)
 
 [node name="Spawners" type="Node2D" parent="."]
 
@@ -74,8 +71,8 @@ position = Vector2(1216, 512)
 
 [node name="MultipleObjectSpawner2" type="Node2D" parent="Spawners" node_paths=PackedStringArray("objectSpawnLocations")]
 script = ExtResource("3_w6kkd")
-objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/shielder_enemy.tscn", "res://Enemies/samurai_enemy.tscn"])
-objectSpawnLocations = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3")]
+objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/shielder_enemy.tscn"])
+objectSpawnLocations = [NodePath("0"), NodePath("1"), NodePath("2")]
 
 [node name="0" type="Node2D" parent="Spawners/MultipleObjectSpawner2"]
 position = Vector2(-64, 832)
@@ -85,15 +82,6 @@ position = Vector2(512, 832)
 
 [node name="2" type="Node2D" parent="Spawners/MultipleObjectSpawner2"]
 position = Vector2(224, 832)
-
-[node name="3" type="Node2D" parent="Spawners/MultipleObjectSpawner2"]
-position = Vector2(512, -1536)
-
-[node name="TransportDestination" parent="." instance=ExtResource("5_dxfm6")]
-position = Vector2(-1856, -320)
-
-[node name="TransportDestination2" parent="." instance=ExtResource("5_dxfm6")]
-position = Vector2(0, -1152)
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
 position = Vector2(320, 1216)
