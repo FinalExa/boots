@@ -11,7 +11,6 @@ extends Node2D
 @export var characterRef: CharacterBody2D
 var frameMaster: FrameMaster
 var attackHitboxInstance: Node2D
-var movementValue: float
 var movementDirection: Vector2
 
 var attackLaunched: bool
