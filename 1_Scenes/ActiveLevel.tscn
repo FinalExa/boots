@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://be383digmia26"]
+
+[ext_resource type="Script" path="res://1_Scenes/Scripts/SceneMaster.gd" id="1_cl6lx"]
+[ext_resource type="PackedScene" uid="uid://dqg13lpbwrv7" path="res://Player/player_character.tscn" id="2_towhw"]
+[ext_resource type="AudioStream" uid="uid://dv5wtt2gpi6ca" path="res://Soundtrack/TestSoundtrack.mp3" id="3_wh4l7"]
+[ext_resource type="PackedScene" uid="uid://bjn4y2vm7ph0y" path="res://PowerUps/reward_spawn.tscn" id="4_gk5da"]
+[ext_resource type="Script" path="res://WeaponTool/Scripts/FrameMaster.gd" id="5_gxw7i"]
+[ext_resource type="PackedScene" uid="uid://dugmsdmhklyng" path="res://MapShuffler/map_progression_selector.tscn" id="6_ex1yu"]
+[ext_resource type="PackedScene" uid="uid://w355ff52l2m8" path="res://MapShuffler/scene_selector.tscn" id="7_kja8i"]
+
+[node name="ActiveLevel" type="Node2D" node_paths=PackedStringArray("frameMaster", "sceneSelector")]
+script = ExtResource("1_cl6lx")
+frameMaster = NodePath("FrameMaster")
+sceneSelector = NodePath("SceneSelector")
+
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("rewardSpawn", "mapProgressionSelector") instance=ExtResource("2_towhw")]
+position = Vector2(10000, 10000)
+rewardSpawn = NodePath("../RewardSpawn")
+mapProgressionSelector = NodePath("../MapProgressionSelector")
+
+[node name="Soundtrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wh4l7")
+volume_db = -40.0
+autoplay = true
+
+[node name="RewardSpawn" parent="." node_paths=PackedStringArray("playerRef") instance=ExtResource("4_gk5da")]
+playerRef = NodePath("../PlayerCharacter")
+
+[node name="FrameMaster" type="Node" parent="."]
+script = ExtResource("5_gxw7i")
+framesPerSecond = 60.0
+
+[node name="MapProgressionSelector" parent="." node_paths=PackedStringArray("sceneSelector", "rewardSpawn") instance=ExtResource("6_ex1yu")]
+sceneSelector = NodePath("../SceneSelector")
+rewardSpawn = NodePath("../RewardSpawn")
+
+[node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn", "mapProgressionSelector") instance=ExtResource("7_kja8i")]
+shopScene = "res://Scenes/ShopScene.tscn"
+playerRef = NodePath("../PlayerCharacter")
+rewardSpawn = NodePath("../RewardSpawn")
+mapProgressionSelector = NodePath("../MapProgressionSelector")
