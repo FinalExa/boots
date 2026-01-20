@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=8 format=3 uid="uid://lv2ribd5elhf"]
 
-[ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tilemap.png" id="1_dea3a"]
+[ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="1_h23qb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h7c1e"]
 vertices = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -28,7 +28,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -32, 32, -32, 32, 32, 0, 32)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gf2a4"]
-texture = ExtResource("1_dea3a")
+texture = ExtResource("1_h23qb")
 texture_region_size = Vector2i(64, 64)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)

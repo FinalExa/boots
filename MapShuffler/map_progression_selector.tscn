@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dugmsdmhklyng"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/MapProgressionSelector.gd" id="1_x7im7"]
-[ext_resource type="PackedScene" uid="uid://c71amm3r0ykyv" path="res://MapShuffler/Maps/laboratories.tscn" id="2_di3xb"]
+[ext_resource type="PackedScene" uid="uid://c71amm3r0ykyv" path="res://MapShuffler/Maps/Laboratories/laboratories.tscn" id="2_m87jj"]
 
 [node name="MapProgressionSelector" type="Node" node_paths=PackedStringArray("maps")]
 script = ExtResource("1_x7im7")
@@ -10,4 +10,4 @@ difficultyValueMaxValue = 2.0
 gameMaxDifficulty = 4.0
 maps = [NodePath("Laboratories")]
 
-[node name="Laboratories" parent="." instance=ExtResource("2_di3xb")]
+[node name="Laboratories" parent="." instance=ExtResource("2_m87jj")]
