@@ -30,7 +30,8 @@
 radius = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
-font_color = Color(0.854902, 0, 0.854902, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel", "followItem")]
 script = ExtResource("1_hu618")

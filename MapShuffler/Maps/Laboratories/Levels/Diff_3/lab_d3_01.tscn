@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhlmuax30o2gn"]
+
+[ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_b075m"]
+[ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_ebicw"]
+
+[node name="Lab_D3_01" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
+script = ExtResource("1_b075m")
+playerSpawnPoint = NodePath("SpawnPoint")
+rewardSpawnPosition = NodePath("RewardSpawnPosition")
+
+[node name="MapStructure" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource("2_ebicw")
+format = 2
+
+[node name="SWAP_WITH_OBJECTIVE" type="Node" parent="."]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+
+[node name="RewardSpawnPosition" type="Node2D" parent="."]

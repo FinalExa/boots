@@ -26,6 +26,7 @@ func LevelSelectionCases():
 		mapProgressionSelector.rewardSpawn.roomNumber = 0
 		mapProgressionSelector.rewardSpawn.GenerateRewardType()
 		GetMapInDifficultyRange()
+		mapProgressionSelector.rewardSpawn.roomNumber = 0
 		return
 	if (mapFloors[currentFloor] == FloorTypes.NORMAL):
 		GetMapInDifficultyRange()

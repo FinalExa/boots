@@ -67,8 +67,8 @@ label = NodePath("../EnemyUI/Health")
 script = ExtResource("3_5yi6u")
 enemyController = NodePath("..")
 navigationAgent = NodePath("../NavigationAgent2D")
-defaultMovementSpeed = 300.0
-distanceTolerance = 30.0
+defaultMovementSpeed = 500.0
+distanceTolerance = 20.0
 repathTimerDuration = 0.25
 
 [node name="EnemyRepelled" type="Node" parent="." node_paths=PackedStringArray("enemyController")]
