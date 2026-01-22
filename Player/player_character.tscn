@@ -85,24 +85,133 @@ script = ExtResource("3_fxyqo")
 script = ExtResource("1_n46fh")
 playerCharacter = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
-maxAccelerationPerSecond = 1500.0
+maxAccelerationPerSecond = 1200.0
 maxAccelerationPerSecondEndPoint = 500.0
 minAccelerationPerSecond = 300.0
 minAccelerationPerSecondEndPoint = 1800.0
 decelerationPerSecond = 1000.0
 decelerationDecreaseOnCollision = 300.0
-minDecelerationWhileSteering = -500.0
+minDecelerationWhileSteering = -750.0
 maxDecelerationWhileSteering = 300.0
-decelerationWhileSteeringRequiredSpeed = 500.0
-decelerationWhileSteeringIncreasePerSecond = 1000.0
-decelerationWhileSteeringDecreasePerSecond = 450.0
+decelerationWhileSteeringRequiredSpeed = 300.0
+decelerationWhileSteeringIncreasePerSecond = 750.0
+decelerationWhileSteeringDecreasePerSecond = 500.0
 rotationSpeedPerSecond = 2.5
 killSpeedValue = 500.0
-minSpeed = 100.0
+minSpeed = 50.0
 maxSpeed = 2000.0
 distanceDifferenceTolerance = 4.5
 distanceDifferenceToleranceMinSpeed = 300.0
 decelerationForDistanceDifference = 3000.0
+
+[node name="PlayerRotator" type="Node2D" parent="." node_paths=PackedStringArray("playerBody", "playerMovements")]
+script = ExtResource("4_mluyg")
+playerBody = NodePath("..")
+playerMovements = NodePath("../PlayerMovements")
+offsetDegrees = 90
+
+[node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
+script = ExtResource("4_33erx")
+playerMovements = NodePath("../../PlayerMovements")
+speedThresholds = Array[float]([500.0, 1000.0, 1750.0, 2000.0])
+thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
+
+[node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
+playerMovements = NodePath("../../../PlayerMovements")
+directSound = NodePath("../../../Sounds/PlayerDirect")
+clashSound = NodePath("../../../Sounds/PlayerClash")
+
+[node name="SecondSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("12_psnq3")]
+playerMovements = NodePath("../../../PlayerMovements")
+directSound = NodePath("../../../Sounds/PlayerDirect")
+clashSound = NodePath("../../../Sounds/PlayerClash")
+
+[node name="ThirdSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("13_gt5g5")]
+playerMovements = NodePath("../../../PlayerMovements")
+directSound = NodePath("../../../Sounds/PlayerDirect")
+clashSound = NodePath("../../../Sounds/PlayerClash")
+
+[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeLabel")]
+script = ExtResource("16_1u6or")
+playerRef = NodePath("../..")
+playerMovements = NodePath("../../PlayerMovements")
+playerShooting = NodePath("../../PlayerAim/PlayerShooting")
+speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
+
+[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Label", "ability2", "ability2Label")]
+script = ExtResource("18_d34mc")
+playerInputs = NodePath("../../PlayerInputs")
+ability1 = NodePath("PlayerAbility1")
+ability1Cooldown = 15.0
+ability1Label = NodePath("../../PlayerHUD/Ability1Data")
+ability2 = NodePath("PlayerAbility2")
+ability2Cooldown = 10.0
+ability2Label = NodePath("../../PlayerHUD/Ability2Data")
+
+[node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
+attackSounds = [null]
+characterRef = NodePath("../../..")
+
+[node name="PlayerAbility2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_6myp7")]
+attackSounds = [null, null, null, null, null]
+characterRef = NodePath("../../..")
+
+[node name="FollowItem" type="Node2D" parent="PlayerRotator"]
+position = Vector2(0, 128)
+
+[node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
+script = ExtResource("19_44plk")
+playerInputs = NodePath("../PlayerInputs")
+offsetDegrees = 90.0
+
+[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "powerUpManager", "projectileSpawner", "projectileCountLabel")]
+script = ExtResource("19_aegdj")
+playerInputs = NodePath("../../PlayerInputs")
+powerUpManager = NodePath("../../PlayerRotator/PowerUpManager")
+projectileSpawner = NodePath("ObjectSpawner")
+baseMaxProjectiles = 3
+baseProjectileICD = 5.0
+baseProjectilePrefabPath = "res://Player/PlayerProjectile.tscn"
+projectileCountLabel = NodePath("../../PlayerHUD/ProjectileCount")
+
+[node name="ObjectSpawner" type="Node2D" parent="PlayerAim/PlayerShooting"]
+position = Vector2(0, -64)
+script = ExtResource("23_3xtsy")
+
+[node name="Arrow" type="Sprite2D" parent="PlayerAim"]
+texture = ExtResource("5_s1pth")
+
+[node name="PlayerCollisionDetects" type="Node2D" parent="."]
+
+[node name="PlayerCollisionDetect1" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(0, 8)
+
+[node name="PlayerCollisionDetect2" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(0, 40)
+
+[node name="PlayerCollisionDetect3" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(16, 24)
+rotation = 1.5708
+
+[node name="PlayerCollisionDetect4" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(-16, 24)
+rotation = 1.5708
+
+[node name="PlayerCollisionDetect5" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(11, 13)
+rotation = 0.785398
+
+[node name="PlayerCollisionDetect6" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(11, 35)
+rotation = -0.785398
+
+[node name="PlayerCollisionDetect7" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(-11, 35)
+rotation = 0.785398
+
+[node name="PlayerCollisionDetect8" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
+position = Vector2(-11, 13)
+rotation = -0.785398
 
 [node name="PlayerHUD" type="Control" parent="."]
 z_index = 100
@@ -206,115 +315,6 @@ playerRef = NodePath("../..")
 
 [node name="ShopUI" parent="PlayerHUD" node_paths=PackedStringArray("playerRef") instance=ExtResource("11_umy70")]
 playerRef = NodePath("../..")
-
-[node name="PlayerRotator" type="Node2D" parent="." node_paths=PackedStringArray("playerBody", "playerMovements")]
-script = ExtResource("4_mluyg")
-playerBody = NodePath("..")
-playerMovements = NodePath("../PlayerMovements")
-offsetDegrees = 90
-
-[node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
-script = ExtResource("4_33erx")
-playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = Array[float]([500.0, 1000.0, 1800.0, 2000.0])
-thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
-
-[node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
-playerMovements = NodePath("../../../PlayerMovements")
-directSound = NodePath("../../../Sounds/PlayerDirect")
-clashSound = NodePath("../../../Sounds/PlayerClash")
-
-[node name="SecondSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("12_psnq3")]
-playerMovements = NodePath("../../../PlayerMovements")
-directSound = NodePath("../../../Sounds/PlayerDirect")
-clashSound = NodePath("../../../Sounds/PlayerClash")
-
-[node name="ThirdSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("13_gt5g5")]
-playerMovements = NodePath("../../../PlayerMovements")
-directSound = NodePath("../../../Sounds/PlayerDirect")
-clashSound = NodePath("../../../Sounds/PlayerClash")
-
-[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeLabel")]
-script = ExtResource("16_1u6or")
-playerRef = NodePath("../..")
-playerMovements = NodePath("../../PlayerMovements")
-playerShooting = NodePath("../../PlayerAim/PlayerShooting")
-speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
-
-[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Label", "ability2", "ability2Label")]
-script = ExtResource("18_d34mc")
-playerInputs = NodePath("../../PlayerInputs")
-ability1 = NodePath("PlayerAbility1")
-ability1Cooldown = 15.0
-ability1Label = NodePath("../../PlayerHUD/Ability1Data")
-ability2 = NodePath("PlayerAbility2")
-ability2Cooldown = 10.0
-ability2Label = NodePath("../../PlayerHUD/Ability2Data")
-
-[node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
-attackSounds = [null]
-characterRef = NodePath("../../..")
-
-[node name="PlayerAbility2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_6myp7")]
-attackSounds = [null, null, null, null, null]
-characterRef = NodePath("../../..")
-
-[node name="FollowItem" type="Node2D" parent="PlayerRotator"]
-position = Vector2(0, 128)
-
-[node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
-script = ExtResource("19_44plk")
-playerInputs = NodePath("../PlayerInputs")
-offsetDegrees = 90.0
-
-[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "powerUpManager", "projectileSpawner", "projectileCountLabel")]
-script = ExtResource("19_aegdj")
-playerInputs = NodePath("../../PlayerInputs")
-powerUpManager = NodePath("../../PlayerRotator/PowerUpManager")
-projectileSpawner = NodePath("ObjectSpawner")
-baseMaxProjectiles = 3
-baseProjectileICD = 5.0
-baseProjectilePrefabPath = "res://Player/PlayerProjectile.tscn"
-projectileCountLabel = NodePath("../../PlayerHUD/ProjectileCount")
-
-[node name="ObjectSpawner" type="Node2D" parent="PlayerAim/PlayerShooting"]
-position = Vector2(0, -64)
-script = ExtResource("23_3xtsy")
-
-[node name="Arrow" type="Sprite2D" parent="PlayerAim"]
-texture = ExtResource("5_s1pth")
-
-[node name="PlayerCollisionDetects" type="Node2D" parent="."]
-
-[node name="PlayerCollisionDetect1" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(0, 8)
-
-[node name="PlayerCollisionDetect2" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(0, 40)
-
-[node name="PlayerCollisionDetect3" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(16, 24)
-rotation = 1.5708
-
-[node name="PlayerCollisionDetect4" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(-16, 24)
-rotation = 1.5708
-
-[node name="PlayerCollisionDetect5" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(11, 13)
-rotation = 0.785398
-
-[node name="PlayerCollisionDetect6" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(11, 35)
-rotation = -0.785398
-
-[node name="PlayerCollisionDetect7" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(-11, 35)
-rotation = 0.785398
-
-[node name="PlayerCollisionDetect8" parent="PlayerCollisionDetects" instance=ExtResource("23_m5vn1")]
-position = Vector2(-11, 13)
-rotation = -0.785398
 
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]

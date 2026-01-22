@@ -29,6 +29,7 @@ func IncreaseCharge(delta):
 		UpdateText()
 		if (currentCharge == maxCharge):
 			completed = true
+			self.hide()
 			mapObjective.CompleteCaptureArea(self)
 
 func _on_body_entered(body):
