@@ -35,7 +35,7 @@ sceneSelector = NodePath("../SceneSelector")
 rewardSpawn = NodePath("../RewardSpawn")
 
 [node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn", "mapProgressionSelector") instance=ExtResource("7_kja8i")]
-scenesToShuffle = Array[String](["res://MapShuffler/Maps/Laboratories/Levels/Diff_0/lab_d0_02.tscn"])
+scenesToShuffle = Array[String](["res://MapShuffler/Maps/Laboratories/Levels/Diff_1/lab_d1_01.tscn"])
 shopScene = "res://1_Scenes/ShopScene.tscn"
 playerRef = NodePath("../PlayerCharacter")
 rewardSpawn = NodePath("../RewardSpawn")

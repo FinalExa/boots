@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cae0cyotok0cv"]
+[gd_scene load_steps=4 format=3 uid="uid://cae0cyotok0cv"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_i0tnk"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_nf1fd"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x7g32"]
 
 [node name="Lab_D4_02" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
 script = ExtResource("1_i0tnk")
@@ -24,6 +26,9 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="SWAP_WITH_OBJECTIVE" type="Node" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_x7g32")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 
