@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://criy1knj5j8ib"]
+[gd_scene load_steps=5 format=3 uid="uid://criy1knj5j8ib"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_bgo15"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_7xx6a"]
+[ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="3_6p30k"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kia0y"]
 
 [node name="LevelBlueprint" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
 script = ExtResource("1_bgo15")
@@ -9,12 +12,31 @@ playerSpawnPoint = NodePath("SpawnPoint")
 rewardSpawnPosition = NodePath("RewardSpawnPosition")
 
 [node name="MapStructure" type="TileMap" parent="."]
-z_index = -1
+y_sort_enabled = true
 tile_set = ExtResource("2_7xx6a")
 format = 2
+layer_0/name = "Ground"
+layer_0/y_sort_enabled = true
+layer_0/z_index = -1000
+layer_1/name = "Walls"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
 
 [node name="SWAP_WITH_OBJECTIVE" type="Node" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_kia0y")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("3_6p30k")]
+
+[node name="Enemies" type="Node2D" parent="."]

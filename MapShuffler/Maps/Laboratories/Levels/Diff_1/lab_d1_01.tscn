@@ -52,11 +52,13 @@ position = Vector2(-288, -832)
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door" parent="Doors" instance=ExtResource("4_6fpad")]
+[node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("4_6fpad")]
 position = Vector2(-448, -1056)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
-[node name="Door2" parent="Doors" instance=ExtResource("4_6fpad")]
+[node name="Door2" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("4_6fpad")]
 position = Vector2(-128, -1056)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
 [node name="TransportObjectInfo" type="Node2D" parent="."]
 
