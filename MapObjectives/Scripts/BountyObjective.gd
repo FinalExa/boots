@@ -4,6 +4,7 @@ extends MapObjective
 @export var enemies: Array[EnemyController]
 @export var multipleObjectSpawners: Array[MultipleObjectSpawner]
 @export var spawnNewWaveCD: float
+@export var spawnWavesTogether: bool
 
 var currentSpawnerIndex: int
 var waveTimer: float
@@ -12,6 +13,7 @@ var startingSize: int
 func ReadyOperations():
 	RegisterSpawners()
 	RegisterMapObjective()
+	waveTimer = 0
 
 func _process(delta):
 	WaveCooldown(delta)
@@ -48,7 +50,11 @@ func WaveCooldown(delta):
 		if (waveTimer > 0):
 			waveTimer -= delta
 			return
-		SpawnWave()
+		if (spawnWavesTogether):
+			for i in multipleObjectSpawners.size():
+				SpawnWave()
+		else:
+			SpawnWave()
 
 func SpawnWave():
 	if (currentSpawnerIndex >= multipleObjectSpawners.size()):

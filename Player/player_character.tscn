@@ -85,8 +85,8 @@ script = ExtResource("3_fxyqo")
 script = ExtResource("1_n46fh")
 playerCharacter = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
-maxAccelerationPerSecond = 1200.0
-maxAccelerationPerSecondEndPoint = 500.0
+maxAccelerationPerSecond = 1400.0
+maxAccelerationPerSecondEndPoint = 400.0
 minAccelerationPerSecond = 300.0
 minAccelerationPerSecondEndPoint = 1800.0
 decelerationPerSecond = 1000.0
@@ -118,17 +118,23 @@ thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHi
 
 [node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
 playerMovements = NodePath("../../../PlayerMovements")
+lossOnImpact = 100.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
+clashLossOnImpact = 200.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
 [node name="SecondSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("12_psnq3")]
 playerMovements = NodePath("../../../PlayerMovements")
+lossOnImpact = 50.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
+clashLossOnImpact = 100.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
 [node name="ThirdSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("13_gt5g5")]
 playerMovements = NodePath("../../../PlayerMovements")
+lossOnImpact = 25.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
+clashLossOnImpact = 50.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
 [node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeLabel")]
