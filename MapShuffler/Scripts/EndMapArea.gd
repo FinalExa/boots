@@ -10,4 +10,5 @@ func _on_body_entered(body):
 func GoToNextMap():
 	doorRef.rewardSpawnRef.AssignRewardType(doorRef.rewardType, doorRef.powerUpFaction)
 	var sceneMaster: SceneMaster = get_tree().root.get_child(0)
-	sceneMaster.sceneSelector.call_deferred("ShuffleScene")
+	sceneMaster.sceneSelector.mapProgressionSelector.levelSelected = false
+	sceneMaster.sceneSelector.mapProgressionSelector.ProgressMap()

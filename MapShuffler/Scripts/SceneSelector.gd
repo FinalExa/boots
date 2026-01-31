@@ -1,16 +1,13 @@
 class_name SceneSelector
 extends Node2D
 
-@export var scenesToShuffle: Array[String]
 @export var shopScene: String
 @export var playerRef: PlayerCharacter
 @export var safePosition: Vector2
 @export var rewardSpawn: RewardSpawn
 @export var mapProgressionSelector: MapProgressionSelector
+var scenePath: String
 var currentScene: GameplayScene
-
-func _ready():
-	call_deferred("ShuffleScene")
 
 func ShuffleScene():
 	mapProgressionSelector.ProgressMap()
@@ -32,13 +29,13 @@ func ShuffleScene():
 	playerRef.UpdateCurrentRoomCount(str(rewardSpawn.roomNumber))
 
 func GetCorrectScene():
-	var scene
 	if (rewardSpawn.rewardType != RewardSpawn.RewardType.SHOP):
-		scene = load(scenesToShuffle[randf_range(0, scenesToShuffle.size())])
-	else:
-		scene = load(shopScene)
-	return scene
+		return load(scenePath)
+	return load(shopScene)
 
 func SpecialRoomTypeOperations():
 	if (rewardSpawn.rewardType == RewardSpawn.RewardType.SHOP):
 		currentScene.SetObjectiveCompleted()
+
+func SetScenePath(receivedPath: String):
+	scenePath = receivedPath

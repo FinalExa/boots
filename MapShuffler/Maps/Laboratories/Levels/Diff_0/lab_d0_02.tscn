@@ -53,8 +53,9 @@ position = Vector2(0, -384)
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door" parent="Doors" instance=ExtResource("5_pecg4")]
+[node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("5_pecg4")]
 position = Vector2(0, -544)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
 [node name="Enemies" type="Node2D" parent="."]
 

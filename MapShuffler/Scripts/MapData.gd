@@ -8,6 +8,7 @@ extends Node
 @export var mapMaxDifficulty: Array[float]
 var mapProgressionSelector: MapProgressionSelector
 var currentFloor: int
+var currentMapPath: String
 
 enum FloorTypes
 {
@@ -20,6 +21,7 @@ enum FloorTypes
 func PickLevel():
 	LevelSelectionCases()
 	currentFloor += 1
+	return currentMapPath
 
 func LevelSelectionCases():
 	if (mapFloors[currentFloor] == FloorTypes.START):
@@ -44,7 +46,8 @@ func GetMapInDifficultyRange():
 	var pickedMap: String = possibleMaps.pick_random()
 	for i in mapDifficultyLevels.size():
 		mapDifficultyLevels[i].SelectLevel(pickedMap)
-	print(str(mapName, " ", currentFloor, "\n", "Range: ", minRange, "-", maxRange, " Current difficulty value: ", mapProgressionSelector.currentDifficultyValue, "\n", pickedMap, "\n"))
+	print(pickedMap)
+	currentMapPath = pickedMap
 
 func ClampDifficulty(valueToClamp: float):
 	return clamp(valueToClamp, 0, mapProgressionSelector.gameMaxDifficulty)
