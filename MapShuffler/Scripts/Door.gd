@@ -32,7 +32,7 @@ func OpenDoor():
 	offSprite.show()
 	activeSprite.hide()
 	ActivateCurrentRewardSprite()
-	remove_child(centralCollider)
+	centralCollider.queue_free()
 	var obj_scene = load(endMapArea)
 	var obj: EndMapArea = obj_scene.instantiate()
 	add_child(obj)
