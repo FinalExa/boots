@@ -1,6 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxn2uta6y2ij0"]
+[gd_scene load_steps=7 format=3 uid="uid://bxn2uta6y2ij0"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PowerUpUI.gd" id="1_n5f2l"]
+[ext_resource type="Texture2D" uid="uid://yndgoij3y3wn" path="res://PowerUps/Sprites/Characters/rayne.png" id="2_4tbkn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_royhf"]
+atlas = ExtResource("2_4tbkn")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbnre"]
+atlas = ExtResource("2_4tbkn")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyqce"]
+atlas = ExtResource("2_4tbkn")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uo63y"]
+animations = [{
+"frames": [{
+"duration": 50.0,
+"texture": SubResource("AtlasTexture_royhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbnre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyqce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbnre")
+}],
+"loop": true,
+"name": &"bomb",
+"speed": 10.0
+}]
 
 [node name="PowerUpUI" type="Control" node_paths=PackedStringArray("powerUpButtons")]
 process_mode = 3
@@ -39,6 +72,13 @@ offset_bottom = 488.0
 
 [node name="Button" type="Button" parent="PowerUpSelector3"]
 layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1152, 232)
+scale = Vector2(2.66667, 2.66667)
+sprite_frames = SubResource("SpriteFrames_uo63y")
+animation = &"bomb"
+autoplay = "bomb"
 
 [connection signal="button_up" from="PowerUpSelector1/Button" to="." method="OnButtonPressed" binds= [0]]
 [connection signal="button_up" from="PowerUpSelector2/Button" to="." method="OnButtonPressed" binds= [1]]

@@ -58,7 +58,7 @@ texture = ExtResource("4_mv6rc")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "label")]
 script = ExtResource("4_hlpqe")
-maxHealth = 100.0
+maxHealth = 75.0
 enemyController = NodePath("..")
 enemyShielded = NodePath("../EnemyShielded")
 label = NodePath("../EnemyUI/Health")
@@ -111,13 +111,17 @@ position = Vector2(0, -64)
 
 [node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("8_16hwb")
-attackDuration = 30
+attackDuration = 45
 attackCooldown = 90
-attackPhasesLaunch = Array[int]([0])
-attackHitboxes = [NodePath("EnemyKillCheck")]
-attackSounds = [null]
-attackMovements = Array[float]([1000.0])
+attackPhasesLaunch = Array[int]([0, 15])
+attackHitboxes = [NodePath("Sprite2D"), NodePath("EnemyKillCheck")]
+attackSounds = [null, null]
+attackMovements = Array[float]([0.0, 1500.0])
 characterRef = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack"]
+self_modulate = Color(0, 1, 1, 1)
+texture = ExtResource("13_jg0ip")
 
 [node name="EnemyKillCheck" type="Area2D" parent="EnemyRotator/EnemyAttack" node_paths=PackedStringArray("hitSound") groups=["ClashArea"]]
 script = ExtResource("7_xlcdy")
