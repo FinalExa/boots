@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://wdxseiaaybud"]
+[gd_scene load_steps=5 format=3 uid="uid://wdxseiaaybud"]
 
 [ext_resource type="Script" path="res://Player/Scripts/ShopUI.gd" id="1_2idad"]
+[ext_resource type="Texture2D" uid="uid://8ifoql405v7w" path="res://PowerUps/Sprites/Characters/look_alook.png" id="2_wrkym"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfaqw"]
+atlas = ExtResource("2_wrkym")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rw4m6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfaqw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="ShopUI" type="Control" node_paths=PackedStringArray("powerUpButton", "healingButton")]
 process_mode = 3
@@ -45,6 +61,12 @@ offset_bottom = 616.0
 [node name="BackButton" type="Button" parent="BackButtonContainer"]
 layout_mode = 2
 text = "BACK"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1152, 168)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rw4m6")
+autoplay = "default"
 
 [connection signal="button_up" from="PowerUpButtonContainer/PowerUpButton" to="." method="PowerUpButtonPressed"]
 [connection signal="button_up" from="HealingButtonContainer/HealingButtonContainer" to="." method="HealingButtonPressed"]
