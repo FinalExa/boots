@@ -12,5 +12,5 @@ maps = [NodePath("Laboratories")]
 
 [node name="Laboratories" parent="." instance=ExtResource("2_m87jj")]
 mapFloors = Array[int]([0, 1, 1, 1, 1])
-mapMinDifficulty = Array[float]([-2.0, -1.0, 0.0, 0.0, 1.0])
-mapMaxDifficulty = Array[float]([0.0, 0.0, 1.0, 1.0, 0.0])
+mapMinDifficulty = Array[float]([-2.0, -1.0, 0.0, 1.0, 1.0])
+mapMaxDifficulty = Array[float]([0.0, 1.0, 1.0, 2.0, 3.0])

@@ -46,7 +46,6 @@ func GetMapInDifficultyRange():
 	var pickedMap: String = possibleMaps.pick_random()
 	for i in mapDifficultyLevels.size():
 		mapDifficultyLevels[i].SelectLevel(pickedMap)
-	print(pickedMap)
 	currentMapPath = pickedMap
 
 func ClampDifficulty(valueToClamp: float):
