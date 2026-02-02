@@ -1,7 +1,7 @@
 class_name TransportDestination
 extends Node2D
 
-@export var spriteRef: Sprite2D
+@export var spriteRef: AnimatedSprite2D
 var mapObjective: TransportObjectObjective
 var transportObjectIn: bool
 var transportObjectRef: TransportObject

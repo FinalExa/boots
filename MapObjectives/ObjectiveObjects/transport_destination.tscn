@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddjg6y7krodau"]
+[gd_scene load_steps=6 format=3 uid="uid://ddjg6y7krodau"]
 
 [ext_resource type="Script" path="res://MapObjectives/ObjectiveObjects/Scripts/TransportDestination.gd" id="1_odrqp"]
-[ext_resource type="Texture2D" uid="uid://ypiwgyqblfk1" path="res://MapShuffler/Sprites/doorActive.png" id="2_dds3f"]
+[ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="2_6nvem"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ygx61"]
 radius = 128.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkn1q"]
+atlas = ExtResource("2_6nvem")
+region = Rect2(320, 0, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsi78"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkn1q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="TransportDestination" type="Node2D" node_paths=PackedStringArray("spriteRef")]
 script = ExtResource("1_odrqp")
@@ -15,9 +30,10 @@ spriteRef = NodePath("Sprite2D")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ygx61")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_dds3f")
+sprite_frames = SubResource("SpriteFrames_wsi78")
+autoplay = "default"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

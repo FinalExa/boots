@@ -49,14 +49,17 @@ position = Vector2(-640, -1088)
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door" parent="Doors" instance=ExtResource("3_isqld")]
+[node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("3_isqld")]
 position = Vector2(-640, -1312)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
-[node name="Door2" parent="Doors" instance=ExtResource("3_isqld")]
+[node name="Door2" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("3_isqld")]
 position = Vector2(-960, -1312)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
-[node name="Door3" parent="Doors" instance=ExtResource("3_isqld")]
+[node name="Door3" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("3_isqld")]
 position = Vector2(-320, -1312)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
 [node name="Enemies" type="Node2D" parent="."]
 
