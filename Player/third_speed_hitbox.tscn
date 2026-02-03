@@ -18,11 +18,10 @@ clashLossOnImpact = 100.0
 impactTypeIndicator = "res://UI/impact_type_indicator.tscn"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-104, -32, -88, 0, -64, 0, -64, -32, 64, -32, 64, 0, 88, 0, 112, -32, 104, -56, 32, -64, -32, -64, -96, -56)
+polygon = PackedVector2Array(-56, -32, -56, 0, -32, 0, -24, -32, 24, -32, 32, 0, 56, 0, 56, -32, 48, -56, 32, -64, -32, -64, -48, -56)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.8147e-06, -32)
-scale = Vector2(2, 1)
+position = Vector2(0, -32)
 texture = ExtResource("2_uyywn")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
