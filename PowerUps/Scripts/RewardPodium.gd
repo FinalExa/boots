@@ -56,8 +56,7 @@ func RewardType():
 		var rewardSpawnLocation: Node2D = self.get_parent().get_parent()
 		self.reparent(rewardSpawnLocation)
 		get_tree().root.get_child(0).sceneSelector.playerRef.shopUI.SetUpShop(get_tree().root.get_child(0).sceneSelector.rewardSpawn)
-		get_tree().root.get_child(0).sceneSelector.currentScene.SetCompleted()
-		pass
+		call_deferred("DeleteSelf")
 
 func _on_player_interaction_detect_body_entered(body):
 	if (body is PlayerCharacter):
