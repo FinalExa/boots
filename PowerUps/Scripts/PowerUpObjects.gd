@@ -2,11 +2,15 @@ class_name PowerUpObjects
 extends Node2D
 
 @export var powerUpFaction: PowerUp.PowerUpFaction
+var ref: Node2D
 
 func ApplyPowerUps(powerUpManager: PowerUpManager):
 	for i in powerUpManager.powerUpPassives.size():
 		if (powerUpManager.powerUpPassives[i].powerUpFaction == powerUpFaction):
 			powerUpManager.powerUpPassives[i].ActivateStatIncrease(self)
+
+func SetRef(externalRef):
+	ref = externalRef
 
 func SetBaseStats():
 	pass

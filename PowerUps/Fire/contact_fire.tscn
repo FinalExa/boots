@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwym7x6dytcng"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUp.gd" id="1_i24ni"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_opvf6"]
+
+[node name="ContactFire" type="Node2D" node_paths=PackedStringArray("spawners", "secondarySpawners")]
+script = ExtResource("1_i24ni")
+powerUpName = "Contact Fire"
+powerUpDescription = "Burns the enemy on Direct and Clashes, Directs deal additional damage."
+powerUpFaction = 1
+spawners = [NodePath("Spawner")]
+secondarySpawners = [NodePath("Spawner2")]
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("2_opvf6")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/fire.tscn"
+
+[node name="Spawner2" type="Node2D" parent="."]
+script = ExtResource("2_opvf6")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/fire.tscn"

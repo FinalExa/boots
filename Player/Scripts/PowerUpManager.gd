@@ -45,6 +45,7 @@ func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp.powerUpType == PowerUp.PowerUpType.SPEED_CHARGE):
 		ReplaceOldPowerUp(speedChargePowerUp)
 		speedChargePowerUp = powerUp
+		speedChargePowerUp.speedChargeCurrentValue = 0
 		speedChargePowerUp.speedChargeCurrentStacks = 0
 		return
 	if (powerUp.powerUpType == PowerUp.PowerUpType.PASSIVE):
@@ -99,13 +100,13 @@ func ReplaceOldPowerUp(powerUp: PowerUp):
 	if (powerUp != null):
 		powerUp.UnRegister()
 
-func HitClash():
+func HitDirect(enemyController: EnemyController):
 	if (contactPowerUp != null):
-		contactPowerUp.SecondaryExecutePowerUpEffect()
+		contactPowerUp.ExecutePowerUpEffectWithRef(enemyController)
 
-func HitDirect():
+func HitClash(enemyController: EnemyController):
 	if (contactPowerUp != null):
-		contactPowerUp.ExecutePowerUpEffect()
+		contactPowerUp.SecondaryExecutePowerUpEffectWithRef(enemyController)
 
 func ChargeWithSpeed():
 	if (speedChargePowerUp != null):

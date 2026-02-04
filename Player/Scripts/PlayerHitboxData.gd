@@ -107,10 +107,10 @@ func DealDamage(enemyController: EnemyController, damageDealt: float, repelDist:
 		enemyController.ReceiveDamage(damageDealt, repelDist, direction, time)
 		if (clash):
 			clashSound.play()
-			emit_signal("hitClash")
+			emit_signal("hitClash", enemyController)
 		else:
 			directSound.play()
-			emit_signal("hitDirect")
+			emit_signal("hitDirect", enemyController)
 		CreateImpactTypeIndicator(clash, self.global_position)
 		playerMovements.UpdateCurrentSpeed(-speedLoss)
 

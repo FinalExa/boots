@@ -7,4 +7,4 @@ script = ExtResource("1_7atlw")
 timeChangePercentage = -50.0
 powerUpName = "Bomb Timer Reduce"
 powerUpDescription = "Reduces the cooldown before explosion by 50%"
-powerUpType = 5
+powerUpType = 4

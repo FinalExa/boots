@@ -2,7 +2,8 @@ class_name PowerUp
 extends Node2D
 
 enum PowerUpFaction {
-	BOMB
+	BOMB,
+	FIRE
 }
 
 enum PowerUpType {
@@ -51,6 +52,14 @@ func TertiaryExecutePowerUpEffect():
 	for i in tertiarySpawners.size():
 		CreatePowerUpEffect(spawners[i])
 
+func ExecutePowerUpEffectWithRef(ref):
+	for i in spawners.size():
+		CreatePowerUpEffectWithRef(spawners[i], ref)
+
+func SecondaryExecutePowerUpEffectWithRef(ref):
+	for i in secondarySpawners.size():
+		CreatePowerUpEffectWithRef(spawners[i], ref)
+
 func ExecutePowerUpEffectWithValue(value):
 	if (speedChargeCurrentStacks < speedChargeMaxStacks):
 		speedChargeCurrentValue = clamp(speedChargeCurrentValue + value * get_process_delta_time(), 0, speedChargeMaxValue)
@@ -69,6 +78,12 @@ func CreatePowerUpEffect(spawner: ObjectSpawner):
 	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
 	if (spawnedPowerUpObject != null):
 		InitializePowerUpObject(spawnedPowerUpObject)
+
+func CreatePowerUpEffectWithRef(spawner: ObjectSpawner, ref):
+	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
+	if (spawnedPowerUpObject != null):
+		InitializePowerUpObject(spawnedPowerUpObject)
+		spawnedPowerUpObject.SetRef(ref)
 
 func InitializePowerUpObject(powerUpObject: PowerUpObjects):
 	powerUpObject.SetBaseStats()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://tookj16xyfrd"]
 
-[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/PowerUpObjectProjectile.gd" id="1_a1leu"]
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpObjectProjectile.gd" id="1_a1leu"]
 [ext_resource type="PackedScene" uid="uid://qvf6rscr6q4m" path="res://PowerUps/Bomb/SpawnedObjects/shoot_bomb_instance.tscn" id="2_051ao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhk8h"]
