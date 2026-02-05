@@ -7,7 +7,7 @@ extends PowerUp
 var speedChargeCurrentValue: float
 var speedChargeCurrentStacks: int
 
-func _process(delta):
+func _process(_delta):
 	ReleaseSpeedCharge()
 	ChargeWithSpeed()
 

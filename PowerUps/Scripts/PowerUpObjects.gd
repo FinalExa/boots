@@ -2,6 +2,7 @@ class_name PowerUpObjects
 extends Node2D
 
 @export var powerUpFaction: PowerUp.PowerUpFaction
+@export var destroyOnEnd: Node2D
 var ref: Node2D
 
 func ApplyPowerUps(powerUpManager: PowerUpManager):
@@ -21,6 +22,12 @@ func IncreaseStats(_damage: float, _size: float, _time: float, _specialObject: S
 func SpawnSpecialObject(specialObject: String):
 	if (specialObject != ""):
 		pass
+
+func DeleteSelf():
+	if (destroyOnEnd == null):
+		queue_free()
+	else:
+		destroyOnEnd.queue_free()
 
 func Finalize():
 	pass

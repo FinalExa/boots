@@ -21,7 +21,7 @@ func HealthUpdate(valueChange: float):
 		valueChange = 0
 		enemyShielded.RemoveShielded()
 	currentHealth = clamp(currentHealth + valueChange, 0, maxHealth)
-	label.text = str(currentHealth, "/", maxHealth)
+	label.text = str(snapped(currentHealth, 0.01), "/", maxHealth)
 	if (currentHealth <= 0):
 		if (currentObjective != null):
 			currentObjective.RequestEnemyData(enemyController)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://1_Scenes/Scripts/SceneMaster.gd" id="1_cl6lx"]
 [ext_resource type="PackedScene" uid="uid://dqg13lpbwrv7" path="res://Player/player_character.tscn" id="2_towhw"]
-[ext_resource type="AudioStream" uid="uid://dv5wtt2gpi6ca" path="res://Soundtrack/TestSoundtrack.mp3" id="3_wh4l7"]
+[ext_resource type="AudioStream" uid="uid://c3w6rpt5lquap" path="res://Soundtrack/TestSoundtrack2.mp3" id="3_c5w8b"]
 [ext_resource type="PackedScene" uid="uid://bjn4y2vm7ph0y" path="res://PowerUps/reward_spawn.tscn" id="4_gk5da"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/FrameMaster.gd" id="5_gxw7i"]
 [ext_resource type="PackedScene" uid="uid://dugmsdmhklyng" path="res://MapShuffler/map_progression_selector.tscn" id="6_ex1yu"]
@@ -19,8 +19,8 @@ rewardSpawn = NodePath("../RewardSpawn")
 mapProgressionSelector = NodePath("../MapProgressionSelector")
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_wh4l7")
-volume_db = -40.0
+stream = ExtResource("3_c5w8b")
+volume_db = -10.0
 autoplay = true
 
 [node name="RewardSpawn" parent="." node_paths=PackedStringArray("playerRef") instance=ExtResource("4_gk5da")]

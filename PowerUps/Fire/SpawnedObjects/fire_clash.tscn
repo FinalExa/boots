@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcf1le47o4siu"]
+
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_mpngf"]
+[ext_resource type="Texture2D" uid="uid://cpxbechsosec8" path="res://PowerUps/Fire/Sprites/fire.png" id="2_h0k8k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8fhj"]
+atlas = ExtResource("2_h0k8k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2bjyl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8fhj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FireClash" type="Node2D"]
+script = ExtResource("1_mpngf")
+appliesDOT = true
+DOT = 5.0
+DOTDuration = 3.0
+powerUpFaction = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.490196)
+sprite_frames = SubResource("SpriteFrames_2bjyl")
+autoplay = "default"

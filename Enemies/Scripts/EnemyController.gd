@@ -12,6 +12,7 @@ signal repelled
 @export var enemyShielded: EnemyShielded
 @export var attackDistance: float
 @export var damageImmunityDuration: float
+@export var currentDOT: PowerUpObjects
 
 var playerRef: PlayerCharacter
 var damageImmunityTimer: float
@@ -54,3 +55,12 @@ func SetSpawnerRef(receivedRef: ObjectSpawner):
 func EnemyDeath():
 	if (spawnerRef != null):
 		spawnerRef.ReceivedCallFromDeletedSpawnedObject(self)
+
+func SetDOT(DOT: PowerUpObjects):
+	if (currentDOT == null):
+		currentDOT = DOT
+		return true
+	return false
+
+func UnsetDOT():
+	currentDOT = null

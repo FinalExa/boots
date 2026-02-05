@@ -13,8 +13,8 @@ powerUpFaction = 1
 
 [node name="SpawnerDirect" type="Node2D" parent="."]
 script = ExtResource("2_opvf6")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_direct.tscn"
 
 [node name="SpawnerClash" type="Node2D" parent="."]
 script = ExtResource("2_opvf6")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_clash.tscn"
