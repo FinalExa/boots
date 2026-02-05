@@ -26,6 +26,7 @@ var isExploding: bool
 
 func _ready():
 	explosionSprite.hide()
+	self.global_rotation = 0
 
 func _process(delta):
 	BombTimer(delta)

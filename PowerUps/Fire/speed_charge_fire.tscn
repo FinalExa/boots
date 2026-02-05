@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c748qg1e6hl1u"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpSpeedCharge.gd" id="1_cs3u7"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_35srg"]
+
+[node name="SpeedChargeFire" type="Node2D" node_paths=PackedStringArray("speedChargeSpawners")]
+script = ExtResource("1_cs3u7")
+speedChargeMaxValue = 5000.0
+speedChargeMaxStacks = 2
+speedChargeSpawners = [NodePath("ObjectSpawner")]
+powerUpName = "Speed Charge Fire"
+powerUpDescription = "Creates a giant flame that lasts for a while."
+powerUpFaction = 1
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("2_35srg")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_speed_charge.tscn"

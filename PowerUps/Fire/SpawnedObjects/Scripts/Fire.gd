@@ -1,7 +1,7 @@
 class_name Fire
 extends PowerUpObjects
 
-@export var damage: float
+@export var trueDamage: float
 @export var appliesDOT: bool
 @export var DOT: float
 @export var DOTDuration: float
@@ -30,6 +30,8 @@ var currentStationaryAreaSize: Vector2
 var baseSpriteSize: Vector2
 var currentSpriteSize: Vector2
 
+func _ready():
+	self.global_rotation = 0
 
 func _process(delta):
 	DoDamage()
@@ -42,7 +44,7 @@ func _process(delta):
 		Stationary(delta)
 
 func SetBaseStats():
-	baseDamage = damage
+	baseDamage = trueDamage
 	currentDamage = baseDamage
 	baseDOT = DOT
 	currentDOT = baseDOT

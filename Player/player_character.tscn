@@ -102,7 +102,7 @@ minSpeed = 50.0
 maxSpeed = 2000.0
 distanceDifferenceTolerance = 4.5
 distanceDifferenceToleranceMinSpeed = 300.0
-decelerationForDistanceDifference = 3000.0
+decelerationForDistanceDifference = 1500.0
 
 [node name="PlayerRotator" type="Node2D" parent="." node_paths=PackedStringArray("playerBody", "playerMovements")]
 script = ExtResource("4_mluyg")
