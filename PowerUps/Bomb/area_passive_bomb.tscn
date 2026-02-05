@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3632ikuev61a"]
 
-[ext_resource type="Script" path="res://PowerUps/Scripts/PassivePowerUp.gd" id="1_0jysd"]
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PassivePowerUp.gd" id="1_0jysd"]
 
 [node name="AreaPassiveBomb" type="Node2D"]
 script = ExtResource("1_0jysd")

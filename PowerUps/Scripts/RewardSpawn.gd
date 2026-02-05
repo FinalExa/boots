@@ -88,7 +88,7 @@ func GenerateRewardArrayWithoutBannedPowerUps(receivedArray: Array[PowerUp]):
 	var hasBase: bool = playerRef.powerUpManager.PlayerHasAnyBasePowerUpOfFaction(powerUpFaction)
 	for i in receivedArray.size():
 		if (!bannedPowerUps.has(receivedArray[i]) && receivedArray[i].powerUpFaction == powerUpFaction):
-			if (hasBase || (!hasBase && receivedArray[i].powerUpType != PowerUp.PowerUpType.PASSIVE)):
+			if (hasBase || (!hasBase && !(receivedArray[i] is PassivePowerUp))):
 				rewardArray.push_back(receivedArray[i])
 	return rewardArray
 

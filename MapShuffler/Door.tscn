@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdbtps27g0ql8"]
+[gd_scene load_steps=15 format=3 uid="uid://bdbtps27g0ql8"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/Door.gd" id="1_2g6hh"]
 [ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="3_38ixv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bhesk1s7es8tx" path="res://PowerUps/Sprites/moneyPodium.png" id="5_2uws4"]
 [ext_resource type="Texture2D" uid="uid://c0q0jmv0e3fi8" path="res://PowerUps/Sprites/shopPodium.png" id="6_u2n0c"]
 [ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="7_gmjac"]
+[ext_resource type="Texture2D" uid="uid://cpxbechsosec8" path="res://PowerUps/Fire/Sprites/fire.png" id="7_nkjj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cw7cm"]
 atlas = ExtResource("3_38ixv")
@@ -61,7 +62,7 @@ sprite = NodePath("AnimatedSprite2D")
 centralCollider = NodePath("CentralCollider")
 endMapArea = "res://MapShuffler/end_map_area.tscn"
 rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
-powerUpFactionSprites = [NodePath("RewardSpritePosition/PowerUpFaction/Bomb")]
+powerUpFactionSprites = [NodePath("RewardSpritePosition/PowerUpFaction/Bomb"), NodePath("RewardSpritePosition/PowerUpFaction/Fire")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b7qsa")
@@ -104,3 +105,6 @@ texture = ExtResource("6_u2n0c")
 
 [node name="Bomb" type="Sprite2D" parent="RewardSpritePosition/PowerUpFaction"]
 texture = ExtResource("7_gmjac")
+
+[node name="Fire" type="Sprite2D" parent="RewardSpritePosition/PowerUpFaction"]
+texture = ExtResource("7_nkjj6")

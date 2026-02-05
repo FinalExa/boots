@@ -1,3 +1,4 @@
+class_name PassivePowerUp
 extends PowerUp
 
 @export var damageChangePercentage: float

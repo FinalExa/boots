@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdjwha4ch7lm0"]
 
-[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUp.gd" id="1_fja7b"]
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpSpeedCharge.gd" id="1_vxerq"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_k6ko7"]
 
-[node name="SpeedChargeBomb" type="Node2D" node_paths=PackedStringArray("spawners")]
-script = ExtResource("1_fja7b")
+[node name="SpeedChargeBomb" type="Node2D" node_paths=PackedStringArray("speedChargeSpawners")]
+script = ExtResource("1_vxerq")
+speedChargeMaxValue = 7500.0
+speedChargeMaxStacks = 1
+speedChargeSpawners = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4")]
 powerUpName = "Speed Charge Bomb"
 powerUpDescription = "Releases two bombs at the sides when it's fully charged, charge level depends on current speed."
 powerUpType = 2
-spawners = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4")]
-speedChargeMaxValue = 7500.0
-speedChargeMaxStacks = 1
 
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(-64, -64)

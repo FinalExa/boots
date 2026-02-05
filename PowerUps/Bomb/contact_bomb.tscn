@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2fdktwhixwui"]
 
-[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUp.gd" id="1_sgqlw"]
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpContact.gd" id="1_xjg0h"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_1kt6i"]
 
-[node name="ContactBomb" type="Node2D" node_paths=PackedStringArray("spawners", "secondarySpawners")]
-script = ExtResource("1_sgqlw")
+[node name="ContactBomb" type="Node2D" node_paths=PackedStringArray("directSpawners", "clashSpawners")]
+script = ExtResource("1_xjg0h")
+directSpawners = [NodePath("Spawner")]
+clashSpawners = [NodePath("Spawner")]
 powerUpName = "Contact Bomb"
 powerUpDescription = "Generates an explosion on Clashes and Directs."
-spawners = [NodePath("Spawner")]
-secondarySpawners = [NodePath("Spawner")]
 
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(0, -64)

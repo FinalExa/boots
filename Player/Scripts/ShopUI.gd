@@ -41,7 +41,7 @@ func PowerUpButtonPressed():
 		powerUpRef.global_position = playerRef.powerUpManager.global_position
 		powerUpRef.global_rotation = playerRef.powerUpManager.global_rotation
 		powerUpRef.powerUpManager = playerRef.powerUpManager
-		powerUpRef.Register()
+		powerUpRef.Register(playerRef)
 		playerRef.rewardSpawn.BanPowerUp(powerUpRef)
 		playerRef.UpdateMoney(-powerUpPrice)
 		powerUpBought = true

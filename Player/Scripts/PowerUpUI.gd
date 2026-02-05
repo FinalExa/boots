@@ -3,8 +3,10 @@ extends Control
 
 @export var playerRef: PlayerCharacter
 @export var powerUpButtons: Array[Button]
+var rewardSpawn: RewardSpawn
 
 func _ready():
+	rewardSpawn = get_tree().root.get_child(0).sceneSelector.rewardSpawn
 	self.hide()
 
 func RegisterPowerUps(receivedPowerUps: Array[PowerUp]):
@@ -25,8 +27,8 @@ func OnButtonPressed(extra_arg_0):
 	selectedPowerUp.global_position = playerRef.powerUpManager.global_position
 	selectedPowerUp.global_rotation = playerRef.powerUpManager.global_rotation
 	selectedPowerUp.powerUpManager = selectedPowerUp.get_parent()
-	selectedPowerUp.Register()
-	get_tree().root.get_child(0).sceneSelector.rewardSpawn.BanPowerUp(selectedPowerUp)
+	selectedPowerUp.Register(playerRef)
+	rewardSpawn.BanPowerUp(selectedPowerUp)
 	ClearPowerUps()
 	get_tree().paused = false
 	self.hide()
