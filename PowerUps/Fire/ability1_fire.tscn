@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy0xf2kaofrvj"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAbility.gd" id="1_njsrb"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_sr8ac"]
+
+[node name="Ability1Fire" type="Node2D" node_paths=PackedStringArray("abilitySpawners")]
+script = ExtResource("1_njsrb")
+abilitySpawners = [NodePath("ObjectSpawner")]
+powerUpName = "Ability 1 Fire"
+powerUpDescription = "Creates a giant flame when ability 1 is used."
+powerUpFaction = 1
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("2_sr8ac")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_speed_charge.tscn"

@@ -63,4 +63,7 @@ func SetDOT(DOT: PowerUpObjects):
 	return false
 
 func UnsetDOT():
-	currentDOT = null
+	if (currentDOT != null):
+		var dot: PowerUpObjects = currentDOT
+		currentDOT = null
+		dot.call_deferred("DeleteSelf")
