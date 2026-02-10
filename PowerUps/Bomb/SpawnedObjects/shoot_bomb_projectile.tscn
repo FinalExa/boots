@@ -11,7 +11,6 @@ script = ExtResource("1_a1leu")
 powerUpObjectRef = NodePath("ShootBombInstance")
 alternativeDestroyOutcome = true
 movementSpeed = 2500.0
-rotationOffset = 90.0
 lifeTime = 15.0
 forward = NodePath("Forward")
 

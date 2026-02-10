@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjn4y2vm7ph0y"]
+[gd_scene load_steps=16 format=3 uid="uid://bjn4y2vm7ph0y"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/RewardSpawn.gd" id="1_o8bcu"]
 [ext_resource type="PackedScene" uid="uid://c3632ikuev61a" path="res://PowerUps/Bomb/area_passive_bomb.tscn" id="2_llb4d"]
@@ -14,12 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://c748qg1e6hl1u" path="res://PowerUps/Fire/speed_charge_fire.tscn" id="12_jmj48"]
 [ext_resource type="PackedScene" uid="uid://dy0xf2kaofrvj" path="res://PowerUps/Fire/ability1_fire.tscn" id="13_fmp3p"]
 [ext_resource type="PackedScene" uid="uid://dlxfe4qkospkf" path="res://PowerUps/Fire/ability2_fire.tscn" id="14_oxrxm"]
+[ext_resource type="PackedScene" uid="uid://btdtp7rnbomg0" path="res://PowerUps/Fire/shoot_fire.tscn" id="15_hxl8e"]
 
 [node name="RewardSpawn" type="Node2D" node_paths=PackedStringArray("powerUps")]
 script = ExtResource("1_o8bcu")
 powerUpNumber = 3
 rewardPodiumPath = "res://PowerUps/reward_podium.tscn"
-powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb"), NodePath("ShootBomb"), NodePath("Ability1Bomb"), NodePath("Ability2Bomb"), NodePath("ContactFire"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("Ability1Fire"), NodePath("Ability2Fire")]
+powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb"), NodePath("ShootBomb"), NodePath("Ability1Bomb"), NodePath("Ability2Bomb"), NodePath("ContactFire"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("Ability1Fire"), NodePath("Ability2Fire"), NodePath("ShootFire")]
 rewardTypes = Array[int]([0, 1, 2, 3])
 rewardChances = Array[int]([40, 10, 50, 20])
 firstRoomChances = Array[int]([1, 0, 0, 0])
@@ -49,3 +50,5 @@ firstRoomChances = Array[int]([1, 0, 0, 0])
 [node name="Ability1Fire" parent="." instance=ExtResource("13_fmp3p")]
 
 [node name="Ability2Fire" parent="." instance=ExtResource("14_oxrxm")]
+
+[node name="ShootFire" parent="." instance=ExtResource("15_hxl8e")]

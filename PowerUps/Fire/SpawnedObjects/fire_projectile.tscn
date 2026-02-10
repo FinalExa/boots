@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw60ray6hs1jt"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpObjectProjectile.gd" id="1_3hv3j"]
+[ext_resource type="PackedScene" uid="uid://c45gs0s640c3g" path="res://PowerUps/Fire/SpawnedObjects/fire_projectile_instance.tscn" id="2_odvn5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kbblw"]
+radius = 48.0
+
+[node name="FireProjectile" type="CharacterBody2D" node_paths=PackedStringArray("powerUpObjectRef", "forward")]
+script = ExtResource("1_3hv3j")
+powerUpObjectRef = NodePath("FireProjectileInstance")
+ignoreEnemies = true
+movementSpeed = 500.0
+lifeTime = 10.0
+forward = NodePath("Forward")
+
+[node name="Forward" type="Node2D" parent="."]
+position = Vector2(0, -64)
+
+[node name="FireProjectileInstance" parent="." instance=ExtResource("2_odvn5")]
+stationaryDOT = 20.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kbblw")
+
+[connection signal="body_entered" from="Area2D" to="." method="CheckForBodies"]
