@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b315gg5ai5jxm"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PassivePowerUp.gd" id="1_ntida"]
+
+[node name="DamagePassiveFire" type="Node2D"]
+script = ExtResource("1_ntida")
+damageChangePercentage = 20.0
+powerUpName = "Damage Passive Fire"
+powerUpDescription = "Increases damage of all fire by 20%"
+powerUpFaction = 1

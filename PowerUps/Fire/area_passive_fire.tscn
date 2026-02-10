@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba5byfw80f7pc"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PassivePowerUp.gd" id="1_613wc"]
+
+[node name="AreaPassiveFire" type="Node2D"]
+script = ExtResource("1_613wc")
+sizeChangePercentage = 50.0
+powerUpName = "Area Passive Fire"
+powerUpDescription = "Increases area of all fire by 50%"
+powerUpFaction = 1

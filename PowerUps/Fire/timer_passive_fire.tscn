@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://o4o73il5jnuq"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PassivePowerUp.gd" id="1_xvgoi"]
+
+[node name="TimerPassiveFire" type="Node2D"]
+script = ExtResource("1_xvgoi")
+timeChangePercentage = 30.0
+powerUpName = "Timer Passive Fire"
+powerUpDescription = "Increases duration of all fire by 30%"
+powerUpFaction = 1
