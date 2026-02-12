@@ -1,0 +1,31 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnhq1u0i3cb56"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_305qo"]
+[ext_resource type="PackedScene" uid="uid://c3632ikuev61a" path="res://PowerUps/Bomb/area_passive_bomb.tscn" id="2_ki27m"]
+[ext_resource type="PackedScene" uid="uid://b2fdktwhixwui" path="res://PowerUps/Bomb/contact_bomb.tscn" id="3_l1h70"]
+[ext_resource type="PackedScene" uid="uid://bjn1c3owhijvx" path="res://PowerUps/Bomb/damage_passive_bomb.tscn" id="4_7i6hx"]
+[ext_resource type="PackedScene" uid="uid://bdjwha4ch7lm0" path="res://PowerUps/Bomb/speed_charge_bomb.tscn" id="5_v0m00"]
+[ext_resource type="PackedScene" uid="uid://eslqbrcvag7j" path="res://PowerUps/Bomb/trail_bomb.tscn" id="6_by2td"]
+[ext_resource type="PackedScene" uid="uid://s6ijvut8ln2f" path="res://PowerUps/Bomb/shoot_bomb.tscn" id="7_qcwqm"]
+[ext_resource type="PackedScene" uid="uid://buw1ifal2wysn" path="res://PowerUps/Bomb/ability1_bomb.tscn" id="8_o8o73"]
+[ext_resource type="PackedScene" uid="uid://tgw74w22bhdl" path="res://PowerUps/Bomb/ability2_bomb.tscn" id="9_33a68"]
+
+[node name="Bomb" type="Node2D" node_paths=PackedStringArray("powerUps")]
+script = ExtResource("1_305qo")
+powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb"), NodePath("ShootBomb"), NodePath("Ability1Bomb"), NodePath("Ability2Bomb")]
+
+[node name="AreaPassiveBomb" parent="." instance=ExtResource("2_ki27m")]
+
+[node name="ContactBomb" parent="." instance=ExtResource("3_l1h70")]
+
+[node name="DamagePassiveBomb" parent="." instance=ExtResource("4_7i6hx")]
+
+[node name="SpeedChargeBomb" parent="." instance=ExtResource("5_v0m00")]
+
+[node name="TrailBomb" parent="." instance=ExtResource("6_by2td")]
+
+[node name="ShootBomb" parent="." instance=ExtResource("7_qcwqm")]
+
+[node name="Ability1Bomb" parent="." instance=ExtResource("8_o8o73")]
+
+[node name="Ability2Bomb" parent="." instance=ExtResource("9_33a68")]

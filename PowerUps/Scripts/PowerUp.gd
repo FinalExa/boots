@@ -44,4 +44,3 @@ func CreatePowerUpEffectWithRef(spawner: ObjectSpawner, ref):
 	if (spawnedPowerUpObject != null):
 		InitializePowerUpObject(spawnedPowerUpObject)
 		spawnedPowerUpObject.SetRef(ref)
-

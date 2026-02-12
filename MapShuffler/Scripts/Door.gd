@@ -31,7 +31,8 @@ func StartupDoor():
 func GenerateThisDoorReward():
 	rewardType = rewardSpawnRef.GetRandomRewardType()
 	if (rewardType == RewardSpawn.RewardType.POWERUP):
-		powerUpFaction = rewardSpawnRef.GetRandomPowerUpFaction()
+		powerUpFaction = rewardSpawnRef.GetContainer().powerUpFaction
+		rewardSpawnRef.powerUpFactionSetByDoor = true
 
 func GenerateUniqueReward(otherDoors: Array[Door]):
 	var bannedRewardTypes: Array[RewardSpawn.RewardType] = []
