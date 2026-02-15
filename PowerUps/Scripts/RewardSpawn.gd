@@ -80,6 +80,18 @@ func GetContainer():
 			powerUpFactionSetByDoor = false
 			return validContainers[powerUpFaction]
 
+func GetContainerWithBannedContainers(bannedContainers: Array[PowerUp.PowerUpFaction]):
+	var validContainers: Array[PowerUpContainer] = []
+	for i in powerUpContainers.size():
+		if (powerUpContainers[i].powerUps.size() > powerUpContainers[i].bannedPowerUps.size() && !bannedContainers.has(powerUpContainers[i].powerUpFaction)):
+			validContainers.push_back(powerUpContainers[i])
+	powerUpFaction = validContainers[randi_range(0, validContainers.size() - 1)].powerUpFaction
+	for i in validContainers.size():
+		if (validContainers[i].powerUpFaction == powerUpFaction):
+			powerUpFactionSetByDoor = false
+			return powerUpFaction
+	return -1
+
 func SetupRewardArray(receivedContainer: PowerUpContainer):
 	var rewardArray: Array[PowerUp] = GenerateRewardArrayWithoutBannedPowerUps(receivedContainer)
 	var selectedArray: Array[PowerUp] = []

@@ -3,8 +3,8 @@ extends Node2D
 
 @export var playerSpawnPoint: Node2D
 @export var rewardSpawnPosition: Node2D
-var door2Chance: int = 50
-var door3Chance: int = 50
+var door2Chance: int = 70
+var door3Chance: int = 30
 var completedObjective: bool
 var doors: Array[Door]
 var doorCount: int = 0

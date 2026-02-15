@@ -29,18 +29,40 @@ func StartupDoor():
 			GenerateUniqueReward(sceneMaster.sceneSelector.currentScene.doors)
 
 func GenerateThisDoorReward():
-	rewardType = rewardSpawnRef.GetRandomRewardType()
+	GenerateRewardType()
 	if (rewardType == RewardSpawn.RewardType.POWERUP):
-		powerUpFaction = rewardSpawnRef.GetContainer().powerUpFaction
-		rewardSpawnRef.powerUpFactionSetByDoor = true
+		GenerateDoorPowerUpFaction()
+
+func GenerateRewardType():
+	rewardType = rewardSpawnRef.GetRandomRewardType()
+
+func GenerateDoorPowerUpFaction():
+	powerUpFaction = rewardSpawnRef.GetContainer().powerUpFaction
+	rewardSpawnRef.powerUpFactionSetByDoor = true
+
+func GenerateDoorPowerUpFactionWithBannedFactions(bannedFactions: Array[PowerUp.PowerUpFaction]):
+	powerUpFaction = rewardSpawnRef.GetContainerWithBannedContainers(bannedFactions)
+	rewardSpawnRef.powerUpFactionSetByDoor = true
 
 func GenerateUniqueReward(otherDoors: Array[Door]):
 	var bannedRewardTypes: Array[RewardSpawn.RewardType] = []
+	var bannedFactions: Array[PowerUp.PowerUpFaction] = []
 	for i in otherDoors.size() - 1:
-		bannedRewardTypes.push_back(otherDoors[i].rewardType)
-	GenerateThisDoorReward()
-	while (bannedRewardTypes.has(rewardType)):
-		GenerateThisDoorReward()
+		if (otherDoors[i].rewardType != RewardSpawn.RewardType.POWERUP):
+			bannedRewardTypes.push_back(otherDoors[i].rewardType)
+			continue
+		if (!bannedRewardTypes.has(RewardSpawn.RewardType.POWERUP)):
+			bannedFactions.push_back(otherDoors[i].powerUpFaction)
+			if (bannedFactions.size() == rewardSpawnRef.powerUpContainers.size()):
+				bannedRewardTypes.push_back(RewardSpawn.RewardType.POWERUP)
+	while (bannedRewardTypes.size() > 0 && bannedRewardTypes.has(rewardType)):
+		GenerateRewardType()
+	if (rewardType == RewardSpawn.RewardType.POWERUP):
+		GenerateDoorPowerUpFactionWithBannedFactions(bannedFactions)
+		if (powerUpFaction == -1):
+			bannedRewardTypes.push_back(RewardSpawn.RewardType.POWERUP)
+			while (bannedRewardTypes.size() > 0 && bannedRewardTypes.has(rewardType)):
+				GenerateRewardType()
 
 func OpenDoor():
 	if (registered):

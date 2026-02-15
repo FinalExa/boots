@@ -7,7 +7,7 @@ var transportObjectIn: bool
 var transportObjectRef: TransportObject
 var completed: bool
 
-func SetCompleted(transportObject: TransportObject):
+func SetCompleted(_transportObject: TransportObject):
 	completed = true
 	spriteRef.hide()
 	mapObjective.call_deferred("GenerateTransportObject")
