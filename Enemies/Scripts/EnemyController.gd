@@ -12,8 +12,8 @@ signal repelled
 @export var enemyShielded: EnemyShielded
 @export var attackDistance: float
 @export var damageImmunityDuration: float
-@export var currentDOT: PowerUpObjects
 
+var currentDOT: PowerUpObjects
 var playerRef: PlayerCharacter
 var damageImmunityTimer: float
 var repelledTimer: float
