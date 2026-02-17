@@ -6,7 +6,7 @@ signal enemyDeath
 @export var maxHealth: float
 @export var enemyController: EnemyController
 @export var enemyShielded: EnemyShielded
-@export var label: Label
+@export var bar: TextureProgressBar
 var currentObjective: MapObjective
 var currentHealth: float = 0
 
@@ -21,7 +21,8 @@ func HealthUpdate(valueChange: float):
 		valueChange = 0
 		enemyShielded.RemoveShielded()
 	currentHealth = clamp(currentHealth + valueChange, 0, maxHealth)
-	label.text = str(snapped(currentHealth, 0.01), "/", maxHealth)
+	bar.max_value = maxHealth * 100
+	bar.value = currentHealth * 100
 	if (currentHealth <= 0):
 		if (currentObjective != null):
 			currentObjective.RequestEnemyData(enemyController)
