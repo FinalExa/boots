@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8g4j8wd6h4kw"
-path="res://.godot/imported/acceleration_value.png-44f4c12c4322d6d5da7266aa856ee123.ctex"
+uid="uid://dgo7ftmq0hwso"
+path="res://.godot/imported/speed_bar_under.png-350fbf35d01bebfbbc0515060707d12c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Sprites/UI/acceleration_value.png"
-dest_files=["res://.godot/imported/acceleration_value.png-44f4c12c4322d6d5da7266aa856ee123.ctex"]
+source_file="res://Player/HUD/Sprites/speed_bar_under.png"
+dest_files=["res://.godot/imported/speed_bar_under.png-350fbf35d01bebfbbc0515060707d12c.ctex"]
 
 [params]
 

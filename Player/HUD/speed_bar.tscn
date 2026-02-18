@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://btmcb1a8mk3w6"]
+
+[ext_resource type="Texture2D" uid="uid://dgo7ftmq0hwso" path="res://Player/HUD/Sprites/speed_bar_under.png" id="1_ysvte"]
+[ext_resource type="Texture2D" uid="uid://dt405fpo6rhju" path="res://Player/HUD/Sprites/speed_bar_upper.png" id="2_vvdjn"]
+[ext_resource type="Texture2D" uid="uid://cma4fy8kjgbvd" path="res://Player/HUD/Sprites/speed_bar_progress.png" id="3_eev1o"]
+[ext_resource type="Script" path="res://Player/HUD/Scripts/SpeedValue.gd" id="4_o5bfv"]
+[ext_resource type="Texture2D" uid="uid://8g4j8wd6h4kw" path="res://Player/HUD/Sprites/acceleration_value.png" id="5_knfly"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xg2kx"]
+font_color = Color(1, 1, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SpeedBar" type="TextureProgressBar" node_paths=PackedStringArray("accelerationLabel")]
+offset_left = 96.0
+offset_top = 88.0
+offset_right = 480.0
+offset_bottom = 152.0
+texture_under = ExtResource("1_ysvte")
+texture_over = ExtResource("2_vvdjn")
+texture_progress = ExtResource("3_eev1o")
+script = ExtResource("4_o5bfv")
+accelerationLabel = NodePath("AccelerationText")
+
+[node name="AccelerationImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_bottom = 64.0
+texture = ExtResource("5_knfly")
+
+[node name="AccelerationText" type="Label" parent="."]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 48.0
+label_settings = SubResource("LabelSettings_xg2kx")
+horizontal_alignment = 1
+vertical_alignment = 1

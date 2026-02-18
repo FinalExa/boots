@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt405fpo6rhju"
-path="res://.godot/imported/speed_bar_upper.png-4a447c57f46499821ba4b8d37de161db.ctex"
+uid="uid://cma4fy8kjgbvd"
+path="res://.godot/imported/speed_bar_progress.png-e05738838a873871035235452ef7771c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Sprites/UI/speed_bar_upper.png"
-dest_files=["res://.godot/imported/speed_bar_upper.png-4a447c57f46499821ba4b8d37de161db.ctex"]
+source_file="res://Player/HUD/Sprites/speed_bar_progress.png"
+dest_files=["res://.godot/imported/speed_bar_progress.png-e05738838a873871035235452ef7771c.ctex"]
 
 [params]
 
