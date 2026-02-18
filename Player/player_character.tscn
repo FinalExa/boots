@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=33 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -23,14 +23,23 @@
 [ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
 [ext_resource type="PackedScene" uid="uid://bqksn2ryw4yw4" path="res://Player/player_ability_1.tscn" id="19_bpc71"]
 [ext_resource type="PackedScene" uid="uid://d3fgotociy2vg" path="res://Player/player_ability_2.tscn" id="20_6myp7"]
+[ext_resource type="Texture2D" uid="uid://dgo7ftmq0hwso" path="res://Player/Sprites/UI/speed_bar_under.png" id="22_ekvkp"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
+[ext_resource type="Texture2D" uid="uid://dt405fpo6rhju" path="res://Player/Sprites/UI/speed_bar_upper.png" id="23_dp87o"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
+[ext_resource type="Texture2D" uid="uid://cma4fy8kjgbvd" path="res://Player/Sprites/UI/speed_bar_progress.png" id="24_do4br"]
+[ext_resource type="Texture2D" uid="uid://8g4j8wd6h4kw" path="res://Player/Sprites/UI/acceleration_value.png" id="26_5qi17"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xg2kx"]
+font_color = Color(1, 1, 0, 1)
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel", "followItem")]
@@ -252,18 +261,34 @@ offset_right = 1896.0
 offset_bottom = 56.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
-[node name="SpeedValue" type="Label" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "speedThresholds")]
+[node name="SpeedBar" type="TextureProgressBar" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "accelerationLabel")]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 56.0
-offset_right = 192.0
-offset_bottom = 88.0
-label_settings = SubResource("LabelSettings_fvdlt")
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 96.0
+offset_top = 88.0
+offset_right = 480.0
+offset_bottom = 152.0
+texture_under = ExtResource("22_ekvkp")
+texture_over = ExtResource("23_dp87o")
+texture_progress = ExtResource("24_do4br")
 script = ExtResource("4_hhy2o")
 playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
+accelerationLabel = NodePath("AccelerationText")
+
+[node name="AccelerationImage" type="TextureRect" parent="PlayerHUD/SpeedBar"]
+layout_mode = 0
+offset_left = -64.0
+offset_bottom = 64.0
+texture = ExtResource("26_5qi17")
+
+[node name="AccelerationText" type="Label" parent="PlayerHUD/SpeedBar"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 48.0
+label_settings = SubResource("LabelSettings_xg2kx")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpeedChargeValue" type="Label" parent="PlayerHUD"]
 layout_mode = 0

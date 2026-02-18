@@ -1,8 +1,11 @@
-extends Label
+extends TextureProgressBar
 
 @export var playerMovements: PlayerMovements
-@export var speedThresholds: PlayerSpeedThresholds
+@export var accelerationLabel: Label
 var savedSpeedValue: int
+
+func _ready():
+	max_value = playerMovements.maxSpeed
 
 func _process(_delta):
 	SetText()
@@ -10,4 +13,5 @@ func _process(_delta):
 func SetText():
 	if (savedSpeedValue != playerMovements.currentSpeed):
 		savedSpeedValue = int(playerMovements.currentSpeed)
-		self.text = str("ACCELERATION: ", int(playerMovements.currentAcceleration), ", SPEED: ", savedSpeedValue, " ", speedThresholds.speedIndex)
+		accelerationLabel.text = str(int(playerMovements.currentAcceleration))
+		value = savedSpeedValue
