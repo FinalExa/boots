@@ -254,18 +254,18 @@ label_settings = SubResource("LabelSettings_fvdlt")
 
 [node name="SpeedBar" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements") instance=ExtResource("22_2s2fx")]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 56.0
-offset_right = 472.0
-offset_bottom = 120.0
+offset_left = 96.0
+offset_top = 88.0
+offset_right = 480.0
+offset_bottom = 152.0
 playerMovements = NodePath("../../PlayerMovements")
 
 [node name="SpeedChargeValue" type="Label" parent="PlayerHUD"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 88.0
-offset_right = 192.0
-offset_bottom = 120.0
+offset_left = 32.0
+offset_top = 152.0
+offset_right = 200.0
+offset_bottom = 184.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -302,10 +302,10 @@ vertical_alignment = 1
 
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 120.0
-offset_right = 192.0
-offset_bottom = 184.0
+offset_left = 832.0
+offset_top = 88.0
+offset_right = 1088.0
+offset_bottom = 152.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1

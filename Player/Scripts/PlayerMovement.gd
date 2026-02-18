@@ -32,6 +32,8 @@ var lastDirection: Vector2
 var lastPosition: Vector2
 var distanceToLastPos: float
 var directionDifferent: bool
+var decelerating: bool
+var effectiveDeceleration: float
 var xValue: float
 var yValue: float
 
@@ -92,9 +94,12 @@ func AccelerationCases(delta):
 	Accelerate(delta)
 
 func Accelerate(delta):
+	if (decelerating): decelerating = false
 	currentSpeed = clamp(currentSpeed + (currentAcceleration * delta), minSpeed, maxSpeed)
 
 func Decelerate(delta, decelerationValue):
+	if (!decelerating): decelerating = true
+	effectiveDeceleration = decelerationValue
 	currentSpeed = clamp(currentSpeed - (decelerationValue * delta), minSpeed, maxSpeed)
 
 func UpdateCurrentSpeed(updateValue):
