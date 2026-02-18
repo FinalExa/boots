@@ -1,7 +1,7 @@
 class_name PlayerHealth
 extends Node
 
-@export var healthLabel: Label
+@export var healthBar: TextureProgressBar
 @export var maxHealth: float
 @export var partialThreshold: float
 @export var playerMovements: PlayerMovements
@@ -18,13 +18,14 @@ func _process(delta):
 		InvulnerabilityTimer(delta)
 
 func UpdateHealthValue(valueToAdd: float, minValue: float):
+	healthBar.max_value = maxHealth
 	currentHealth = clamp(currentHealth + valueToAdd, minValue, maxHealth)
 	UpdateLabel()
 	if (currentHealth <= 0):
 		get_tree().reload_current_scene()
 
 func UpdateLabel():
-	healthLabel.text = str("Integrity: ", currentHealth, "/", maxHealth)
+	healthBar.value = currentHealth
 
 func CheckForDamageType(fullDamage: float, partialDamage: float):
 	if (playerMovements.currentSpeed > playerMovements.killSpeedValue && currentHealth > partialThreshold):

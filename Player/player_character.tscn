@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=29 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bqksn2ryw4yw4" path="res://Player/player_ability_1.tscn" id="19_bpc71"]
 [ext_resource type="PackedScene" uid="uid://d3fgotociy2vg" path="res://Player/player_ability_2.tscn" id="20_6myp7"]
 [ext_resource type="PackedScene" uid="uid://btmcb1a8mk3w6" path="res://Player/HUD/speed_bar.tscn" id="22_2s2fx"]
+[ext_resource type="PackedScene" uid="uid://co7ddcung4upu" path="res://Player/HUD/health_bar.tscn" id="22_k3yg1"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 
@@ -70,9 +71,9 @@ shape = SubResource("CircleShape2D_upbqd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("healthLabel", "playerMovements")]
+[node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("healthBar", "playerMovements")]
 script = ExtResource("5_dqtuw")
-healthLabel = NodePath("../PlayerHUD/HealthValue")
+healthBar = NodePath("../PlayerHUD/HealthBar")
 maxHealth = 100.0
 partialThreshold = 10.0
 playerMovements = NodePath("../PlayerMovements")
@@ -228,13 +229,12 @@ offset_top = -536.0
 offset_right = 960.0
 offset_bottom = 536.0
 
-[node name="HealthValue" type="Label" parent="PlayerHUD"]
+[node name="HealthBar" parent="PlayerHUD" instance=ExtResource("22_k3yg1")]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 32.0
 offset_top = 24.0
-offset_right = 192.0
-offset_bottom = 56.0
-label_settings = SubResource("LabelSettings_fvdlt")
+offset_right = 288.0
+offset_bottom = 88.0
 
 [node name="MoneyValue" type="Label" parent="PlayerHUD"]
 layout_mode = 0
