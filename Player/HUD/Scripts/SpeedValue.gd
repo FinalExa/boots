@@ -16,12 +16,9 @@ func SetText():
 	if (savedSpeed != playerMovements.currentSpeed):
 		savedSpeed = int(playerMovements.currentSpeed)
 		value = savedSpeed
-		if (savedSpeed != 0):
-			var valueToShow: int
-			if (!playerMovements.decelerating):
-				valueToShow = int(playerMovements.currentAcceleration)
-			else:
-				valueToShow = int(playerMovements.effectiveDeceleration)
-			accelerationLabel.text = str(valueToShow)
+		var valueToShow: int
+		if (!playerMovements.decelerating):
+			valueToShow = int(playerMovements.currentAcceleration)
 		else:
-			accelerationLabel.text = str(0)
+			valueToShow = int(playerMovements.effectiveDeceleration)
+		accelerationLabel.text = str(valueToShow)
