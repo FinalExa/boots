@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=30 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://co7ddcung4upu" path="res://Player/HUD/health_bar.tscn" id="22_k3yg1"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
+[ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="27_8sjqk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -316,6 +317,13 @@ playerRef = NodePath("../..")
 
 [node name="ShopUI" parent="PlayerHUD" node_paths=PackedStringArray("playerRef") instance=ExtResource("11_umy70")]
 playerRef = NodePath("../..")
+
+[node name="PauseMenu" parent="PlayerHUD" node_paths=PackedStringArray("playerInputs") instance=ExtResource("27_8sjqk")]
+offset_left = 896.0
+offset_top = 472.0
+offset_right = 936.0
+offset_bottom = 512.0
+playerInputs = NodePath("../../PlayerInputs")
 
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
