@@ -15,7 +15,12 @@ func _ready():
 	self.hide()
 
 func SetUpShop(rewardSpawnRef: RewardSpawn):
-	var tempPowerUpArray: Array[PowerUp] = rewardSpawnRef.GenerateRewardArrayWithoutBannedPowerUps(rewardSpawnRef.powerUps)
+	var tempPowerUpArray: Array[PowerUp] = []
+	for containerIndex in rewardSpawnRef.powerUpContainers.size():
+		var container: PowerUpContainer = rewardSpawnRef.powerUpContainers[containerIndex]
+		for i in container.powerUps.size():
+			if (!container.bannedPowerUps.has(container.powerUps[i])):
+				tempPowerUpArray.push_back(container.powerUps[i])
 	if (tempPowerUpArray.size() > 0):
 		powerUpRef = tempPowerUpArray.pick_random()
 		powerUpButton.text = str(powerUpRef.powerUpName, "\n", powerUpRef.powerUpDescription, "\n", "Price: ", powerUpPrice, " Ectocrystals")

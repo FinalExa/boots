@@ -21,8 +21,8 @@ radius = 128.0
 script = ExtResource("1_63obd")
 label = NodePath("Label")
 sprites = [NodePath("PowerUpSprite"), NodePath("HealSprite"), NodePath("MoneySprite"), NodePath("ShopSprite")]
-healAmount = 20.0
-moneyAmount = 100.0
+healAmount = 30.0
+moneyAmount = 300.0
 
 [node name="PowerUpSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ol77k")
