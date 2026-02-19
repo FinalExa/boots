@@ -9,7 +9,6 @@ var ability1: bool
 var ability2: bool
 var aimInput: Vector2
 var shootInput: bool
-var pauseInput: bool
 var sceneMaster: SceneMaster
 
 func _ready():
@@ -28,7 +27,7 @@ func GetInputs():
 		GetAbility1Input()
 		GetAbility2Input()
 		GetInteractionInput()
-		GetPauseInput()
+		
 
 func GetMovementInput():
 	movementInput = Input.get_vector("left", "right", "up", "down")
@@ -66,12 +65,6 @@ func GetShootInput():
 		shootInput = true
 		return
 	shootInput = false
-
-func GetPauseInput():
-	if (Input.is_action_just_pressed("Pause")):
-		pauseInput = true
-		return
-	pauseInput = false
 
 func WinMap():
 	if (Input.is_action_just_pressed("Win")):

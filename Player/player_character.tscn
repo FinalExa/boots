@@ -318,12 +318,12 @@ playerRef = NodePath("../..")
 [node name="ShopUI" parent="PlayerHUD" node_paths=PackedStringArray("playerRef") instance=ExtResource("11_umy70")]
 playerRef = NodePath("../..")
 
-[node name="PauseMenu" parent="PlayerHUD" node_paths=PackedStringArray("playerInputs") instance=ExtResource("27_8sjqk")]
+[node name="PauseMenu" parent="PlayerHUD" node_paths=PackedStringArray("playerRef") instance=ExtResource("27_8sjqk")]
 offset_left = 896.0
 offset_top = 472.0
 offset_right = 936.0
 offset_bottom = 512.0
-playerInputs = NodePath("../../PlayerInputs")
+playerRef = NodePath("../..")
 
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]

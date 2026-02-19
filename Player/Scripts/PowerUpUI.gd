@@ -18,6 +18,7 @@ func RegisterPowerUps(receivedPowerUps: Array[PowerUp]):
 		else :
 			powerUpButtons[i].hide()
 	if (receivedPowerUps.size() > 0):
+		playerRef.inSelectMenu = true
 		get_tree().paused = true
 		self.show()
 
@@ -30,6 +31,7 @@ func OnButtonPressed(extra_arg_0):
 	selectedPowerUp.Register(playerRef)
 	rewardSpawn.BanPowerUp(selectedPowerUp)
 	ClearPowerUps()
+	playerRef.inSelectMenu = false
 	get_tree().paused = false
 	self.hide()
 

@@ -31,6 +31,7 @@ func SetUpShop(rewardSpawnRef: RewardSpawn):
 	else:
 		healingBought = true
 		healingButton.get_parent().hide()
+	playerRef.inSelectMenu = true
 	get_tree().paused = true
 	self.show()
 	CheckIfShopIsAvailable()
@@ -61,5 +62,6 @@ func CheckIfShopIsAvailable():
 		BackButtonPressed()
 
 func BackButtonPressed():
+	playerRef.inSelectMenu = false
 	get_tree().paused = false
 	self.hide()

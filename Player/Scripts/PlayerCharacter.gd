@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var startingMoney: float
 var collisionResult: bool
 var currentMoney: float
+var inSelectMenu: bool
 
 func _ready():
 	UpdateMoney(startingMoney)
