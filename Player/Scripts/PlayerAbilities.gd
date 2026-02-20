@@ -19,6 +19,7 @@ var ability1CurrentStacks: int
 var ability2Timer: float
 @export var ability2Stacks: int = 1
 var ability2CurrentStacks: int
+@export var ability2Bar: TextureProgressBar
 @export var ability2Label: Label
 
 func _ready():
@@ -35,7 +36,8 @@ func StartupAbilities():
 	ability1Label.text = str(ability1CurrentStacks, "/", ability1Stacks)
 	ability2Timer = ability2Cooldown
 	ability2CurrentStacks = ability2Stacks
-	ability2Label.text = str("Charges: ", ability2CurrentStacks, "/", ability2Stacks)
+	ability2Bar.max_value = ability2Cooldown * 100
+	ability2Label.text = str(ability2CurrentStacks, "/", ability2Stacks)
 
 func AbilityIsUsed():
 	if (playerInputs.ability1 && ability1CurrentStacks > 0):
@@ -71,12 +73,14 @@ func Ability2Cooldown(delta):
 	if (ability2CurrentStacks < ability2Stacks):
 		if (ability2Timer > 0):
 			ability2Timer -= delta
-			ability2Label.text = str("Charges: ", ability2CurrentStacks, "/", ability2Stacks, "\n", snapped(ability2Timer, 0.1))
+			ability2Bar.value = ability2Timer * 100
+			ability2Label.text = str(ability2CurrentStacks, "/", ability2Stacks)
 			return
 		else:
 			ability2CurrentStacks += 1
 			if (ability2CurrentStacks == ability2Stacks):
 				ability2Timer = ability2Cooldown
-				ability2Label.text = str("Charges: ", ability2CurrentStacks, "/", ability2Stacks)
+				ability2Bar.value = 0
+				ability2Label.text = str(ability2CurrentStacks, "/", ability2Stacks)
 			else:
 				ability2Timer += ability2Cooldown

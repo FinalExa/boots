@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=44 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -32,6 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="27_8sjqk"]
 [ext_resource type="Texture2D" uid="uid://q3b077lglk03" path="res://Player/HUD/Sprites/mouse_left_click.png" id="27_oad4o"]
 [ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/HUD/Sprites/skill1_bar_under.png" id="28_cedei"]
+[ext_resource type="Texture2D" uid="uid://co4uclcuruyf7" path="res://Player/HUD/Sprites/keyboard_shift.png" id="29_jjlwt"]
+[ext_resource type="Texture2D" uid="uid://p8sl20lbj2ow" path="res://Player/HUD/Sprites/keyboard_tab.png" id="29_wggef"]
+[ext_resource type="Texture2D" uid="uid://dfdyft07a1sy7" path="res://Player/HUD/Sprites/skill2_bar_under.png" id="30_bg1bh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -40,15 +43,45 @@ radius = 16.0
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w8wsj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_71laf"]
 atlas = ExtResource("27_oad4o")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fgvbh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w8wsj")
+"texture": SubResource("AtlasTexture_71laf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq1h8"]
+atlas = ExtResource("29_jjlwt")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xskm6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rq1h8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6fv7"]
+atlas = ExtResource("29_wggef")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf5ty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6fv7")
 }],
 "loop": false,
 "name": &"default",
@@ -166,7 +199,7 @@ playerMovements = NodePath("../../PlayerMovements")
 playerShooting = NodePath("../../PlayerAim/PlayerShooting")
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
 
-[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Label")]
+[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
 script = ExtResource("18_d34mc")
 playerInputs = NodePath("../../PlayerInputs")
 ability1 = NodePath("PlayerAbility1")
@@ -175,7 +208,8 @@ ability1Bar = NodePath("../../PlayerHUD/Ability1Bar")
 ability1Label = NodePath("../../PlayerHUD/Ability1Bar/Ability1StackCount")
 ability2 = NodePath("PlayerAbility2")
 ability2Cooldown = 10.0
-ability2Label = NodePath("../../PlayerHUD/Ability2Data")
+ability2Bar = NodePath("../../PlayerHUD/Ability2Bar")
+ability2Label = NodePath("../../PlayerHUD/Ability2Bar/Ability2StackCount")
 
 [node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
 attackSounds = [null]
@@ -312,8 +346,8 @@ label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerHUD/ProjectileBar"]
-position = Vector2(-16, 32)
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/ProjectileBar"]
+position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_fgvbh")
 autoplay = "default"
 
@@ -333,15 +367,31 @@ offset_right = 64.0
 offset_bottom = 64.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
-[node name="Ability2Data" type="Label" parent="PlayerHUD"]
-layout_mode = 0
-offset_left = 1728.0
-offset_top = 1016.0
-offset_right = 1896.0
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability1Bar"]
+position = Vector2(-32, 32)
+sprite_frames = SubResource("SpriteFrames_xskm6")
+autoplay = "default"
+
+[node name="Ability2Bar" type="TextureProgressBar" parent="PlayerHUD"]
+offset_left = 64.0
+offset_top = 984.0
+offset_right = 128.0
 offset_bottom = 1048.0
+fill_mode = 3
+texture_under = ExtResource("30_bg1bh")
+texture_over = ExtResource("25_fakee")
+texture_progress = ExtResource("26_0xqhb")
+
+[node name="Ability2StackCount" type="Label" parent="PlayerHUD/Ability2Bar"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
 label_settings = SubResource("LabelSettings_fvdlt")
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability2Bar"]
+position = Vector2(-32, 32)
+sprite_frames = SubResource("SpriteFrames_wf5ty")
+autoplay = "default"
 
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
