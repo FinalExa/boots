@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=37 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -28,9 +28,10 @@
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 [ext_resource type="Texture2D" uid="uid://cp8d0s2hr0mi0" path="res://Player/HUD/Sprites/projectiles_bar_under.png" id="24_og5fn"]
 [ext_resource type="Texture2D" uid="uid://rsrkj31sly56" path="res://Player/HUD/Sprites/skill_bar_upper.png" id="25_fakee"]
-[ext_resource type="Texture2D" uid="uid://bm2uhhc2qi4gb" path="res://Player/HUD/Sprites/projectiles_bar_progress.png" id="26_6278y"]
+[ext_resource type="Texture2D" uid="uid://bm2uhhc2qi4gb" path="res://Player/HUD/Sprites/skill_bar_progress.png" id="26_0xqhb"]
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="27_8sjqk"]
 [ext_resource type="Texture2D" uid="uid://q3b077lglk03" path="res://Player/HUD/Sprites/mouse_left_click.png" id="27_oad4o"]
+[ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/HUD/Sprites/skill1_bar_under.png" id="28_cedei"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -165,12 +166,13 @@ playerMovements = NodePath("../../PlayerMovements")
 playerShooting = NodePath("../../PlayerAim/PlayerShooting")
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
 
-[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Label", "ability2", "ability2Label")]
+[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Label")]
 script = ExtResource("18_d34mc")
 playerInputs = NodePath("../../PlayerInputs")
 ability1 = NodePath("PlayerAbility1")
 ability1Cooldown = 15.0
-ability1Label = NodePath("../../PlayerHUD/Ability1Data")
+ability1Bar = NodePath("../../PlayerHUD/Ability1Bar")
+ability1Label = NodePath("../../PlayerHUD/Ability1Bar/Ability1StackCount")
 ability2 = NodePath("PlayerAbility2")
 ability2Cooldown = 10.0
 ability2Label = NodePath("../../PlayerHUD/Ability2Data")
@@ -294,13 +296,13 @@ vertical_alignment = 1
 [node name="ProjectileBar" type="TextureProgressBar" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 984.0
+offset_top = 856.0
 offset_right = 128.0
-offset_bottom = 1048.0
+offset_bottom = 920.0
 fill_mode = 3
 texture_under = ExtResource("24_og5fn")
 texture_over = ExtResource("25_fakee")
-texture_progress = ExtResource("26_6278y")
+texture_progress = ExtResource("26_0xqhb")
 
 [node name="ProjectileCount" type="Label" parent="PlayerHUD/ProjectileBar"]
 layout_mode = 0
@@ -315,15 +317,21 @@ position = Vector2(-16, 32)
 sprite_frames = SubResource("SpriteFrames_fgvbh")
 autoplay = "default"
 
-[node name="Ability1Data" type="Label" parent="PlayerHUD"]
+[node name="Ability1Bar" type="TextureProgressBar" parent="PlayerHUD"]
+offset_left = 64.0
+offset_top = 920.0
+offset_right = 128.0
+offset_bottom = 984.0
+fill_mode = 3
+texture_under = ExtResource("28_cedei")
+texture_over = ExtResource("25_fakee")
+texture_progress = ExtResource("26_0xqhb")
+
+[node name="Ability1StackCount" type="Label" parent="PlayerHUD/Ability1Bar"]
 layout_mode = 0
-offset_left = 1472.0
-offset_top = 1016.0
-offset_right = 1640.0
-offset_bottom = 1048.0
+offset_right = 64.0
+offset_bottom = 64.0
 label_settings = SubResource("LabelSettings_fvdlt")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Ability2Data" type="Label" parent="PlayerHUD"]
 layout_mode = 0

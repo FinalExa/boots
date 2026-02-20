@@ -11,6 +11,7 @@ signal ability2Used
 var ability1Timer: float
 @export var ability1Stacks: int = 1
 var ability1CurrentStacks: int
+@export var ability1Bar: TextureProgressBar
 @export var ability1Label: Label
 
 @export var ability2: ExecuteAttack
@@ -30,7 +31,8 @@ func _process(delta):
 func StartupAbilities():
 	ability1Timer = ability1Cooldown
 	ability1CurrentStacks = ability1Stacks
-	ability1Label.text = str("Charges: ", ability1CurrentStacks, "/", ability1Stacks)
+	ability1Bar.max_value = ability1Cooldown * 100
+	ability1Label.text = str(ability1CurrentStacks, "/", ability1Stacks)
 	ability2Timer = ability2Cooldown
 	ability2CurrentStacks = ability2Stacks
 	ability2Label.text = str("Charges: ", ability2CurrentStacks, "/", ability2Stacks)
@@ -53,13 +55,15 @@ func Ability1Cooldown(delta):
 	if (ability1CurrentStacks < ability1Stacks):
 		if (ability1Timer > 0):
 			ability1Timer -= delta
-			ability1Label.text = str("Charges: ", ability1CurrentStacks, "/", ability1Stacks, "\n", snapped(ability1Timer, 0.1))
+			ability1Bar.value = ability1Timer * 100
+			ability1Label.text = str(ability1CurrentStacks, "/", ability1Stacks)
 			return
 		else:
 			ability1CurrentStacks += 1
 			if (ability1CurrentStacks == ability1Stacks):
 				ability1Timer = ability1Cooldown
-				ability1Label.text = str("Charges: ", ability1CurrentStacks, "/", ability1Stacks)
+				ability1Bar.value = 0
+				ability1Label.text = str(ability1CurrentStacks, "/", ability1Stacks)
 			else:
 				ability1Timer += ability1Cooldown
 

@@ -21,6 +21,7 @@ var isPowerUp: bool
 func _ready():
 	SetToBase()
 	UpdateUI()
+	projectileTextureBar.value = 0
 
 func _process(delta):
 	ShootProjectiles()
@@ -56,6 +57,8 @@ func ProjectileRechargeCooldown(delta):
 			currentProjectiles += 1
 			projectileRechargeTimer = currentProjectileICD
 		UpdateUI()
+		return
+	if (projectileTextureBar.value != 0): projectileTextureBar.value = 0
 
 func UpdateUI():
 	projectileTextureBar.max_value = currentProjectileICD * 100
