@@ -27,7 +27,7 @@
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 [ext_resource type="Texture2D" uid="uid://cp8d0s2hr0mi0" path="res://Player/HUD/Sprites/projectiles_bar_under.png" id="24_og5fn"]
-[ext_resource type="Texture2D" uid="uid://rsrkj31sly56" path="res://Player/HUD/Sprites/projectiles_bar_upper.png" id="25_1dt8q"]
+[ext_resource type="Texture2D" uid="uid://rsrkj31sly56" path="res://Player/HUD/Sprites/skill_bar_upper.png" id="25_fakee"]
 [ext_resource type="Texture2D" uid="uid://bm2uhhc2qi4gb" path="res://Player/HUD/Sprites/projectiles_bar_progress.png" id="26_6278y"]
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="27_8sjqk"]
 [ext_resource type="Texture2D" uid="uid://q3b077lglk03" path="res://Player/HUD/Sprites/mouse_left_click.png" id="27_oad4o"]
@@ -299,7 +299,7 @@ offset_right = 128.0
 offset_bottom = 1048.0
 fill_mode = 3
 texture_under = ExtResource("24_og5fn")
-texture_over = ExtResource("25_1dt8q")
+texture_over = ExtResource("25_fakee")
 texture_progress = ExtResource("26_6278y")
 
 [node name="ProjectileCount" type="Label" parent="PlayerHUD/ProjectileBar"]

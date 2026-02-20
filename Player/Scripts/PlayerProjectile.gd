@@ -1,24 +1,28 @@
 class_name PlayerProjectile
 extends Projectile
 
-func _on_projectile_area_body_entered(body):
+func CheckForBodies(body):
 	if (body is EnemyController):
 		EnemyCollision(body)
 		return
 
-func _on_projectile_area_area_entered(area):
+func CheckForAreas(area):
 	if (area is AttackHitbox && area.characterRef is EnemyController):
 		AttackHitboxCollision(area)
 		return
 	if (area is EnemySideShield && area.isActive):
 		SideShieldCollision(area)
+		return
 
 func EnemyCollision(enemyRef: EnemyController):
-	enemyRef.ReceiveDamage(damage, 0, Vector2.ZERO, 0)
+	enemyRef.enemyHealth.HealthUpdate(-damage)
 	call_deferred("DeleteSelf")
 
 func AttackHitboxCollision(attackHitboxRef: AttackHitbox):
-	attackHitboxRef.characterRef.ReceiveDamage(0, 0, Vector2.ZERO, 0)
+	if (!attackHitboxRef.characterRef.enemyAttack.attackLaunched):
+		attackHitboxRef.characterRef.ForceStopAttack()
+	else:
+		EnemyCollision(attackHitboxRef.characterRef)
 	call_deferred("DeleteSelf")
 
 func SideShieldCollision(sideShieldRef: EnemySideShield):
