@@ -41,6 +41,8 @@ func SetCurrentShootingSettings(maxProj: int, icd: float, path: String, powerUp:
 	projectileRechargeTimer = currentProjectileICD
 	projectileSpawner.objectPath = path
 	isPowerUp = powerUp
+	UpdateUI()
+	projectileTextureBar.value = 0
 
 func ShootProjectiles():
 	if (currentProjectiles > 0 && playerInputs.shootInput):

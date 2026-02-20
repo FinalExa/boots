@@ -25,7 +25,11 @@ func SpeedCharge(value):
 		if (speedChargeCurrentValue >= speedChargeMaxValue):
 			speedChargeCurrentStacks += 1
 			speedChargeCurrentValue -= speedChargeMaxValue
-		powerUpManager.speedChargeLabel.text = str(int(speedChargeCurrentValue), "/", speedChargeMaxValue, " Stacks: ", speedChargeCurrentStacks, "/", speedChargeMaxStacks)
+		powerUpManager.speedChargeBar.value = speedChargeCurrentValue * 100
+		powerUpManager.speedChargeLabel.text = str(speedChargeCurrentStacks, "/", speedChargeMaxStacks)
+		return
+	if (powerUpManager.speedChargeBar.value != 0):
+		powerUpManager.speedChargeBar.value = 0
 
 func SpeedChargeActivate():
 	if (speedChargeCurrentStacks > 0):

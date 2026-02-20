@@ -4,6 +4,7 @@ extends Node2D
 @export var playerRef: PlayerCharacter
 @export var playerMovements: PlayerMovements
 @export var playerShooting: PlayerShooting
+@export var speedChargeBar: TextureProgressBar
 @export var speedChargeLabel: Label
 var contactPowerUp: PowerUpContact
 var shootPowerUp: PowerUpShoot
@@ -15,8 +16,8 @@ var powerUpPassives: Array[PowerUp]
 var lastDownIndex: int
 var lastUpIndex: int
 
-
 func _ready():
+	speedChargeBar.hide()
 	lastDownIndex = -1
 	lastUpIndex = -1
 
@@ -32,9 +33,11 @@ func AssignPowerUp(powerUp: PowerUp):
 		return
 	if (powerUp is PowerUpSpeedCharge):
 		ReplaceOldPowerUp(speedChargePowerUp)
+		speedChargeBar.show()
 		speedChargePowerUp = powerUp
 		speedChargePowerUp.speedChargeCurrentValue = 0
 		speedChargePowerUp.speedChargeCurrentStacks = 0
+		speedChargeBar.max_value = speedChargePowerUp.speedChargeMaxValue * 100
 		return
 	if (powerUp is PowerUpTrail):
 		ReplaceOldPowerUp(trailPowerUp)
@@ -64,6 +67,7 @@ func RemovePowerUp(powerUp: PowerUp):
 		return
 	if (powerUp == speedChargePowerUp):
 		speedChargePowerUp = null
+		speedChargeBar.hide()
 		return
 	if (powerUp == trailPowerUp):
 		trailPowerUp = null

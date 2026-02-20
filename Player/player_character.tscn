@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=48 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -27,14 +27,16 @@
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 [ext_resource type="Texture2D" uid="uid://cp8d0s2hr0mi0" path="res://Player/HUD/Sprites/projectiles_bar_under.png" id="24_og5fn"]
+[ext_resource type="Texture2D" uid="uid://b6vlwd7slavap" path="res://Player/HUD/Sprites/speed_charge_bar_under.png" id="24_uqx3s"]
 [ext_resource type="Texture2D" uid="uid://rsrkj31sly56" path="res://Player/HUD/Sprites/skill_bar_upper.png" id="25_fakee"]
 [ext_resource type="Texture2D" uid="uid://bm2uhhc2qi4gb" path="res://Player/HUD/Sprites/skill_bar_progress.png" id="26_0xqhb"]
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="27_8sjqk"]
 [ext_resource type="Texture2D" uid="uid://q3b077lglk03" path="res://Player/HUD/Sprites/mouse_left_click.png" id="27_oad4o"]
+[ext_resource type="Texture2D" uid="uid://xxlpg44dor5i" path="res://Player/HUD/Sprites/keyboard_E.png" id="27_ssrbe"]
 [ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/HUD/Sprites/skill1_bar_under.png" id="28_cedei"]
 [ext_resource type="Texture2D" uid="uid://co4uclcuruyf7" path="res://Player/HUD/Sprites/keyboard_shift.png" id="29_jjlwt"]
-[ext_resource type="Texture2D" uid="uid://p8sl20lbj2ow" path="res://Player/HUD/Sprites/keyboard_tab.png" id="29_wggef"]
 [ext_resource type="Texture2D" uid="uid://dfdyft07a1sy7" path="res://Player/HUD/Sprites/skill2_bar_under.png" id="30_bg1bh"]
+[ext_resource type="Texture2D" uid="uid://p8sl20lbj2ow" path="res://Player/HUD/Sprites/keyboard_ctrl.png" id="33_lvn6i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -42,6 +44,21 @@ radius = 16.0
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smhgr"]
+atlas = ExtResource("27_ssrbe")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1lqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smhgr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71laf"]
 atlas = ExtResource("27_oad4o")
@@ -74,7 +91,7 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6fv7"]
-atlas = ExtResource("29_wggef")
+atlas = ExtResource("33_lvn6i")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wf5ty"]
@@ -192,12 +209,13 @@ directSound = NodePath("../../../Sounds/PlayerDirect")
 clashLossOnImpact = 50.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
-[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeLabel")]
+[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeBar", "speedChargeLabel")]
 script = ExtResource("16_1u6or")
 playerRef = NodePath("../..")
 playerMovements = NodePath("../../PlayerMovements")
 playerShooting = NodePath("../../PlayerAim/PlayerShooting")
-speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeValue")
+speedChargeBar = NodePath("../../PlayerHUD/SpeedChargeBar")
+speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeBar/SpeedChargeStackCount")
 
 [node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
 script = ExtResource("18_d34mc")
@@ -317,15 +335,29 @@ offset_right = 480.0
 offset_bottom = 152.0
 playerMovements = NodePath("../../PlayerMovements")
 
-[node name="SpeedChargeValue" type="Label" parent="PlayerHUD"]
+[node name="SpeedChargeBar" type="TextureProgressBar" parent="PlayerHUD"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 152.0
-offset_right = 200.0
-offset_bottom = 184.0
+offset_left = 64.0
+offset_top = 792.0
+offset_right = 128.0
+offset_bottom = 856.0
+fill_mode = 3
+texture_under = ExtResource("24_uqx3s")
+texture_over = ExtResource("25_fakee")
+texture_progress = ExtResource("26_0xqhb")
+
+[node name="SpeedChargeStackCount" type="Label" parent="PlayerHUD/SpeedChargeBar"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
 label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerHUD/SpeedChargeBar"]
+position = Vector2(-32, 32)
+sprite_frames = SubResource("SpriteFrames_s1lqd")
+autoplay = "default"
 
 [node name="ProjectileBar" type="TextureProgressBar" parent="PlayerHUD"]
 layout_mode = 0
@@ -352,6 +384,7 @@ sprite_frames = SubResource("SpriteFrames_fgvbh")
 autoplay = "default"
 
 [node name="Ability1Bar" type="TextureProgressBar" parent="PlayerHUD"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 920.0
 offset_right = 128.0
@@ -373,6 +406,7 @@ sprite_frames = SubResource("SpriteFrames_xskm6")
 autoplay = "default"
 
 [node name="Ability2Bar" type="TextureProgressBar" parent="PlayerHUD"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 984.0
 offset_right = 128.0
