@@ -14,7 +14,7 @@ script = ExtResource("1_jcrj8")
 movementSpeed = 2500.0
 lifeTime = 10.0
 forward = NodePath("Forward")
-damage = 15.0
+damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0vp0y")

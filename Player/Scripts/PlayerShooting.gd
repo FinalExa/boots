@@ -8,6 +8,7 @@ extends Node2D
 @export var baseMaxProjectiles: int
 @export var baseProjectileICD: float
 @export var baseProjectilePrefabPath: String
+@export var projectileTextureBar: TextureProgressBar
 @export var projectileCountLabel: Label
 
 var shootPowerUp: PowerUp
@@ -19,7 +20,7 @@ var isPowerUp: bool
 
 func _ready():
 	SetToBase()
-	UpdateLabel()
+	UpdateUI()
 
 func _process(delta):
 	ShootProjectiles()
@@ -54,7 +55,9 @@ func ProjectileRechargeCooldown(delta):
 		else:
 			currentProjectiles += 1
 			projectileRechargeTimer = currentProjectileICD
-		UpdateLabel()
+		UpdateUI()
 
-func UpdateLabel():
-	projectileCountLabel.text = str("Projectiles: ", currentProjectiles, "/", currentMaxProjectiles, "\n", "Projectile recharge cooldown: ", snapped(projectileRechargeTimer, 0.1))
+func UpdateUI():
+	projectileTextureBar.max_value = currentProjectileICD * 100
+	projectileTextureBar.value = projectileRechargeTimer * 100
+	projectileCountLabel.text = str(currentProjectiles, "/", currentMaxProjectiles)
