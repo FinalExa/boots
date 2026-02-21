@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var lifeTime: float
 @export var forward: Node2D
 @export var damage: float
-
+@export var endOnCollisionOverride: bool
 
 func _physics_process(_delta):
 	ProjectileMovement(forward.global_position)
@@ -17,7 +17,7 @@ func _process(delta):
 func ProjectileMovement(direction: Vector2):
 	velocity = movementSpeed * self.global_position.direction_to(direction)
 	var collisionCheck: bool = move_and_slide()
-	if (collisionCheck):
+	if (collisionCheck && !endOnCollisionOverride):
 		call_deferred("DeleteSelf")
 
 func LifeTime(delta):

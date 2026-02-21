@@ -5,12 +5,13 @@ func CheckForBodies(body):
 	if (body is EnemyController):
 		EnemyCollision(body)
 		return
+	call_deferred("DeleteSelf")
 
 func CheckForAreas(area):
 	if (area is AttackHitbox && area.characterRef is EnemyController):
 		AttackHitboxCollision(area)
 		return
-	if (area is EnemySideShield && area.isActive):
+	if (area is EnemySideShield):
 		SideShieldCollision(area)
 		return
 
@@ -26,5 +27,6 @@ func AttackHitboxCollision(attackHitboxRef: AttackHitbox):
 	call_deferred("DeleteSelf")
 
 func SideShieldCollision(sideShieldRef: EnemySideShield):
-	sideShieldRef.TurnOff()
-	call_deferred("DeleteSelf")
+	if (sideShieldRef.isActive):
+		sideShieldRef.TurnOff()
+		call_deferred("DeleteSelf")
