@@ -5,7 +5,7 @@ extends Projectile
 @export var partialDamage: float
 @export var collisionSound: AudioStreamPlayer
 
-func _on_projectile_area_body_entered(body):
+func CheckForBodies(body):
 	if (body is PlayerCharacter):
 		DecreasePlayerSpeed(body)
 

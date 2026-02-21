@@ -399,6 +399,8 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 label_settings = SubResource("LabelSettings_fvdlt")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability1Bar"]
 position = Vector2(-32, 32)
@@ -421,6 +423,8 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 label_settings = SubResource("LabelSettings_fvdlt")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability2Bar"]
 position = Vector2(-32, 32)

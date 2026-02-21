@@ -12,7 +12,6 @@ radius = 32.0
 [node name="PlayerAbility2Projectile" type="CharacterBody2D" node_paths=PackedStringArray("forward")]
 script = ExtResource("1_ic0j6")
 movementSpeed = 2000.0
-rotationOffset = 90.0
 lifeTime = 15.0
 forward = NodePath("Forward")
 damage = 30.0
@@ -31,5 +30,5 @@ texture = ExtResource("2_gyf5w")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileArea"]
 shape = SubResource("CircleShape2D_ktxtq")
 
-[connection signal="area_entered" from="ProjectileArea" to="." method="_on_projectile_area_area_entered"]
-[connection signal="body_entered" from="ProjectileArea" to="." method="_on_projectile_area_body_entered"]
+[connection signal="area_entered" from="ProjectileArea" to="." method="CheckForAreas"]
+[connection signal="body_entered" from="ProjectileArea" to="." method="CheckForBodies"]

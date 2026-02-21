@@ -7,7 +7,7 @@
 script = ExtResource("1_njsrb")
 abilitySpawners = [NodePath("ObjectSpawner")]
 powerUpName = "Ability 1 Fire"
-powerUpDescription = "Creates a giant flame when ability 1 is used."
+powerUpDescription = "Creates a giant flame when ability 1 is used, the flame burns enemies."
 powerUpFaction = 1
 
 [node name="ObjectSpawner" type="Node2D" parent="."]

@@ -16,7 +16,6 @@ speedDecrease = 800.0
 partialDamage = 3.0
 collisionSound = NodePath("Sounds/EnemyDirect")
 movementSpeed = 500.0
-rotationOffset = 90.0
 lifeTime = 5.0
 forward = NodePath("Forward")
 damage = 20.0
@@ -41,4 +40,4 @@ position = Vector2(0, -24)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileArea"]
 shape = SubResource("CircleShape2D_w7qvx")
 
-[connection signal="body_entered" from="ProjectileArea" to="." method="_on_projectile_area_body_entered"]
+[connection signal="body_entered" from="ProjectileArea" to="." method="CheckForBodies"]

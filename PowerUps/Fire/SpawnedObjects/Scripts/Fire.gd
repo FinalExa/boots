@@ -84,8 +84,13 @@ func DoDamage():
 			call_deferred("DeleteSelf")
 
 func ApplyDOT():
-	if (appliesDOT && ref != null && ref is EnemyController && ref.currentEffectOverTime == null):
-		ref.SetEffectOverTime(SpawnDoT())
+	if (appliesDOT):
+		if (ref != null && ref is EnemyController && ref.currentEffectOverTime == null):
+			ref.SetEffectOverTime(SpawnDoT())
+		if (enemiesInRange.size() > 0):
+			for i in enemiesInRange.size():
+				if (enemiesInRange[i].currentEffectOverTime == null):
+					enemiesInRange[i].SetEffectOverTime(SpawnDoT())
 
 func SpawnDoT():
 	var obj_scene = load(DOTRef)

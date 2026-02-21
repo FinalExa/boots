@@ -23,6 +23,9 @@ radius = 64.0
 
 [node name="FireSpeedCharge" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
 script = ExtResource("1_xp7qa")
+appliesDOT = true
+DOT = 5.0
+DOTDuration = 5.0
 stationary = true
 stationaryDOT = 5.0
 stationaryDuration = 5.0

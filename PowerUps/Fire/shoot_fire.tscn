@@ -8,5 +8,5 @@ shootMaxProjectiles = 2
 shootProjectileRechargeTime = 5.0
 shootObjectPath = "res://PowerUps/Fire/SpawnedObjects/fire_projectile.tscn"
 powerUpName = "Fire Projectile"
-powerUpDescription = "Shoots fire that burns enemies."
+powerUpDescription = "Shoots fire that burns enemies and travels forward."
 powerUpFaction = 1

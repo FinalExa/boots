@@ -8,7 +8,7 @@ script = ExtResource("1_fsllb")
 trailSpawners = [NodePath("FireTrailSpawner")]
 trailInterval = 0.2
 powerUpName = "Fire Trail"
-powerUpDescription = "Leaves a trail of fire behind which deals damage over time to enemies."
+powerUpDescription = "Leaves a trail of fire behind which deals damage over time to enemies and burns them."
 powerUpFaction = 1
 
 [node name="FireTrailSpawner" type="Node2D" parent="."]
