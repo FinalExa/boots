@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=49 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -105,6 +105,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_lngkd"]
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel", "followItem")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
@@ -190,23 +195,17 @@ thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHi
 
 [node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
 playerMovements = NodePath("../../../PlayerMovements")
-lossOnImpact = 100.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
-clashLossOnImpact = 200.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
 [node name="SecondSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("12_psnq3")]
 playerMovements = NodePath("../../../PlayerMovements")
-lossOnImpact = 50.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
-clashLossOnImpact = 100.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
 [node name="ThirdSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("13_gt5g5")]
 playerMovements = NodePath("../../../PlayerMovements")
-lossOnImpact = 25.0
 directSound = NodePath("../../../Sounds/PlayerDirect")
-clashLossOnImpact = 50.0
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
 [node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeBar", "speedChargeLabel")]
@@ -314,9 +313,9 @@ offset_bottom = 88.0
 [node name="MoneyValue" type="Label" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 1728.0
-offset_top = 88.0
-offset_right = 1896.0
-offset_bottom = 120.0
+offset_top = 1016.0
+offset_right = 1888.0
+offset_bottom = 1048.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
 [node name="CurrentRoomValue" type="Label" parent="PlayerHUD"]
@@ -434,10 +433,10 @@ autoplay = "default"
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
 offset_left = 832.0
-offset_top = 88.0
+offset_top = 24.0
 offset_right = 1088.0
-offset_bottom = 152.0
-label_settings = SubResource("LabelSettings_fvdlt")
+offset_bottom = 88.0
+label_settings = SubResource("LabelSettings_lngkd")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_vo4ho")
