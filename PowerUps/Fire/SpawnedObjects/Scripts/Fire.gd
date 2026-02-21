@@ -3,6 +3,7 @@ extends PowerUpObjects
 
 @export var trueDamage: float
 @export var appliesDOT: bool
+@export var DOTRef: String = "res://PowerUps/Fire/SpawnedObjects/fire_dot.tscn"
 @export var DOT: float
 @export var DOTDuration: float
 @export var stationary: bool
@@ -11,7 +12,6 @@ extends PowerUpObjects
 @export var stationaryAreaCollisionShape: CollisionShape2D
 @export var sprite: AnimatedSprite2D
 var didDamage: bool
-var appliedDOT: bool
 var stationaryStarted: bool
 var enemiesInRange: Array[EnemyController]
 var timer: float
@@ -34,12 +34,9 @@ func _ready():
 	self.global_rotation = 0
 
 func _process(delta):
-	DoDamage()
 	ApplyDOT()
-	if (appliesDOT && appliedDOT):
-		DamageOverTime(delta)
-		return
-	if (!appliesDOT && stationary):
+	DoDamage()
+	if (stationary):
 		StartStationary()
 		Stationary(delta)
 
@@ -87,21 +84,15 @@ func DoDamage():
 			call_deferred("DeleteSelf")
 
 func ApplyDOT():
-	if (appliesDOT && !appliedDOT && ref != null && ref is EnemyController):
-		if (ref.SetDOT(self)):
-			timer = DOTDuration
-			self.reparent(ref)
-			self.global_position = ref.global_position
-			appliedDOT = true
-		else:
-			call_deferred("DeleteSelf")
+	if (appliesDOT && ref != null && ref is EnemyController && ref.currentEffectOverTime == null):
+		ref.SetEffectOverTime(SpawnDoT())
 
-func DamageOverTime(delta):
-	if (timer > 0 && ref != null):
-		ref.enemyHealth.HealthUpdate(-currentDOT * delta)
-		timer -= delta
-		return
-	call_deferred("DeleteSelf")
+func SpawnDoT():
+	var obj_scene = load(DOTRef)
+	var obj: FireDoT = obj_scene.instantiate()
+	obj.duration = currentDOTDuration
+	obj.damage = currentDOT
+	return obj
 
 func StartStationary():
 	if (!stationaryStarted):

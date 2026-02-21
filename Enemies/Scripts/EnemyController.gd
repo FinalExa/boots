@@ -13,7 +13,7 @@ signal repelled
 @export var attackDistance: float
 @export var damageImmunityDuration: float
 
-var currentDOT: PowerUpObjects
+var currentEffectOverTime: EffectOverTime
 var playerRef: PlayerCharacter
 var damageImmunityTimer: float
 var repelledTimer: float
@@ -59,14 +59,21 @@ func EnemyDeath():
 	if (spawnerRef != null):
 		spawnerRef.ReceivedCallFromDeletedSpawnedObject(self)
 
-func SetDOT(DOT: PowerUpObjects):
-	if (currentDOT == null):
-		currentDOT = DOT
-		return true
-	return false
+func SetEffectOverTime(effect: EffectOverTime):
+	if (currentEffectOverTime == null):
+		effect.ref = self
+		currentEffectOverTime = effect
+		call_deferred("PlaceEffect", effect)
+		effect.Initialize()
+		return
+	effect.call_deferred("DeleteSelf")
 
-func UnsetDOT():
-	if (currentDOT != null):
-		var dot: PowerUpObjects = currentDOT
-		currentDOT = null
-		dot.call_deferred("DeleteSelf")
+func PlaceEffect(effect: EffectOverTime):
+	add_child(effect)
+	effect.global_position = self.global_position
+
+func UnsetEffectOverTime():
+	if (currentEffectOverTime != null):
+		var effect: EffectOverTime = currentEffectOverTime
+		currentEffectOverTime = null
+		effect.call_deferred("DeleteSelf")
