@@ -6,7 +6,9 @@
 script = ExtResource("1_s0i3c")
 shootMaxProjectiles = 2
 shootProjectileRechargeTime = 5.0
-shootObjectPath = "res://PowerUps/Fire/SpawnedObjects/fire_projectile.tscn"
+shootObjectPath1 = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_projectile_1.tscn"
+shootObjectPath2 = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_projectile_2.tscn"
+shootObjectPath3 = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_projectile_3.tscn"
 powerUpName = "Fire Projectile"
 powerUpDescription = "Shoots fire that burns enemies and travels forward."
 powerUpFaction = 1

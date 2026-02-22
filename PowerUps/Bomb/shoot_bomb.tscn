@@ -5,8 +5,9 @@
 [node name="ShootBomb" type="Node2D"]
 script = ExtResource("1_aolua")
 shootMaxProjectiles = 3
-shootProjectileRechargeTime = 5.0
-shootObjectPath = "res://PowerUps/Bomb/SpawnedObjects/shoot_bomb_projectile.tscn"
+shootProjectileRechargeTime = 3.0
+shootObjectPath1 = "res://PowerUps/Bomb/SpawnedObjects/Shoot/shoot_bomb_projectile_1.tscn"
+shootObjectPath2 = "res://PowerUps/Bomb/SpawnedObjects/Shoot/shoot_bomb_projectile_2.tscn"
+shootObjectPath3 = "res://PowerUps/Bomb/SpawnedObjects/Shoot/shoot_bomb_projectile_3.tscn"
 powerUpName = "Shoot Bomb"
 powerUpDescription = "Shoots a bomb in the pointed direction, if an enemy passes through the bomb explosion area it immediately detonates."
-powerUpType = 1

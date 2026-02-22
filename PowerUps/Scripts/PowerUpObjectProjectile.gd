@@ -7,11 +7,10 @@ extends Projectile
 
 func DeleteSelf():
 	if (!alternativeDestroyOutcome):
-		if (get_parent() != null):
-			get_parent().remove_child(self)
-			queue_free()
+		queue_free()
 	else:
-		powerUpObjectRef.AlternativeOutcome()
+		if (powerUpObjectRef != null):
+			powerUpObjectRef.AlternativeOutcome()
 
 func ProjectileMovement(direction: Vector2):
 	velocity = movementSpeed * self.global_position.direction_to(direction)

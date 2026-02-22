@@ -245,9 +245,10 @@ script = ExtResource("19_44plk")
 playerInputs = NodePath("../PlayerInputs")
 offsetDegrees = 90.0
 
-[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "powerUpManager", "projectileSpawner", "projectileTextureBar", "projectileCountLabel")]
+[node name="PlayerShooting" type="Node2D" parent="PlayerAim" node_paths=PackedStringArray("playerInputs", "playerSpeedThresholds", "powerUpManager", "projectileSpawner", "projectileTextureBar", "projectileCountLabel")]
 script = ExtResource("19_aegdj")
 playerInputs = NodePath("../../PlayerInputs")
+playerSpeedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
 powerUpManager = NodePath("../../PlayerRotator/PowerUpManager")
 projectileSpawner = NodePath("ObjectSpawner")
 baseMaxProjectiles = 10

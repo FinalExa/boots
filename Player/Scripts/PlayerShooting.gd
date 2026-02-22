@@ -2,6 +2,7 @@ class_name PlayerShooting
 extends Node2D
 
 @export var playerInputs: PlayerInputs
+@export var playerSpeedThresholds: PlayerSpeedThresholds
 @export var powerUpManager: PowerUpManager
 @export var projectileSpawner: ObjectSpawner
 
@@ -11,7 +12,6 @@ extends Node2D
 @export var projectileTextureBar: TextureProgressBar
 @export var projectileCountLabel: Label
 
-var shootPowerUp: PowerUp
 var currentMaxProjectiles: int
 var currentProjectiles: int
 var currentProjectileICD: float
@@ -20,6 +20,7 @@ var isPowerUp: bool
 
 func _ready():
 	SetToBase()
+	projectileSpawner.objectPath = baseProjectilePrefabPath
 	UpdateUI()
 	projectileTextureBar.value = 0
 
@@ -28,28 +29,46 @@ func _process(delta):
 	ProjectileRechargeCooldown(delta)
 
 func SetToBase():
-	SetCurrentShootingSettings(baseMaxProjectiles, baseProjectileICD, baseProjectilePrefabPath, false)
+	SetCurrentShootingSettings(baseMaxProjectiles, baseProjectileICD, false)
 
 func Refull():
 	currentProjectiles = currentMaxProjectiles
 	projectileRechargeTimer = currentProjectileICD
 
-func SetCurrentShootingSettings(maxProj: int, icd: float, path: String, powerUp: bool):
+func SetCurrentShootingSettings(maxProj: int, icd: float, powerUp: bool):
 	currentMaxProjectiles = maxProj
 	currentProjectiles = currentMaxProjectiles
 	currentProjectileICD = icd
 	projectileRechargeTimer = currentProjectileICD
-	projectileSpawner.objectPath = path
 	isPowerUp = powerUp
 	UpdateUI()
 	projectileTextureBar.value = 0
 
+func SetAndShoot(path: String):
+	projectileSpawner.objectPath = path
+	return projectileSpawner.SpawnObject()
+
 func ShootProjectiles():
 	if (currentProjectiles > 0 && playerInputs.shootInput):
-		var projectile = projectileSpawner.SpawnObject()
+		var projectile = GetProjectile()
 		if (isPowerUp && projectile is PowerUpObjectProjectile):
 			powerUpManager.shootPowerUp.InitializePowerUpObject(projectile.powerUpObjectRef)
 		currentProjectiles -= 1
+
+func GetProjectile():
+	var projectile
+	if (powerUpManager.shootPowerUp != null):
+		if (playerSpeedThresholds.speedIndex == 0 || playerSpeedThresholds.speedIndex == 1):
+			projectile = SetAndShoot(powerUpManager.shootPowerUp.shootObjectPath1)
+		else:
+			if (playerSpeedThresholds.speedIndex == 2):
+				projectile = SetAndShoot(powerUpManager.shootPowerUp.shootObjectPath2)
+			else:
+				if (playerSpeedThresholds.speedIndex == 3):
+					projectile = SetAndShoot(powerUpManager.shootPowerUp.shootObjectPath3)
+	else:
+		projectile = SetAndShoot(baseProjectilePrefabPath)
+	return projectile
 
 func ProjectileRechargeCooldown(delta):
 	if (currentProjectiles < currentMaxProjectiles):

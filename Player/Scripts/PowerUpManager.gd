@@ -30,7 +30,7 @@ func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp is PowerUpShoot):
 		ReplaceOldPowerUp(shootPowerUp)
 		shootPowerUp = powerUp
-		playerShooting.SetCurrentShootingSettings(shootPowerUp.shootMaxProjectiles, shootPowerUp.shootProjectileRechargeTime, shootPowerUp.shootObjectPath, true)
+		playerShooting.SetCurrentShootingSettings(shootPowerUp.shootMaxProjectiles, shootPowerUp.shootProjectileRechargeTime, true)
 		return
 	if (powerUp is PowerUpSpeedCharge):
 		ReplaceOldPowerUp(speedChargePowerUp)
