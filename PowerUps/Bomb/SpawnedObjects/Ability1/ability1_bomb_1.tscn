@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://dkvcbpqsrixtp" path="res://PowerUps/Bomb/Sprites/explosion.png" id="3_3i875"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_836y0"]
-radius = 192.167
+radius = 128.0
 
-[node name="Ability1Explosion" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
+[node name="Ability1Bomb1" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
 script = ExtResource("1_c5kxc")
-explosionDuration = 0.1
-explosionDamage = 30
+explosionDuration = 0.3
+explosionDamage = 25
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
@@ -20,8 +20,8 @@ texture = ExtResource("2_3usc2")
 
 [node name="ExplosionSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.509804)
-position = Vector2(0, 3.8147e-06)
-scale = Vector2(10.1053, 11.2941)
+position = Vector2(7.62939e-06, 3.8147e-06)
+scale = Vector2(6.73684, 7.52941)
 texture = ExtResource("3_3i875")
 
 [node name="ExplosionArea" type="Area2D" parent="."]

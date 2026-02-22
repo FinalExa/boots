@@ -3,12 +3,22 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAbility.gd" id="1_1041x"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_umpek"]
 
-[node name="Ability1Bomb" type="Node2D" node_paths=PackedStringArray("abilitySpawners")]
+[node name="Ability1Bomb" type="Node2D" node_paths=PackedStringArray("abilitySpawners1", "abilitySpawners2", "abilitySpawners3")]
 script = ExtResource("1_1041x")
-abilitySpawners = [NodePath("Spawner")]
+abilitySpawners1 = [NodePath("BombSpawner1")]
+abilitySpawners2 = [NodePath("BombSpawner2")]
+abilitySpawners3 = [NodePath("BombSpawner3")]
 powerUpName = "Ability 1 Bomb"
 powerUpDescription = "Creates a huge explosion when the ability 1 is used."
 
-[node name="Spawner" type="Node2D" parent="."]
+[node name="BombSpawner1" type="Node2D" parent="."]
 script = ExtResource("2_umpek")
-objectPath = "res://PowerUps/Bomb/SpawnedObjects/ability1_explosion.tscn"
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability1/ability1_bomb_1.tscn"
+
+[node name="BombSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_umpek")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability1/ability1_bomb_2.tscn"
+
+[node name="BombSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_umpek")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability1/ability1_bomb_3.tscn"

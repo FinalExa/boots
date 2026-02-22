@@ -3,13 +3,23 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAbility.gd" id="1_njsrb"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_sr8ac"]
 
-[node name="Ability1Fire" type="Node2D" node_paths=PackedStringArray("abilitySpawners")]
+[node name="Ability1Fire" type="Node2D" node_paths=PackedStringArray("abilitySpawners1", "abilitySpawners2", "abilitySpawners3")]
 script = ExtResource("1_njsrb")
-abilitySpawners = [NodePath("ObjectSpawner")]
+abilitySpawners1 = [NodePath("AbilitySpawner1")]
+abilitySpawners2 = [NodePath("AbilitySpawner2")]
+abilitySpawners3 = [NodePath("AbilitySpawner3")]
 powerUpName = "Ability 1 Fire"
 powerUpDescription = "Creates a giant flame when ability 1 is used, the flame burns enemies."
 powerUpFaction = 1
 
-[node name="ObjectSpawner" type="Node2D" parent="."]
+[node name="AbilitySpawner1" type="Node2D" parent="."]
 script = ExtResource("2_sr8ac")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_speed_charge.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability1/fire_ability1_1.tscn"
+
+[node name="AbilitySpawner2" type="Node2D" parent="."]
+script = ExtResource("2_sr8ac")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability1/fire_ability1_2.tscn"
+
+[node name="AbilitySpawner3" type="Node2D" parent="."]
+script = ExtResource("2_sr8ac")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability1/fire_ability1_3.tscn"

@@ -3,57 +3,159 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAbility.gd" id="1_c25fx"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_xs23k"]
 
-[node name="Ability2Fire" type="Node2D" node_paths=PackedStringArray("abilitySpawners")]
+[node name="Ability2Fire" type="Node2D" node_paths=PackedStringArray("abilitySpawners1", "abilitySpawners2", "abilitySpawners3")]
 script = ExtResource("1_c25fx")
-abilitySpawners = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4"), NodePath("Spawner5"), NodePath("Spawner6"), NodePath("Spawner7"), NodePath("Spawner8")]
+abilitySpawners1 = [NodePath("1/Spawner"), NodePath("1/Spawner2"), NodePath("1/Spawner3"), NodePath("1/Spawner4"), NodePath("1/Spawner5"), NodePath("1/Spawner6"), NodePath("1/Spawner7"), NodePath("1/Spawner8")]
+abilitySpawners2 = [NodePath("2/Spawner"), NodePath("2/Spawner2"), NodePath("2/Spawner3"), NodePath("2/Spawner4"), NodePath("2/Spawner5"), NodePath("2/Spawner6"), NodePath("2/Spawner7"), NodePath("2/Spawner8")]
+abilitySpawners3 = [NodePath("3/Spawner"), NodePath("3/Spawner2"), NodePath("3/Spawner3"), NodePath("3/Spawner4"), NodePath("3/Spawner5"), NodePath("3/Spawner6"), NodePath("3/Spawner7"), NodePath("3/Spawner8")]
 secondAbilitySlot = true
 powerUpName = "Ability 2 Fire"
 powerUpDescription = "Generates multiple flames on ability 2 usage, the flames burn enemies."
 powerUpFaction = 1
 
-[node name="Spawner" type="Node2D" parent="."]
+[node name="1" type="Node2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="1"]
 position = Vector2(0, -128)
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
 
-[node name="Spawner2" type="Node2D" parent="."]
+[node name="Spawner2" type="Node2D" parent="1"]
 position = Vector2(96, -96)
 rotation = 0.785398
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
 
-[node name="Spawner3" type="Node2D" parent="."]
+[node name="Spawner3" type="Node2D" parent="1"]
 position = Vector2(128, 0)
 rotation = 1.5708
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
 
-[node name="Spawner4" type="Node2D" parent="."]
+[node name="Spawner4" type="Node2D" parent="1"]
 position = Vector2(96, 96)
 rotation = 2.35619
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
 
-[node name="Spawner5" type="Node2D" parent="."]
+[node name="Spawner5" type="Node2D" parent="1"]
 position = Vector2(0, 128)
 rotation = 3.14159
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
 
-[node name="Spawner6" type="Node2D" parent="."]
+[node name="Spawner6" type="Node2D" parent="1"]
 position = Vector2(-96, 96)
-rotation = 3.92699
+rotation = -2.3562
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
 
-[node name="Spawner7" type="Node2D" parent="."]
+[node name="Spawner7" type="Node2D" parent="1"]
 position = Vector2(-128, 0)
-rotation = 4.71239
+rotation = -1.5708
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
 
-[node name="Spawner8" type="Node2D" parent="."]
+[node name="Spawner8" type="Node2D" parent="1"]
 position = Vector2(-96, -96)
-rotation = 5.49779
+rotation = -0.785395
 script = ExtResource("2_xs23k")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_ability2.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_1.tscn"
+
+[node name="2" type="Node2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="2"]
+position = Vector2(0, -128)
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="Spawner2" type="Node2D" parent="2"]
+position = Vector2(96, -96)
+rotation = 0.785398
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="Spawner3" type="Node2D" parent="2"]
+position = Vector2(128, 0)
+rotation = 1.5708
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="Spawner4" type="Node2D" parent="2"]
+position = Vector2(96, 96)
+rotation = 2.35619
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="Spawner5" type="Node2D" parent="2"]
+position = Vector2(0, 128)
+rotation = 3.14159
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="Spawner6" type="Node2D" parent="2"]
+position = Vector2(-96, 96)
+rotation = -2.3562
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="Spawner7" type="Node2D" parent="2"]
+position = Vector2(-128, 0)
+rotation = -1.5708
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="Spawner8" type="Node2D" parent="2"]
+position = Vector2(-96, -96)
+rotation = -0.785395
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_2.tscn"
+
+[node name="3" type="Node2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="3"]
+position = Vector2(0, -128)
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"
+
+[node name="Spawner2" type="Node2D" parent="3"]
+position = Vector2(96, -96)
+rotation = 0.785398
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"
+
+[node name="Spawner3" type="Node2D" parent="3"]
+position = Vector2(128, 0)
+rotation = 1.5708
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"
+
+[node name="Spawner4" type="Node2D" parent="3"]
+position = Vector2(96, 96)
+rotation = 2.35619
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"
+
+[node name="Spawner5" type="Node2D" parent="3"]
+position = Vector2(0, 128)
+rotation = 3.14159
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"
+
+[node name="Spawner6" type="Node2D" parent="3"]
+position = Vector2(-96, 96)
+rotation = -2.3562
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"
+
+[node name="Spawner7" type="Node2D" parent="3"]
+position = Vector2(-128, 0)
+rotation = -1.5708
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"
+
+[node name="Spawner8" type="Node2D" parent="3"]
+position = Vector2(-96, -96)
+rotation = -0.785395
+script = ExtResource("2_xs23k")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Ability2/fire_ability2_3.tscn"

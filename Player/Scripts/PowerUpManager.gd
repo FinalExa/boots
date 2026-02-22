@@ -108,8 +108,8 @@ func HitClash(enemyController: EnemyController):
 
 func Ability1Used():
 	if (ability1PowerUp != null):
-		ability1PowerUp.LaunchSpawners(ability1PowerUp.abilitySpawners)
+		ability1PowerUp.ActivateAbilityPowerUp(playerSpeedThresholds.speedIndex)
 
 func Ability2Used():
 	if (ability2PowerUp != null):
-		ability2PowerUp.LaunchSpawners(ability2PowerUp.abilitySpawners)
+		ability2PowerUp.ActivateAbilityPowerUp(playerSpeedThresholds.speedIndex)
