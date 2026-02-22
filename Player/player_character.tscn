@@ -190,7 +190,7 @@ offsetDegrees = 90
 [node name="PlayerSpeedThresholds" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerMovements", "thresholdHitboxes")]
 script = ExtResource("4_33erx")
 playerMovements = NodePath("../../PlayerMovements")
-speedThresholds = Array[float]([500.0, 1000.0, 1750.0, 2000.0])
+speedThresholds = Array[float]([500.0, 1000.0, 1700.0, 2000.0])
 thresholdHitboxes = [null, NodePath("FirstSpeedHitbox"), NodePath("SecondSpeedHitbox"), NodePath("ThirdSpeedHitbox")]
 
 [node name="FirstSpeedHitbox" parent="PlayerRotator/PlayerSpeedThresholds" node_paths=PackedStringArray("playerMovements", "directSound", "clashSound") instance=ExtResource("11_tk2g5")]
@@ -326,13 +326,15 @@ offset_right = 1896.0
 offset_bottom = 56.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
-[node name="SpeedBar" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements") instance=ExtResource("22_2s2fx")]
+[node name="SpeedBar" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "playerSpeedThresholds") instance=ExtResource("22_2s2fx")]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 88.0
 offset_right = 480.0
 offset_bottom = 152.0
 playerMovements = NodePath("../../PlayerMovements")
+playerSpeedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
+barColors = Array[Color]([Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 0.478431, 0, 1), Color(1, 0, 0, 1)])
 
 [node name="SpeedChargeBar" type="TextureProgressBar" parent="PlayerHUD"]
 layout_mode = 0
@@ -432,10 +434,10 @@ autoplay = "default"
 
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
-offset_left = 832.0
+offset_left = 768.0
 offset_top = 24.0
-offset_right = 1088.0
-offset_bottom = 88.0
+offset_right = 1152.0
+offset_bottom = 152.0
 label_settings = SubResource("LabelSettings_lngkd")
 horizontal_alignment = 1
 vertical_alignment = 1
