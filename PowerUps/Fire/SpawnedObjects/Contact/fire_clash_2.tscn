@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://fapf42ftmu8k"]
+
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_3cgj1"]
+
+[node name="FireClash2" type="Node2D"]
+script = ExtResource("1_3cgj1")
+appliesDOT = true
+DOT = 3.0
+DOTDuration = 3.0
+powerUpFaction = 1

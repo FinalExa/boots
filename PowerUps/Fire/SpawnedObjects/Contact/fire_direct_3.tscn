@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://pahxcusp27ja"]
+
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_yemya"]
+
+[node name="FireDirect3" type="Node2D"]
+script = ExtResource("1_yemya")
+trueDamage = 10.0
+appliesDOT = true
+DOT = 20.0
+DOTDuration = 5.0
+powerUpFaction = 1

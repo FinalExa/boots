@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://o0xfpvn404pd"]
+
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_pjqgm"]
+
+[node name="FireDirect2" type="Node2D"]
+script = ExtResource("1_pjqgm")
+trueDamage = 10.0
+appliesDOT = true
+DOT = 10.0
+DOTDuration = 5.0
+powerUpFaction = 1

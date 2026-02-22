@@ -4,6 +4,7 @@ extends Node2D
 @export var playerRef: PlayerCharacter
 @export var playerMovements: PlayerMovements
 @export var playerShooting: PlayerShooting
+@export var playerSpeedThresholds: PlayerSpeedThresholds
 @export var speedChargeBar: TextureProgressBar
 @export var speedChargeLabel: Label
 var contactPowerUp: PowerUpContact
@@ -99,11 +100,11 @@ func ReplaceOldPowerUp(powerUp: PowerUp):
 
 func HitDirect(enemyController: EnemyController):
 	if (contactPowerUp != null):
-		contactPowerUp.HitDirect(enemyController)
+		contactPowerUp.HitDirect(enemyController, playerSpeedThresholds.speedIndex)
 
 func HitClash(enemyController: EnemyController):
 	if (contactPowerUp != null):
-		contactPowerUp.HitClash(enemyController)
+		contactPowerUp.HitClash(enemyController, playerSpeedThresholds.speedIndex)
 
 func Ability1Used():
 	if (ability1PowerUp != null):

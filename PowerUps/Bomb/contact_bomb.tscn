@@ -3,14 +3,43 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpContact.gd" id="1_xjg0h"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_1kt6i"]
 
-[node name="ContactBomb" type="Node2D" node_paths=PackedStringArray("directSpawners", "clashSpawners")]
+[node name="ContactBomb" type="Node2D" node_paths=PackedStringArray("directSpawners1", "directSpawners2", "directSpawners3", "clashSpawners1", "clashSpawners2", "clashSpawners3")]
 script = ExtResource("1_xjg0h")
-directSpawners = [NodePath("Spawner")]
-clashSpawners = [NodePath("Spawner")]
+directSpawners1 = [NodePath("SpawnerDirect1")]
+directSpawners2 = [NodePath("SpawnerDirect2")]
+directSpawners3 = [NodePath("SpawnerDirect3")]
+clashSpawners1 = [NodePath("SpawnerClash1")]
+clashSpawners2 = [NodePath("SpawnerClash2")]
+clashSpawners3 = [NodePath("SpawnerClash3")]
 powerUpName = "Contact Bomb"
 powerUpDescription = "Generates an explosion on Clashes and Directs."
 
-[node name="Spawner" type="Node2D" parent="."]
+[node name="SpawnerDirect1" type="Node2D" parent="."]
 position = Vector2(0, -64)
 script = ExtResource("2_1kt6i")
-objectPath = "res://PowerUps/Bomb/SpawnedObjects/contact_explosion.tscn"
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/direct_bomb_1.tscn"
+
+[node name="SpawnerDirect2" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_1kt6i")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/direct_bomb_2.tscn"
+
+[node name="SpawnerDirect3" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_1kt6i")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/direct_bomb_3.tscn"
+
+[node name="SpawnerClash1" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_1kt6i")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/clash_bomb_1.tscn"
+
+[node name="SpawnerClash2" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_1kt6i")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/clash_bomb_2.tscn"
+
+[node name="SpawnerClash3" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_1kt6i")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/clash_bomb_3.tscn"

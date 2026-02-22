@@ -208,11 +208,12 @@ playerMovements = NodePath("../../../PlayerMovements")
 directSound = NodePath("../../../Sounds/PlayerDirect")
 clashSound = NodePath("../../../Sounds/PlayerClash")
 
-[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "speedChargeBar", "speedChargeLabel")]
+[node name="PowerUpManager" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerRef", "playerMovements", "playerShooting", "playerSpeedThresholds", "speedChargeBar", "speedChargeLabel")]
 script = ExtResource("16_1u6or")
 playerRef = NodePath("../..")
 playerMovements = NodePath("../../PlayerMovements")
 playerShooting = NodePath("../../PlayerAim/PlayerShooting")
+playerSpeedThresholds = NodePath("../PlayerSpeedThresholds")
 speedChargeBar = NodePath("../../PlayerHUD/SpeedChargeBar")
 speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeBar/SpeedChargeStackCount")
 
