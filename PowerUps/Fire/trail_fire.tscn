@@ -3,14 +3,24 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpTrail.gd" id="1_fsllb"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_ii73n"]
 
-[node name="TrailFire" type="Node2D" node_paths=PackedStringArray("trailSpawners")]
+[node name="TrailFire" type="Node2D" node_paths=PackedStringArray("trailSpawners1", "trailSpawners2", "trailSpawners3")]
 script = ExtResource("1_fsllb")
-trailSpawners = [NodePath("FireTrailSpawner")]
+trailSpawners1 = [NodePath("FireTrailSpawner1")]
+trailSpawners2 = [NodePath("FireTrailSpawner2")]
+trailSpawners3 = [NodePath("FireTrailSpawner3")]
 trailInterval = 0.2
 powerUpName = "Fire Trail"
 powerUpDescription = "Leaves a trail of fire behind which deals damage over time to enemies and burns them."
 powerUpFaction = 1
 
-[node name="FireTrailSpawner" type="Node2D" parent="."]
+[node name="FireTrailSpawner1" type="Node2D" parent="."]
 script = ExtResource("2_ii73n")
-objectPath = "res://PowerUps/Fire/SpawnedObjects/fire_trail_instance.tscn"
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Trail/fire_trail_1.tscn"
+
+[node name="FireTrailSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_ii73n")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Trail/fire_trail_2.tscn"
+
+[node name="FireTrailSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_ii73n")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Trail/fire_trail_3.tscn"

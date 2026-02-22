@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c70wwc5vbuv7t"]
+[gd_scene load_steps=6 format=3 uid="uid://4wfifsogevyw"]
 
-[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_uwt4a"]
-[ext_resource type="Texture2D" uid="uid://cpxbechsosec8" path="res://PowerUps/Fire/Sprites/fire.png" id="2_ospsm"]
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_bjueu"]
+[ext_resource type="Texture2D" uid="uid://cpxbechsosec8" path="res://PowerUps/Fire/Sprites/fire.png" id="2_fkvog"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umxsr"]
-atlas = ExtResource("2_ospsm")
+atlas = ExtResource("2_fkvog")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b2un2"]
@@ -19,29 +19,29 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q8kwr"]
-radius = 12.0
+radius = 48.0
 
-[node name="FireTrailInstance" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
-script = ExtResource("1_uwt4a")
+[node name="FireTrail3" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
+script = ExtResource("1_bjueu")
 appliesDOT = true
-DOT = 5.0
+DOT = 16.0
 DOTDuration = 3.0
 stationary = true
-stationaryDOT = 3.0
+stationaryDOT = 12.0
 stationaryDuration = 5.0
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
 powerUpFaction = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
+position = Vector2(-9.53674e-06, -9.53674e-06)
+scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_b2un2")
 autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 8)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_q8kwr")
 

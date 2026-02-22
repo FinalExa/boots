@@ -1,7 +1,9 @@
 class_name PowerUpTrail
 extends PowerUp
 
-@export var trailSpawners: Array[ObjectSpawner]
+@export var trailSpawners1: Array[ObjectSpawner]
+@export var trailSpawners2: Array[ObjectSpawner]
+@export var trailSpawners3: Array[ObjectSpawner]
 @export var trailInterval: float
 var trailTimer: float
 
@@ -14,4 +16,9 @@ func ExecuteTrail(delta):
 			trailTimer -= delta
 			return
 		trailTimer = trailInterval
-		LaunchSpawners(trailSpawners)
+		var index: int = powerUpManager.playerSpeedThresholds.speedIndex
+		if (index == 1): LaunchSpawners(trailSpawners1)
+		else:
+			if (index == 2): LaunchSpawners(trailSpawners2)
+			else:
+				if (index == 3): LaunchSpawners(trailSpawners3)
