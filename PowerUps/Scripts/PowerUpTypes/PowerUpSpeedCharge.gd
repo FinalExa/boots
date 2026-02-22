@@ -3,7 +3,9 @@ extends PowerUp
 
 @export var speedChargeMaxValue: float
 @export var speedChargeMaxStacks: int
-@export var speedChargeSpawners: Array[ObjectSpawner]
+@export var speedChargeSpawners1: Array[ObjectSpawner]
+@export var speedChargeSpawners2: Array[ObjectSpawner]
+@export var speedChargeSpawners3: Array[ObjectSpawner]
 var speedChargeCurrentValue: float
 var speedChargeCurrentStacks: int
 
@@ -16,8 +18,8 @@ func ChargeWithSpeed():
 		SpeedCharge(playerRef.playerMovements.currentSpeed)
 
 func ReleaseSpeedCharge():
-	if (playerRef != null && playerRef.playerInputs.releaseSpeedCharge):
-		SpeedChargeActivate()
+	if (playerRef != null && playerRef.playerInputs.releaseSpeedCharge && powerUpManager.playerSpeedThresholds.speedIndex > 0):
+		SpeedChargeActivate(powerUpManager.playerSpeedThresholds.speedIndex)
 
 func SpeedCharge(value):
 	if (speedChargeCurrentStacks < speedChargeMaxStacks):
@@ -31,7 +33,11 @@ func SpeedCharge(value):
 	if (powerUpManager.speedChargeBar.value != 0):
 		powerUpManager.speedChargeBar.value = 0
 
-func SpeedChargeActivate():
+func SpeedChargeActivate(index: int):
 	if (speedChargeCurrentStacks > 0):
-		LaunchSpawners(speedChargeSpawners)
+		if (index == 1): LaunchSpawners(speedChargeSpawners1)
+		else:
+			if (index == 2): LaunchSpawners(speedChargeSpawners2)
+			else:
+				if (index == 3): LaunchSpawners(speedChargeSpawners3)
 		speedChargeCurrentStacks -= 1

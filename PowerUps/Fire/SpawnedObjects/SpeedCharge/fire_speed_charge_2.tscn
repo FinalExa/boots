@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://sx6i8r3feeg4"]
+[gd_scene load_steps=6 format=3 uid="uid://btplqvcn81h8m"]
 
-[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_s15fh"]
-[ext_resource type="Texture2D" uid="uid://cpxbechsosec8" path="res://PowerUps/Fire/Sprites/fire.png" id="2_2bsbg"]
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_0l31h"]
+[ext_resource type="Texture2D" uid="uid://cpxbechsosec8" path="res://PowerUps/Fire/Sprites/fire.png" id="2_r3iyp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umxsr"]
-atlas = ExtResource("2_2bsbg")
+atlas = ExtResource("2_r3iyp")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b2un2"]
@@ -21,13 +21,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_q8kwr"]
 radius = 96.3328
 
-[node name="FireSpeedCharge" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
-script = ExtResource("1_s15fh")
+[node name="FireSpeedCharge2" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
+script = ExtResource("1_0l31h")
 appliesDOT = true
 DOT = 30.0
 DOTDuration = 1.0
 stationary = true
-stationaryDOT = 5.0
+stationaryDOT = 10.0
 stationaryDuration = 15.0
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
@@ -35,15 +35,14 @@ powerUpFaction = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(-1.14441e-05, -32)
-scale = Vector2(12, 14)
+position = Vector2(-8.18545e-12, -1.90735e-06)
+scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_b2un2")
 autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 8)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_q8kwr")
 
