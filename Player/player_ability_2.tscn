@@ -6,14 +6,14 @@
 [node name="PlayerAbility2" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
 script = ExtResource("1_80sxv")
 attackDuration = 10
-attackPhasesLaunch = Array[int]([0, 1, 2, 3, 4])
-attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5")]
-attackSounds = [null, null, null, null, null]
-attackMovements = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0])
+attackPhasesLaunch = Array[int]([0, 1, 2, 3, 4, 6, 7, 8])
+attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner6"), NodePath("ObjectSpawner7"), NodePath("ObjectSpawner8")]
+attackSounds = [null, null, null, null, null, null, null, null]
+attackMovements = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 ignoreAttackMovement = true
 
 [node name="ObjectSpawner" type="Node2D" parent="."]
-position = Vector2(0, -128)
+position = Vector2(0, -96)
 script = ExtResource("2_02bay")
 objectPath = "res://Player/PlayerAbility2Projectile.tscn"
 
@@ -24,19 +24,37 @@ script = ExtResource("2_02bay")
 objectPath = "res://Player/PlayerAbility2Projectile.tscn"
 
 [node name="ObjectSpawner3" type="Node2D" parent="."]
-position = Vector2(-64, -64)
-rotation = -0.785397
-script = ExtResource("2_02bay")
-objectPath = "res://Player/PlayerAbility2Projectile.tscn"
-
-[node name="ObjectSpawner4" type="Node2D" parent="."]
-position = Vector2(128, 0)
+position = Vector2(96, 0)
 rotation = 1.5708
 script = ExtResource("2_02bay")
 objectPath = "res://Player/PlayerAbility2Projectile.tscn"
 
+[node name="ObjectSpawner4" type="Node2D" parent="."]
+position = Vector2(64, 64)
+rotation = 2.35619
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
 [node name="ObjectSpawner5" type="Node2D" parent="."]
-position = Vector2(-128, 0)
-rotation = -1.5708
+position = Vector2(0, 96)
+rotation = 3.14159
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
+[node name="ObjectSpawner6" type="Node2D" parent="."]
+position = Vector2(-64, 64)
+rotation = 3.92699
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
+[node name="ObjectSpawner7" type="Node2D" parent="."]
+position = Vector2(-96, 0)
+rotation = 4.71239
+script = ExtResource("2_02bay")
+objectPath = "res://Player/PlayerAbility2Projectile.tscn"
+
+[node name="ObjectSpawner8" type="Node2D" parent="."]
+position = Vector2(-64, -64)
+rotation = -0.785398
 script = ExtResource("2_02bay")
 objectPath = "res://Player/PlayerAbility2Projectile.tscn"
