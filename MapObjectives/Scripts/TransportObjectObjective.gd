@@ -25,6 +25,7 @@ func _process(delta):
 func RegisterDestinations():
 	for i in transportDestinations.size():
 		transportDestinations[i].mapObjective = self
+		transportDestinations[i].targetPointer.Activate()
 
 func GenerateTransportObject():
 	if (transportObjectSpawner != null && completedDestinations.size() < multipleObjectSpawners.size()):

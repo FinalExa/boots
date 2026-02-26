@@ -330,9 +330,9 @@ label_settings = SubResource("LabelSettings_fvdlt")
 
 [node name="SpeedBar" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "playerSpeedThresholds") instance=ExtResource("22_2s2fx")]
 layout_mode = 0
-offset_left = 96.0
+offset_left = 32.0
 offset_top = 88.0
-offset_right = 480.0
+offset_right = 416.0
 offset_bottom = 152.0
 playerMovements = NodePath("../../PlayerMovements")
 playerSpeedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")

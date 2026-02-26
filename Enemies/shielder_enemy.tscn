@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctah4a62uicsr"]
+[gd_scene load_steps=25 format=3 uid="uid://ctah4a62uicsr"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_exjgg"]
 [ext_resource type="Texture2D" uid="uid://cnfsx1070f5on" path="res://Enemies/Sprites/shielderEnemy.png" id="2_duyna"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="13_nse1o"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="14_3uc3q"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyIsAttacking.gd" id="15_71qeo"]
+[ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="15_m8vcx"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyStartAttack.gd" id="16_rqupf"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="17_5kecq"]
 
@@ -30,7 +31,7 @@ radius = 832.038
 [sub_resource type="CircleShape2D" id="CircleShape2D_n2qao"]
 radius = 576.0
 
-[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded")]
+[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer")]
 script = ExtResource("1_exjgg")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
@@ -38,6 +39,7 @@ enemyRotator = NodePath("EnemyRotator")
 enemyAttack = NodePath("EnemyRotator/EnemyAttack")
 enemyHealth = NodePath("EnemyHealth")
 enemyShielded = NodePath("EnemyShielded")
+targetPointer = NodePath("TargetPointer")
 attackDistance = 500.0
 damageImmunityDuration = 0.3
 
@@ -153,6 +155,10 @@ shieldCooldown = 5.0
 shape = SubResource("CircleShape2D_n2qao")
 debug_color = Color(0.533333, 0.568627, 0.152941, 0.419608)
 
+[node name="TargetPointer" parent="." node_paths=PackedStringArray("baseObjectRef") instance=ExtResource("15_m8vcx")]
+position = Vector2(0, -104)
+baseObjectRef = NodePath("..")
+
 [node name="BehaviorTree" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("12_3iutp")
 root = NodePath("BT_Sequence")
@@ -186,6 +192,7 @@ enemyController = NodePath("../../..")
 [connection signal="repelled" from="." to="EnemyMovement" method="_on_enemy_repelled"]
 [connection signal="enemyDeath" from="EnemyHealth" to="." method="EnemyDeath"]
 [connection signal="enemyDeath" from="EnemyHealth" to="EnemyShielding" method="_on_enemy_health_enemy_death"]
+[connection signal="enemyDeath" from="EnemyHealth" to="TargetPointer" method="DestroyRotator"]
 [connection signal="body_entered" from="EnemyDetection" to="EnemyDetection" method="_on_body_entered"]
 [connection signal="body_entered" from="EnemyShielding" to="EnemyShielding" method="_on_body_entered"]
 [connection signal="body_exited" from="EnemyShielding" to="EnemyShielding" method="_on_body_exited"]

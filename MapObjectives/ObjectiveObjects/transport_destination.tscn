@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddjg6y7krodau"]
+[gd_scene load_steps=8 format=3 uid="uid://ddjg6y7krodau"]
 
 [ext_resource type="Script" path="res://MapObjectives/ObjectiveObjects/Scripts/TransportDestination.gd" id="1_odrqp"]
 [ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="2_6nvem"]
 [ext_resource type="PackedScene" uid="uid://jex0wgah5kno" path="res://MapObjectives/ObjectiveObjects/capture_area.tscn" id="3_wamte"]
+[ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="4_uxhe0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ygx61"]
 radius = 128.0
@@ -22,10 +23,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TransportDestination" type="Node2D" node_paths=PackedStringArray("spriteRef", "captureArea")]
+[node name="TransportDestination" type="Node2D" node_paths=PackedStringArray("spriteRef", "captureArea", "targetPointer")]
 script = ExtResource("1_odrqp")
 spriteRef = NodePath("Sprite2D")
 captureArea = NodePath("CaptureArea")
+targetPointer = NodePath("TargetPointer")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -39,6 +41,10 @@ autoplay = "default"
 
 [node name="CaptureArea" parent="." node_paths=PackedStringArray("transportDestination") instance=ExtResource("3_wamte")]
 transportDestination = NodePath("..")
+
+[node name="TargetPointer" parent="." node_paths=PackedStringArray("baseObjectRef") instance=ExtResource("4_uxhe0")]
+position = Vector2(0, -56)
+baseObjectRef = NodePath("..")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -21,6 +21,7 @@ func _process(delta):
 func RegisterMapObjective():
 	for i in enemies.size():
 		enemies[i].enemyHealth.currentObjective = self
+		enemies[i].targetPointer.Activate()
 	startingSize = enemies.size()
 	playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str(objectiveNotCompletedDescription, enemies.size(), "/", startingSize))
 

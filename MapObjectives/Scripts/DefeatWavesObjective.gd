@@ -17,6 +17,7 @@ func Setup():
 func RegisterSpawners():
 	for i in multipleObjectSpawners.size():
 		multipleObjectSpawners[i].mapObjective = self
+		multipleObjectSpawners[i].setTarget = true
 
 func SpawnAndAdvanceWave():
 	if (currentWave < multipleObjectSpawners.size()):

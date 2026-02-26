@@ -5,6 +5,7 @@ extends ObjectSpawner
 @export var objectSpawnLocations: Array[Node2D]
 var activeObjects: Array[Node2D]
 var mapObjective: MapObjective
+var setTarget: bool
 
 func SpawnObjects():
 	ClearActiveObjects()
@@ -13,6 +14,8 @@ func SpawnObjects():
 			if (objectPaths[i] != ""):
 				var newObj = CreateAndReturnObject(objectPaths[i], objectSpawnLocations[i])
 				if (!activeObjects.has(newObj)): activeObjects.push_back(newObj)
+				if (setTarget && newObj is EnemyController):
+					newObj.targetPointer.Activate()
 
 func ClearActiveObjects():
 	if (activeObjects.size() > 0):
