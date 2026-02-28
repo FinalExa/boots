@@ -38,7 +38,7 @@ func AttachToEnemy():
 	if (separated):
 		rotator.reparent(self)
 		rotator.position = basePosition
-		sprite.global_position = rotator.global_position
+		sprite.position = Vector2.ZERO
 		rotator.rotation_degrees = baseRotation
 		separated = false
 

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://ec5tqdevf7u7"]
+
+[ext_resource type="Script" path="res://MapObjects/Scripts/BoosterPad.gd" id="1_41h02"]
+[ext_resource type="Texture2D" uid="uid://dnlxovabhgwkk" path="res://MapObjects/Sprites/booster_pad.png" id="1_lswr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35e63"]
+size = Vector2(256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnco5"]
+atlas = ExtResource("1_lswr8")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d4wal"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnco5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoosterPad" type="Area2D" node_paths=PackedStringArray("forward")]
+z_index = -99
+script = ExtResource("1_41h02")
+tolerance = 91.0
+speedModifyValue = 3000.0
+enforceDirection = true
+forward = NodePath("Forward")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_35e63")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d4wal")
+autoplay = "default"
+
+[node name="Forward" type="Node2D" parent="."]
+position = Vector2(0, -64)
+
+[connection signal="body_entered" from="." to="." method="BodyIn"]
+[connection signal="body_exited" from="." to="." method="BodyOut"]

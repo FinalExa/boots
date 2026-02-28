@@ -22,6 +22,7 @@ extends Node
 @export var distanceDifferenceTolerance: float
 @export var distanceDifferenceToleranceMinSpeed: float
 @export var decelerationForDistanceDifference: float
+@export var currentDirectionWeight: int = 1
 var currentAcceleration: float
 var accelerationMultiplier: float
 var currentDecelerationWhileSteering: float
@@ -36,6 +37,9 @@ var decelerating: bool
 var effectiveDeceleration: float
 var xValue: float
 var yValue: float
+var speedModifiers: Array[SpeedModifier]
+var finalSpeedModifier: float
+var enforcedDirections: Array[Vector2]
 
 func _ready():
 	currentSpeed = 0
@@ -45,6 +49,7 @@ func _ready():
 	lastPosition = playerCharacter.global_position
 
 func _process(delta):
+	SpeedModifiers()
 	SetCurrentAcceleration()
 	SetCurrentSpeed(delta)
 	DecelerationWhileSteering(delta)
@@ -73,6 +78,7 @@ func SetCurrentSpeed(delta):
 	else:
 		SetDirection(delta)
 		AccelerationCases(delta)
+	currentSpeed += finalSpeedModifier * delta
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 
 func MovePlayerCharacter():
@@ -121,6 +127,11 @@ func SetDirection(delta):
 		if (lastDirection != currentDirection): directionDifferent = true
 		else: directionDifferent = false
 		lastDirection = currentDirection
+	if (enforcedDirections.size() > 0):
+		var finalDirection: Vector2 = currentDirection * currentDirectionWeight
+		for i in enforcedDirections.size():
+			finalDirection += enforcedDirections[i]
+		currentDirection = finalDirection / Vector2(enforcedDirections.size() + currentDirectionWeight, enforcedDirections.size() + currentDirectionWeight)
 
 func SetNewDirection(delta):
 	var x: float = SetDirectionValue(playerInputs.movementInput.x, currentDirection.x, xValue, delta)
@@ -151,3 +162,23 @@ func SetToZero():
 
 func OnCollisionDetected():
 	UpdateCurrentSpeed(-decelerationDecreaseOnCollision)
+
+func RegisterSpeedModifier(speedModifier: SpeedModifier):
+	if (!speedModifiers.has(speedModifier)):
+		speedModifiers.push_front(speedModifier)
+		return self
+	return null
+
+func UnregisterSpeedModifier(speedModifier: SpeedModifier):
+	if (speedModifiers.has(speedModifier)):
+		speedModifiers.erase(speedModifier)
+
+func SpeedModifiers():
+	finalSpeedModifier = 0
+	if (enforcedDirections.size() > 0):
+		enforcedDirections.clear()
+	if (speedModifiers.size() > 0):
+		for i in speedModifiers.size():
+			finalSpeedModifier += speedModifiers[i].speedModifyValue
+			if (speedModifiers[i].enforceDirection):
+				enforcedDirections.push_back(speedModifiers[i].forwardDirection)

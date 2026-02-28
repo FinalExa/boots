@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://crg0fqnhtvrn8"]
+[gd_scene load_steps=11 format=3 uid="uid://crg0fqnhtvrn8"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_sjbqj"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_xauqq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddjg6y7krodau" path="res://MapObjectives/ObjectiveObjects/transport_destination.tscn" id="5_ofjto"]
 [ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="5_pecg4"]
 [ext_resource type="Script" path="res://Spawners/Scripts/MultipleObjectSpawner.gd" id="6_mpf0r"]
+[ext_resource type="PackedScene" uid="uid://ec5tqdevf7u7" path="res://MapObjects/booster_pad.tscn" id="8_ekqr0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uep3m"]
 vertices = PackedVector2Array(-1120, 480, -1120, -480, -736, -480, -736, 480, 1120, 1248, 32, 1248, 32, -1248, 1120, -1248, 1888, -480, 1888, 480)
@@ -62,6 +63,29 @@ position = Vector2(-1024, 0)
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
 position = Vector2(576, -1088)
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemySpawner" type="Node2D" parent="Enemies" node_paths=PackedStringArray("objectSpawnLocations")]
+script = ExtResource("6_mpf0r")
+objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
+objectSpawnLocations = [NodePath("1"), NodePath("2")]
+
+[node name="1" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(576, -576)
+
+[node name="2" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(576, 576)
+
+[node name="MapObjects" type="Node2D" parent="."]
+
+[node name="BoosterPad" parent="MapObjects" instance=ExtResource("8_ekqr0")]
+position = Vector2(-640, 0)
+rotation = 1.5708
+
+[node name="BoosterPad2" parent="MapObjects" instance=ExtResource("8_ekqr0")]
+position = Vector2(-384, 0)
+rotation = 1.5708
+
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("5_pecg4")]
@@ -75,16 +99,3 @@ rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), Nod
 [node name="Door3" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("5_pecg4")]
 position = Vector2(256, -1312)
 rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="EnemySpawner" type="Node2D" parent="Enemies" node_paths=PackedStringArray("objectSpawnLocations")]
-script = ExtResource("6_mpf0r")
-objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
-objectSpawnLocations = [NodePath("1"), NodePath("2")]
-
-[node name="1" type="Node2D" parent="Enemies/EnemySpawner"]
-position = Vector2(576, -576)
-
-[node name="2" type="Node2D" parent="Enemies/EnemySpawner"]
-position = Vector2(576, 576)
