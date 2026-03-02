@@ -8,14 +8,15 @@ extends Node
 var playerRef: PlayerCharacter
 
 func _ready():
-	GetPlayer()
+	StartRefs()
 	ReadyOperations()
 
 func ReadyOperations():
 	pass
 
-func GetPlayer():
+func StartRefs():
 	playerRef = get_tree().root.get_child(0).sceneSelector.playerRef
+	gameplayScene.objective = self
 
 func RequestEnemyData(_enemyController: EnemyController):
 	pass
