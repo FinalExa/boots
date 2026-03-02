@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=58 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -32,11 +32,16 @@
 [ext_resource type="Texture2D" uid="uid://bm2uhhc2qi4gb" path="res://Player/HUD/Sprites/skill_bar_progress.png" id="26_0xqhb"]
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="27_8sjqk"]
 [ext_resource type="Texture2D" uid="uid://q3b077lglk03" path="res://Player/HUD/Sprites/mouse_left_click.png" id="27_oad4o"]
+[ext_resource type="Texture2D" uid="uid://dwrbnlm2dcpxx" path="res://Player/HUD/Sprites/controller_button_left.png" id="27_s5g06"]
 [ext_resource type="Texture2D" uid="uid://xxlpg44dor5i" path="res://Player/HUD/Sprites/keyboard_E.png" id="27_ssrbe"]
 [ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/HUD/Sprites/skill1_bar_under.png" id="28_cedei"]
+[ext_resource type="Script" path="res://Player/HUD/Scripts/ChangeInputDisplay.gd" id="29_bypa6"]
 [ext_resource type="Texture2D" uid="uid://co4uclcuruyf7" path="res://Player/HUD/Sprites/keyboard_shift.png" id="29_jjlwt"]
 [ext_resource type="Texture2D" uid="uid://dfdyft07a1sy7" path="res://Player/HUD/Sprites/skill2_bar_under.png" id="30_bg1bh"]
+[ext_resource type="Texture2D" uid="uid://c5v85o6o0yft7" path="res://Player/HUD/Sprites/controller_button_rightTrigger.png" id="31_32ugx"]
+[ext_resource type="Texture2D" uid="uid://4t7h0djcy7sr" path="res://Player/HUD/Sprites/controller_button_down.png" id="33_8d208"]
 [ext_resource type="Texture2D" uid="uid://p8sl20lbj2ow" path="res://Player/HUD/Sprites/keyboard_ctrl.png" id="33_lvn6i"]
+[ext_resource type="Texture2D" uid="uid://dk3yrg8wcqva3" path="res://Player/HUD/Sprites/controller_button_right.png" id="36_7c3ge"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -44,6 +49,10 @@ radius = 16.0
 [sub_resource type="LabelSettings" id="LabelSettings_fvdlt"]
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hxyp"]
+atlas = ExtResource("27_s5g06")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smhgr"]
 atlas = ExtResource("27_ssrbe")
@@ -53,12 +62,24 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0hxyp")
+}],
+"loop": false,
+"name": &"controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_smhgr")
 }],
 "loop": false,
-"name": &"default",
+"name": &"keyboard",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34u7i"]
+atlas = ExtResource("31_32ugx")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71laf"]
 atlas = ExtResource("27_oad4o")
@@ -68,12 +89,24 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_34u7i")
+}],
+"loop": false,
+"name": &"controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_71laf")
 }],
 "loop": false,
-"name": &"default",
+"name": &"keyboard",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk5fa"]
+atlas = ExtResource("33_8d208")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rq1h8"]
 atlas = ExtResource("29_jjlwt")
@@ -83,12 +116,24 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bk5fa")
+}],
+"loop": false,
+"name": &"controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rq1h8")
 }],
 "loop": false,
-"name": &"default",
+"name": &"keyboard",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxyvy"]
+atlas = ExtResource("36_7c3ge")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6fv7"]
 atlas = ExtResource("33_lvn6i")
@@ -98,10 +143,18 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gxyvy")
+}],
+"loop": false,
+"name": &"controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_h6fv7")
 }],
 "loop": false,
-"name": &"default",
+"name": &"keyboard",
 "speed": 5.0
 }]
 
@@ -358,10 +411,12 @@ label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerHUD/SpeedChargeBar"]
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/SpeedChargeBar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_s1lqd")
-autoplay = "default"
+animation = &"keyboard"
+autoplay = "keyboard"
+script = ExtResource("29_bypa6")
 
 [node name="ProjectileBar" type="TextureProgressBar" parent="PlayerHUD"]
 layout_mode = 0
@@ -385,7 +440,9 @@ vertical_alignment = 1
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/ProjectileBar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_fgvbh")
-autoplay = "default"
+animation = &"controller"
+autoplay = "keyboard"
+script = ExtResource("29_bypa6")
 
 [node name="Ability1Bar" type="TextureProgressBar" parent="PlayerHUD"]
 layout_mode = 0
@@ -409,7 +466,9 @@ vertical_alignment = 1
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability1Bar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_xskm6")
-autoplay = "default"
+animation = &"controller"
+autoplay = "keyboard"
+script = ExtResource("29_bypa6")
 
 [node name="Ability2Bar" type="TextureProgressBar" parent="PlayerHUD"]
 layout_mode = 0
@@ -433,7 +492,9 @@ vertical_alignment = 1
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability2Bar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_wf5ty")
-autoplay = "default"
+animation = &"controller"
+autoplay = "keyboard"
+script = ExtResource("29_bypa6")
 
 [node name="Objective" type="Label" parent="PlayerHUD"]
 layout_mode = 0
@@ -459,6 +520,10 @@ offset_right = 936.0
 offset_bottom = 512.0
 playerRef = NodePath("../..")
 
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/SpeedChargeBar/KeyIcon" method="ChangeToRightInput"]
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/ProjectileBar/KeyIcon" method="ChangeToRightInput"]
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/Ability1Bar/KeyIcon" method="ChangeToRightInput"]
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/Ability2Bar/KeyIcon" method="ChangeToRightInput"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]

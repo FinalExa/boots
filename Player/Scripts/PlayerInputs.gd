@@ -1,6 +1,8 @@
 class_name PlayerInputs
 extends Node2D
 
+signal inputOriginChange(type)
+
 var inputEnabled: bool
 var controller: bool
 var movementInput: Vector2
@@ -21,9 +23,13 @@ func _process(_delta):
 
 func _input(event):
 	if (event is InputEventKey || event is InputEventMouse):
-		controller = false
+		if (controller):
+			controller = false
+			emit_signal("inputOriginChange", "keyboard")
 	else:
-		controller = true
+		if (!controller):
+			controller = true
+			emit_signal("inputOriginChange", "controller")
 
 func GetInputs():
 	if (inputEnabled):
