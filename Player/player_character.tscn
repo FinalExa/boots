@@ -240,8 +240,9 @@ characterRef = NodePath("../../..")
 [node name="FollowItem" type="Node2D" parent="PlayerRotator"]
 position = Vector2(0, 128)
 
-[node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerInputs")]
+[node name="PlayerAim" type="Node2D" parent="." node_paths=PackedStringArray("playerRef", "playerInputs")]
 script = ExtResource("19_44plk")
+playerRef = NodePath("..")
 playerInputs = NodePath("../PlayerInputs")
 offsetDegrees = 90.0
 

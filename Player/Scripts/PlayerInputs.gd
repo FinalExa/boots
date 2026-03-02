@@ -2,6 +2,7 @@ class_name PlayerInputs
 extends Node2D
 
 var inputEnabled: bool
+var controller: bool
 var movementInput: Vector2
 var interactionInput: bool
 var releaseSpeedCharge: bool
@@ -18,6 +19,12 @@ func _ready():
 func _process(_delta):
 	GetInputs()
 
+func _input(event):
+	if (event is InputEventKey || event is InputEventMouse):
+		controller = false
+	else:
+		controller = true
+
 func GetInputs():
 	if (inputEnabled):
 		GetMovementInput()
@@ -27,7 +34,6 @@ func GetInputs():
 		GetAbility1Input()
 		GetAbility2Input()
 		GetInteractionInput()
-		
 
 func GetMovementInput():
 	movementInput = Input.get_vector("left", "right", "up", "down")
@@ -57,7 +63,10 @@ func GetAbility2Input():
 	ability2 = false
 
 func GetAimInput():
-	aimInput = get_global_mouse_position()
+	if (!controller):
+		aimInput = get_global_mouse_position()
+	else:
+		aimInput = Input.get_vector("leftAim", "rightAim", "upAim", "downAim")
 	return
 
 func GetShootInput():
