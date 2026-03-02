@@ -8,14 +8,12 @@ extends MapObjective
 var transportObject: TransportObject
 var completedDestinations: Array[TransportDestination]
 
-var currentSpawnerIndex: int
 var waveTimer: float
 
 func ReadyOperations():
 	GenerateTransportObject()
 	RegisterDestinations()
 	RegisterSpawners()
-	currentSpawnerIndex = 0
 	waveTimer = 0
 	playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str(objectiveNotCompletedDescription, completedDestinations.size(), "/", transportDestinations.size()))
 
@@ -56,14 +54,12 @@ func WaveCooldown(delta):
 		if (waveTimer > 0):
 			waveTimer -= delta
 			return
-		SpawnWave()
+		SpawnWaves()
 	else:
 		if (transportObject != null):
 			transportObject.SelfDestruct()
 
-func SpawnWave():
-	if (currentSpawnerIndex >= multipleObjectSpawners.size()):
-		currentSpawnerIndex = 0
-	if (multipleObjectSpawners[currentSpawnerIndex].activeObjects.size() == 0): multipleObjectSpawners[currentSpawnerIndex].SpawnObjects()
+func SpawnWaves():
+	for i in multipleObjectSpawners.size():
+		if (multipleObjectSpawners[i].activeObjects.size() == 0 || multipleObjectSpawners[i].aggressiveSpawn): multipleObjectSpawners[i].SpawnObjects()
 	waveTimer = spawnNewWaveCD
-	currentSpawnerIndex += 1

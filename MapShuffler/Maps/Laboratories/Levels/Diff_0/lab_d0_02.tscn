@@ -39,7 +39,7 @@ layer_1/tile_data = PackedInt32Array(-917512, 65537, 0, -917511, 131073, 0, -917
 transportObjectSpawner = NodePath("../TransportObjectSpawner")
 transportDestinations = [NodePath("../TransportDestination")]
 multipleObjectSpawners = [NodePath("../Enemies/EnemySpawner")]
-spawnNewWaveCD = 5.0
+spawnNewWaveCD = 15.0
 gameplayScene = NodePath("..")
 
 [node name="TransportObjectSpawner" type="Node2D" parent="."]
@@ -66,6 +66,7 @@ position = Vector2(-3616, -4032)
 script = ExtResource("6_mpf0r")
 objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
 objectSpawnLocations = [NodePath("1"), NodePath("2")]
+aggressiveSpawn = true
 
 [node name="1" type="Node2D" parent="Enemies/EnemySpawner"]
 position = Vector2(-640, 576)
