@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://crg0fqnhtvrn8"]
+[gd_scene load_steps=11 format=3 uid="uid://crg0fqnhtvrn8"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_sjbqj"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_xauqq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ddjg6y7krodau" path="res://MapObjectives/ObjectiveObjects/transport_destination.tscn" id="5_ofjto"]
 [ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="5_pecg4"]
 [ext_resource type="Script" path="res://Spawners/Scripts/MultipleObjectSpawner.gd" id="6_mpf0r"]
+[ext_resource type="PackedScene" uid="uid://bllhlg88xlhba" path="res://MapObjects/slowing_ground.tscn" id="8_4t3uh"]
 [ext_resource type="PackedScene" uid="uid://ec5tqdevf7u7" path="res://MapObjects/booster_pad.tscn" id="8_ekqr0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uep3m"]
@@ -39,7 +40,7 @@ layer_1/tile_data = PackedInt32Array(-917512, 65537, 0, -917511, 131073, 0, -917
 transportObjectSpawner = NodePath("../TransportObjectSpawner")
 transportDestinations = [NodePath("../TransportDestination")]
 multipleObjectSpawners = [NodePath("../Enemies/EnemySpawner")]
-spawnNewWaveCD = 15.0
+spawnNewWaveCD = 10.0
 gameplayScene = NodePath("..")
 
 [node name="TransportObjectSpawner" type="Node2D" parent="."]
@@ -64,8 +65,8 @@ position = Vector2(-3616, -4032)
 
 [node name="EnemySpawner" type="Node2D" parent="Enemies" node_paths=PackedStringArray("objectSpawnLocations")]
 script = ExtResource("6_mpf0r")
-objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
-objectSpawnLocations = [NodePath("1"), NodePath("2")]
+objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
+objectSpawnLocations = [NodePath("1"), NodePath("2"), NodePath("3"), NodePath("4"), NodePath("5"), NodePath("6"), NodePath("7"), NodePath("8"), NodePath("9"), NodePath("10"), NodePath("11"), NodePath("12")]
 aggressiveSpawn = true
 
 [node name="1" type="Node2D" parent="Enemies/EnemySpawner"]
@@ -74,19 +75,85 @@ position = Vector2(-640, 576)
 [node name="2" type="Node2D" parent="Enemies/EnemySpawner"]
 position = Vector2(-640, -640)
 
+[node name="3" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(1024, -960)
+
+[node name="4" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(640, -1536)
+
+[node name="5" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(1152, -2432)
+
+[node name="6" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(2176, -2112)
+
+[node name="7" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(320, -2944)
+
+[node name="8" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(-704, -2432)
+
+[node name="9" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(-1344, -3200)
+
+[node name="10" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(-3200, -3264)
+
+[node name="11" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(-3648, -2304)
+
+[node name="12" type="Node2D" parent="Enemies/EnemySpawner"]
+position = Vector2(-4288, -2944)
+
 [node name="MapObjects" type="Node2D" parent="."]
 
 [node name="BoosterPadGroup1" type="Node2D" parent="MapObjects"]
-position = Vector2(208, -400)
+position = Vector2(256, -384)
 rotation = 0.785398
 
 [node name="BoosterPad" parent="MapObjects/BoosterPadGroup1" instance=ExtResource("8_ekqr0")]
-position = Vector2(-3.38813e-21, 128)
+position = Vector2(0, 256)
 scale = Vector2(1, 1)
 
 [node name="BoosterPad2" parent="MapObjects/BoosterPadGroup1" instance=ExtResource("8_ekqr0")]
+scale = Vector2(1, 1)
+
+[node name="BoosterPad3" parent="MapObjects/BoosterPadGroup1" instance=ExtResource("8_ekqr0")]
+position = Vector2(0, -256)
+scale = Vector2(1, 1)
+
+[node name="BoosterPadGroup2" type="Node2D" parent="MapObjects"]
+position = Vector2(1344, -2304)
+rotation = -0.785398
+
+[node name="BoosterPad" parent="MapObjects/BoosterPadGroup2" instance=ExtResource("8_ekqr0")]
+position = Vector2(-3.38813e-21, 128)
+scale = Vector2(1, 1)
+
+[node name="BoosterPad2" parent="MapObjects/BoosterPadGroup2" instance=ExtResource("8_ekqr0")]
 position = Vector2(1.62125e-05, -128)
 scale = Vector2(1, 1)
+
+[node name="SlowingGround" parent="MapObjects" instance=ExtResource("8_4t3uh")]
+position = Vector2(2424, -2048)
+
+[node name="SlowingGround2" parent="MapObjects" instance=ExtResource("8_4t3uh")]
+position = Vector2(2424, -1792)
+
+[node name="SlowingGround3" parent="MapObjects" instance=ExtResource("8_4t3uh")]
+position = Vector2(-4928, -3328)
+
+[node name="SlowingGround4" parent="MapObjects" instance=ExtResource("8_4t3uh")]
+position = Vector2(-4928, -3072)
+
+[node name="SlowingGround5" parent="MapObjects" instance=ExtResource("8_4t3uh")]
+position = Vector2(-4928, -2816)
+
+[node name="SlowingGround6" parent="MapObjects" instance=ExtResource("8_4t3uh")]
+position = Vector2(-4928, -2560)
+
+[node name="SlowingGround7" parent="MapObjects" instance=ExtResource("8_4t3uh")]
+position = Vector2(-4928, -2304)
 
 [node name="Doors" type="Node2D" parent="."]
 

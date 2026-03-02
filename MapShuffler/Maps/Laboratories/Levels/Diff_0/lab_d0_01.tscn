@@ -81,6 +81,12 @@ position = Vector2(-1408, -1152)
 [node name="SlowingGround2" parent="MapObjects" instance=ExtResource("6_3h3ar")]
 position = Vector2(-1408, -896)
 
+[node name="SlowingGround3" parent="MapObjects" instance=ExtResource("6_3h3ar")]
+position = Vector2(1408, -1088)
+
+[node name="SlowingGround4" parent="MapObjects" instance=ExtResource("6_3h3ar")]
+position = Vector2(1408, -832)
+
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("4_obn3f")]
