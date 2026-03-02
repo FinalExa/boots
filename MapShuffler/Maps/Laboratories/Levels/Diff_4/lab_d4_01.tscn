@@ -75,6 +75,7 @@ position = Vector2(1056, -1056)
 script = ExtResource("6_jt5vu")
 objectPaths = Array[String](["res://Enemies/shielder_enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
 objectSpawnLocations = [NodePath("1"), NodePath("2"), NodePath("3")]
+aggressiveSpawn = true
 
 [node name="1" type="Node2D" parent="Enemies/EnemySpawner1"]
 position = Vector2(0, -448)
@@ -89,6 +90,7 @@ position = Vector2(640, 0)
 script = ExtResource("6_jt5vu")
 objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
 objectSpawnLocations = [NodePath("1"), NodePath("2")]
+aggressiveSpawn = true
 
 [node name="1" type="Node2D" parent="Enemies/EnemySpawner2"]
 position = Vector2(-768, 512)
@@ -100,6 +102,7 @@ position = Vector2(-512, 768)
 script = ExtResource("6_jt5vu")
 objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
 objectSpawnLocations = [NodePath("1"), NodePath("2")]
+aggressiveSpawn = true
 
 [node name="1" type="Node2D" parent="Enemies/EnemySpawner3"]
 position = Vector2(512, 768)

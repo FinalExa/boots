@@ -38,50 +38,52 @@ navigation_polygon = SubResource("NavigationPolygon_bsbwt")
 
 [node name="BountyObjective" parent="." node_paths=PackedStringArray("enemies", "multipleObjectSpawners", "gameplayScene") instance=ExtResource("2_i4w60")]
 enemies = [NodePath("../SamuraiEnemy")]
-multipleObjectSpawners = [NodePath("../Spawners/MultipleObjectSpawner"), NodePath("../Spawners/MultipleObjectSpawner2")]
+multipleObjectSpawners = [NodePath("../Enemies/MultipleObjectSpawner"), NodePath("../Enemies/MultipleObjectSpawner2")]
 spawnNewWaveCD = 5.0
 gameplayScene = NodePath("..")
 
 [node name="SamuraiEnemy" parent="." instance=ExtResource("3_vcpkg")]
 position = Vector2(1728, 1216)
 
-[node name="Spawners" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="MultipleObjectSpawner" type="Node2D" parent="Spawners" node_paths=PackedStringArray("objectSpawnLocations")]
+[node name="MultipleObjectSpawner" type="Node2D" parent="Enemies" node_paths=PackedStringArray("objectSpawnLocations")]
 script = ExtResource("3_w6kkd")
 objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/shielder_enemy.tscn", "res://Enemies/shielder_enemy.tscn"])
 objectSpawnLocations = [NodePath("0"), NodePath("1"), NodePath("2"), NodePath("3"), NodePath("4"), NodePath("5")]
+aggressiveSpawn = true
 
-[node name="0" type="Node2D" parent="Spawners/MultipleObjectSpawner"]
+[node name="0" type="Node2D" parent="Enemies/MultipleObjectSpawner"]
 position = Vector2(-1664, 960)
 
-[node name="1" type="Node2D" parent="Spawners/MultipleObjectSpawner"]
+[node name="1" type="Node2D" parent="Enemies/MultipleObjectSpawner"]
 position = Vector2(-1344, 192)
 
-[node name="2" type="Node2D" parent="Spawners/MultipleObjectSpawner"]
+[node name="2" type="Node2D" parent="Enemies/MultipleObjectSpawner"]
 position = Vector2(-640, -64)
 
-[node name="3" type="Node2D" parent="Spawners/MultipleObjectSpawner"]
+[node name="3" type="Node2D" parent="Enemies/MultipleObjectSpawner"]
 position = Vector2(320, -256)
 
-[node name="4" type="Node2D" parent="Spawners/MultipleObjectSpawner"]
+[node name="4" type="Node2D" parent="Enemies/MultipleObjectSpawner"]
 position = Vector2(832, 64)
 
-[node name="5" type="Node2D" parent="Spawners/MultipleObjectSpawner"]
+[node name="5" type="Node2D" parent="Enemies/MultipleObjectSpawner"]
 position = Vector2(1216, 512)
 
-[node name="MultipleObjectSpawner2" type="Node2D" parent="Spawners" node_paths=PackedStringArray("objectSpawnLocations")]
+[node name="MultipleObjectSpawner2" type="Node2D" parent="Enemies" node_paths=PackedStringArray("objectSpawnLocations")]
 script = ExtResource("3_w6kkd")
 objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/shielder_enemy.tscn"])
 objectSpawnLocations = [NodePath("0"), NodePath("1"), NodePath("2")]
+aggressiveSpawn = true
 
-[node name="0" type="Node2D" parent="Spawners/MultipleObjectSpawner2"]
+[node name="0" type="Node2D" parent="Enemies/MultipleObjectSpawner2"]
 position = Vector2(-64, 832)
 
-[node name="1" type="Node2D" parent="Spawners/MultipleObjectSpawner2"]
+[node name="1" type="Node2D" parent="Enemies/MultipleObjectSpawner2"]
 position = Vector2(512, 832)
 
-[node name="2" type="Node2D" parent="Spawners/MultipleObjectSpawner2"]
+[node name="2" type="Node2D" parent="Enemies/MultipleObjectSpawner2"]
 position = Vector2(224, 832)
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
