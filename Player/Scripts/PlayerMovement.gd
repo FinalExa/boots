@@ -22,7 +22,6 @@ extends Node
 @export var distanceDifferenceTolerance: float
 @export var distanceDifferenceToleranceMinSpeed: float
 @export var decelerationForDistanceDifference: float
-@export var currentDirectionWeight: int = 1
 var currentAcceleration: float
 var accelerationMultiplier: float
 var currentDecelerationWhileSteering: float
@@ -78,7 +77,8 @@ func SetCurrentSpeed(delta):
 	else:
 		SetDirection(delta)
 		AccelerationCases(delta)
-	currentSpeed += finalSpeedModifier * delta
+	if (finalSpeedModifier > 0 || (finalSpeedModifier < 0 && currentSpeed > killSpeedValue)):
+		currentSpeed += finalSpeedModifier * delta
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 
 func MovePlayerCharacter():
@@ -128,10 +128,10 @@ func SetDirection(delta):
 		else: directionDifferent = false
 		lastDirection = currentDirection
 	if (enforcedDirections.size() > 0):
-		var finalDirection: Vector2 = currentDirection * currentDirectionWeight
+		var finalDirection: Vector2 = Vector2.ZERO
 		for i in enforcedDirections.size():
 			finalDirection += enforcedDirections[i]
-		currentDirection = finalDirection / Vector2(enforcedDirections.size() + currentDirectionWeight, enforcedDirections.size() + currentDirectionWeight)
+		currentDirection = finalDirection / Vector2(enforcedDirections.size(), enforcedDirections.size())
 
 func SetNewDirection(delta):
 	var x: float = SetDirectionValue(playerInputs.movementInput.x, currentDirection.x, xValue, delta)
@@ -178,7 +178,10 @@ func SpeedModifiers():
 	if (enforcedDirections.size() > 0):
 		enforcedDirections.clear()
 	if (speedModifiers.size() > 0):
+		var names: Array[String] = []
 		for i in speedModifiers.size():
-			finalSpeedModifier += speedModifiers[i].speedModifyValue
-			if (speedModifiers[i].enforceDirection):
-				enforcedDirections.push_back(speedModifiers[i].forwardDirection)
+			if (!names.has(speedModifiers[i].objectName)):
+				names.push_back(speedModifiers[i].objectName)
+				finalSpeedModifier += speedModifiers[i].speedModifyValue
+				if (speedModifiers[i].enforceDirection):
+					enforcedDirections.push_back(speedModifiers[i].forwardDirection)

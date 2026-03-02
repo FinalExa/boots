@@ -25,6 +25,7 @@ animations = [{
 z_index = -99
 script = ExtResource("1_41h02")
 tolerance = 91.0
+objectName = "BoosterPad"
 speedModifyValue = 3000.0
 enforceDirection = true
 forward = NodePath("Forward")
