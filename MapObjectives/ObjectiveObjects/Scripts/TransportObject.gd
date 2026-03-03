@@ -5,7 +5,7 @@ var playerIsIn: bool
 var playerRef: PlayerCharacter
 var isAttachedToPlayer: bool
 var originalParent: Node2D
-var healthValue: int
+var healthValue: float
 
 func _ready():
 	originalParent = self.get_parent()

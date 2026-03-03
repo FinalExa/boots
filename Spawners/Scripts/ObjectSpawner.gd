@@ -19,7 +19,7 @@ func CreateAndReturnObject(objectToCreate: String, objectPositionRef: Node2D):
 	if (obj is EnemyController): obj.SetSpawnerRef(self)
 	return obj
 
-func AddObjectToScene(object, objectPositionRef: Node2D):
+func AddObjectToScene(object, _objectPositionRef: Node2D):
 	var sceneMaster: SceneMaster = get_tree().root.get_child(0)
 	if (sceneMaster != null):
 		sceneMaster.sceneSelector.currentScene.add_child(object)

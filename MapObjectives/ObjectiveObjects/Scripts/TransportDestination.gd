@@ -21,7 +21,14 @@ func _on_area_2d_area_entered(area):
 		transportObjectRef = area
 		if (!captureArea.areaActive):
 			captureArea.Initialize()
-			mapObjective.call_deferred("GenerateTransportObject")
+			var count: int = 0
+			for i in mapObjective.transportDestinations.size():
+				if (mapObjective.transportDestinations[i].captureArea.areaActive):
+					count += 1
+			if (count < mapObjective.transportDestinations.size()):
+				mapObjective.call_deferred("GenerateTransportObject")
+			else:
+				mapObjective.transportObject.call_deferred("SelfDestruct")
 
 func _on_area_2d_area_exited(area):
 	if (area is TransportObject && transportObjectIn):

@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="15_msce2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2vjwt"]
-radius = 32.0
+radius = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 448.0

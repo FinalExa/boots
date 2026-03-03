@@ -24,7 +24,7 @@ animations = [{
 [node name="SlowingGround" type="Area2D"]
 z_index = -99
 script = ExtResource("1_3o8i4")
-objectName = "SlowingGround"
+objectName = "Slowing Ground"
 speedModifyValue = -1000.0
 entranceValue = -500.0
 
