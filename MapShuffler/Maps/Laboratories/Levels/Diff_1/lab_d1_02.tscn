@@ -45,7 +45,7 @@ navigation_polygon = SubResource("NavigationPolygon_8mks2")
 position = Vector2(0, 448)
 
 [node name="RewardSpawnPosition" type="Node2D" parent="."]
-position = Vector2(0, -384)
+position = Vector2(0, -1152)
 
 [node name="Doors" type="Node2D" parent="."]
 
