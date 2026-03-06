@@ -26,7 +26,7 @@
 radius = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
-radius = 832.038
+radius = 1089.44
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n2qao"]
 radius = 576.0
@@ -143,6 +143,7 @@ stopSwapSprite = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
 shape = SubResource("CircleShape2D_j5l0v")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="EnemyShielding" type="Area2D" parent="." node_paths=PackedStringArray("controllerRef", "baseSprite", "shieldingSprite")]
 script = ExtResource("11_yk7xc")

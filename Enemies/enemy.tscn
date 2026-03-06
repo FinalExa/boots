@@ -27,7 +27,7 @@
 radius = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
-radius = 448.0
+radius = 704.045
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer")]
 script = ExtResource("1_d1ice")
@@ -146,6 +146,7 @@ angrySprite = NodePath("../EnemySpriteAngry")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
 shape = SubResource("CircleShape2D_j5l0v")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="TargetPointer" parent="." node_paths=PackedStringArray("baseObjectRef") instance=ExtResource("15_msce2")]
 position = Vector2(0, -96)

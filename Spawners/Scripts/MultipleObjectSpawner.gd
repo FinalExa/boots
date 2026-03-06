@@ -44,6 +44,8 @@ func ClearActiveObjects():
 		activeObjects.clear()
 
 func ReceivedCallFromDeletedSpawnedObject(object):
+	if (object is EnemyController):
+		mapObjective.OnSpawnedEnemyDeath()
 	if (!aggressiveSpawn):
 		if (activeObjects.has(object)):
 			if (object is EnemyController): mapObjective.RequestEnemyData(object)

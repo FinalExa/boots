@@ -23,3 +23,6 @@ func RequestEnemyData(_enemyController: EnemyController):
 
 func ObjectiveCompleted():
 	gameplayScene.SetObjectiveCompleted()
+
+func OnSpawnedEnemyDeath():
+	pass

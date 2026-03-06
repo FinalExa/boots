@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ec5tqdevf7u7"]
 
-[ext_resource type="Script" path="res://MapObjects/Scripts/BoosterPad.gd" id="1_41h02"]
+[ext_resource type="Script" path="res://MapObjects/Scripts/SpeedModifier.gd" id="1_bty5c"]
 [ext_resource type="Texture2D" uid="uid://dnlxovabhgwkk" path="res://MapObjects/Sprites/booster_pad.png" id="1_lswr8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35e63"]
@@ -23,8 +23,7 @@ animations = [{
 
 [node name="BoosterPad" type="Area2D" node_paths=PackedStringArray("forward")]
 z_index = -99
-script = ExtResource("1_41h02")
-tolerance = 91.0
+script = ExtResource("1_bty5c")
 objectName = "Booster Pad"
 speedModifyValue = 3000.0
 enforceDirection = true

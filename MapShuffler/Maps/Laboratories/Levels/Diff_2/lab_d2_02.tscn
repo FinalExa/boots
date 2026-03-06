@@ -195,3 +195,27 @@ rotation = 0.785398
 [node name="SlowingGround10" parent="MapObjects" instance=ExtResource("6_8g0qc")]
 position = Vector2(904, -1544)
 rotation = 0.785398
+
+[node name="SlowingGround11" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(960, -576)
+
+[node name="SlowingGround12" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(-960, -576)
+
+[node name="SlowingGround13" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(-256, -320)
+
+[node name="SlowingGround14" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(256, -320)
+
+[node name="SlowingGround15" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(256, -896)
+
+[node name="SlowingGround16" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(-256, -896)
+
+[node name="SlowingGround17" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(0, 320)
+
+[node name="SlowingGround18" parent="MapObjects" instance=ExtResource("6_8g0qc")]
+position = Vector2(0, -1536)

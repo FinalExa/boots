@@ -49,3 +49,6 @@ func SpawnWave():
 	if (multipleObjectSpawners[currentSpawnerIndex].activeObjects.size() == 0): multipleObjectSpawners[currentSpawnerIndex].SpawnObjects()
 	waveTimer = spawnNewWaveCD
 	currentSpawnerIndex += 1
+
+func OnSpawnedEnemyDeath():
+	surviveTimer = clamp(surviveTimer - 1, 0, surviveTime)
