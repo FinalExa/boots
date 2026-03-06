@@ -5,7 +5,7 @@
 
 [node name="MapProgressionSelector" type="Node" node_paths=PackedStringArray("maps")]
 script = ExtResource("1_x7im7")
-difficultyValueIncreaseOnComplete = 0.5
+difficultyValueIncreaseOnComplete = 1.0
 difficultyValueMaxValue = 2.0
 gameMaxDifficulty = 4.0
 maps = [NodePath("Laboratories")]
