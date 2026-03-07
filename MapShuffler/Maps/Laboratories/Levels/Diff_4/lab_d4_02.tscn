@@ -63,6 +63,7 @@ position = Vector2(-960, -2592)
 rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
 [node name="Enemies" type="Node2D" parent="."]
+visible = false
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_blons")]
 position = Vector2(1448, 448)
@@ -139,44 +140,18 @@ position = Vector2(-1856, -2184)
 [node name="MapObjects" type="Node2D" parent="."]
 
 [node name="SlowingGround" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-704, -64)
-rotation = 0.785398
-
-[node name="SlowingGround2" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(64, 704)
-rotation = 0.785398
-
-[node name="SlowingGround3" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(704, 64.0001)
+position = Vector2(-384, 320)
 rotation = 0.785398
 
 [node name="SlowingGround4" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-63.9999, -640)
+position = Vector2(320, -320)
 rotation = 0.785398
-
-[node name="SlowingGround5" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-896, -1280)
-
-[node name="SlowingGround6" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-896, -1536)
-
-[node name="SlowingGround7" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-896, -1024)
 
 [node name="SlowingGround8" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(-1152, -1728)
 
 [node name="SlowingGround9" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(-1408, -1728)
-
-[node name="SlowingGround10" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-1664, -1536)
-
-[node name="SlowingGround11" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-1664, -1280)
-
-[node name="SlowingGround12" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-1664, -1024)
 
 [node name="SlowingGround13" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(-1408, -832)
@@ -187,14 +162,8 @@ position = Vector2(-1152, -832)
 [node name="SlowingGround15" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(-2048, -1280)
 
-[node name="SlowingGround16" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-1280, -2112)
-
 [node name="SlowingGround17" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(-512, -1280)
-
-[node name="SlowingGround18" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(-1280, -448)
 
 [node name="SlowingGround19" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(896, 1216)
@@ -202,17 +171,8 @@ position = Vector2(896, 1216)
 [node name="SlowingGround20" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(896, 1472)
 
-[node name="SlowingGround21" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(896, 1728)
-
 [node name="SlowingGround22" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(1152, 960)
 
 [node name="SlowingGround23" parent="MapObjects" instance=ExtResource("8_o3y5h")]
 position = Vector2(1408, 960)
-
-[node name="SlowingGround24" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(1664, 960)
-
-[node name="SlowingGround25" parent="MapObjects" instance=ExtResource("8_o3y5h")]
-position = Vector2(896, 960)
