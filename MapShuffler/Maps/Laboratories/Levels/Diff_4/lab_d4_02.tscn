@@ -63,7 +63,6 @@ position = Vector2(-960, -2592)
 rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
 [node name="Enemies" type="Node2D" parent="."]
-visible = false
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_blons")]
 position = Vector2(1448, 448)
