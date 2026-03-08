@@ -440,7 +440,7 @@ vertical_alignment = 1
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/ProjectileBar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_fgvbh")
-animation = &"controller"
+animation = &"keyboard"
 autoplay = "keyboard"
 script = ExtResource("29_bypa6")
 
@@ -466,7 +466,7 @@ vertical_alignment = 1
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability1Bar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_xskm6")
-animation = &"controller"
+animation = &"keyboard"
 autoplay = "keyboard"
 script = ExtResource("29_bypa6")
 
@@ -492,7 +492,7 @@ vertical_alignment = 1
 [node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability2Bar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_wf5ty")
-animation = &"controller"
+animation = &"keyboard"
 autoplay = "keyboard"
 script = ExtResource("29_bypa6")
 
