@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkn8xhsp2ws37"]
+[gd_scene load_steps=5 format=3 uid="uid://bkn8xhsp2ws37"]
 
 [ext_resource type="Script" path="res://MapObjectives/ObjectiveObjects/Scripts/TransportObject.gd" id="1_0ofcj"]
 [ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="2_0oc5e"]
+[ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="3_jwtxn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_52f73"]
 radius = 128.0
 
-[node name="TransportObject" type="Area2D"]
+[node name="TransportObject" type="Area2D" node_paths=PackedStringArray("targetPointer")]
 script = ExtResource("1_0ofcj")
+targetPointer = NodePath("TargetPointer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_52f73")
@@ -15,6 +17,10 @@ shape = SubResource("CircleShape2D_52f73")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_0oc5e")
+
+[node name="TargetPointer" parent="." node_paths=PackedStringArray("baseObjectRef") instance=ExtResource("3_jwtxn")]
+position = Vector2(0, -56)
+baseObjectRef = NodePath("..")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

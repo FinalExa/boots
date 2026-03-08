@@ -1,6 +1,8 @@
 class_name TransportObject
 extends Area2D
 
+@export var targetPointer: TargetPointer
+var mapObjective: TransportObjectObjective
 var playerIsIn: bool
 var playerRef: PlayerCharacter
 var isAttachedToPlayer: bool
@@ -19,6 +21,8 @@ func AttachToPlayer():
 		isAttachedToPlayer = true
 		reparent(playerRef.followItem)
 		global_position = playerRef.followItem.global_position
+		targetPointer.Deactivate()
+		mapObjective.ActivateDestinationPointers()
 
 func CheckForHealth():
 	if (isAttachedToPlayer):
@@ -37,6 +41,7 @@ func DetachFromPlayer():
 		reparent(originalParent)
 
 func SelfDestruct():
+	targetPointer.DestroyRotator()
 	DetachFromPlayer()
 	queue_free()
 

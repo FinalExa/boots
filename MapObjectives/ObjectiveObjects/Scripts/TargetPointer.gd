@@ -27,14 +27,19 @@ func Activate():
 	active = true
 	rotator.show()
 
+func Deactivate():
+	active = false
+	rotator.hide()
+	AttachToSource()
+
 func SetPosition():
 	if (active && rotator != null):
 		if (!onScreen):
 			AttachToPlayer()
 		else:
-			AttachToEnemy()
+			AttachToSource()
 
-func AttachToEnemy():
+func AttachToSource():
 	if (separated):
 		rotator.reparent(self)
 		rotator.position = basePosition

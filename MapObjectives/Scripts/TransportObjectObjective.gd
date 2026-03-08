@@ -23,13 +23,14 @@ func _process(delta):
 func RegisterDestinations():
 	for i in transportDestinations.size():
 		transportDestinations[i].mapObjective = self
-		transportDestinations[i].targetPointer.Activate()
 
 func GenerateTransportObject():
 	if (transportObjectSpawner != null && completedDestinations.size() < multipleObjectSpawners.size()):
 		if (transportObject != null):
 			transportObject.SelfDestruct()
 		transportObject = transportObjectSpawner.SpawnObject()
+		transportObject.mapObjective = self
+		transportObject.targetPointer.Activate()
 
 func SetDestinationCompleted(destinationToComplete: TransportDestination):
 	if (!completedDestinations.has(destinationToComplete)):
@@ -40,6 +41,15 @@ func SetDestinationCompleted(destinationToComplete: TransportDestination):
 			ObjectiveCompleted()
 			return
 		playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str(objectiveNotCompletedDescription, completedDestinations.size(), "/", transportDestinations.size()))
+
+func ActivateDestinationPointers():
+	for i in transportDestinations.size():
+		transportDestinations[i].targetPointer.Activate()
+
+func DeactivateUndeliveredDestinationPointers():
+	for i in transportDestinations.size():
+		if (!transportDestinations[i].transportObjectIn):
+			transportDestinations[i].targetPointer.Deactivate()
 
 func RegisterSpawners():
 	for i in multipleObjectSpawners.size():

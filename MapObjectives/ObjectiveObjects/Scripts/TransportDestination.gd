@@ -29,6 +29,7 @@ func _on_area_2d_area_entered(area):
 				mapObjective.call_deferred("GenerateTransportObject")
 			else:
 				mapObjective.transportObject.call_deferred("SelfDestruct")
+			mapObjective.DeactivateUndeliveredDestinationPointers()
 
 func _on_area_2d_area_exited(area):
 	if (area is TransportObject && transportObjectIn):
