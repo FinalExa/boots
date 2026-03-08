@@ -13,7 +13,7 @@ func SetCompleted():
 	completed = true
 	spriteRef.hide()
 	mapObjective.call_deferred("SetDestinationCompleted", self)
-	targetPointer.DestroyRotator()
+	targetPointer.Deactivate()
 
 func _on_area_2d_area_entered(area):
 	if (area is TransportObject && !transportObjectIn):

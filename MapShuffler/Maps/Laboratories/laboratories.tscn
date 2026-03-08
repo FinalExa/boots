@@ -13,7 +13,7 @@ mapMaxDifficulty = Array[float]([0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0])
 
 [node name="DifficultyLevels0" type="Node" parent="."]
 script = ExtResource("2_esyvp")
-associatedLevels = Array[String](["res://MapShuffler/Maps/Laboratories/Levels/Diff_0/lab_d0_01.tscn", "res://MapShuffler/Maps/Laboratories/Levels/Diff_0/lab_d0_02.tscn"])
+associatedLevels = Array[String](["res://MapShuffler/Maps/Laboratories/Levels/Diff_0/lab_d0_01.tscn", "res://res://MapShuffler/Maps/Laboratories/Levels/Diff_0/lab_d0_02.tscn/Maps/Laboratories/Levels/Diff_1/lab_d1_01.tscn"])
 
 [node name="DifficultyLevels1" type="Node" parent="."]
 script = ExtResource("2_esyvp")

@@ -48,7 +48,8 @@ func SetDestinationCompleted(destinationToComplete: TransportDestination):
 
 func ActivateDestinationPointers():
 	for i in transportDestinations.size():
-		transportDestinations[i].targetPointer.Activate()
+		if (!transportDestinations[i].completed):
+			transportDestinations[i].targetPointer.Activate()
 
 func DeactivateUndeliveredDestinationPointers():
 	for i in transportDestinations.size():

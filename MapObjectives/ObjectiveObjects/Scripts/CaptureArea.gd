@@ -3,7 +3,7 @@ extends Area2D
 
 @export var maxCharge: float
 @export var playerSpeedDivideValue: float
-@export var chargeLabel: Label
+@export var chargeBar: TextureProgressBar
 @export var transportDestination: TransportDestination
 var currentCharge: float
 var playerRef: PlayerCharacter
@@ -18,10 +18,11 @@ func Initialize():
 	self.show()
 	areaActive = true
 	currentCharge = 0
-	UpdateText()
+	chargeBar.max_value = maxCharge * 10
+	UpdateBar()
 
-func UpdateText():
-	chargeLabel.text = str(snapped(currentCharge, 0.1), "/", maxCharge)
+func UpdateBar():
+	chargeBar.value = currentCharge * 10
 
 func _process(delta):
 	IncreaseCharge(delta)
@@ -29,7 +30,7 @@ func _process(delta):
 func IncreaseCharge(delta):
 	if (areaActive && !completed && playerIn):
 		currentCharge = clamp(currentCharge + (delta * (playerRef.playerMovements.currentSpeed / playerSpeedDivideValue)), 0, maxCharge)
-		UpdateText()
+		UpdateBar()
 		if (currentCharge == maxCharge):
 			completed = true
 			self.hide()
