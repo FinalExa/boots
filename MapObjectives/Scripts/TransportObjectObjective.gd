@@ -7,6 +7,7 @@ extends MapObjective
 @export var spawnNewWaveCD: float
 var transportObject: TransportObject
 var completedDestinations: Array[TransportDestination]
+var completed: bool
 
 var waveTimer: float
 
@@ -37,8 +38,11 @@ func SetDestinationCompleted(destinationToComplete: TransportDestination):
 		completedDestinations.push_back(destinationToComplete)
 		if (completedDestinations.size() == transportDestinations.size()):
 			playerRef.currentObjectiveUI.UpdateText(objectiveDescription, objectiveCompletedDescription)
+			if (transportObject != null):
+				transportObject.SelfDestruct()
 			ClearSpawners()
 			ObjectiveCompleted()
+			completed = true
 			return
 		playerRef.currentObjectiveUI.UpdateText(objectiveDescription, str(objectiveNotCompletedDescription, completedDestinations.size(), "/", transportDestinations.size()))
 
@@ -60,14 +64,11 @@ func ClearSpawners():
 		multipleObjectSpawners[i].ClearActiveObjects()
 
 func WaveCooldown(delta):
-	if (completedDestinations.size() < multipleObjectSpawners.size()):
+	if (!completed):
 		if (waveTimer > 0):
 			waveTimer -= delta
 			return
 		SpawnWaves()
-	else:
-		if (transportObject != null):
-			transportObject.SelfDestruct()
 
 func SpawnWaves():
 	for i in multipleObjectSpawners.size():

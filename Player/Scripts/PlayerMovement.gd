@@ -48,7 +48,6 @@ func _ready():
 	lastPosition = playerCharacter.global_position
 
 func _process(delta):
-	SpeedModifiers()
 	SetCurrentAcceleration()
 	SetCurrentSpeed(delta)
 	DecelerationWhileSteering(delta)
@@ -166,14 +165,16 @@ func OnCollisionDetected():
 func RegisterSpeedModifier(speedModifier: SpeedModifier):
 	if (!speedModifiers.has(speedModifier)):
 		speedModifiers.push_front(speedModifier)
+		CalculateSpeedModifiers()
 		return self
 	return null
 
 func UnregisterSpeedModifier(speedModifier: SpeedModifier):
 	if (speedModifiers.has(speedModifier)):
 		speedModifiers.erase(speedModifier)
+		CalculateSpeedModifiers()
 
-func SpeedModifiers():
+func CalculateSpeedModifiers():
 	finalSpeedModifier = 0
 	if (enforcedDirections.size() > 0):
 		enforcedDirections.clear()

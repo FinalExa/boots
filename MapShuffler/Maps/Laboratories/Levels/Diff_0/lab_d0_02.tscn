@@ -47,7 +47,6 @@ gameplayScene = NodePath("..")
 position = Vector2(-1408, 0)
 script = ExtResource("4_ojiiy")
 objectPath = "res://MapObjectives/ObjectiveObjects/transport_object.tscn"
-setAsChild = true
 
 [node name="TransportDestination" parent="." instance=ExtResource("5_ofjto")]
 position = Vector2(-3648, -2848)
@@ -113,14 +112,11 @@ rotation = 0.785398
 
 [node name="BoosterPad" parent="MapObjects/BoosterPadGroup1" instance=ExtResource("8_ekqr0")]
 position = Vector2(0, 256)
-scale = Vector2(1, 1)
 
 [node name="BoosterPad2" parent="MapObjects/BoosterPadGroup1" instance=ExtResource("8_ekqr0")]
-scale = Vector2(1, 1)
 
 [node name="BoosterPad3" parent="MapObjects/BoosterPadGroup1" instance=ExtResource("8_ekqr0")]
 position = Vector2(0, -256)
-scale = Vector2(1, 1)
 
 [node name="BoosterPadGroup2" type="Node2D" parent="MapObjects"]
 position = Vector2(1344, -2304)
@@ -128,11 +124,9 @@ rotation = -0.785398
 
 [node name="BoosterPad" parent="MapObjects/BoosterPadGroup2" instance=ExtResource("8_ekqr0")]
 position = Vector2(-3.38813e-21, 128)
-scale = Vector2(1, 1)
 
 [node name="BoosterPad2" parent="MapObjects/BoosterPadGroup2" instance=ExtResource("8_ekqr0")]
 position = Vector2(1.62125e-05, -128)
-scale = Vector2(1, 1)
 
 [node name="SlowingGround" parent="MapObjects" instance=ExtResource("8_4t3uh")]
 position = Vector2(2424, -2048)
