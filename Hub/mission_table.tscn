@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://d162ajw3jj4li"]
+
+[ext_resource type="Script" path="res://Hub/Scripts/MissionTable.gd" id="1_npbxv"]
+[ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="1_uvgps"]
+[ext_resource type="Texture2D" uid="uid://dfvu8120auwst" path="res://Player/HUD/Sprites/controller_button_up.png" id="3_yrc12"]
+[ext_resource type="Texture2D" uid="uid://fgeia50cgwi0" path="res://Player/HUD/Sprites/keyboard_F.png" id="4_bj4td"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40vqs"]
+atlas = ExtResource("1_uvgps")
+region = Rect2(192, 192, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vdpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40vqs")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l2tx"]
+size = Vector2(96, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8i8nr"]
+radius = 128.0
+height = 336.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hputb"]
+atlas = ExtResource("3_yrc12")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pkp6"]
+atlas = ExtResource("4_bj4td")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1wqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hputb")
+}],
+"loop": true,
+"name": &"controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pkp6")
+}],
+"loop": false,
+"name": &"keyboard",
+"speed": 5.0
+}]
+
+[node name="MissionTable" type="StaticBody2D" node_paths=PackedStringArray("inputIcon")]
+script = ExtResource("1_npbxv")
+activeLevelPath = "res://1_Scenes/ActiveLevel.tscn"
+inputIcon = NodePath("InputIcon")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7vdpg")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4l2tx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8i8nr")
+
+[node name="InputIcon" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_s1wqn")
+animation = &"keyboard"
+autoplay = "keyboard"
+
+[connection signal="body_entered" from="Area2D" to="." method="PlayerIn"]
+[connection signal="body_exited" from="Area2D" to="." method="PlayerOut"]

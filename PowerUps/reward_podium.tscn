@@ -1,25 +1,49 @@
-[gd_scene load_steps=10 format=3 uid="uid://coq5ufbmql554"]
+[gd_scene load_steps=13 format=3 uid="uid://coq5ufbmql554"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/RewardPodium.gd" id="1_63obd"]
 [ext_resource type="Texture2D" uid="uid://cxfay1fjn5wdk" path="res://PowerUps/Sprites/rewardPodium.png" id="2_ol77k"]
 [ext_resource type="Texture2D" uid="uid://bnw5a6dro5eof" path="res://PowerUps/Sprites/healPodium.png" id="3_y1siy"]
 [ext_resource type="Texture2D" uid="uid://bhesk1s7es8tx" path="res://PowerUps/Sprites/moneyPodium.png" id="4_7gspc"]
 [ext_resource type="Texture2D" uid="uid://c0q0jmv0e3fi8" path="res://PowerUps/Sprites/shopPodium.png" id="5_paf2x"]
+[ext_resource type="Texture2D" uid="uid://dfvu8120auwst" path="res://Player/HUD/Sprites/controller_button_up.png" id="6_18n1y"]
+[ext_resource type="Texture2D" uid="uid://fgeia50cgwi0" path="res://Player/HUD/Sprites/keyboard_F.png" id="7_vss16"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7pbg"]
 radius = 32.0
 
-[sub_resource type="SystemFont" id="SystemFont_0wjqx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hputb"]
+atlas = ExtResource("6_18n1y")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="LabelSettings" id="LabelSettings_mchpt"]
-font = SubResource("SystemFont_0wjqx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pkp6"]
+atlas = ExtResource("7_vss16")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sah0f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hputb")
+}],
+"loop": true,
+"name": &"controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pkp6")
+}],
+"loop": false,
+"name": &"keyboard",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yleb6"]
 radius = 128.0
 
-[node name="RewardPodium" type="StaticBody2D" node_paths=PackedStringArray("label", "sprites")]
+[node name="RewardPodium" type="StaticBody2D" node_paths=PackedStringArray("inputIcon", "sprites")]
 script = ExtResource("1_63obd")
-label = NodePath("Label")
+inputIcon = NodePath("InputIcon")
 sprites = [NodePath("PowerUpSprite"), NodePath("HealSprite"), NodePath("MoneySprite"), NodePath("ShopSprite")]
 healAmount = 30.0
 moneyAmount = 300.0
@@ -39,15 +63,11 @@ texture = ExtResource("5_paf2x")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r7pbg")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -32.0
-offset_top = -56.0
-offset_right = 32.0
-offset_bottom = -32.0
-text = "PRESS F"
-label_settings = SubResource("LabelSettings_mchpt")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="InputIcon" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_sah0f")
+animation = &"keyboard"
+autoplay = "keyboard"
 
 [node name="PlayerInteractionDetect" type="Area2D" parent="."]
 

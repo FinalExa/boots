@@ -13,11 +13,6 @@ script = ExtResource("1_cl6lx")
 frameMaster = NodePath("FrameMaster")
 sceneSelector = NodePath("SceneSelector")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("rewardSpawn", "mapProgressionSelector") instance=ExtResource("2_towhw")]
-position = Vector2(10000, 10000)
-rewardSpawn = NodePath("../RewardSpawn")
-mapProgressionSelector = NodePath("../MapProgressionSelector")
-
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_c5w8b")
 volume_db = -10.0
@@ -37,5 +32,10 @@ rewardSpawn = NodePath("../RewardSpawn")
 [node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn", "mapProgressionSelector") instance=ExtResource("7_kja8i")]
 shopScene = "res://1_Scenes/ShopScene.tscn"
 playerRef = NodePath("../PlayerCharacter")
+rewardSpawn = NodePath("../RewardSpawn")
+mapProgressionSelector = NodePath("../MapProgressionSelector")
+
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("rewardSpawn", "mapProgressionSelector") instance=ExtResource("2_towhw")]
+position = Vector2(10000, 10000)
 rewardSpawn = NodePath("../RewardSpawn")
 mapProgressionSelector = NodePath("../MapProgressionSelector")

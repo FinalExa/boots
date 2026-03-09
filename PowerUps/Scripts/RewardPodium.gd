@@ -1,7 +1,7 @@
 class_name RewardPodium
 extends StaticBody2D
 
-@export var label: Label
+@export var inputIcon: AnimatedSprite2D
 @export var sprites: Array[Sprite2D]
 @export var healAmount: float
 @export var moneyAmount: float
@@ -14,7 +14,7 @@ var powerUpFaction: PowerUp.PowerUpFaction
 var selectedPowerUps: Array[PowerUp]
 
 func _ready():
-	label.hide()
+	inputIcon.hide()
 	TurnOffSprites()
 
 func TurnOffSprites():
@@ -62,13 +62,13 @@ func _on_player_interaction_detect_body_entered(body):
 	if (body is PlayerCharacter):
 		playerInsideArea = true
 		playerRef = body
-		label.show()
+		inputIcon.show()
 
 func _on_player_interaction_detect_body_exited(body):
 	if (body is PlayerCharacter):
 		playerInsideArea = false
 		playerRef = null
-		label.hide()
+		inputIcon.hide()
 
 func DeleteSelf():
 	get_tree().root.get_child(0).sceneSelector.currentScene.SetCompleted()
