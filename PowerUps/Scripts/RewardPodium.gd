@@ -12,6 +12,7 @@ var playerRef: PlayerCharacter
 var rewardType: RewardSpawn.RewardType
 var powerUpFaction: PowerUp.PowerUpFaction
 var selectedPowerUps: Array[PowerUp]
+var controllerAnimation: bool
 
 func _ready():
 	inputIcon.hide()
@@ -36,8 +37,16 @@ func SpawnRewards():
 		selectedPowerUps[i].reparent(self)
 
 func ListenForPlayerInput():
-	if (playerInsideArea && playerRef.playerInputs.interactionInput):
-		RewardType()
+	if (playerInsideArea):
+		if (!playerRef.playerInputs.controller && controllerAnimation):
+			controllerAnimation = false
+			inputIcon.play("keyboard")
+		else:
+			if (playerRef.playerInputs.controller && !controllerAnimation):
+				controllerAnimation = true
+				inputIcon.play("controller")
+		if (playerRef.playerInputs.interactionInput):
+			RewardType()
 
 func RewardType():
 	if (rewardType == RewardSpawn.RewardType.POWERUP):
