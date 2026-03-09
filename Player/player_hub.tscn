@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bx5jew0cw2gt3"]
+
+[ext_resource type="Script" path="res://Player/Scripts/PlayerHub.gd" id="1_x8s37"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="2_anufw"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerHubMovement.gd" id="3_1qgqh"]
+[ext_resource type="Texture2D" uid="uid://bvqgx56x7mcw3" path="res://Player/Sprites/Kevin001.png" id="3_kugf0"]
+[ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="4_usilo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h51le"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67mw7"]
+atlas = ExtResource("3_kugf0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8aid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67mw7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlayerHub" type="CharacterBody2D" node_paths=PackedStringArray("playerInputs")]
+script = ExtResource("1_x8s37")
+playerInputs = NodePath("PlayerInputs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("CircleShape2D_h51le")
+
+[node name="PlayerInputs" type="Node2D" parent="."]
+script = ExtResource("2_anufw")
+
+[node name="PlayerHubMovement" type="Node" parent="." node_paths=PackedStringArray("playerHubRef")]
+script = ExtResource("3_1qgqh")
+playerHubRef = NodePath("..")
+maxSpeed = 700.0
+acceleration = 2000.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p8aid")
+autoplay = "default"
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -960.0
+offset_top = -536.0
+offset_right = 960.0
+offset_bottom = 544.0
+
+[node name="PauseMenu" parent="HUD" node_paths=PackedStringArray("playerHubRef") instance=ExtResource("4_usilo")]
+offset_left = 896.0
+offset_top = 472.0
+offset_right = 936.0
+offset_bottom = 512.0
+playerHubRef = NodePath("../..")

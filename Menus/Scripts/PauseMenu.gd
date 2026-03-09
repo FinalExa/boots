@@ -2,6 +2,7 @@ class_name PauseMenu
 extends Control
 
 @export var playerRef: PlayerCharacter
+@export var playerHubRef: PlayerHub
 var pauseInput: bool
 
 func _ready():
@@ -18,11 +19,19 @@ func GetPauseInput():
 	pauseInput = false
 
 func TogglePause():
-	if (pauseInput && !playerRef.inSelectMenu):
-		if (!get_tree().paused):
-			PauseOn()
-		else:
-			PauseOff()
+	if (playerRef != null):
+		if (pauseInput && !playerRef.inSelectMenu):
+			if (!get_tree().paused):
+				PauseOn()
+			else:
+				PauseOff()
+	else:
+		if (playerHubRef != null):
+			if (pauseInput):
+				if (!get_tree().paused):
+					PauseOn()
+				else:
+					PauseOff()
 
 func PauseOn():
 	pauseInput = false

@@ -16,7 +16,6 @@ var sceneMaster: SceneMaster
 
 func _ready():
 	inputEnabled = true
-	sceneMaster = get_tree().root.get_child(0)
 
 func _process(_delta):
 	GetInputs()
@@ -80,7 +79,3 @@ func GetShootInput():
 		shootInput = true
 		return
 	shootInput = false
-
-func WinMap():
-	if (Input.is_action_just_pressed("Win")):
-		sceneMaster.sceneSelector.currentScene.SetObjectiveCompleted()

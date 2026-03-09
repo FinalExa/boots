@@ -37,6 +37,9 @@ navigation_polygon = SubResource("NavigationPolygon_kia0y")
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door" parent="Doors" instance=ExtResource("3_6p30k")]
+[node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("3_6p30k")]
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="MapObjects" type="Node2D" parent="."]
