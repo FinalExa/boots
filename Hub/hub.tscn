@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://byvdxm2flp23j"]
 
-[ext_resource type="PackedScene" uid="uid://bx5jew0cw2gt3" path="res://Player/player_hub.tscn" id="1_vjsfu"]
+[ext_resource type="PackedScene" uid="uid://bx5jew0cw2gt3" path="res://Hub/Player/player_hub.tscn" id="1_vjsfu"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_aui4k"]
 
 [node name="Hub" type="Node2D"]
+y_sort_enabled = true
 
 [node name="PlayerHub" parent="." instance=ExtResource("1_vjsfu")]
 
