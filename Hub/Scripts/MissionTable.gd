@@ -26,12 +26,12 @@ func WaitForInput():
 
 func StartMission():
 	var rootRef = get_tree().root
-	var selfRef =  self
-	rootRef.remove_child(selfRef)
+	var hubRef = rootRef.get_child(0)
+	rootRef.remove_child(hubRef)
 	var obj_scene = load(activeLevelPath)
 	var sceneMaster: SceneMaster = obj_scene.instantiate()
 	rootRef.add_child(sceneMaster)
-	selfRef.queue_free()
+	hubRef.queue_free()
 
 func PlayerIn(body):
 	if (body is PlayerHub):
