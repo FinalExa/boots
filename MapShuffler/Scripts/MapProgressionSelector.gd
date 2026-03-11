@@ -40,7 +40,10 @@ func FinishCurrentMap():
 	currentDifficultyValue = clamp(currentDifficultyValue + difficultyValueIncreaseOnComplete, 0, difficultyValueMaxValue)
 	currentMap.CompleteMap()
 	playerCharacter.missionSelectPath.currentLocation.SetDone()
-	PickNewMap()
+	if (!playerCharacter.missionSelectPath.CheckForEnd()):
+		PickNewMap()
+	else:
+		get_tree().root.get_child(0).LoadHub()
 
 func SelectLevel():
 	levelSelected = true

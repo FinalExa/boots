@@ -1,10 +1,11 @@
-[gd_scene load_steps=61 format=3 uid="uid://cfv3idhdh5mps"]
+[gd_scene load_steps=66 format=3 uid="uid://cfv3idhdh5mps"]
 
 [ext_resource type="Texture2D" uid="uid://bsawx088qmiii" path="res://MissionSelect/Sprites/mission_select_path_bg.png" id="1_x6258"]
 [ext_resource type="Script" path="res://MissionSelect/Scripts/MissionSelectPath.gd" id="2_7a5cx"]
 [ext_resource type="Texture2D" uid="uid://cbvr2jly0s314" path="res://MissionSelect/Sprites/Normal/map_1.png" id="4_g5k8g"]
 [ext_resource type="PackedScene" uid="uid://c71amm3r0ykyv" path="res://MapShuffler/Maps/Laboratories/laboratories.tscn" id="4_qkh2r"]
 [ext_resource type="Script" path="res://MissionSelect/Scripts/MapButton.gd" id="4_wjo3i"]
+[ext_resource type="Texture2D" uid="uid://qyybb7vkj6u5" path="res://Enemies/Sprites/pointer.png" id="4_y05el"]
 [ext_resource type="Texture2D" uid="uid://bwqrxy8hefwsr" path="res://MissionSelect/Sprites/Hover/map_1.png" id="5_ry72t"]
 [ext_resource type="Texture2D" uid="uid://6n63v5ul1udn" path="res://MissionSelect/Sprites/Pressed/map_1.png" id="5_wjeda"]
 [ext_resource type="Texture2D" uid="uid://dqensgr5l08yc" path="res://MissionSelect/Sprites/Normal/map_2.png" id="6_v4fu6"]
@@ -61,7 +62,40 @@
 [ext_resource type="Texture2D" uid="uid://ctyx8i5yqhbhl" path="res://MissionSelect/Sprites/Disabled/map_13.png" id="56_tpu52"]
 [ext_resource type="Texture2D" uid="uid://ptfxarbrovmp" path="res://MissionSelect/Sprites/Disabled/map_14.png" id="60_ko342"]
 
-[node name="MissionSelectPath" type="TextureRect" node_paths=PackedStringArray("maps", "startLocation", "endLocation")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sybi6"]
+atlas = ExtResource("4_y05el")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaogv"]
+atlas = ExtResource("4_y05el")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6spl"]
+atlas = ExtResource("4_y05el")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irxvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sybi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaogv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6spl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaogv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MissionSelectPath" type="TextureRect" node_paths=PackedStringArray("maps", "startLocation", "endLocation", "positionArrow", "endArrow")]
+process_mode = 3
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_x6258")
@@ -69,9 +103,24 @@ script = ExtResource("2_7a5cx")
 maps = [NodePath("Buttons/Map1"), NodePath("Buttons/Map2"), NodePath("Buttons/Map3"), NodePath("Buttons/Map4"), NodePath("Buttons/Map5"), NodePath("Buttons/Map6"), NodePath("Buttons/Map7"), NodePath("Buttons/Map8"), NodePath("Buttons/Map9"), NodePath("Buttons/Map10"), NodePath("Buttons/Map11"), NodePath("Buttons/Map12"), NodePath("Buttons/Map13"), NodePath("Buttons/Map14")]
 startLocation = NodePath("Buttons/Map1")
 endLocation = NodePath("Buttons/Map9")
+positionArrow = NodePath("PositionArrow")
+endArrow = NodePath("EndArrow")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Laboratories" parent="." instance=ExtResource("4_qkh2r")]
+
+[node name="PositionArrow" type="AnimatedSprite2D" parent="."]
+z_index = 1
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_irxvn")
+autoplay = "default"
+
+[node name="EndArrow" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_irxvn")
+autoplay = "default"
 
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0

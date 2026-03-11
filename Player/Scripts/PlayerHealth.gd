@@ -22,7 +22,7 @@ func UpdateHealthValue(valueToAdd: float, minValue: float):
 	currentHealth = clamp(currentHealth + valueToAdd, minValue, maxHealth)
 	UpdateLabel()
 	if (currentHealth <= 0):
-		get_tree().reload_current_scene()
+		get_tree().root.get_child(0).LoadHub()
 
 func UpdateLabel():
 	healthBar.value = currentHealth

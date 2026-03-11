@@ -12,6 +12,7 @@
 script = ExtResource("1_cl6lx")
 frameMaster = NodePath("FrameMaster")
 sceneSelector = NodePath("SceneSelector")
+hubPath = "res://Hub/hub.tscn"
 
 [node name="Soundtrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_c5w8b")
@@ -29,6 +30,7 @@ framesPerSecond = 60.0
 sceneSelector = NodePath("../SceneSelector")
 rewardSpawn = NodePath("../RewardSpawn")
 playerCharacter = NodePath("../PlayerCharacter")
+startingDifficultyValue = 0.0
 
 [node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn", "mapProgressionSelector") instance=ExtResource("7_kja8i")]
 shopScene = "res://1_Scenes/ShopScene.tscn"
