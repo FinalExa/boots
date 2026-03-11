@@ -2,12 +2,12 @@ class_name MissionSelectPath
 extends TextureRect
 
 @export var playerRef: PlayerCharacter
-@export var maps: Array[TextureButton]
-@export var startLocation: TextureButton
-@export var endLocation: TextureButton
+@export var maps: Array[MapButton]
+@export var startLocation: MapButton
+@export var endLocation: MapButton
 @export var positionArrow: AnimatedSprite2D
 @export var endArrow: AnimatedSprite2D
-var currentLocation: TextureButton
+var currentLocation: MapButton
 var mapProgressionSelector: MapProgressionSelector
 
 func _ready():
@@ -58,8 +58,21 @@ func SetAvailableMaps():
 		for i in maps.size():
 			if (!currentLocation.adjacentMaps.has(maps[i])):
 				maps[i].disabled = true
+	PreventSoftlock()
 
 func CheckForEnd():
 	if (currentLocation == endLocation):
 		return true
 	return false
+
+func PreventSoftlock():
+	if (currentLocation != null):
+		var count: int = 0
+		for i in currentLocation.adjacentMaps.size():
+			if (currentLocation.adjacentMaps[i].disabled):
+				count += 1
+		if (count == currentLocation.adjacentMaps.size()):
+			for i in currentLocation.adjacentMaps.size():
+				if (currentLocation.adjacentMaps[i].disabled):
+					currentLocation.adjacentMaps[i].UnsetDone()
+					currentLocation.adjacentMaps[i].disabled = false

@@ -101,7 +101,7 @@ offset_bottom = 40.0
 texture = ExtResource("1_x6258")
 script = ExtResource("2_7a5cx")
 maps = [NodePath("Buttons/Map1"), NodePath("Buttons/Map2"), NodePath("Buttons/Map3"), NodePath("Buttons/Map4"), NodePath("Buttons/Map5"), NodePath("Buttons/Map6"), NodePath("Buttons/Map7"), NodePath("Buttons/Map8"), NodePath("Buttons/Map9"), NodePath("Buttons/Map10"), NodePath("Buttons/Map11"), NodePath("Buttons/Map12"), NodePath("Buttons/Map13"), NodePath("Buttons/Map14")]
-startLocation = NodePath("Buttons/Map1")
+startLocation = NodePath("Buttons/Map14")
 endLocation = NodePath("Buttons/Map9")
 positionArrow = NodePath("PositionArrow")
 endArrow = NodePath("EndArrow")
@@ -279,7 +279,7 @@ texture_hover = ExtResource("26_8p8is")
 texture_disabled = ExtResource("48_mjfbd")
 script = ExtResource("4_wjo3i")
 associatedMap = NodePath("../../Laboratories")
-adjacentMaps = [NodePath("../Map9"), NodePath("."), NodePath("../Map12"), NodePath("../Map13"), NodePath("../Map14")]
+adjacentMaps = [NodePath("../Map9"), NodePath("../Map5"), NodePath("../Map12"), NodePath("../Map13"), NodePath("../Map14")]
 
 [node name="Map12" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
 layout_mode = 0

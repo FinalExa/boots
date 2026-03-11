@@ -11,3 +11,6 @@ func OnPress():
 
 func SetDone():
 	done = true
+
+func UnsetDone():
+	done = false
