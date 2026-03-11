@@ -7,9 +7,9 @@
 script = ExtResource("1_cdydq")
 mapName = "Laboratory"
 mapDifficultyLevels = [NodePath("DifficultyLevels0"), NodePath("DifficultyLevels1"), NodePath("DifficultyLevels2"), NodePath("DifficultyLevels3"), NodePath("DifficultyLevels4")]
-mapFloors = Array[int]([0, 1, 1, 1, 2, 1, 1, 1])
-mapMinDifficulty = Array[float]([-2.0, -2.0, -1.0, -1.0, -1.0, 0.0, 0.0, 1.0])
-mapMaxDifficulty = Array[float]([0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0])
+mapFloors = Array[int]([0, 1, 1, 1, 1])
+mapMinDifficulty = Array[float]([-2.0, -1.0, 0.0, 1.0, 1.0])
+mapMaxDifficulty = Array[float]([0.0, 1.0, 1.0, 2.0, 3.0])
 
 [node name="DifficultyLevels0" type="Node" parent="."]
 script = ExtResource("2_esyvp")

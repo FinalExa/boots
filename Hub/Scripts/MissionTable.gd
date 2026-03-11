@@ -30,6 +30,7 @@ func StartMission():
 	rootRef.remove_child(hubRef)
 	var obj_scene = load(activeLevelPath)
 	var sceneMaster: SceneMaster = obj_scene.instantiate()
+	sceneMaster.sceneSelector.playerRef.global_position = sceneMaster.sceneSelector.safePosition
 	rootRef.add_child(sceneMaster)
 	hubRef.queue_free()
 

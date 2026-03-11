@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=59 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://4t7h0djcy7sr" path="res://Player/HUD/Sprites/controller_button_down.png" id="33_8d208"]
 [ext_resource type="Texture2D" uid="uid://p8sl20lbj2ow" path="res://Player/HUD/Sprites/keyboard_ctrl.png" id="33_lvn6i"]
 [ext_resource type="Texture2D" uid="uid://dk3yrg8wcqva3" path="res://Player/HUD/Sprites/controller_button_right.png" id="36_7c3ge"]
+[ext_resource type="PackedScene" uid="uid://cfv3idhdh5mps" path="res://MissionSelect/mission_select_path.tscn" id="43_enpf3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -163,20 +164,21 @@ font_size = 32
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "moneyLabel", "currentRoomLabel", "followItem")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "moneyLabel", "currentRoomLabel", "followItem")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
-currentObjectiveUI = NodePath("PlayerHUD/Objective")
+currentObjectiveUI = NodePath("PlayerUI/HUD/Objective")
 playerSpeedThresholds = NodePath("PlayerRotator/PlayerSpeedThresholds")
 playerInputs = NodePath("PlayerInputs")
 playerShooting = NodePath("PlayerAim/PlayerShooting")
 playerRotator = NodePath("PlayerRotator")
-powerUpUI = NodePath("PlayerHUD/PowerUpUI")
-shopUI = NodePath("PlayerHUD/ShopUI")
+powerUpUI = NodePath("PlayerUI/PowerUpUI")
+shopUI = NodePath("PlayerUI/ShopUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
-moneyLabel = NodePath("PlayerHUD/MoneyValue")
-currentRoomLabel = NodePath("PlayerHUD/CurrentRoomValue")
+missionSelectPath = NodePath("PlayerUI/MissionSelectPath")
+moneyLabel = NodePath("PlayerUI/HUD/MoneyValue")
+currentRoomLabel = NodePath("PlayerUI/HUD/CurrentRoomValue")
 followItem = NodePath("PlayerRotator/FollowItem")
 startingMoney = 100.0
 
@@ -202,7 +204,7 @@ shape = SubResource("CircleShape2D_upbqd")
 
 [node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("healthBar", "playerMovements")]
 script = ExtResource("5_dqtuw")
-healthBar = NodePath("../PlayerHUD/HealthBar")
+healthBar = NodePath("../PlayerUI/HUD/HealthBar")
 maxHealth = 100.0
 partialThreshold = 10.0
 playerMovements = NodePath("../PlayerMovements")
@@ -267,20 +269,20 @@ playerRef = NodePath("../..")
 playerMovements = NodePath("../../PlayerMovements")
 playerShooting = NodePath("../../PlayerAim/PlayerShooting")
 playerSpeedThresholds = NodePath("../PlayerSpeedThresholds")
-speedChargeBar = NodePath("../../PlayerHUD/SpeedChargeBar")
-speedChargeLabel = NodePath("../../PlayerHUD/SpeedChargeBar/SpeedChargeStackCount")
+speedChargeBar = NodePath("../../PlayerUI/HUD/SpeedChargeBar")
+speedChargeLabel = NodePath("../../PlayerUI/HUD/SpeedChargeBar/SpeedChargeStackCount")
 
 [node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
 script = ExtResource("18_d34mc")
 playerInputs = NodePath("../../PlayerInputs")
 ability1 = NodePath("PlayerAbility1")
 ability1Cooldown = 15.0
-ability1Bar = NodePath("../../PlayerHUD/Ability1Bar")
-ability1Label = NodePath("../../PlayerHUD/Ability1Bar/Ability1StackCount")
+ability1Bar = NodePath("../../PlayerUI/HUD/Ability1Bar")
+ability1Label = NodePath("../../PlayerUI/HUD/Ability1Bar/Ability1StackCount")
 ability2 = NodePath("PlayerAbility2")
 ability2Cooldown = 10.0
-ability2Bar = NodePath("../../PlayerHUD/Ability2Bar")
-ability2Label = NodePath("../../PlayerHUD/Ability2Bar/Ability2StackCount")
+ability2Bar = NodePath("../../PlayerUI/HUD/Ability2Bar")
+ability2Label = NodePath("../../PlayerUI/HUD/Ability2Bar/Ability2StackCount")
 
 [node name="PlayerAbility1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
 attackSounds = [null]
@@ -308,8 +310,8 @@ projectileSpawner = NodePath("ObjectSpawner")
 baseMaxProjectiles = 10
 baseProjectileICD = 0.5
 baseProjectilePrefabPath = "res://Player/PlayerProjectile.tscn"
-projectileTextureBar = NodePath("../../PlayerHUD/ProjectileBar")
-projectileCountLabel = NodePath("../../PlayerHUD/ProjectileBar/ProjectileCount")
+projectileTextureBar = NodePath("../../PlayerUI/HUD/ProjectileBar")
+projectileCountLabel = NodePath("../../PlayerUI/HUD/ProjectileBar/ProjectileCount")
 
 [node name="ObjectSpawner" type="Node2D" parent="PlayerAim/PlayerShooting"]
 position = Vector2(0, -64)
@@ -350,23 +352,28 @@ rotation = 0.785398
 position = Vector2(-11, 13)
 rotation = -0.785398
 
-[node name="PlayerHUD" type="Control" parent="."]
+[node name="PlayerUI" type="Control" parent="."]
 z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_left = -960.0
-offset_top = -536.0
+offset_top = -540.0
 offset_right = 960.0
-offset_bottom = 536.0
+offset_bottom = 532.0
 
-[node name="HealthBar" parent="PlayerHUD" instance=ExtResource("22_k3yg1")]
+[node name="HUD" type="Control" parent="PlayerUI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" parent="PlayerUI/HUD" instance=ExtResource("22_k3yg1")]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 24.0
 offset_right = 288.0
 offset_bottom = 88.0
 
-[node name="MoneyValue" type="Label" parent="PlayerHUD"]
+[node name="MoneyValue" type="Label" parent="PlayerUI/HUD"]
 layout_mode = 0
 offset_left = 1728.0
 offset_top = 1016.0
@@ -374,7 +381,7 @@ offset_right = 1888.0
 offset_bottom = 1048.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
-[node name="CurrentRoomValue" type="Label" parent="PlayerHUD"]
+[node name="CurrentRoomValue" type="Label" parent="PlayerUI/HUD"]
 layout_mode = 0
 offset_left = 1728.0
 offset_top = 24.0
@@ -382,17 +389,17 @@ offset_right = 1896.0
 offset_bottom = 56.0
 label_settings = SubResource("LabelSettings_fvdlt")
 
-[node name="SpeedBar" parent="PlayerHUD" node_paths=PackedStringArray("playerMovements", "playerSpeedThresholds") instance=ExtResource("22_2s2fx")]
+[node name="SpeedBar" parent="PlayerUI/HUD" node_paths=PackedStringArray("playerMovements", "playerSpeedThresholds") instance=ExtResource("22_2s2fx")]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 88.0
 offset_right = 416.0
 offset_bottom = 152.0
-playerMovements = NodePath("../../PlayerMovements")
-playerSpeedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
+playerMovements = NodePath("../../../PlayerMovements")
+playerSpeedThresholds = NodePath("../../../PlayerRotator/PlayerSpeedThresholds")
 barColors = Array[Color]([Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 0.478431, 0, 1), Color(1, 0, 0, 1)])
 
-[node name="SpeedChargeBar" type="TextureProgressBar" parent="PlayerHUD"]
+[node name="SpeedChargeBar" type="TextureProgressBar" parent="PlayerUI/HUD"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 792.0
@@ -403,7 +410,7 @@ texture_under = ExtResource("24_uqx3s")
 texture_over = ExtResource("25_fakee")
 texture_progress = ExtResource("26_0xqhb")
 
-[node name="SpeedChargeStackCount" type="Label" parent="PlayerHUD/SpeedChargeBar"]
+[node name="SpeedChargeStackCount" type="Label" parent="PlayerUI/HUD/SpeedChargeBar"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
@@ -411,14 +418,14 @@ label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/SpeedChargeBar"]
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerUI/HUD/SpeedChargeBar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_s1lqd")
 animation = &"keyboard"
 autoplay = "keyboard"
 script = ExtResource("29_bypa6")
 
-[node name="ProjectileBar" type="TextureProgressBar" parent="PlayerHUD"]
+[node name="ProjectileBar" type="TextureProgressBar" parent="PlayerUI/HUD"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 856.0
@@ -429,7 +436,7 @@ texture_under = ExtResource("24_og5fn")
 texture_over = ExtResource("25_fakee")
 texture_progress = ExtResource("26_0xqhb")
 
-[node name="ProjectileCount" type="Label" parent="PlayerHUD/ProjectileBar"]
+[node name="ProjectileCount" type="Label" parent="PlayerUI/HUD/ProjectileBar"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
@@ -437,14 +444,14 @@ label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/ProjectileBar"]
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerUI/HUD/ProjectileBar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_fgvbh")
 animation = &"keyboard"
 autoplay = "keyboard"
 script = ExtResource("29_bypa6")
 
-[node name="Ability1Bar" type="TextureProgressBar" parent="PlayerHUD"]
+[node name="Ability1Bar" type="TextureProgressBar" parent="PlayerUI/HUD"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 920.0
@@ -455,7 +462,7 @@ texture_under = ExtResource("28_cedei")
 texture_over = ExtResource("25_fakee")
 texture_progress = ExtResource("26_0xqhb")
 
-[node name="Ability1StackCount" type="Label" parent="PlayerHUD/Ability1Bar"]
+[node name="Ability1StackCount" type="Label" parent="PlayerUI/HUD/Ability1Bar"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
@@ -463,14 +470,14 @@ label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability1Bar"]
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerUI/HUD/Ability1Bar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_xskm6")
 animation = &"keyboard"
 autoplay = "keyboard"
 script = ExtResource("29_bypa6")
 
-[node name="Ability2Bar" type="TextureProgressBar" parent="PlayerHUD"]
+[node name="Ability2Bar" type="TextureProgressBar" parent="PlayerUI/HUD"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 984.0
@@ -481,7 +488,7 @@ texture_under = ExtResource("30_bg1bh")
 texture_over = ExtResource("25_fakee")
 texture_progress = ExtResource("26_0xqhb")
 
-[node name="Ability2StackCount" type="Label" parent="PlayerHUD/Ability2Bar"]
+[node name="Ability2StackCount" type="Label" parent="PlayerUI/HUD/Ability2Bar"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
@@ -489,14 +496,14 @@ label_settings = SubResource("LabelSettings_fvdlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerHUD/Ability2Bar"]
+[node name="KeyIcon" type="AnimatedSprite2D" parent="PlayerUI/HUD/Ability2Bar"]
 position = Vector2(-32, 32)
 sprite_frames = SubResource("SpriteFrames_wf5ty")
 animation = &"keyboard"
 autoplay = "keyboard"
 script = ExtResource("29_bypa6")
 
-[node name="Objective" type="Label" parent="PlayerHUD"]
+[node name="Objective" type="Label" parent="PlayerUI/HUD"]
 layout_mode = 0
 offset_left = 768.0
 offset_top = 24.0
@@ -507,23 +514,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_vo4ho")
 
-[node name="PowerUpUI" parent="PlayerHUD" node_paths=PackedStringArray("playerRef") instance=ExtResource("9_055o7")]
+[node name="MissionSelectPath" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("43_enpf3")]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 playerRef = NodePath("../..")
 
-[node name="ShopUI" parent="PlayerHUD" node_paths=PackedStringArray("playerRef") instance=ExtResource("11_umy70")]
+[node name="PowerUpUI" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("9_055o7")]
 playerRef = NodePath("../..")
 
-[node name="PauseMenu" parent="PlayerHUD" node_paths=PackedStringArray("playerRef") instance=ExtResource("27_8sjqk")]
+[node name="ShopUI" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("11_umy70")]
+playerRef = NodePath("../..")
+
+[node name="PauseMenu" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("27_8sjqk")]
 offset_left = 896.0
 offset_top = 472.0
 offset_right = 936.0
 offset_bottom = 512.0
 playerRef = NodePath("../..")
 
-[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/SpeedChargeBar/KeyIcon" method="ChangeToRightInput"]
-[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/ProjectileBar/KeyIcon" method="ChangeToRightInput"]
-[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/Ability1Bar/KeyIcon" method="ChangeToRightInput"]
-[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerHUD/Ability2Bar/KeyIcon" method="ChangeToRightInput"]
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerUI/HUD/SpeedChargeBar/KeyIcon" method="ChangeToRightInput"]
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerUI/HUD/ProjectileBar/KeyIcon" method="ChangeToRightInput"]
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerUI/HUD/Ability1Bar/KeyIcon" method="ChangeToRightInput"]
+[connection signal="inputOriginChange" from="PlayerInputs" to="PlayerUI/HUD/Ability2Bar/KeyIcon" method="ChangeToRightInput"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/FirstSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="hitClash" from="PlayerRotator/PlayerSpeedThresholds/SecondSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitClash"]

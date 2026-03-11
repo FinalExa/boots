@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var shopUI: ShopUI
 @export var powerUpManager: PowerUpManager
 @export var playerHealth: PlayerHealth
+@export var missionSelectPath: MissionSelectPath
 @export var moneyLabel: Label
 @export var currentRoomLabel: Label
 @export var followItem: Node2D

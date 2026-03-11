@@ -3,6 +3,7 @@ extends Node
 
 @export var sceneSelector: SceneSelector
 @export var rewardSpawn: RewardSpawn
+@export var playerCharacter: PlayerCharacter
 
 @export var startingDifficultyValue: float
 @export var difficultyValueIncreaseOnComplete: float
@@ -11,21 +12,21 @@ extends Node
 var currentDifficultyValue: float
 var levelSelected: bool
 
-@export var maps: Array[MapData]
 var currentMap: MapData
+var mapChanged: bool
 
 func _ready():
 	InitalizeMaps()
-	ProgressMap()
+	PickNewMap()
 
 func InitalizeMaps():
-	for i in maps.size():
-		maps[i].mapProgressionSelector = self
 	currentDifficultyValue = startingDifficultyValue
 
+func SetAndProgress(mapToSet: MapData):
+	currentMap = mapToSet
+	ProgressMap()
+	
 func ProgressMap():
-	if (currentMap == null):
-		PickNewMap()
 	if (!levelSelected):
 		if (currentMap.currentFloor < currentMap.mapFloors.size()):
 			SelectLevel()
@@ -33,13 +34,13 @@ func ProgressMap():
 			FinishCurrentMap()
 
 func PickNewMap():
-	currentMap = maps.pick_random()
+	playerCharacter.missionSelectPath.Open()
 
 func FinishCurrentMap():
 	currentDifficultyValue = clamp(currentDifficultyValue + difficultyValueIncreaseOnComplete, 0, difficultyValueMaxValue)
 	currentMap.CompleteMap()
+	playerCharacter.missionSelectPath.currentLocation.SetDone()
 	PickNewMap()
-	SelectLevel()
 
 func SelectLevel():
 	levelSelected = true

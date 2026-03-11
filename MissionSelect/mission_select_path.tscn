@@ -1,0 +1,290 @@
+[gd_scene load_steps=61 format=3 uid="uid://cfv3idhdh5mps"]
+
+[ext_resource type="Texture2D" uid="uid://bsawx088qmiii" path="res://MissionSelect/Sprites/mission_select_path_bg.png" id="1_x6258"]
+[ext_resource type="Script" path="res://MissionSelect/Scripts/MissionSelectPath.gd" id="2_7a5cx"]
+[ext_resource type="Texture2D" uid="uid://cbvr2jly0s314" path="res://MissionSelect/Sprites/Normal/map_1.png" id="4_g5k8g"]
+[ext_resource type="PackedScene" uid="uid://c71amm3r0ykyv" path="res://MapShuffler/Maps/Laboratories/laboratories.tscn" id="4_qkh2r"]
+[ext_resource type="Script" path="res://MissionSelect/Scripts/MapButton.gd" id="4_wjo3i"]
+[ext_resource type="Texture2D" uid="uid://bwqrxy8hefwsr" path="res://MissionSelect/Sprites/Hover/map_1.png" id="5_ry72t"]
+[ext_resource type="Texture2D" uid="uid://6n63v5ul1udn" path="res://MissionSelect/Sprites/Pressed/map_1.png" id="5_wjeda"]
+[ext_resource type="Texture2D" uid="uid://dqensgr5l08yc" path="res://MissionSelect/Sprites/Normal/map_2.png" id="6_v4fu6"]
+[ext_resource type="Texture2D" uid="uid://bbnvjne8wmia7" path="res://MissionSelect/Sprites/Normal/map_3.png" id="7_5ijvs"]
+[ext_resource type="Texture2D" uid="uid://i8h0fu3eam21" path="res://MissionSelect/Sprites/Disabled/map_1.png" id="7_kt4n8"]
+[ext_resource type="Texture2D" uid="uid://7stc4rgcav7r" path="res://MissionSelect/Sprites/Hover/map_2.png" id="8_dgxeq"]
+[ext_resource type="Texture2D" uid="uid://dflx6f7yw2yft" path="res://MissionSelect/Sprites/Normal/map_4.png" id="8_slqjy"]
+[ext_resource type="Texture2D" uid="uid://codx81l3xg1dp" path="res://MissionSelect/Sprites/Pressed/map_2.png" id="9_cxkfn"]
+[ext_resource type="Texture2D" uid="uid://bwu0638q7xvfg" path="res://MissionSelect/Sprites/Normal/map_5.png" id="9_yult7"]
+[ext_resource type="Texture2D" uid="uid://b474ruw0yta1f" path="res://MissionSelect/Sprites/Hover/map_3.png" id="10_i0uv3"]
+[ext_resource type="Texture2D" uid="uid://dur8ssr7vmvp6" path="res://MissionSelect/Sprites/Normal/map_6.png" id="10_nce3b"]
+[ext_resource type="Texture2D" uid="uid://bbwf3wmitfkg8" path="res://MissionSelect/Sprites/Normal/map_7.png" id="11_apemu"]
+[ext_resource type="Texture2D" uid="uid://ouxbqgi8fn16" path="res://MissionSelect/Sprites/Disabled/map_2.png" id="12_k3v4r"]
+[ext_resource type="Texture2D" uid="uid://djf4pee11j7xx" path="res://MissionSelect/Sprites/Hover/map_4.png" id="12_k5po0"]
+[ext_resource type="Texture2D" uid="uid://ifv6ka18h5y3" path="res://MissionSelect/Sprites/Normal/map_8.png" id="12_q1fs6"]
+[ext_resource type="Texture2D" uid="uid://ci4s0nku5yb1c" path="res://MissionSelect/Sprites/Pressed/map_3.png" id="12_vkake"]
+[ext_resource type="Texture2D" uid="uid://bf04sxst38y7h" path="res://MissionSelect/Sprites/Normal/map_9.png" id="13_cajyp"]
+[ext_resource type="Texture2D" uid="uid://dvbpa5exqcl3i" path="res://MissionSelect/Sprites/Hover/map_5.png" id="14_bhqem"]
+[ext_resource type="Texture2D" uid="uid://c17md4lauo8af" path="res://MissionSelect/Sprites/Normal/map_10.png" id="14_k6jam"]
+[ext_resource type="Texture2D" uid="uid://nhkjvxmnfq14" path="res://MissionSelect/Sprites/Pressed/map_4.png" id="15_esb50"]
+[ext_resource type="Texture2D" uid="uid://veye565ct6vj" path="res://MissionSelect/Sprites/Normal/map_11.png" id="15_niarv"]
+[ext_resource type="Texture2D" uid="uid://bda4a2xpxjnbr" path="res://MissionSelect/Sprites/Normal/map_12.png" id="16_50q7b"]
+[ext_resource type="Texture2D" uid="uid://bm5jol2cx0eon" path="res://MissionSelect/Sprites/Hover/map_6.png" id="16_gv0nt"]
+[ext_resource type="Texture2D" uid="uid://dmsxxu58abhjq" path="res://MissionSelect/Sprites/Disabled/map_3.png" id="16_pdoep"]
+[ext_resource type="Texture2D" uid="uid://c1si5c5mttxoe" path="res://MissionSelect/Sprites/Normal/map_13.png" id="17_8px6q"]
+[ext_resource type="Texture2D" uid="uid://bf3vfvusn51kf" path="res://MissionSelect/Sprites/Hover/map_7.png" id="18_nl6tu"]
+[ext_resource type="Texture2D" uid="uid://wu7drds26au6" path="res://MissionSelect/Sprites/Normal/map_14.png" id="18_o5xmf"]
+[ext_resource type="Texture2D" uid="uid://b2oehvn7lh0ty" path="res://MissionSelect/Sprites/Pressed/map_5.png" id="18_syt8l"]
+[ext_resource type="Texture2D" uid="uid://dlmg8nr3g3p1k" path="res://MissionSelect/Sprites/Disabled/map_4.png" id="20_cyid7"]
+[ext_resource type="Texture2D" uid="uid://d2y16csu3i8bd" path="res://MissionSelect/Sprites/Hover/map_8.png" id="20_dm5qs"]
+[ext_resource type="Texture2D" uid="uid://dilgw1fi0yw7m" path="res://MissionSelect/Sprites/Pressed/map_6.png" id="21_mn53c"]
+[ext_resource type="Texture2D" uid="uid://btbsw6ddjbnu3" path="res://MissionSelect/Sprites/Hover/map_9.png" id="22_ag8o6"]
+[ext_resource type="Texture2D" uid="uid://q3113a0dg3jt" path="res://MissionSelect/Sprites/Pressed/map_7.png" id="24_ldgwp"]
+[ext_resource type="Texture2D" uid="uid://b318y33wqxf6" path="res://MissionSelect/Sprites/Hover/map_10.png" id="24_oe5hq"]
+[ext_resource type="Texture2D" uid="uid://30ouqveo5uaj" path="res://MissionSelect/Sprites/Disabled/map_5.png" id="24_tw5w8"]
+[ext_resource type="Texture2D" uid="uid://dmvdstk5mtmxw" path="res://MissionSelect/Sprites/Hover/map_11.png" id="26_8p8is"]
+[ext_resource type="Texture2D" uid="uid://bfqufgpfqqla" path="res://MissionSelect/Sprites/Pressed/map_8.png" id="27_ikava"]
+[ext_resource type="Texture2D" uid="uid://ig04yfglt4eh" path="res://MissionSelect/Sprites/Disabled/map_6.png" id="28_b14dn"]
+[ext_resource type="Texture2D" uid="uid://bij7omxkqa44t" path="res://MissionSelect/Sprites/Hover/map_12.png" id="28_sfooc"]
+[ext_resource type="Texture2D" uid="uid://7tbaaxrpjwxu" path="res://MissionSelect/Sprites/Pressed/map_9.png" id="30_ixedt"]
+[ext_resource type="Texture2D" uid="uid://bdimf4kca7v3b" path="res://MissionSelect/Sprites/Hover/map_13.png" id="30_lujq7"]
+[ext_resource type="Texture2D" uid="uid://dyit526ey50n4" path="res://MissionSelect/Sprites/Hover/map_14.png" id="32_2ks7f"]
+[ext_resource type="Texture2D" uid="uid://7bsr0ergxvd1" path="res://MissionSelect/Sprites/Disabled/map_7.png" id="32_8tfuf"]
+[ext_resource type="Texture2D" uid="uid://cixfav6ngseof" path="res://MissionSelect/Sprites/Pressed/map_10.png" id="33_4lxjp"]
+[ext_resource type="Texture2D" uid="uid://cbjvuaaemo3bb" path="res://MissionSelect/Sprites/Disabled/map_8.png" id="36_to307"]
+[ext_resource type="Texture2D" uid="uid://dn8wq3aasfjl7" path="res://MissionSelect/Sprites/Pressed/map_11.png" id="36_ymwcw"]
+[ext_resource type="Texture2D" uid="uid://d2wjkvecnmkgr" path="res://MissionSelect/Sprites/Pressed/map_12.png" id="39_abhky"]
+[ext_resource type="Texture2D" uid="uid://bbqg7ef7kyor5" path="res://MissionSelect/Sprites/Disabled/map_9.png" id="40_5s2gv"]
+[ext_resource type="Texture2D" uid="uid://ba8ykkuacn5e3" path="res://MissionSelect/Sprites/Pressed/map_13.png" id="42_kekml"]
+[ext_resource type="Texture2D" uid="uid://bllbcqckfebom" path="res://MissionSelect/Sprites/Disabled/map_10.png" id="44_c3pvg"]
+[ext_resource type="Texture2D" uid="uid://b1uqx0csfmq1h" path="res://MissionSelect/Sprites/Pressed/map_14.png" id="45_03rty"]
+[ext_resource type="Texture2D" uid="uid://byyyxy0gqkx17" path="res://MissionSelect/Sprites/Disabled/map_11.png" id="48_mjfbd"]
+[ext_resource type="Texture2D" uid="uid://cb08qtabkt6gy" path="res://MissionSelect/Sprites/Disabled/map_12.png" id="52_1l18w"]
+[ext_resource type="Texture2D" uid="uid://ctyx8i5yqhbhl" path="res://MissionSelect/Sprites/Disabled/map_13.png" id="56_tpu52"]
+[ext_resource type="Texture2D" uid="uid://ptfxarbrovmp" path="res://MissionSelect/Sprites/Disabled/map_14.png" id="60_ko342"]
+
+[node name="MissionSelectPath" type="TextureRect" node_paths=PackedStringArray("maps", "startLocation", "endLocation")]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_x6258")
+script = ExtResource("2_7a5cx")
+maps = [NodePath("Buttons/Map1"), NodePath("Buttons/Map2"), NodePath("Buttons/Map3"), NodePath("Buttons/Map4"), NodePath("Buttons/Map5"), NodePath("Buttons/Map6"), NodePath("Buttons/Map7"), NodePath("Buttons/Map8"), NodePath("Buttons/Map9"), NodePath("Buttons/Map10"), NodePath("Buttons/Map11"), NodePath("Buttons/Map12"), NodePath("Buttons/Map13"), NodePath("Buttons/Map14")]
+startLocation = NodePath("Buttons/Map1")
+endLocation = NodePath("Buttons/Map9")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Laboratories" parent="." instance=ExtResource("4_qkh2r")]
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Map1" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 312.0
+offset_right = 761.002
+offset_bottom = 483.0
+texture_normal = ExtResource("4_g5k8g")
+texture_pressed = ExtResource("5_wjeda")
+texture_hover = ExtResource("5_ry72t")
+texture_disabled = ExtResource("7_kt4n8")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map2"), NodePath("../Map7")]
+
+[node name="Map2" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 343.0
+offset_right = 866.0
+offset_bottom = 460.0
+texture_normal = ExtResource("6_v4fu6")
+texture_pressed = ExtResource("9_cxkfn")
+texture_hover = ExtResource("8_dgxeq")
+texture_disabled = ExtResource("12_k3v4r")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map1"), NodePath("../Map3"), NodePath("../Map7")]
+
+[node name="Map3" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 838.0
+offset_top = 321.0
+offset_right = 1001.0
+offset_bottom = 526.0
+texture_normal = ExtResource("7_5ijvs")
+texture_pressed = ExtResource("12_vkake")
+texture_hover = ExtResource("10_i0uv3")
+texture_disabled = ExtResource("16_pdoep")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map2"), NodePath("../Map7"), NodePath("../Map8"), NodePath("../Map9"), NodePath("../Map10"), NodePath("../Map4")]
+
+[node name="Map4" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 937.0
+offset_top = 286.0
+offset_right = 1132.0
+offset_bottom = 427.0
+texture_normal = ExtResource("8_slqjy")
+texture_pressed = ExtResource("15_esb50")
+texture_hover = ExtResource("12_k5po0")
+texture_disabled = ExtResource("20_cyid7")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map3"), NodePath("../Map10"), NodePath("../Map5")]
+
+[node name="Map5" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 1075.0
+offset_top = 353.0
+offset_right = 1243.0
+offset_bottom = 551.0
+texture_normal = ExtResource("9_yult7")
+texture_pressed = ExtResource("18_syt8l")
+texture_hover = ExtResource("14_bhqem")
+texture_disabled = ExtResource("24_tw5w8")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map4"), NodePath("../Map10"), NodePath("../Map9"), NodePath("../Map11"), NodePath("../Map12"), NodePath("../Map6")]
+
+[node name="Map6" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 1180.0
+offset_top = 348.0
+offset_right = 1344.0
+offset_bottom = 474.0
+texture_normal = ExtResource("10_nce3b")
+texture_pressed = ExtResource("21_mn53c")
+texture_hover = ExtResource("16_gv0nt")
+texture_disabled = ExtResource("28_b14dn")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map5"), NodePath("../Map12")]
+
+[node name="Map7" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 442.0
+offset_right = 850.0
+offset_bottom = 573.001
+texture_normal = ExtResource("11_apemu")
+texture_pressed = ExtResource("24_ldgwp")
+texture_hover = ExtResource("18_nl6tu")
+texture_disabled = ExtResource("32_8tfuf")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map1"), NodePath("../Map2"), NodePath("../Map3"), NodePath("../Map8")]
+
+[node name="Map8" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 510.0
+offset_right = 1003.0
+offset_bottom = 695.0
+texture_normal = ExtResource("12_q1fs6")
+texture_pressed = ExtResource("27_ikava")
+texture_hover = ExtResource("20_dm5qs")
+texture_disabled = ExtResource("36_to307")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map7"), NodePath("../Map3"), NodePath("../Map9")]
+
+[node name="Map9" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 945.0
+offset_top = 473.65
+offset_right = 1118.0
+offset_bottom = 675.651
+texture_normal = ExtResource("13_cajyp")
+texture_pressed = ExtResource("30_ixedt")
+texture_hover = ExtResource("22_ag8o6")
+texture_disabled = ExtResource("40_5s2gv")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map8"), NodePath("../Map3"), NodePath("../Map10"), NodePath("../Map5"), NodePath("../Map11")]
+
+[node name="Map10" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 1002.43
+offset_top = 421.81
+offset_right = 1108.43
+offset_bottom = 505.81
+texture_normal = ExtResource("14_k6jam")
+texture_pressed = ExtResource("33_4lxjp")
+texture_hover = ExtResource("24_oe5hq")
+texture_disabled = ExtResource("44_c3pvg")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map3"), NodePath("../Map4"), NodePath("../Map5"), NodePath("../Map9")]
+
+[node name="Map11" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 1071.0
+offset_top = 533.0
+offset_right = 1285.0
+offset_bottom = 704.0
+texture_normal = ExtResource("15_niarv")
+texture_pressed = ExtResource("36_ymwcw")
+texture_hover = ExtResource("26_8p8is")
+texture_disabled = ExtResource("48_mjfbd")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map9"), NodePath("."), NodePath("../Map12"), NodePath("../Map13"), NodePath("../Map14")]
+
+[node name="Map12" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 1194.0
+offset_top = 456.0
+offset_right = 1378.0
+offset_bottom = 566.0
+texture_normal = ExtResource("16_50q7b")
+texture_pressed = ExtResource("39_abhky")
+texture_hover = ExtResource("28_sfooc")
+texture_disabled = ExtResource("52_1l18w")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map5"), NodePath("../Map6"), NodePath("../Map11")]
+
+[node name="Map13" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 1028.0
+offset_top = 681.0
+offset_right = 1217.0
+offset_bottom = 811.0
+texture_normal = ExtResource("17_8px6q")
+texture_pressed = ExtResource("42_kekml")
+texture_hover = ExtResource("30_lujq7")
+texture_disabled = ExtResource("56_tpu52")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map11"), NodePath("../Map14")]
+
+[node name="Map14" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap", "adjacentMaps")]
+layout_mode = 0
+offset_left = 1170.0
+offset_top = 624.0
+offset_right = 1357.0
+offset_bottom = 798.0
+texture_normal = ExtResource("18_o5xmf")
+texture_pressed = ExtResource("45_03rty")
+texture_hover = ExtResource("32_2ks7f")
+texture_disabled = ExtResource("60_ko342")
+script = ExtResource("4_wjo3i")
+associatedMap = NodePath("../../Laboratories")
+adjacentMaps = [NodePath("../Map11"), NodePath("../Map13")]
+
+[connection signal="button_up" from="Buttons/Map1" to="Buttons/Map1" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map2" to="Buttons/Map2" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map3" to="Buttons/Map3" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map4" to="Buttons/Map4" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map5" to="Buttons/Map5" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map6" to="Buttons/Map6" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map7" to="Buttons/Map7" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map8" to="Buttons/Map8" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map9" to="Buttons/Map9" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map10" to="Buttons/Map10" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map11" to="Buttons/Map11" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map12" to="Buttons/Map12" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map13" to="Buttons/Map13" method="OnPress"]
+[connection signal="button_up" from="Buttons/Map14" to="Buttons/Map14" method="OnPress"]
