@@ -3,10 +3,13 @@ extends Control
 
 @export var playerRef: PlayerCharacter
 @export var playerHubRef: PlayerHub
+@export var hubButton: Button
 var pauseInput: bool
 
 func _ready():
 	self.hide()
+	if (playerHubRef != null):
+		hubButton.hide()
 
 func _process(_delta):
 	GetPauseInput()
@@ -45,3 +48,8 @@ func PauseOff():
 
 func Quit():
 	get_tree().quit()
+
+func ReturnToHub():
+	if (playerRef != null):
+		PauseOff()
+		get_tree().root.get_child(0).LoadHub()

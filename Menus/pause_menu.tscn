@@ -2,27 +2,34 @@
 
 [ext_resource type="Script" path="res://Menus/Scripts/PauseMenu.gd" id="1_64kjt"]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("hubButton")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_64kjt")
+hubButton = NodePath("ReturnToHub")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 32.0
-offset_top = -40.0
+offset_top = -112.0
 offset_right = 94.0
-offset_bottom = -14.0
+offset_bottom = -86.0
 text = "PAUSED"
 
 [node name="ContinueButton" type="Button" parent="."]
 layout_mode = 0
+offset_top = -64.0
+offset_right = 128.0
+text = "CONTINUE"
+
+[node name="ReturnToHub" type="Button" parent="."]
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
-text = "CONTINUE"
+text = "BACK TO HUB"
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 0
@@ -32,4 +39,5 @@ offset_bottom = 128.0
 text = "QUIT"
 
 [connection signal="button_up" from="ContinueButton" to="." method="PauseOff"]
+[connection signal="button_up" from="ReturnToHub" to="." method="ReturnToHub"]
 [connection signal="button_up" from="QuitButton" to="." method="Quit"]
