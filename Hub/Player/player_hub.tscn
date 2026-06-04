@@ -1,27 +1,48 @@
-[gd_scene load_steps=9 format=3 uid="uid://bx5jew0cw2gt3"]
+[gd_scene load_steps=12 format=3 uid="uid://bx5jew0cw2gt3"]
 
 [ext_resource type="Script" path="res://Hub/Player/Scripts/PlayerHub.gd" id="1_x8s37"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="2_anufw"]
 [ext_resource type="Script" path="res://Hub/Player/Scripts/PlayerHubMovement.gd" id="3_1qgqh"]
-[ext_resource type="Texture2D" uid="uid://bvqgx56x7mcw3" path="res://Player/Sprites/Kevin001.png" id="3_kugf0"]
+[ext_resource type="Texture2D" uid="uid://bvqgx56x7mcw3" path="res://Player/Sprites/Johnny_Spritesheet.png" id="4_4vuiy"]
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="4_usilo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h51le"]
 radius = 16.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_67mw7"]
-atlas = ExtResource("3_kugf0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_66ef3"]
+atlas = ExtResource("4_4vuiy")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gshvt"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfiin"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8hdk"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p8aid"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_67mw7")
+"texture": SubResource("AtlasTexture_66ef3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gshvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfiin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8hdk")
 }],
-"loop": false,
-"name": &"default",
-"speed": 5.0
+"loop": true,
+"name": &"idle",
+"speed": 8.0
 }]
 
 [node name="PlayerHub" type="CharacterBody2D" node_paths=PackedStringArray("playerInputs")]
@@ -43,9 +64,11 @@ acceleration = 2000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p8aid")
-autoplay = "default"
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.753857
 
 [node name="HUD" type="Control" parent="."]
 z_index = 1000
