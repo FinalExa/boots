@@ -1,47 +1,97 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx5jew0cw2gt3"]
+[gd_scene load_steps=18 format=3 uid="uid://bx5jew0cw2gt3"]
 
 [ext_resource type="Script" path="res://Hub/Player/Scripts/PlayerHub.gd" id="1_x8s37"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="2_anufw"]
 [ext_resource type="Script" path="res://Hub/Player/Scripts/PlayerHubMovement.gd" id="3_1qgqh"]
 [ext_resource type="Texture2D" uid="uid://bvqgx56x7mcw3" path="res://Player/Sprites/Johnny_Spritesheet.png" id="4_4vuiy"]
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="4_usilo"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerAnimations.gd" id="5_hugyt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h51le"]
 radius = 16.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66ef3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg7ef"]
 atlas = ExtResource("4_4vuiy")
-region = Rect2(0, 0, 64, 64)
+region = Rect2(0, 0, 64, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gshvt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycmnc"]
 atlas = ExtResource("4_4vuiy")
-region = Rect2(64, 0, 64, 64)
+region = Rect2(64, 0, 64, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfiin"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctjo6"]
 atlas = ExtResource("4_4vuiy")
-region = Rect2(128, 0, 64, 64)
+region = Rect2(128, 0, 64, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k8hdk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqkrf"]
 atlas = ExtResource("4_4vuiy")
-region = Rect2(192, 0, 64, 64)
+region = Rect2(192, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k211d"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(0, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpyvp"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(64, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpodx"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(128, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ra6"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(192, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26yh7"]
+atlas = ExtResource("4_4vuiy")
+region = Rect2(256, 96, 64, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p8aid"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_66ef3")
+"texture": SubResource("AtlasTexture_bg7ef")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gshvt")
+"texture": SubResource("AtlasTexture_ycmnc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mfiin")
+"texture": SubResource("AtlasTexture_ctjo6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k8hdk")
+"texture": SubResource("AtlasTexture_yqkrf")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k211d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpyvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpodx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpyvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k211d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ra6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26yh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ra6")
+}],
+"loop": true,
+"name": &"run_front",
 "speed": 8.0
 }]
 
@@ -64,11 +114,13 @@ acceleration = 2000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("playerHubMovement")]
 sprite_frames = SubResource("SpriteFrames_p8aid")
-animation = &"idle"
+animation = &"run_front"
 autoplay = "idle"
-frame_progress = 0.753857
+script = ExtResource("5_hugyt")
+isHub = true
+playerHubMovement = NodePath("../PlayerHubMovement")
 
 [node name="HUD" type="Control" parent="."]
 z_index = 1000

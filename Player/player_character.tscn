@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=70 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bsbd0jhfpears" path="res://Player/Sounds/playerClash.wav" id="4_ce281"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerRotator.gd" id="4_mluyg"]
 [ext_resource type="Texture2D" uid="uid://bvqgx56x7mcw3" path="res://Player/Sprites/Johnny_Spritesheet.png" id="4_srd0d"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerAnimations.gd" id="5_7763p"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerHealth.gd" id="5_dqtuw"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
 [ext_resource type="Script" path="res://Player/Scripts/CurrentObjectiveUI.gd" id="6_vo4ho"]
@@ -44,39 +45,88 @@
 [ext_resource type="Texture2D" uid="uid://dk3yrg8wcqva3" path="res://Player/HUD/Sprites/controller_button_right.png" id="36_7c3ge"]
 [ext_resource type="PackedScene" uid="uid://cfv3idhdh5mps" path="res://MissionSelect/mission_select_path.tscn" id="43_enpf3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnmhp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmu31"]
 atlas = ExtResource("4_srd0d")
-region = Rect2(0, 0, 64, 64)
+region = Rect2(0, 0, 64, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bfct7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1q4o"]
 atlas = ExtResource("4_srd0d")
-region = Rect2(64, 0, 64, 64)
+region = Rect2(64, 0, 64, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_62sth"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_et1oo"]
 atlas = ExtResource("4_srd0d")
-region = Rect2(128, 0, 64, 64)
+region = Rect2(128, 0, 64, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6u71"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqyg8"]
 atlas = ExtResource("4_srd0d")
-region = Rect2(192, 0, 64, 64)
+region = Rect2(192, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uggi2"]
+atlas = ExtResource("4_srd0d")
+region = Rect2(0, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cot1e"]
+atlas = ExtResource("4_srd0d")
+region = Rect2(64, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lh52"]
+atlas = ExtResource("4_srd0d")
+region = Rect2(128, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_514ul"]
+atlas = ExtResource("4_srd0d")
+region = Rect2(192, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk444"]
+atlas = ExtResource("4_srd0d")
+region = Rect2(256, 96, 64, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5rf72"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tnmhp")
+"texture": SubResource("AtlasTexture_gmu31")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bfct7")
+"texture": SubResource("AtlasTexture_c1q4o")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_62sth")
+"texture": SubResource("AtlasTexture_et1oo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e6u71")
+"texture": SubResource("AtlasTexture_bqyg8")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uggi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cot1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lh52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cot1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uggi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_514ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk444")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_514ul")
+}],
+"loop": true,
+"name": &"run_front",
 "speed": 8.0
 }]
 
@@ -228,11 +278,14 @@ volume_db = -20.0
 stream = ExtResource("4_ce281")
 volume_db = -20.0
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("playerMovements", "playerSpeedThresholds")]
 sprite_frames = SubResource("SpriteFrames_5rf72")
-animation = &"idle"
+animation = &"run_front"
 autoplay = "idle"
-frame_progress = 0.833426
+script = ExtResource("5_7763p")
+playerMovements = NodePath("../PlayerMovements")
+playerSpeedThresholds = NodePath("../PlayerRotator/PlayerSpeedThresholds")
+stagesFrameSpeed = Array[float]([1.0, 1.5, 2.0, 2.5])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 24)
