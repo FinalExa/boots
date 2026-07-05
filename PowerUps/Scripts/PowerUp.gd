@@ -25,6 +25,7 @@ func InitializePowerUpObject(powerUpObject: PowerUpObjects):
 	powerUpObject.SetBaseStats()
 	powerUpObject.ApplyPowerUps(powerUpManager)
 	powerUpObject.Finalize()
+	return powerUpObject
 
 func LaunchSpawners(spawners: Array[ObjectSpawner]):
 	for i in spawners.size():
@@ -37,7 +38,7 @@ func LaunchSpawnersWithRef(spawners: Array[ObjectSpawner], ref):
 func CreatePowerUpEffect(spawner: ObjectSpawner):
 	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
 	if (spawnedPowerUpObject != null):
-		InitializePowerUpObject(spawnedPowerUpObject)
+		return InitializePowerUpObject(spawnedPowerUpObject)
 
 func CreatePowerUpEffectWithRef(spawner: ObjectSpawner, ref):
 	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()

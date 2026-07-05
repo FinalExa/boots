@@ -13,6 +13,7 @@ var speedChargePowerUp: PowerUpSpeedCharge
 var trailPowerUp: PowerUpTrail
 var ability1PowerUp: PowerUp
 var ability2PowerUp: PowerUp
+var auraPowerUp: PowerUpAura
 var powerUpPassives: Array[PowerUp]
 var lastDownIndex: int
 var lastUpIndex: int
@@ -51,6 +52,8 @@ func AssignPowerUp(powerUp: PowerUp):
 			return
 		ReplaceOldPowerUp(ability2PowerUp)
 		ability2PowerUp = powerUp
+	if (powerUp is PowerUpAura):
+		auraPowerUp = powerUp
 	if (powerUp is PassivePowerUp):
 		powerUpPassives.push_back(powerUp)
 		return
@@ -79,18 +82,25 @@ func RemovePowerUp(powerUp: PowerUp):
 	if (powerUp == ability2PowerUp):
 		ability2PowerUp = null
 		return
+	if (powerUp == auraPowerUp):
+		auraPowerUp = null
 	if (powerUpPassives.has(powerUp)):
 		powerUpPassives.erase(powerUp)
 		return
 
 func PlayerHasAnyBasePowerUpOfFaction(faction: PowerUp.PowerUpFaction):
-	if (contactPowerUp != null && contactPowerUp.powerUpFaction == faction):
+	if (FactionCheck(contactPowerUp, faction) ||
+	FactionCheck(shootPowerUp, faction) ||
+	FactionCheck(trailPowerUp, faction) ||
+	FactionCheck(speedChargePowerUp, faction) ||
+	FactionCheck(ability1PowerUp, faction) ||
+	FactionCheck(ability2PowerUp, faction) ||
+	FactionCheck(auraPowerUp, faction)):
 		return true
-	if (shootPowerUp != null && shootPowerUp.powerUpFaction == faction):
-		return true
-	if (trailPowerUp != null && trailPowerUp.powerUpFaction == faction):
-		return true
-	if (speedChargePowerUp != null && speedChargePowerUp.powerUpFaction == faction):
+	return false
+
+func FactionCheck(powerUp: PowerUp, factionToCheck: PowerUp.PowerUpFaction):
+	if (powerUp != null && powerUp.powerUpFaction == factionToCheck):
 		return true
 	return false
 
