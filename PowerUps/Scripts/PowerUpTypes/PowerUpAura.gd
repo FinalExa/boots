@@ -13,22 +13,43 @@ func _ready():
 	currentTimer = delay
 
 func _process(delta):
-	AuraEffect(delta)
+	if (powerUpManager != null):
+		AuraEffect(delta)
 
 func AuraEffect(delta):
 	index = powerUpManager.playerSpeedThresholds.speedIndex
-	if (swapMode): SwapMode(index)
+	if (swapMode):
+		SwapMode(index)
+		if (currentPowerUp != null): currentPowerUp.rotation_degrees = 0
 	else: SpawnMode(delta, index)
 
 func SpawnMode(delta, index: int):
-	if (currentTimer > 0):
-		currentTimer -= delta
-		return
-	if (index != 0): CreatePowerUpEffect(spawners[index - 1])
-	currentTimer += delay
+	if (index != 0):
+		if (currentTimer > 0):
+			currentTimer -= delta
+			return
+		CreateAndAssignPowerup()
+		currentTimer += delay
 
 func SwapMode(index: int):
 	if (index != 0 && oldIndex != index):
 		oldIndex = index
-		if (currentPowerUp != null): currentPowerUp.DeleteSelf()
-		currentPowerUp = CreatePowerUpEffect(spawners[index - 1])
+		if (currentPowerUp != null):
+			currentPowerUp.DeleteSelf()
+			currentPowerUp = null
+		currentPowerUp = CreateAndAssignPowerup()
+	if (index == 0 && currentPowerUp != null):
+		oldIndex = 0
+		currentPowerUp.DeleteSelf()
+		currentPowerUp = null
+
+func CreateAndAssignPowerup():
+	var powerUp: PowerUpObjects = CreatePowerUpEffect(spawners[index-1])
+	call_deferred("ReparentAssignedPowerUp", powerUp)
+	return powerUp
+
+func ReparentAssignedPowerUp(powerUp: PowerUpObjects):
+	if (powerUp.get_parent() != self || powerUp.get_parent() == null):
+		if (powerUp.get_parent() != null): powerUp.reparent(self)
+		else: add_child(powerUp)
+	powerUp.position = Vector2.ZERO

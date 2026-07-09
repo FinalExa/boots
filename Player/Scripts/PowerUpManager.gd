@@ -53,6 +53,7 @@ func AssignPowerUp(powerUp: PowerUp):
 		ReplaceOldPowerUp(ability2PowerUp)
 		ability2PowerUp = powerUp
 	if (powerUp is PowerUpAura):
+		ReplaceOldPowerUp(auraPowerUp)
 		auraPowerUp = powerUp
 	if (powerUp is PassivePowerUp):
 		powerUpPassives.push_back(powerUp)
@@ -84,6 +85,7 @@ func RemovePowerUp(powerUp: PowerUp):
 		return
 	if (powerUp == auraPowerUp):
 		auraPowerUp = null
+		return
 	if (powerUpPassives.has(powerUp)):
 		powerUpPassives.erase(powerUp)
 		return

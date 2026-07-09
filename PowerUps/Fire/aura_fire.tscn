@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw4oha070mpad"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAura.gd" id="1_836vu"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_uvi3h"]
+
+[node name="AuraFire" type="Node2D" node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_836vu")
+swapMode = true
+spawners = [NodePath("FireSpawner1"), NodePath("FireSpawner2"), NodePath("FireSpawner3")]
+powerUpName = "Aura Fire"
+powerUpDescription = "Fire is emitted around you"
+powerUpFaction = 1
+
+[node name="FireSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_uvi3h")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Aura/fire_aura_1.tscn"
+
+[node name="FireSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_uvi3h")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Aura/fire_aura_2.tscn"
+
+[node name="FireSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_uvi3h")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Aura/fire_aura_3.tscn"

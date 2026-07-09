@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj80fpeqt7inw"]
+[gd_scene load_steps=12 format=3 uid="uid://bj80fpeqt7inw"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_mvwkw"]
 [ext_resource type="PackedScene" uid="uid://cwym7x6dytcng" path="res://PowerUps/Fire/contact_fire.tscn" id="2_37bpx"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dy0xf2kaofrvj" path="res://PowerUps/Fire/ability1_fire.tscn" id="5_82h63"]
 [ext_resource type="PackedScene" uid="uid://dlxfe4qkospkf" path="res://PowerUps/Fire/ability2_fire.tscn" id="6_xhqaq"]
 [ext_resource type="PackedScene" uid="uid://btdtp7rnbomg0" path="res://PowerUps/Fire/shoot_fire.tscn" id="7_tvxtq"]
+[ext_resource type="PackedScene" uid="uid://dw4oha070mpad" path="res://PowerUps/Fire/aura_fire.tscn" id="8_nst4p"]
 [ext_resource type="PackedScene" uid="uid://ba5byfw80f7pc" path="res://PowerUps/Fire/area_passive_fire.tscn" id="8_tet5g"]
 [ext_resource type="PackedScene" uid="uid://b315gg5ai5jxm" path="res://PowerUps/Fire/damage_passive_fire.tscn" id="9_tb4o7"]
 [ext_resource type="PackedScene" uid="uid://o4o73il5jnuq" path="res://PowerUps/Fire/timer_passive_fire.tscn" id="10_kfgcj"]
@@ -14,7 +15,7 @@
 [node name="Fire" type="Node2D" node_paths=PackedStringArray("powerUps")]
 script = ExtResource("1_mvwkw")
 powerUpFaction = 1
-powerUps = [NodePath("ContactFire"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("Ability1Fire"), NodePath("Ability2Fire"), NodePath("ShootFire"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
+powerUps = [NodePath("ContactFire"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("Ability1Fire"), NodePath("Ability2Fire"), NodePath("ShootFire"), NodePath("AuraFire"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
 
 [node name="ContactFire" parent="." instance=ExtResource("2_37bpx")]
 
@@ -27,6 +28,8 @@ powerUps = [NodePath("ContactFire"), NodePath("TrailFire"), NodePath("SpeedCharg
 [node name="Ability2Fire" parent="." instance=ExtResource("6_xhqaq")]
 
 [node name="ShootFire" parent="." instance=ExtResource("7_tvxtq")]
+
+[node name="AuraFire" parent="." instance=ExtResource("8_nst4p")]
 
 [node name="AreaPassiveFire" parent="." instance=ExtResource("8_tet5g")]
 

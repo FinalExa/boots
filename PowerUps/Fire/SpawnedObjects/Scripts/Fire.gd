@@ -8,6 +8,7 @@ extends PowerUpObjects
 @export var DOTDuration: float
 @export var stationary: bool
 @export var stationaryDOT: float
+@export var stationaryPermanent: bool
 @export var stationaryDuration: float
 @export var stationaryAreaCollisionShape: CollisionShape2D
 @export var sprite: AnimatedSprite2D
@@ -38,7 +39,8 @@ func _process(delta):
 	DoDamage()
 	if (stationary):
 		StartStationary()
-		Stationary(delta)
+		StationaryDamage(delta)
+		if (!stationaryPermanent): StationaryTimer(delta)
 
 func SetBaseStats():
 	baseDamage = trueDamage
@@ -104,18 +106,20 @@ func StartStationary():
 		timer = stationaryDuration
 		stationaryStarted = true
 
-func Stationary(delta):
+func StationaryTimer(delta):
 	if (timer > 0):
 		timer -= delta
-		var i: int = enemiesInRange.size() - 1
-		while (i >= 0):
-			if (enemiesInRange[i] != null):
-				enemiesInRange[i].enemyHealth.HealthUpdate(-currentStationaryDOT * delta)
-			else:
-				enemiesInRange.remove_at(i)
-			i -= 1
-		return
-	call_deferred("DeleteSelf")
+	if (timer <= 0):
+		call_deferred("DeleteSelf")
+
+func StationaryDamage(delta):
+	var i: int = enemiesInRange.size() - 1
+	while (i >= 0):
+		if (enemiesInRange[i] != null):
+			enemiesInRange[i].enemyHealth.HealthUpdate(-currentStationaryDOT * delta)
+		else:
+			enemiesInRange.remove_at(i)
+		i -= 1
 
 func ObjectInArea(body):
 	if (body is EnemyController && !enemiesInRange.has(body)):
