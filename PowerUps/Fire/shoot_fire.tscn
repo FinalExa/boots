@@ -1,14 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://btdtp7rnbomg0"]
+[gd_scene load_steps=3 format=3 uid="uid://btdtp7rnbomg0"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpShoot.gd" id="1_s0i3c"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_cexkc"]
 
-[node name="ShootFire" type="Node2D"]
+[node name="ShootFire" type="Node2D" node_paths=PackedStringArray("shootObjectSpawners")]
 script = ExtResource("1_s0i3c")
-shootMaxProjectiles = 2
-shootProjectileRechargeTime = 5.0
-shootObjectPath1 = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_projectile_1.tscn"
-shootObjectPath2 = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_projectile_2.tscn"
-shootObjectPath3 = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_projectile_3.tscn"
+shootObjectSpawners = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
 powerUpName = "Fire Projectile"
-powerUpDescription = "Shoots fire that burns enemies and travels forward."
+powerUpDescription = "Your projectiles apply fire to enemies hit."
 powerUpFaction = 1
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("2_cexkc")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_shoot_1.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_cexkc")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_shoot_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_cexkc")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_shoot_3.tscn"

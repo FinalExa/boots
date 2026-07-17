@@ -19,11 +19,11 @@ func _process(delta):
 func AuraEffect(delta):
 	index = powerUpManager.playerSpeedThresholds.speedIndex
 	if (swapMode):
-		SwapMode(index)
+		SwapMode()
 		if (currentPowerUp != null): currentPowerUp.rotation_degrees = 0
-	else: SpawnMode(delta, index)
+	else: SpawnMode(delta)
 
-func SpawnMode(delta, index: int):
+func SpawnMode(delta):
 	if (index != 0):
 		if (currentTimer > 0):
 			currentTimer -= delta
@@ -31,7 +31,7 @@ func SpawnMode(delta, index: int):
 		CreateAndAssignPowerup()
 		currentTimer += delay
 
-func SwapMode(index: int):
+func SwapMode():
 	if (index != 0 && oldIndex != index):
 		oldIndex = index
 		if (currentPowerUp != null):

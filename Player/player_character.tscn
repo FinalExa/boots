@@ -308,8 +308,9 @@ playerSpeedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
 powerUpManager = NodePath("../../PlayerRotator/PowerUpManager")
 projectileSpawner = NodePath("ObjectSpawner")
 baseMaxProjectiles = 10
-baseProjectileICD = 0.5
-baseProjectilePrefabPath = "res://Player/PlayerProjectile.tscn"
+baseProjectileReloadTime = 2.0
+baseProjectileShootDelay = 0.2
+baseProjectilePaths = Array[String](["res://Player/Projectiles/Johnny/johnny_projectile_1.tscn", "res://Player/Projectiles/Johnny/johnny_projectile_2.tscn", "res://Player/Projectiles/Johnny/johnny_projectile_3.tscn"])
 projectileTextureBar = NodePath("../../PlayerUI/HUD/ProjectileBar")
 projectileCountLabel = NodePath("../../PlayerUI/HUD/ProjectileBar/ProjectileCount")
 
@@ -545,6 +546,7 @@ playerRef = NodePath("../..")
 [connection signal="hitDirect" from="PlayerRotator/PlayerSpeedThresholds/ThirdSpeedHitbox" to="PlayerRotator/PowerUpManager" method="HitDirect"]
 [connection signal="ability1Used" from="PlayerRotator/PlayerAbilities" to="PlayerRotator/PowerUpManager" method="Ability1Used"]
 [connection signal="ability2Used" from="PlayerRotator/PlayerAbilities" to="PlayerRotator/PowerUpManager" method="Ability2Used"]
+[connection signal="enemyHit" from="PlayerAim/PlayerShooting" to="PlayerRotator/PowerUpManager" method="ShotTarget"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect1" to="PlayerMovements" method="OnCollisionDetected"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect2" to="PlayerMovements" method="OnCollisionDetected"]
 [connection signal="hit" from="PlayerCollisionDetects/PlayerCollisionDetect3" to="PlayerMovements" method="OnCollisionDetected"]

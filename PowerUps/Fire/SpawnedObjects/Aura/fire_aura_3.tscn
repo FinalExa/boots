@@ -19,11 +19,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ta3tw"]
-radius = 112.285
+radius = 128.0
 
 [node name="FireAura3" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
 script = ExtResource("1_on42h")
-appliesDOT = true
 stationary = true
 stationaryDOT = 100.0
 stationaryPermanent = true
@@ -42,3 +41,6 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_ta3tw")
+
+[connection signal="body_entered" from="Area2D" to="." method="ObjectInArea"]
+[connection signal="body_exited" from="Area2D" to="." method="ObjectOutOfArea"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c45gs0s640c3g"]
+
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/Fire.gd" id="1_ljhk3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j38gv"]
+radius = 16.0
+
+[node name="FireShoot1" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape")]
+script = ExtResource("1_ljhk3")
+trueDamage = 5.0
+appliesDOT = true
+DOT = 10.0
+DOTDuration = 2.0
+stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
+powerUpFaction = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_j38gv")
+
+[connection signal="body_entered" from="Area2D" to="." method="ObjectInArea"]
+[connection signal="body_exited" from="Area2D" to="." method="ObjectOutOfArea"]

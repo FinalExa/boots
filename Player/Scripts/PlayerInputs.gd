@@ -12,6 +12,7 @@ var ability1: bool
 var ability2: bool
 var aimInput: Vector2
 var shootInput: bool
+var reloadInput: bool
 var sceneMaster: SceneMaster
 
 func _ready():
@@ -35,6 +36,7 @@ func GetInputs():
 		GetMovementInput()
 		GetAimInput()
 		GetShootInput()
+		GetReloadInput()
 		GetReleaseSpeedChargeInput()
 		GetAbility1Input()
 		GetAbility2Input()
@@ -75,7 +77,13 @@ func GetAimInput():
 	return
 
 func GetShootInput():
-	if (Input.is_action_just_pressed("Shoot")):
+	if (Input.is_action_pressed("Shoot")):
 		shootInput = true
 		return
 	shootInput = false
+
+func GetReloadInput():
+	if (Input.is_action_just_pressed("Reload")):
+		reloadInput = true
+		return
+	reloadInput = false

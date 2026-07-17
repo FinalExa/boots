@@ -1,13 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://s6ijvut8ln2f"]
+[gd_scene load_steps=3 format=3 uid="uid://s6ijvut8ln2f"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpShoot.gd" id="1_aolua"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_jnt1g"]
 
-[node name="ShootBomb" type="Node2D"]
+[node name="ShootBomb" type="Node2D" node_paths=PackedStringArray("shootObjectSpawners")]
 script = ExtResource("1_aolua")
-shootMaxProjectiles = 3
-shootProjectileRechargeTime = 3.0
-shootObjectPath1 = "res://PowerUps/Bomb/SpawnedObjects/Shoot/shoot_bomb_projectile_1.tscn"
-shootObjectPath2 = "res://PowerUps/Bomb/SpawnedObjects/Shoot/shoot_bomb_projectile_2.tscn"
-shootObjectPath3 = "res://PowerUps/Bomb/SpawnedObjects/Shoot/shoot_bomb_projectile_3.tscn"
+shootObjectSpawners = [NodePath("ObjectSpawner1"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
 powerUpName = "Shoot Bomb"
-powerUpDescription = "Shoots a bomb in the pointed direction, if an enemy passes through the bomb explosion area it immediately detonates."
+powerUpDescription = "Hitting enemies with projectiles causes explosions."
+
+[node name="ObjectSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_jnt1g")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Shoot/bomb_shoot_1.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_jnt1g")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Shoot/bomb_shoot_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_jnt1g")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Shoot/bomb_shoot_3.tscn"

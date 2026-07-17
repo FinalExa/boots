@@ -82,7 +82,7 @@ func DoDamage():
 	if (currentDamage > 0 && !didDamage && ref != null && ref is EnemyController):
 		ref.ReceiveDamage(currentDamage, 0, Vector2.ZERO, 0)
 		didDamage = true
-		if (!appliesDOT && !stationary):
+		if (!stationary):
 			call_deferred("DeleteSelf")
 
 func ApplyDOT():
@@ -113,13 +113,8 @@ func StationaryTimer(delta):
 		call_deferred("DeleteSelf")
 
 func StationaryDamage(delta):
-	var i: int = enemiesInRange.size() - 1
-	while (i >= 0):
-		if (enemiesInRange[i] != null):
-			enemiesInRange[i].enemyHealth.HealthUpdate(-currentStationaryDOT * delta)
-		else:
-			enemiesInRange.remove_at(i)
-		i -= 1
+	for i in enemiesInRange.size():
+		enemiesInRange[i].enemyHealth.HealthUpdate(-currentStationaryDOT * delta)
 
 func ObjectInArea(body):
 	if (body is EnemyController && !enemiesInRange.has(body)):

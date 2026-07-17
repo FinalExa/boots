@@ -31,7 +31,6 @@ func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp is PowerUpShoot):
 		ReplaceOldPowerUp(shootPowerUp)
 		shootPowerUp = powerUp
-		playerShooting.SetCurrentShootingSettings(shootPowerUp.shootMaxProjectiles, shootPowerUp.shootProjectileRechargeTime, true)
 		return
 	if (powerUp is PowerUpSpeedCharge):
 		ReplaceOldPowerUp(speedChargePowerUp)
@@ -68,7 +67,6 @@ func RemovePowerUp(powerUp: PowerUp):
 		return
 	if (powerUp == shootPowerUp):
 		shootPowerUp = null
-		playerShooting.SetToBase()
 		return
 	if (powerUp == speedChargePowerUp):
 		speedChargePowerUp = null
@@ -125,3 +123,7 @@ func Ability1Used():
 func Ability2Used():
 	if (ability2PowerUp != null):
 		ability2PowerUp.ActivateAbilityPowerUp(playerSpeedThresholds.speedIndex)
+
+func ShotTarget(enemyRef: EnemyController):
+	if (enemyRef != null && shootPowerUp != null):
+		shootPowerUp.EffectOnShotTarget(enemyRef, playerSpeedThresholds.speedIndex)
