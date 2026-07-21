@@ -272,14 +272,13 @@ playerSpeedThresholds = NodePath("../PlayerSpeedThresholds")
 speedChargeBar = NodePath("../../PlayerUI/HUD/SpeedChargeBar")
 speedChargeLabel = NodePath("../../PlayerUI/HUD/SpeedChargeBar/SpeedChargeStackCount")
 
-[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
+[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "playerSpeedThresholds", "ability1Bar", "ability1Label", "ability2Bar", "ability2Label")]
 script = ExtResource("18_d34mc")
 playerInputs = NodePath("../../PlayerInputs")
-ability1 = NodePath("PlayerAbility1")
+playerSpeedThresholds = NodePath("../PlayerSpeedThresholds")
 ability1Cooldown = 15.0
 ability1Bar = NodePath("../../PlayerUI/HUD/Ability1Bar")
 ability1Label = NodePath("../../PlayerUI/HUD/Ability1Bar/Ability1StackCount")
-ability2 = NodePath("PlayerAbility2")
 ability2Cooldown = 10.0
 ability2Bar = NodePath("../../PlayerUI/HUD/Ability2Bar")
 ability2Label = NodePath("../../PlayerUI/HUD/Ability2Bar/Ability2StackCount")
@@ -308,8 +307,8 @@ playerSpeedThresholds = NodePath("../../PlayerRotator/PlayerSpeedThresholds")
 powerUpManager = NodePath("../../PlayerRotator/PowerUpManager")
 projectileSpawner = NodePath("ObjectSpawner")
 baseMaxProjectiles = 10
-baseProjectileReloadTime = 2.0
-baseProjectileShootDelay = 0.2
+baseProjectileReloadTime = 1.75
+baseProjectileShootDelay = 0.15
 baseProjectilePaths = Array[String](["res://Player/Projectiles/Johnny/johnny_projectile_1.tscn", "res://Player/Projectiles/Johnny/johnny_projectile_2.tscn", "res://Player/Projectiles/Johnny/johnny_projectile_3.tscn"])
 projectileTextureBar = NodePath("../../PlayerUI/HUD/ProjectileBar")
 projectileCountLabel = NodePath("../../PlayerUI/HUD/ProjectileBar/ProjectileCount")

@@ -5,8 +5,9 @@ signal ability1Used
 signal ability2Used
 
 @export var playerInputs: PlayerInputs
+@export var playerSpeedThresholds: PlayerSpeedThresholds
 
-@export var ability1: ExecuteAttack
+@export var ability1: Array[ExecuteAttack]
 @export var ability1Cooldown: float
 var ability1Timer: float
 @export var ability1Stacks: int = 1
@@ -14,7 +15,7 @@ var ability1CurrentStacks: int
 @export var ability1Bar: TextureProgressBar
 @export var ability1Label: Label
 
-@export var ability2: ExecuteAttack
+@export var ability2: Array[ExecuteAttack]
 @export var ability2Cooldown: float
 var ability2Timer: float
 @export var ability2Stacks: int = 1
@@ -42,11 +43,11 @@ func StartupAbilities():
 func AbilityIsUsed():
 	if (playerInputs.ability1 && ability1CurrentStacks > 0):
 		emit_signal("ability1Used")
-		ability1.StartAttack()
+		ability1[GetSpeedIndex()].StartAttack()
 		ability1CurrentStacks -= 1
 	if (playerInputs.ability2 && ability2CurrentStacks > 0):
 		emit_signal("ability2Used")
-		ability2.StartAttack()
+		ability2[GetSpeedIndex()].StartAttack()
 		ability2CurrentStacks -= 1
 
 func AbilityCooldowns(delta):
@@ -84,3 +85,8 @@ func Ability2Cooldown(delta):
 				ability2Label.text = str(ability2CurrentStacks, "/", ability2Stacks)
 			else:
 				ability2Timer += ability2Cooldown
+
+func GetSpeedIndex():
+	if (playerSpeedThresholds.speedIndex == 0):
+		return 0
+	return playerSpeedThresholds.speedIndex - 1
