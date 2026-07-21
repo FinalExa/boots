@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bje0d4i6cm1e5"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_tr4y3"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerAttackHitbox.gd" id="2_l0cmc"]
+[ext_resource type="Texture2D" uid="uid://b8qt8l8h6ysit" path="res://Player/Sprites/ability1Area.png" id="3_02hnc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vcw5"]
+radius = 256.0
+
+[node name="PlayerAbilityA2" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_tr4y3")
+attackDuration = 30
+attackPhasesLaunch = Array[int]([0])
+attackHitboxes = [NodePath("PlayerAttackHitbox")]
+attackSounds = [null]
+attackMovements = Array[float]([0.0])
+ignoreAttackMovement = true
+
+[node name="PlayerAttackHitbox" type="Area2D" parent="."]
+script = ExtResource("2_l0cmc")
+damage = 20.0
+repels = true
+repelDistance = 750.0
+repelTime = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackHitbox"]
+shape = SubResource("CircleShape2D_0vcw5")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerAttackHitbox"]
+scale = Vector2(2.66667, 2.66667)
+texture = ExtResource("3_02hnc")
+
+[connection signal="body_entered" from="PlayerAttackHitbox" to="PlayerAttackHitbox" method="_on_body_entered"]

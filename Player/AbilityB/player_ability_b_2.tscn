@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://clqjlnwlwnqnc"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_0c6tg"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_xidio"]
+
+[node name="PlayerAbilityB2" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_0c6tg")
+attackDuration = 10
+attackPhasesLaunch = Array[int]([0, 1, 2, 3, 4, 6, 7, 8])
+attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner6"), NodePath("ObjectSpawner7"), NodePath("ObjectSpawner8")]
+attackSounds = [null, null, null, null, null, null, null, null]
+attackMovements = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+ignoreAttackMovement = true
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+position = Vector2(0, -96)
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+position = Vector2(64, -64)
+rotation = 0.785398
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+position = Vector2(96, 0)
+rotation = 1.5708
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="."]
+position = Vector2(64, 64)
+rotation = 2.35619
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="."]
+position = Vector2(0, 96)
+rotation = 3.14159
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
+
+[node name="ObjectSpawner6" type="Node2D" parent="."]
+position = Vector2(-64, 64)
+rotation = 3.92699
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
+
+[node name="ObjectSpawner7" type="Node2D" parent="."]
+position = Vector2(-96, 0)
+rotation = 4.71239
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
+
+[node name="ObjectSpawner8" type="Node2D" parent="."]
+position = Vector2(-64, -64)
+rotation = -0.785398
+script = ExtResource("2_xidio")
+objectPath = "res://Player/Projectiles/Johnny/Ability/johnny_ability_b_projectile_2.tscn"
