@@ -100,7 +100,6 @@ func ManualReload():
 		projectileReloadTimer = currentProjectileReloadTime
 
 func EnemyHit(enemyRef: EnemyController):
-	print("hit")
 	emit_signal("enemyHit", enemyRef)
 
 func UpdateUI():
