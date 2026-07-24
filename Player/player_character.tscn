@@ -289,7 +289,8 @@ ability2Cooldown = 10.0
 ability2Bar = NodePath("../../PlayerUI/HUD/Ability2Bar")
 ability2Label = NodePath("../../PlayerUI/HUD/Ability2Bar/Ability2StackCount")
 
-[node name="PlayerAbilityA1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("19_bpc71")]
+[node name="PlayerAbilityA1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbilityA2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("16_fwm4b")]
@@ -300,7 +301,8 @@ characterRef = NodePath("../../..")
 attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="PlayerAbilityB1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("20_6myp7")]
+[node name="PlayerAbilityB1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_6myp7")]
+attackSounds = [null, null, null, null, null, null, null, null]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbilityB2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_6jh4h")]

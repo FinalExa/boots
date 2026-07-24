@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://lv2ribd5elhf"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://lv2ribd5elhf"]
 
 [ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="1_h23qb"]
 
@@ -10,6 +10,9 @@ tile_data = PackedInt32Array(0, 131073, 2, 65536, 131073, 3)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_y6kas"]
 tile_data = PackedInt32Array(0, 65537, 2, 65536, 65537, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_fjdno"]
+tile_data = PackedInt32Array(0, 393217, 3, 65536, 393217, 4, 1, 458753, 3, 65537, 458753, 4)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gf2a4"]
 texture = ExtResource("1_h23qb")
@@ -34,9 +37,6 @@ texture_region_size = Vector2i(64, 64)
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, -16, -32, -16, 32, -32, 32)
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
 3:2/0 = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
@@ -108,6 +108,18 @@ texture_region_size = Vector2i(64, 64)
 3:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:6/0/physics_layer_0/angular_velocity = 0.0
 3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -16, -16, -16, 32, -32, 32)
+6:3/0 = 0
+6:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_0/angular_velocity = 0.0
+7:3/0 = 0
+7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_0/angular_velocity = 0.0
+7:4/0 = 0
+7:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:4/0/physics_layer_0/angular_velocity = 0.0
+6:4/0 = 0
+6:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:4/0/physics_layer_0/angular_velocity = 0.0
 
 [resource]
 tile_size = Vector2i(64, 64)
@@ -117,3 +129,4 @@ sources/1 = SubResource("TileSetAtlasSource_gf2a4")
 pattern_0 = SubResource("TileMapPattern_nhm5p")
 pattern_1 = SubResource("TileMapPattern_aybb0")
 pattern_2 = SubResource("TileMapPattern_y6kas")
+pattern_3 = SubResource("TileMapPattern_fjdno")
