@@ -1,10 +1,83 @@
-[gd_scene load_steps=2 format=3 uid="uid://dugmsdmhklyng"]
+[gd_scene load_steps=15 format=3 uid="uid://dugmsdmhklyng"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/MapProgressionSelector.gd" id="1_x7im7"]
+[ext_resource type="Script" path="res://MapShuffler/Scripts/MapFloorIndex.gd" id="2_o7p8f"]
+
+[sub_resource type="Resource" id="Resource_wi7h8"]
+script = ExtResource("2_o7p8f")
+floorType = 0
+floorMinDifficultyRange = -2.0
+floorMaxDifficultyRange = -1.0
+
+[sub_resource type="Resource" id="Resource_7sijn"]
+script = ExtResource("2_o7p8f")
+floorType = 2
+floorMinDifficultyRange = -2.0
+floorMaxDifficultyRange = -1.0
+
+[sub_resource type="Resource" id="Resource_wfwnj"]
+script = ExtResource("2_o7p8f")
+floorType = 1
+floorMinDifficultyRange = -2.0
+floorMaxDifficultyRange = 1.0
+
+[sub_resource type="Resource" id="Resource_ua8y6"]
+script = ExtResource("2_o7p8f")
+floorType = 2
+floorMinDifficultyRange = -1.0
+floorMaxDifficultyRange = 1.0
+
+[sub_resource type="Resource" id="Resource_lndw1"]
+script = ExtResource("2_o7p8f")
+floorType = 3
+floorMinDifficultyRange = -1.0
+floorMaxDifficultyRange = 2.0
+
+[sub_resource type="Resource" id="Resource_1x1q3"]
+script = ExtResource("2_o7p8f")
+floorType = 4
+floorMinDifficultyRange = -1.0
+floorMaxDifficultyRange = 2.0
+
+[sub_resource type="Resource" id="Resource_6f0mc"]
+script = ExtResource("2_o7p8f")
+floorType = 2
+floorMinDifficultyRange = 0.0
+floorMaxDifficultyRange = 2.0
+
+[sub_resource type="Resource" id="Resource_l8nw8"]
+script = ExtResource("2_o7p8f")
+floorType = 1
+floorMinDifficultyRange = 0.0
+floorMaxDifficultyRange = 2.0
+
+[sub_resource type="Resource" id="Resource_yjv0o"]
+script = ExtResource("2_o7p8f")
+floorType = 2
+floorMinDifficultyRange = 1.0
+floorMaxDifficultyRange = 2.0
+
+[sub_resource type="Resource" id="Resource_lyuqs"]
+script = ExtResource("2_o7p8f")
+floorType = 1
+floorMinDifficultyRange = 1.0
+floorMaxDifficultyRange = 3.0
+
+[sub_resource type="Resource" id="Resource_5ktge"]
+script = ExtResource("2_o7p8f")
+floorType = 3
+floorMinDifficultyRange = 2.0
+floorMaxDifficultyRange = 3.0
+
+[sub_resource type="Resource" id="Resource_qj3yx"]
+script = ExtResource("2_o7p8f")
+floorType = 5
+floorMinDifficultyRange = 2.0
+floorMaxDifficultyRange = 4.0
 
 [node name="MapProgressionSelector" type="Node"]
 script = ExtResource("1_x7im7")
-startingDifficultyValue = null
 difficultyValueIncreaseOnComplete = 1.0
 difficultyValueMaxValue = 2.0
 gameMaxDifficulty = 4.0
+levelStructureNormal = Array[ExtResource("2_o7p8f")]([SubResource("Resource_wi7h8"), SubResource("Resource_7sijn"), SubResource("Resource_wfwnj"), SubResource("Resource_ua8y6"), SubResource("Resource_lndw1"), SubResource("Resource_1x1q3"), SubResource("Resource_6f0mc"), SubResource("Resource_l8nw8"), SubResource("Resource_yjv0o"), SubResource("Resource_lyuqs"), SubResource("Resource_5ktge"), SubResource("Resource_qj3yx")])

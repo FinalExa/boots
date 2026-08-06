@@ -9,11 +9,24 @@ extends Node
 @export var difficultyValueIncreaseOnComplete: float
 @export var difficultyValueMaxValue: float
 @export var gameMaxDifficulty: float
+
+@export var levelStructureNormal: Array[MapFloorIndex]
+
 var currentDifficultyValue: float
 var levelSelected: bool
 
 var currentMap: MapData
 var mapChanged: bool
+
+enum FloorTypes
+{
+	START,
+	NORMAL,
+	NO_REWARD,
+	SHOP,
+	MINIBOSS,
+	BOSS
+}
 
 func _ready():
 	InitalizeMaps()

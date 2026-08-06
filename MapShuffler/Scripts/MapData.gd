@@ -14,7 +14,9 @@ enum FloorTypes
 {
 	START,
 	NORMAL,
+	NO_REWARD,
 	SHOP,
+	MINIBOSS,
 	BOSS
 }
 
