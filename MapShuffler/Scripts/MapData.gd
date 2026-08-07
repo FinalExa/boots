@@ -2,10 +2,11 @@ class_name MapData
 extends Node
 
 @export var mapName: String
-@export var mapDifficultyLevels: Array[MapDifficultyLevel]
+@export var mapLevels: Array[MapLevel]
 @export var mapFloors: Array[FloorTypes]
 @export var mapMinDifficulty: Array[float]
 @export var mapMaxDifficulty: Array[float]
+var bannedLevels: Array[String]
 var mapProgressionSelector: MapProgressionSelector
 var currentFloor: int
 var currentMapPath: String
@@ -40,14 +41,15 @@ func GetMapInDifficultyRange():
 	var minRange = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapMinDifficulty[currentFloor])
 	var maxRange = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapMaxDifficulty[currentFloor])
 	var possibleMaps: Array[String] = []
-	for difficultyIndex in mapDifficultyLevels.size():
+	for difficultyIndex in mapLevels.size():
 		if (difficultyIndex >= minRange && difficultyIndex <= maxRange):
-			var arrayToAdd: Array[String] = mapDifficultyLevels[difficultyIndex].associatedLevels
-			for i in arrayToAdd.size():
-				possibleMaps.push_back(arrayToAdd[i])
+			var mapsArray: Array[String] = mapLevels[difficultyIndex].associatedLevels
+			for i in mapsArray.size():
+				if (!bannedLevels.has(mapsArray[i])):
+					possibleMaps.push_back(mapsArray[i])
 	var pickedMap: String = possibleMaps.pick_random()
-	for i in mapDifficultyLevels.size():
-		mapDifficultyLevels[i].SelectLevel(pickedMap)
+	for i in mapLevels.size():
+		bannedLevels.push_back(pickedMap)
 	currentMapPath = pickedMap
 
 func ClampDifficulty(valueToClamp: float):
@@ -58,5 +60,4 @@ func CompleteMap():
 	ResetBannedLevels()
 
 func ResetBannedLevels():
-	for i in mapDifficultyLevels.size():
-		mapDifficultyLevels[i].ResetSelectedLevels()
+	bannedLevels.clear()
