@@ -3,6 +3,7 @@ extends Node2D
 
 @export var playerSpawnPoint: Node2D
 @export var rewardSpawnPosition: Node2D
+var nextFloor: MapProgressionSelector.FloorTypes
 var objective: MapObjective
 var door2Chance: int = 70
 var door3Chance: int = 30

@@ -6,6 +6,7 @@ extends Node2D
 @export var endMapArea: String
 @export var rewardTypeSprites: Array[Sprite2D]
 @export var powerUpFactionSprites: Array[Sprite2D]
+var currentScene: GameplayScene
 var registered: bool
 var rewardSpawnRef: RewardSpawn
 var rewardType: RewardSpawn.RewardType
@@ -18,7 +19,8 @@ func _ready():
 
 func StartupDoor():
 	var sceneMaster: SceneMaster = get_tree().root.get_child(0)
-	var result: int = sceneMaster.sceneSelector.currentScene.RegisterDoor(self)
+	currentScene = sceneMaster.sceneSelector.currentScene
+	var result: int = currentScene.RegisterDoor(self)
 	if (result != -1):
 		registered = true
 		sprite.play("close")

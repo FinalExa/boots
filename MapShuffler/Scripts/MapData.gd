@@ -3,23 +3,11 @@ extends Node
 
 @export var mapName: String
 @export var mapLevels: Array[MapLevel]
-@export var mapFloors: Array[FloorTypes]
-@export var mapMinDifficulty: Array[float]
-@export var mapMaxDifficulty: Array[float]
+@export var shopLevel: String
 var bannedLevels: Array[String]
 var mapProgressionSelector: MapProgressionSelector
 var currentFloor: int
 var currentMapPath: String
-
-enum FloorTypes
-{
-	START,
-	NORMAL,
-	NO_REWARD,
-	SHOP,
-	MINIBOSS,
-	BOSS
-}
 
 func PickLevel():
 	LevelSelectionCases()
@@ -27,19 +15,30 @@ func PickLevel():
 	return currentMapPath
 
 func LevelSelectionCases():
-	if (mapFloors[currentFloor] == FloorTypes.START):
+	var currentFloorType: MapProgressionSelector.FloorTypes = mapProgressionSelector.currentLevelStructure[mapProgressionSelector.currentRoom].floorType
+	if (currentFloorType == MapProgressionSelector.FloorTypes.START):
 		mapProgressionSelector.rewardSpawn.roomNumber = 0
 		mapProgressionSelector.rewardSpawn.GenerateRewardType()
 		GetMapInDifficultyRange()
 		mapProgressionSelector.rewardSpawn.roomNumber = 0
 		return
-	if (mapFloors[currentFloor] == FloorTypes.NORMAL):
+	if (currentFloorType == MapProgressionSelector.FloorTypes.NORMAL):
 		GetMapInDifficultyRange()
 		return
 
 func GetMapInDifficultyRange():
-	var minRange = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapMinDifficulty[currentFloor])
-	var maxRange = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapMaxDifficulty[currentFloor])
+	var minRange: float = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapProgressionSelector.currentLevelStructure[mapProgressionSelector.currentRoom].floorMinDifficultyRange)
+	var maxRange: float = ClampDifficulty(mapProgressionSelector.currentDifficultyValue + mapProgressionSelector.currentLevelStructure[mapProgressionSelector.currentRoom].floorMaxDifficultyRange)
+	var possibleMaps: Array[String] = GetMapRangeArray(minRange, maxRange)
+	if (possibleMaps.size() == 0):
+		AntiSoftlock(minRange, maxRange)
+		GetMapRangeArray(minRange, maxRange)
+	var pickedMap: String = possibleMaps.pick_random()
+	for i in mapLevels.size():
+		bannedLevels.push_back(pickedMap)
+	currentMapPath = pickedMap
+
+func GetMapRangeArray(minRange: float, maxRange: float):
 	var possibleMaps: Array[String] = []
 	for difficultyIndex in mapLevels.size():
 		if (difficultyIndex >= minRange && difficultyIndex <= maxRange):
@@ -47,10 +46,16 @@ func GetMapInDifficultyRange():
 			for i in mapsArray.size():
 				if (!bannedLevels.has(mapsArray[i])):
 					possibleMaps.push_back(mapsArray[i])
-	var pickedMap: String = possibleMaps.pick_random()
-	for i in mapLevels.size():
-		bannedLevels.push_back(pickedMap)
-	currentMapPath = pickedMap
+	return possibleMaps
+
+func AntiSoftlock(minRange: float, maxRange: float):
+	for difficultyIndex in mapLevels.size():
+		if (difficultyIndex >= minRange && difficultyIndex <= maxRange):
+			var i: int = mapLevels[difficultyIndex].associatedLevels.size() - 1
+			while (i >= 0):
+				if (bannedLevels.has(mapLevels[difficultyIndex].associatedLevels[i])):
+					bannedLevels.remove_at(i)
+				i -= 1
 
 func ClampDifficulty(valueToClamp: float):
 	return clamp(valueToClamp, 0, mapProgressionSelector.gameMaxDifficulty)

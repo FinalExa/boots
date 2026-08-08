@@ -27,6 +27,3 @@ associatedLevels = Array[String](["res://MapShuffler/Maps/Laboratories/Levels/Di
 script = ExtResource("1_cdydq")
 mapName = "Laboratory"
 mapLevels = Array[ExtResource("2_6v0lf")]([SubResource("Resource_1p47y"), SubResource("Resource_n7ydp"), SubResource("Resource_8akdp"), SubResource("Resource_rc13a"), SubResource("Resource_s7m54")])
-mapFloors = Array[int]([0, 1, 1, 1, 1])
-mapMinDifficulty = Array[float]([-2.0, -1.0, 0.0, 1.0, 1.0])
-mapMaxDifficulty = Array[float]([0.0, 1.0, 1.0, 2.0, 3.0])

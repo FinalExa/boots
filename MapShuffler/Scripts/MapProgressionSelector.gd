@@ -12,10 +12,12 @@ extends Node
 
 @export var levelStructureNormal: Array[MapFloorIndex]
 
+var currentLevelStructure: Array[MapFloorIndex]
 var currentDifficultyValue: float
 var levelSelected: bool
 
 var currentMap: MapData
+var currentRoom: int
 var mapChanged: bool
 
 enum FloorTypes
@@ -25,7 +27,8 @@ enum FloorTypes
 	NO_REWARD,
 	SHOP,
 	MINIBOSS,
-	BOSS
+	BOSS,
+	END
 }
 
 func _ready():
@@ -34,6 +37,13 @@ func _ready():
 
 func InitalizeMaps():
 	currentDifficultyValue = startingDifficultyValue
+	currentRoom = 0
+	SetLevelStructure(levelStructureNormal)
+
+func SetLevelStructure(selectedStructure: Array[MapFloorIndex]):
+	currentLevelStructure.clear()
+	for i in selectedStructure.size():
+		currentLevelStructure.push_back(selectedStructure[i])
 
 func SetAndProgress(mapToSet: MapData):
 	currentMap = mapToSet
@@ -41,7 +51,7 @@ func SetAndProgress(mapToSet: MapData):
 	
 func ProgressMap():
 	if (!levelSelected):
-		if (currentMap.currentFloor < currentMap.mapFloors.size()):
+		if (currentRoom < levelStructureNormal.size()):
 			SelectLevel()
 		else:
 			FinishCurrentMap()
@@ -52,6 +62,7 @@ func PickNewMap():
 func FinishCurrentMap():
 	currentDifficultyValue = clamp(currentDifficultyValue + difficultyValueIncreaseOnComplete, 0, difficultyValueMaxValue)
 	currentMap.CompleteMap()
+	currentRoom = 0
 	playerCharacter.missionSelectPath.currentLocation.SetDone()
 	if (!playerCharacter.missionSelectPath.CheckForEnd()):
 		PickNewMap()
@@ -61,4 +72,12 @@ func FinishCurrentMap():
 func SelectLevel():
 	levelSelected = true
 	sceneSelector.SetScenePath(currentMap.PickLevel())
+	currentRoom += 1
 	sceneSelector.call_deferred("ShuffleScene")
+	call_deferred("SetNextFloorInScene")
+
+func SetNextFloorInScene():
+	if (currentRoom < currentLevelStructure.size()):
+		sceneSelector.currentScene.nextFloor = currentLevelStructure[currentRoom].floorType
+		return
+	sceneSelector.currentScene.nextFloor = FloorTypes.END
