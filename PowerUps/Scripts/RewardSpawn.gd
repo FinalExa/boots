@@ -112,6 +112,9 @@ func GenerateRewardArrayWithoutBannedPowerUps(container: PowerUpContainer):
 	return rewardArray
 
 func GeneratePodium():
+	if (rewardType == RewardType.NO_REWARD):
+		get_tree().root.get_child(0).sceneSelector.currentScene.SetCompleted()
+		return
 	var obj_scene = load(rewardPodiumPath)
 	var podium: RewardPodium = obj_scene.instantiate()
 	add_child(podium)

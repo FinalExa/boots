@@ -43,6 +43,11 @@ func SwapMode():
 		currentPowerUp.DeleteSelf()
 		currentPowerUp = null
 
+func Clear():
+	if (swapMode && currentPowerUp != null):
+		currentPowerUp.DeleteSelf()
+		currentPowerUp = null
+
 func CreateAndAssignPowerup():
 	var powerUp: PowerUpObjects = CreatePowerUpEffect(spawners[index-1])
 	call_deferred("ReparentAssignedPowerUp", powerUp)

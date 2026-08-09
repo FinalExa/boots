@@ -20,6 +20,7 @@ func ShuffleScene():
 		currentScene = null
 	var obj = GetCorrectScene().instantiate()
 	currentScene = obj
+	mapProgressionSelector.SetNextFloorInScene(currentScene)
 	add_child(currentScene)
 	currentScene.SetPlayerSpawn(playerRef)
 	playerRef.playerMovements.SetToZero()

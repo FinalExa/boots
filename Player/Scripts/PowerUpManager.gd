@@ -52,6 +52,7 @@ func AssignPowerUp(powerUp: PowerUp):
 		ReplaceOldPowerUp(ability2PowerUp)
 		ability2PowerUp = powerUp
 	if (powerUp is PowerUpAura):
+		powerUp.Clear()
 		ReplaceOldPowerUp(auraPowerUp)
 		auraPowerUp = powerUp
 	if (powerUp is PassivePowerUp):

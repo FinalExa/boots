@@ -26,9 +26,15 @@ func StartupDoor():
 		sprite.play("close")
 		rewardSpawnRef = sceneMaster.sceneSelector.rewardSpawn
 		if (result == 0):
+			if (currentScene.nextFloor == MapProgressionSelector.FloorTypes.NO_REWARD || currentScene.nextFloor == MapProgressionSelector.FloorTypes.END):
+				ForceRewardType(RewardSpawn.RewardType.NO_REWARD)
+				return
+			if (currentScene.nextFloor == MapProgressionSelector.FloorTypes.SHOP):
+				ForceRewardType(RewardSpawn.RewardType.SHOP)
+				return
 			GenerateThisDoorReward()
-		else:
-			GenerateUniqueReward(sceneMaster.sceneSelector.currentScene.doors)
+			return
+		GenerateUniqueReward(sceneMaster.sceneSelector.currentScene.doors)
 
 func ForceRewardType(type: RewardSpawn.RewardType):
 	rewardType = type
@@ -82,10 +88,11 @@ func OpenDoor():
 		obj.doorRef = self
 
 func ActivateCurrentRewardSprite():
-	if (rewardType != RewardSpawn.RewardType.POWERUP):
-		rewardTypeSprites[rewardType].show()
-		return
-	powerUpFactionSprites[powerUpFaction].show()
+	if (rewardType != RewardSpawn.RewardType.NO_REWARD):
+		if (rewardType != RewardSpawn.RewardType.POWERUP):
+			rewardTypeSprites[rewardType].show()
+			return
+		powerUpFactionSprites[powerUpFaction].show()
 
 func TurnOffSprites(arrayToTurnOff: Array[Sprite2D]):
 	for i in arrayToTurnOff.size():

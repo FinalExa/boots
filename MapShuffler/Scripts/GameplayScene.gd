@@ -5,8 +5,7 @@ extends Node2D
 @export var rewardSpawnPosition: Node2D
 var nextFloor: MapProgressionSelector.FloorTypes
 var objective: MapObjective
-var door2Chance: int = 70
-var door3Chance: int = 30
+var doorChances: Array[int] = [80, 20]
 var completedObjective: bool
 var doors: Array[Door]
 var doorCount: int = 0
@@ -20,15 +19,28 @@ func RegisterDoor(receivedDoor: Door):
 			doors.push_back(receivedDoor)
 			doorCount += 1
 			return 0
-		var randomValue: int = randi_range(1, 100)
-		var neededNumberToPass: int
-		if (doorCount == 1): neededNumberToPass = 100 - door2Chance
-		else: neededNumberToPass = 100 - door3Chance
-		doorCount += 1
-		if (randomValue > neededNumberToPass):
+		if (doorCount == 1 && nextFloor == MapProgressionSelector.FloorTypes.SHOP):
+			doors.push_back(receivedDoor)
+			return 1
+		if (!SingleDoorCases() && DoorRandomCheck(100 - doorChances[doorCount - 1])):
 			doors.push_back(receivedDoor)
 			return 1
 	return -1
+
+func SingleDoorCases():
+	if (nextFloor == MapProgressionSelector.FloorTypes.NO_REWARD ||
+	nextFloor == MapProgressionSelector.FloorTypes.MINIBOSS ||
+	nextFloor == MapProgressionSelector.FloorTypes.BOSS ||
+	nextFloor == MapProgressionSelector.FloorTypes.END):
+		return true
+	return false
+
+func DoorRandomCheck(passNumber: int):
+	var randomValue: int = randi_range(1, 100)
+	doorCount += 1
+	if (randomValue > passNumber):
+		return true
+	return false
 
 func SetObjectiveCompleted():
 	if (!completedObjective):

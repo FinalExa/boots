@@ -74,10 +74,9 @@ func SelectLevel():
 	sceneSelector.SetScenePath(currentMap.PickLevel())
 	currentRoom += 1
 	sceneSelector.call_deferred("ShuffleScene")
-	call_deferred("SetNextFloorInScene")
 
-func SetNextFloorInScene():
+func SetNextFloorInScene(gameplayScene: GameplayScene):
 	if (currentRoom < currentLevelStructure.size()):
-		sceneSelector.currentScene.nextFloor = currentLevelStructure[currentRoom].floorType
+		gameplayScene.nextFloor = currentLevelStructure[currentRoom].floorType
 		return
-	sceneSelector.currentScene.nextFloor = FloorTypes.END
+	gameplayScene.nextFloor = FloorTypes.END
