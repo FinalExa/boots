@@ -26,7 +26,7 @@ func ShuffleScene():
 	rewardSpawn.reparent(currentScene.rewardSpawnPosition)
 	rewardSpawn.global_position = currentScene.rewardSpawnPosition.global_position
 	SpecialRoomTypeOperations()
-	playerRef.UpdateCurrentRoomCount(str(rewardSpawn.roomNumber))
+	playerRef.UpdateCurrentRoomCount(str(mapProgressionSelector.currentRoom))
 
 func GetCorrectScene():
 	if (rewardSpawn.rewardType != RewardSpawn.RewardType.SHOP):

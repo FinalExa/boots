@@ -30,6 +30,11 @@ func StartupDoor():
 		else:
 			GenerateUniqueReward(sceneMaster.sceneSelector.currentScene.doors)
 
+func ForceRewardType(type: RewardSpawn.RewardType):
+	rewardType = type
+	if (rewardType == RewardSpawn.RewardType.POWERUP):
+		GenerateDoorPowerUpFaction()
+
 func GenerateThisDoorReward():
 	GenerateRewardType()
 	if (rewardType == RewardSpawn.RewardType.POWERUP):

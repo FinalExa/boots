@@ -5,7 +5,8 @@ enum RewardType {
 	POWERUP,
 	HEAL,
 	MONEY,
-	SHOP
+	SHOP,
+	NO_REWARD
 }
 
 @export var powerUpNumber: int
@@ -15,8 +16,8 @@ enum RewardType {
 @export var rewardChances: Array[int]
 @export var firstRoomChances: Array[int]
 @export var playerRef: PlayerCharacter
+@export var mapProgressionSelector: MapProgressionSelector
 
-var roomNumber: int
 var maxChance: int
 var powerUpFactionSetByDoor: bool
 var rewardType: RewardType
@@ -26,7 +27,6 @@ var bannedPowerUps: Array[PowerUp]
 
 func _ready():
 	CalculateMaxChance()
-	roomNumber = 0
 
 func CalculateMaxChance():
 	maxChance = 0
@@ -34,11 +34,10 @@ func CalculateMaxChance():
 		maxChance += rewardChances[i]
 
 func GenerateRewardType():
-	if (roomNumber == 0):
+	if (mapProgressionSelector.currentRoom == 0):
 		rewardType = GetRandomRewardType()
 		if (rewardType == RewardType.POWERUP):
 			GeneratePowerUp()
-	roomNumber += 1
 
 func AssignRewardType(receivedType: RewardType, receivedFaction: PowerUp.PowerUpFaction):
 	rewardType = receivedType
@@ -47,7 +46,7 @@ func AssignRewardType(receivedType: RewardType, receivedFaction: PowerUp.PowerUp
 
 func GetRandomRewardType():
 	var arrayToUse: Array[int] = rewardChances
-	if (roomNumber == 0):
+	if (mapProgressionSelector.currentRoom == 0):
 		arrayToUse = firstRoomChances
 	return rewardTypes[SelectRewardType(arrayToUse)]
 

@@ -19,8 +19,11 @@ stream = ExtResource("3_c5w8b")
 volume_db = -10.0
 autoplay = true
 
-[node name="RewardSpawn" parent="." node_paths=PackedStringArray("playerRef") instance=ExtResource("4_gk5da")]
+[node name="RewardSpawn" parent="." node_paths=PackedStringArray("playerRef", "mapProgressionSelector") instance=ExtResource("4_gk5da")]
+rewardTypes = Array[int]([0, 1, 2])
+rewardChances = Array[int]([35, 10, 55])
 playerRef = NodePath("../PlayerCharacter")
+mapProgressionSelector = NodePath("../MapProgressionSelector")
 
 [node name="FrameMaster" type="Node" parent="."]
 script = ExtResource("5_gxw7i")

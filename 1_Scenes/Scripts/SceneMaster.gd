@@ -6,6 +6,9 @@ extends Node2D
 @export var hubPath: String
 
 func LoadHub():
+	call_deferred("ActuallyLoadHub")
+
+func ActuallyLoadHub():
 	var rootRef = get_tree().root
 	var activeSceneRef = rootRef.get_child(0)
 	rootRef.remove_child(activeSceneRef)
