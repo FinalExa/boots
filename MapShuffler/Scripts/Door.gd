@@ -6,6 +6,7 @@ extends Node2D
 @export var endMapArea: String
 @export var rewardTypeSprites: Array[Sprite2D]
 @export var powerUpFactionSprites: Array[Sprite2D]
+@export var bossSprite: Sprite2D
 var currentScene: GameplayScene
 var registered: bool
 var rewardSpawnRef: RewardSpawn
@@ -16,6 +17,7 @@ func _ready():
 	StartupDoor()
 	TurnOffSprites(rewardTypeSprites)
 	TurnOffSprites(powerUpFactionSprites)
+	bossSprite.hide()
 
 func StartupDoor():
 	var sceneMaster: SceneMaster = get_tree().root.get_child(0)
@@ -88,6 +90,9 @@ func OpenDoor():
 		obj.doorRef = self
 
 func ActivateCurrentRewardSprite():
+	if (currentScene.nextFloor == MapProgressionSelector.FloorTypes.BOSS || currentScene.nextFloor == MapProgressionSelector.FloorTypes.MINIBOSS):
+		bossSprite.show()
+		return
 	if (rewardType != RewardSpawn.RewardType.NO_REWARD):
 		if (rewardType != RewardSpawn.RewardType.POWERUP):
 			rewardTypeSprites[rewardType].show()

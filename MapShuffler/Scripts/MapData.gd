@@ -4,6 +4,7 @@ extends Node
 @export var mapName: String
 @export var mapLevels: Array[MapLevel]
 @export var shopLevel: String
+@export var bossLevel: String
 var bannedLevels: Array[String]
 var mapProgressionSelector: MapProgressionSelector
 var currentMapPath: String

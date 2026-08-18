@@ -35,7 +35,6 @@ rewardSpawn = NodePath("../RewardSpawn")
 playerCharacter = NodePath("../PlayerCharacter")
 
 [node name="SceneSelector" parent="." node_paths=PackedStringArray("playerRef", "rewardSpawn", "mapProgressionSelector") instance=ExtResource("7_kja8i")]
-shopScene = "res://1_Scenes/ShopScene.tscn"
 playerRef = NodePath("../PlayerCharacter")
 rewardSpawn = NodePath("../RewardSpawn")
 mapProgressionSelector = NodePath("../MapProgressionSelector")

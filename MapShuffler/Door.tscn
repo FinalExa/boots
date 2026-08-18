@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdbtps27g0ql8"]
+[gd_scene load_steps=16 format=3 uid="uid://bdbtps27g0ql8"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/Door.gd" id="1_2g6hh"]
 [ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="3_38ixv"]
+[ext_resource type="Texture2D" uid="uid://ds4q6g03fb18l" path="res://PowerUps/Sprites/boss_icon.png" id="3_q0sm4"]
 [ext_resource type="Texture2D" uid="uid://bnw5a6dro5eof" path="res://PowerUps/Sprites/healPodium.png" id="4_wb0s1"]
 [ext_resource type="Texture2D" uid="uid://bhesk1s7es8tx" path="res://PowerUps/Sprites/moneyPodium.png" id="5_2uws4"]
 [ext_resource type="Texture2D" uid="uid://c0q0jmv0e3fi8" path="res://PowerUps/Sprites/shopPodium.png" id="6_u2n0c"]
@@ -56,13 +57,14 @@ size = Vector2(16, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kakpx"]
 size = Vector2(96, 48)
 
-[node name="Door" type="Node2D" node_paths=PackedStringArray("sprite", "centralCollider", "rewardTypeSprites", "powerUpFactionSprites")]
+[node name="Door" type="Node2D" node_paths=PackedStringArray("sprite", "centralCollider", "rewardTypeSprites", "powerUpFactionSprites", "bossSprite")]
 script = ExtResource("1_2g6hh")
 sprite = NodePath("AnimatedSprite2D")
 centralCollider = NodePath("CentralCollider")
 endMapArea = "res://MapShuffler/end_map_area.tscn"
 rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 powerUpFactionSprites = [NodePath("RewardSpritePosition/PowerUpFaction/Bomb"), NodePath("RewardSpritePosition/PowerUpFaction/Fire")]
+bossSprite = NodePath("RewardSpritePosition/Boss")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b7qsa")
@@ -89,6 +91,9 @@ shape = SubResource("RectangleShape2D_kakpx")
 
 [node name="RewardSpritePosition" type="Node2D" parent="."]
 position = Vector2(0, -40)
+
+[node name="Boss" type="Sprite2D" parent="RewardSpritePosition"]
+texture = ExtResource("3_q0sm4")
 
 [node name="RewardType" type="Node2D" parent="RewardSpritePosition"]
 

@@ -10,7 +10,7 @@ var playerRef: PlayerCharacter
 @export var stopSwapSprite: bool
 
 func _ready():
-	angrySprite.hide()
+	if (angrySprite != null): angrySprite.hide()
 
 func _on_body_entered(body):
 	SetChasePlayer(body)
