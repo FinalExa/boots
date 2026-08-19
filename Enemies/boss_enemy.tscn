@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://fwakgei7q0si"]
+[gd_scene load_steps=26 format=3 uid="uid://fwakgei7q0si"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_sfvly"]
 [ext_resource type="Texture2D" uid="uid://kfh8fev8822t" path="res://Enemies/Sprites/boss_1.png" id="2_uqy11"]
@@ -20,8 +20,47 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyStartAttack.gd" id="20_q1hx6"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="21_ma2l0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2vjwt"]
-radius = 48.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_njau4"]
+radius = 64.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cweys"]
+atlas = ExtResource("2_uqy11")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccbtl"]
+atlas = ExtResource("2_uqy11")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eddwn"]
+atlas = ExtResource("2_uqy11")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_febup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cweys")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccbtl")
+}],
+"loop": false,
+"name": &"gun_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eddwn")
+}],
+"loop": false,
+"name": &"missile_attack",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 1089.44
@@ -39,14 +78,16 @@ attackDistance = 500.0
 damageImmunityDuration = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2vjwt")
+position = Vector2(0, 64)
+shape = SubResource("CircleShape2D_njau4")
 
-[node name="EnemySprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_uqy11")
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_febup")
+autoplay = "default"
 
 [node name="ShieldSprite" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, 1.90735e-06)
-scale = Vector2(2, 2)
+position = Vector2(5.72205e-06, 0)
+scale = Vector2(4, 4)
 texture = ExtResource("4_6dku4")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "bar")]
@@ -82,10 +123,11 @@ offset_bottom = -32.0
 
 [node name="EnemyHealthBar" parent="EnemyUI" instance=ExtResource("9_avjfm")]
 layout_mode = 0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 96.0
-offset_bottom = -16.0
+offset_left = -96.0
+offset_top = -112.0
+offset_right = 32.0
+offset_bottom = -96.0
+scale = Vector2(2, 2)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
@@ -129,10 +171,9 @@ rotation = 0.785398
 script = ExtResource("12_dev8h")
 objectPath = "res://Enemies/shielder_projectile.tscn"
 
-[node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController", "normalSprite")]
+[node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController")]
 script = ExtResource("13_y40se")
 enemyController = NodePath("..")
-normalSprite = NodePath("../EnemySprite")
 stopSwapSprite = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
@@ -140,7 +181,8 @@ shape = SubResource("CircleShape2D_j5l0v")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="TargetPointer" parent="." node_paths=PackedStringArray("baseObjectRef") instance=ExtResource("15_otaas")]
-position = Vector2(0, -128)
+position = Vector2(0, -248)
+scale = Vector2(2, 2)
 baseObjectRef = NodePath("..")
 
 [node name="BehaviorTree" type="Node" parent="." node_paths=PackedStringArray("root")]
