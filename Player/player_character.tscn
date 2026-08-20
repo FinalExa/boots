@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=62 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -27,7 +27,6 @@
 [ext_resource type="PackedScene" uid="uid://d3fgotociy2vg" path="res://Player/AbilityB/player_ability_b_1.tscn" id="20_6myp7"]
 [ext_resource type="PackedScene" uid="uid://dn6i2mwky75eo" path="res://Player/AbilityB/player_ability_b_3.tscn" id="20_rwe1b"]
 [ext_resource type="PackedScene" uid="uid://btmcb1a8mk3w6" path="res://Player/HUD/speed_bar.tscn" id="22_2s2fx"]
-[ext_resource type="PackedScene" uid="uid://co7ddcung4upu" path="res://Player/HUD/health_bar.tscn" id="22_k3yg1"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 [ext_resource type="Texture2D" uid="uid://cp8d0s2hr0mi0" path="res://Player/HUD/Sprites/projectiles_bar_under.png" id="24_og5fn"]
@@ -206,13 +205,14 @@ shape = SubResource("CircleShape2D_upbqd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("healthBar", "playerMovements")]
+[node name="PlayerHealth" type="Node" parent="." node_paths=PackedStringArray("heartStartPosition", "playerMovements")]
 script = ExtResource("5_dqtuw")
-healthBar = NodePath("../PlayerUI/HUD/HealthBar")
+heartRef = "res://Player/HUD/player_heart.tscn"
+heartStartPosition = NodePath("../PlayerUI/HUD/HeartSpawnPosition")
+maxHearts = 3
 maxHealth = 100.0
-partialThreshold = 10.0
 playerMovements = NodePath("../PlayerMovements")
-invulnerabilityTime = 0.1
+invulnerabilityTime = 1.0
 
 [node name="PlayerInputs" type="Node2D" parent="."]
 script = ExtResource("3_fxyqo")
@@ -388,12 +388,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HealthBar" parent="PlayerUI/HUD" instance=ExtResource("22_k3yg1")]
-layout_mode = 0
+[node name="HeartSpawnPosition" type="Control" parent="PlayerUI/HUD"]
+anchors_preset = 0
 offset_left = 32.0
-offset_top = 24.0
-offset_right = 288.0
-offset_bottom = 88.0
+offset_top = 28.0
+offset_right = 96.0
+offset_bottom = 92.0
 
 [node name="MoneyValue" type="Label" parent="PlayerUI/HUD"]
 layout_mode = 0
@@ -414,9 +414,9 @@ label_settings = SubResource("LabelSettings_fvdlt")
 [node name="SpeedBar" parent="PlayerUI/HUD" node_paths=PackedStringArray("playerMovements", "playerSpeedThresholds") instance=ExtResource("22_2s2fx")]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 88.0
+offset_top = 92.0
 offset_right = 416.0
-offset_bottom = 152.0
+offset_bottom = 156.0
 playerMovements = NodePath("../../../PlayerMovements")
 playerSpeedThresholds = NodePath("../../../PlayerRotator/PlayerSpeedThresholds")
 barColors = Array[Color]([Color(1, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 0.478431, 0, 1), Color(1, 0, 0, 1)])

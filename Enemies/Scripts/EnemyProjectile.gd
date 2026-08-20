@@ -2,7 +2,6 @@ class_name EnemyProjectile
 extends Projectile
 
 @export var speedDecrease: float
-@export var partialDamage: float
 @export var collisionSound: AudioStreamPlayer
 
 func CheckForBodies(body):
@@ -12,6 +11,6 @@ func CheckForBodies(body):
 func DecreasePlayerSpeed(playerCharacter: PlayerCharacter):
 	if (!playerCharacter.playerHealth.invulnerabilityActive):
 		collisionSound.play()
-		playerCharacter.playerHealth.CheckForDamageType(damage, partialDamage)
+		playerCharacter.playerHealth.CheckForDamageType(damage)
 		playerCharacter.playerMovements.UpdateCurrentSpeed(-speedDecrease)
 	call_deferred("DeleteSelf")

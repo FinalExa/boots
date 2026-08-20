@@ -83,6 +83,7 @@ shape = SubResource("CircleShape2D_njau4")
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_febup")
+animation = &"gun_attack"
 autoplay = "default"
 
 [node name="ShieldSprite" type="Sprite2D" parent="."]
@@ -92,7 +93,7 @@ texture = ExtResource("4_6dku4")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "bar")]
 script = ExtResource("5_ycgvq")
-maxHealth = 750.0
+maxHealth = 1500.0
 enemyController = NodePath("..")
 enemyShielded = NodePath("../EnemyShielded")
 bar = NodePath("../EnemyUI/EnemyHealthBar")

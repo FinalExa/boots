@@ -1,7 +1,6 @@
 extends AttackHitbox
 
 @export var reducedSpeed: float
-@export var fullDamage: float
 @export var partialDamage: float
 @export var hitSound: AudioStreamPlayer
 
@@ -14,5 +13,5 @@ func _on_body_entered(body):
 func CheckForPlayerKill(playerRef: PlayerCharacter):
 	if (!playerRef.playerHealth.invulnerabilityActive):
 		hitSound.play()
-		playerRef.playerHealth.CheckForDamageType(fullDamage, partialDamage)
+		playerRef.playerHealth.CheckForDamageType(partialDamage)
 		playerRef.playerMovements.UpdateCurrentSpeed(-reducedSpeed)

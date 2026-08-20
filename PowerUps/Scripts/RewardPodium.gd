@@ -55,7 +55,7 @@ func RewardType():
 		Delete()
 		return
 	if (rewardType == RewardSpawn.RewardType.HEAL):
-		playerRef.playerHealth.UpdateHealthValue(healAmount, 0)
+		playerRef.playerHealth.UpdateHealthValue(healAmount)
 		Delete()
 		return
 	if (rewardType == RewardSpawn.RewardType.MONEY):

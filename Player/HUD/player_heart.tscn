@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://co7ddcung4upu"]
+
+[ext_resource type="Texture2D" uid="uid://cfar8vtcfnu8s" path="res://Player/HUD/Sprites/integrity_bar_under.png" id="1_oq2uu"]
+[ext_resource type="Texture2D" uid="uid://broptc6n6vdop" path="res://Player/HUD/Sprites/integrity_bar_upper.png" id="2_6d2o4"]
+[ext_resource type="Texture2D" uid="uid://dmipwba51grob" path="res://Player/HUD/Sprites/integrity_bar_progress.png" id="3_47p4v"]
+[ext_resource type="Script" path="res://Player/Scripts/PlayerHeart.gd" id="4_ly27f"]
+
+[node name="PlayerHeart" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 3
+texture_under = ExtResource("1_oq2uu")
+texture_over = ExtResource("2_6d2o4")
+texture_progress = ExtResource("3_47p4v")
+script = ExtResource("4_ly27f")
+mult = 100.0
+valueChangeSpeedPerSecond = 150.0

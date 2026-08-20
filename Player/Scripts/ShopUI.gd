@@ -56,7 +56,7 @@ func PowerUpButtonPressed():
 
 func HealingButtonPressed():
 	if (!healingBought && playerRef.currentMoney >= healingPrice):
-		playerRef.playerHealth.UpdateHealthValue(healingValue, 0)
+		playerRef.playerHealth.UpdateHealthValue(healingValue)
 		playerRef.UpdateMoney(-powerUpPrice)
 		healingBought = true
 		healingButton.get_parent().hide()
