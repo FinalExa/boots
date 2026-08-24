@@ -1,16 +1,18 @@
 extends EnemyNode
 
 @export var enemyMovement: EnemyMovement
-@export var enemyAttack: ExecuteAttack
+@export var bossRobotMissileCheck: BossRobotMissileCheck
+@export var enemyBossMissileAttack: ExecuteAttack
 @export var enemySprite: AnimatedSprite2D
 @export var enemyAttackAnimationName: String
 
 func Evaluate(_delta):
-	if (enemyController.playerRef != null && enemyController.global_position.distance_to(enemyController.playerRef.global_position) <= enemyController.attackDistance):
+	if (bossRobotMissileCheck.missilePoint != null && enemyController.global_position.distance_to(bossRobotMissileCheck.missilePoint.global_position) <= bossRobotMissileCheck.pointDistance):
 		enemyMovement.StopMovement()
-		if (!enemyAttack.attackLaunched && !enemyAttack.cooldownActive):
+		if (!enemyBossMissileAttack.attackLaunched && !enemyBossMissileAttack.cooldownActive):
 			enemyController.enemyRotator.LookAtPlayer()
-			enemyAttack.StartAttack()
+			enemyBossMissileAttack.StartAttack()
+			bossRobotMissileCheck.StartMissileCooldown()
 			if (enemySprite != null && enemyAttackAnimationName != ""):
 				enemySprite.play(enemyAttackAnimationName)
 		return NodeState.FAILURE

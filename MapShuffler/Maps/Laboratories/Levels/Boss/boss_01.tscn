@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://okcclisxuq8b"]
+[gd_scene load_steps=10 format=3 uid="uid://okcclisxuq8b"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_b4p7i"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_brgog"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://fwakgei7q0si" path="res://Enemies/boss_enemy.tscn" id="4_bom77"]
 [ext_resource type="PackedScene" uid="uid://ec5tqdevf7u7" path="res://MapObjects/booster_pad.tscn" id="5_sfqj5"]
 [ext_resource type="PackedScene" uid="uid://bllhlg88xlhba" path="res://MapObjects/slowing_ground.tscn" id="6_ojfyr"]
+[ext_resource type="Script" path="res://Enemies/Scripts/Boss/BossPoint.gd" id="7_qx4gs"]
 [ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="7_sgpxg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dwnep"]
@@ -72,13 +73,21 @@ position = Vector2(1408, -1088)
 [node name="SlowingGround4" parent="MapObjects" instance=ExtResource("6_ojfyr")]
 position = Vector2(1408, -832)
 
+[node name="MissilePoint" type="Node2D" parent="MapObjects" node_paths=PackedStringArray("bossEnemy")]
+position = Vector2(0, -832)
+script = ExtResource("7_qx4gs")
+bossEnemy = NodePath("../../Enemies/BossEnemy")
+
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door" parent="Doors" instance=ExtResource("7_sgpxg")]
+[node name="Door" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("7_sgpxg")]
 position = Vector2(0, -1632)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
-[node name="Door2" parent="Doors" instance=ExtResource("7_sgpxg")]
+[node name="Door2" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("7_sgpxg")]
 position = Vector2(-704, -1632)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]
 
-[node name="Door3" parent="Doors" instance=ExtResource("7_sgpxg")]
+[node name="Door3" parent="Doors" node_paths=PackedStringArray("rewardTypeSprites") instance=ExtResource("7_sgpxg")]
 position = Vector2(704, -1632)
+rewardTypeSprites = [null, NodePath("RewardSpritePosition/RewardType/Heal"), NodePath("RewardSpritePosition/RewardType/Money"), NodePath("RewardSpritePosition/RewardType/Shop")]

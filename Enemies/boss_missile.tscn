@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://db82cvhjbl5yk"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyProjectile.gd" id="1_pnxi5"]
+[ext_resource type="AudioStream" uid="uid://ba4eq7x3pc5vg" path="res://Enemies/Sounds/enemyDirect.wav" id="2_rdg5i"]
+[ext_resource type="Texture2D" uid="uid://qenf3f58hmng" path="res://Enemies/Sprites/bossEnemyMissile.png" id="3_4vhir"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt7at"]
+radius = 8.0
+height = 80.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5yxn"]
+radius = 24.0
+height = 96.0
+
+[node name="BossMissile" type="CharacterBody2D" node_paths=PackedStringArray("collisionSound", "forward")]
+script = ExtResource("1_pnxi5")
+speedDecrease = 1500.0
+collisionSound = NodePath("Sounds/EnemyDirect")
+directDamage = true
+chasePlayer = true
+movementSpeed = 700.0
+lifeTime = 5.0
+forward = NodePath("Forward")
+damage = 40.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="EnemyDirect" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("2_rdg5i")
+volume_db = -20.0
+
+[node name="ProjectileSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_4vhir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dt7at")
+
+[node name="Forward" type="Node2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="ProjectileArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileArea"]
+shape = SubResource("CapsuleShape2D_x5yxn")
+
+[connection signal="body_entered" from="ProjectileArea" to="." method="CheckForBodies"]

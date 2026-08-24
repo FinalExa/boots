@@ -8,14 +8,20 @@ extends CharacterBody2D
 @export var damage: float
 @export var endOnCollisionOverride: bool
 
+func _ready():
+	ReadyOperations()
+
 func _physics_process(_delta):
-	ProjectileMovement(forward.global_position)
+	SetVelocity(forward.global_position)
+	ProjectileMovement()
 
 func _process(delta):
 	LifeTime(delta)
 
-func ProjectileMovement(direction: Vector2):
+func SetVelocity(direction: Vector2):
 	velocity = movementSpeed * self.global_position.direction_to(direction)
+
+func ProjectileMovement():
 	var collisionCheck: bool = move_and_slide()
 	if (collisionCheck && !endOnCollisionOverride):
 		call_deferred("DeleteSelf")
@@ -30,6 +36,9 @@ func DeleteSelf():
 	if (get_parent() != null):
 		get_parent().remove_child(self)
 		queue_free()
+
+func ReadyOperations():
+	pass
 
 func CheckForBodies(_body):
 	pass

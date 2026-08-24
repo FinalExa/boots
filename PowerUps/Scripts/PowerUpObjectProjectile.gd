@@ -12,8 +12,7 @@ func DeleteSelf():
 		if (powerUpObjectRef != null):
 			powerUpObjectRef.AlternativeOutcome()
 
-func ProjectileMovement(direction: Vector2):
-	velocity = movementSpeed * self.global_position.direction_to(direction)
+func ProjectileMovement():
 	var collisionCheck: bool = move_and_slide()
 	if (collisionCheck && !ignoreEnemies):
 		call_deferred("DeleteSelf")

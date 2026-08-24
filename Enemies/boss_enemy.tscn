@@ -1,12 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://fwakgei7q0si"]
+[gd_scene load_steps=31 format=3 uid="uid://fwakgei7q0si"]
 
-[ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_sfvly"]
+[ext_resource type="Script" path="res://Enemies/Scripts/Boss/BossController.gd" id="1_c3stw"]
 [ext_resource type="Texture2D" uid="uid://kfh8fev8822t" path="res://Enemies/Sprites/boss_1.png" id="2_uqy11"]
 [ext_resource type="Texture2D" uid="uid://btho6rt15jl8m" path="res://Enemies/Sprites/shielderEnemyShield.png" id="4_6dku4"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyHealth.gd" id="5_ycgvq"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyMovement.gd" id="6_75hff"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRepelled.gd" id="7_gjggq"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyShielded.gd" id="8_xv3h3"]
+[ext_resource type="Script" path="res://Enemies/Scripts/Boss/BossRobotMissileCheck.gd" id="8_xvxff"]
 [ext_resource type="PackedScene" uid="uid://cusd56vuia7wr" path="res://Enemies/enemy_health_bar.tscn" id="9_avjfm"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRotator.gd" id="10_v8e5r"]
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="11_tkvr3"]
@@ -15,10 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="15_otaas"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BehaviorTree.gd" id="16_revh2"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="17_6skfq"]
+[ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Selector.gd" id="18_eahdh"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="18_rkwvj"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyIsAttacking.gd" id="19_g2lyo"]
+[ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyBossMissileReady.gd" id="20_l3v5b"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyStartAttack.gd" id="20_q1hx6"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="21_ma2l0"]
+[ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyBossStartMissileAttack.gd" id="21_oq4sp"]
+[ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyBossMoveToMissilePoint.gd" id="22_7td0i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_njau4"]
 radius = 64.0
@@ -63,14 +68,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
-radius = 1089.44
+radius = 1920.27
 
-[node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer")]
-script = ExtResource("1_sfvly")
+[node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("bossRobotMissileCheck", "enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer")]
+script = ExtResource("1_c3stw")
+bossRobotMissileCheck = NodePath("BossRobotMissileCheck")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
 enemyRotator = NodePath("EnemyRotator")
-enemyAttack = NodePath("EnemyRotator/EnemyAttack")
+enemyAttack = NodePath("EnemyRotator/MainAttack")
 enemyHealth = NodePath("EnemyHealth")
 enemyShielded = NodePath("EnemyShielded")
 targetPointer = NodePath("TargetPointer")
@@ -115,6 +121,11 @@ repelledDivider = 2.0
 script = ExtResource("8_xv3h3")
 shieldSprite = NodePath("../ShieldSprite")
 
+[node name="BossRobotMissileCheck" type="Node" parent="."]
+script = ExtResource("8_xvxff")
+missileAttackCooldown = 35.0
+pointDistance = 10.0
+
 [node name="EnemyUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -146,50 +157,103 @@ pointer = NodePath("Pointer")
 [node name="Pointer" type="Node2D" parent="EnemyRotator"]
 position = Vector2(0, -64)
 
-[node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
+[node name="MainAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
 script = ExtResource("11_tkvr3")
 attackDuration = 30
 attackCooldown = 90
 attackPhasesLaunch = Array[int]([0, 5, 10, 15, 20, 25])
 attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner6")]
-attackSounds = [null, null, null]
-attackMovements = Array[float]([-600.0, -600.0, -600.0])
+attackSounds = [null, null, null, null, null, null]
 characterRef = NodePath("../..")
 
-[node name="ObjectSpawner" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+[node name="ObjectSpawner" type="Node2D" parent="EnemyRotator/MainAttack"]
 position = Vector2(0, -64)
 script = ExtResource("12_dev8h")
 objectPath = "res://Enemies/boss_projectile.tscn"
 
-[node name="ObjectSpawner2" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+[node name="ObjectSpawner2" type="Node2D" parent="EnemyRotator/MainAttack"]
 position = Vector2(-32, -48)
 rotation = -0.785398
 script = ExtResource("12_dev8h")
 objectPath = "res://Enemies/boss_projectile.tscn"
 
-[node name="ObjectSpawner3" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+[node name="ObjectSpawner3" type="Node2D" parent="EnemyRotator/MainAttack"]
 position = Vector2(32, -48)
 rotation = 0.785398
 script = ExtResource("12_dev8h")
 objectPath = "res://Enemies/boss_projectile.tscn"
 
-[node name="ObjectSpawner4" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+[node name="ObjectSpawner4" type="Node2D" parent="EnemyRotator/MainAttack"]
 position = Vector2(16, -56)
 rotation = 0.523599
 script = ExtResource("12_dev8h")
 objectPath = "res://Enemies/boss_projectile.tscn"
 
-[node name="ObjectSpawner5" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+[node name="ObjectSpawner5" type="Node2D" parent="EnemyRotator/MainAttack"]
 position = Vector2(-16, -56)
 rotation = -0.523599
 script = ExtResource("12_dev8h")
 objectPath = "res://Enemies/boss_projectile.tscn"
 
-[node name="ObjectSpawner6" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+[node name="ObjectSpawner6" type="Node2D" parent="EnemyRotator/MainAttack"]
 position = Vector2(-3.8147e-06, -64)
 rotation = 0.785398
 script = ExtResource("12_dev8h")
 objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="MissileAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
+script = ExtResource("11_tkvr3")
+attackDuration = 45
+attackCooldown = 10
+attackPhasesLaunch = Array[int]([3, 6, 9, 21, 24, 27, 39, 42, 45])
+attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner6"), NodePath("ObjectSpawner7"), NodePath("ObjectSpawner8"), NodePath("ObjectSpawner9")]
+attackSounds = [null, null, null, null, null, null, null, null, null]
+characterRef = NodePath("../..")
+
+[node name="ObjectSpawner" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner6" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner7" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner8" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
+
+[node name="ObjectSpawner9" type="Node2D" parent="EnemyRotator/MissileAttack"]
+position = Vector2(0, -64)
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_missile.tscn"
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController")]
 script = ExtResource("13_y40se")
@@ -211,21 +275,54 @@ root = NodePath("BT_Sequence")
 
 [node name="BT_Sequence" type="Node" parent="BehaviorTree" node_paths=PackedStringArray("children")]
 script = ExtResource("17_6skfq")
-children = [NodePath("TaskEnemyRepelled"), NodePath("TaskEnemyIsAttacking"), NodePath("TaskEnemyStartAttack"), NodePath("TaskChasePlayer")]
+children = [NodePath("TaskEnemyRepelled"), NodePath("TaskEnemyIsAttackingMissiles"), NodePath("TaskEnemyIsAttacking"), NodePath("BT_Selector"), NodePath("TaskEnemyStartAttack"), NodePath("TaskChasePlayer")]
 
 [node name="TaskEnemyRepelled" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyController")]
 script = ExtResource("18_rkwvj")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemyController")]
+[node name="TaskEnemyIsAttackingMissiles" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemyController")]
 script = ExtResource("19_g2lyo")
-enemyAttack = NodePath("../../../EnemyRotator/EnemyAttack")
+enemyAttack = NodePath("../../../EnemyRotator/MissileAttack")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyAttack", "enemyController")]
+[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemySprite", "enemyController")]
+script = ExtResource("19_g2lyo")
+enemyAttack = NodePath("../../../EnemyRotator/MainAttack")
+enemySprite = NodePath("../../../EnemySprite")
+enemyController = NodePath("../../..")
+
+[node name="BT_Selector" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("children")]
+script = ExtResource("18_eahdh")
+children = [NodePath("TaskEnemyBossMissileReady"), NodePath("TaskEnemyBossStartMissileAttack"), NodePath("TaskEnemyBossMoveToMissilePoint")]
+
+[node name="TaskEnemyBossMissileReady" type="Node" parent="BehaviorTree/BT_Sequence/BT_Selector" node_paths=PackedStringArray("bossRobotMissileCheck", "enemyController")]
+script = ExtResource("20_l3v5b")
+bossRobotMissileCheck = NodePath("../../../../BossRobotMissileCheck")
+enemyController = NodePath("../../../..")
+
+[node name="TaskEnemyBossStartMissileAttack" type="Node" parent="BehaviorTree/BT_Sequence/BT_Selector" node_paths=PackedStringArray("enemyMovement", "bossRobotMissileCheck", "enemyBossMissileAttack", "enemySprite", "enemyController")]
+script = ExtResource("21_oq4sp")
+enemyMovement = NodePath("../../../../EnemyMovement")
+bossRobotMissileCheck = NodePath("../../../../BossRobotMissileCheck")
+enemyBossMissileAttack = NodePath("../../../../EnemyRotator/MissileAttack")
+enemySprite = NodePath("../../../../EnemySprite")
+enemyAttackAnimationName = "missile_attack"
+enemyController = NodePath("../../../..")
+
+[node name="TaskEnemyBossMoveToMissilePoint" type="Node" parent="BehaviorTree/BT_Sequence/BT_Selector" node_paths=PackedStringArray("enemyDetection", "bossRobotMissileCheck", "enemyMovement", "enemyController")]
+script = ExtResource("22_7td0i")
+enemyDetection = NodePath("../../../../EnemyDetection")
+bossRobotMissileCheck = NodePath("../../../../BossRobotMissileCheck")
+enemyMovement = NodePath("../../../../EnemyMovement")
+enemyController = NodePath("../../../..")
+
+[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyAttack", "enemySprite", "enemyController")]
 script = ExtResource("20_q1hx6")
 enemyMovement = NodePath("../../../EnemyMovement")
-enemyAttack = NodePath("../../../EnemyRotator/EnemyAttack")
+enemyAttack = NodePath("../../../EnemyRotator/MainAttack")
+enemySprite = NodePath("../../../EnemySprite")
+enemyAttackAnimationName = "gun_attack"
 enemyController = NodePath("../../..")
 
 [node name="TaskChasePlayer" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyDetection", "enemyMovement", "enemyController")]
