@@ -93,7 +93,7 @@ texture = ExtResource("4_6dku4")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "bar")]
 script = ExtResource("5_ycgvq")
-maxHealth = 1500.0
+maxHealth = 2500.0
 enemyController = NodePath("..")
 enemyShielded = NodePath("../EnemyShielded")
 bar = NodePath("../EnemyUI/EnemyHealthBar")
@@ -109,6 +109,7 @@ repathTimerDuration = 0.25
 [node name="EnemyRepelled" type="Node" parent="." node_paths=PackedStringArray("enemyController")]
 script = ExtResource("7_gjggq")
 enemyController = NodePath("..")
+repelledDivider = 2.0
 
 [node name="EnemyShielded" type="Node" parent="." node_paths=PackedStringArray("shieldSprite")]
 script = ExtResource("8_xv3h3")
@@ -149,8 +150,8 @@ position = Vector2(0, -64)
 script = ExtResource("11_tkvr3")
 attackDuration = 30
 attackCooldown = 90
-attackPhasesLaunch = Array[int]([0, 10, 20])
-attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
+attackPhasesLaunch = Array[int]([0, 5, 10, 15, 20, 25])
+attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner6")]
 attackSounds = [null, null, null]
 attackMovements = Array[float]([-600.0, -600.0, -600.0])
 characterRef = NodePath("../..")
@@ -158,19 +159,37 @@ characterRef = NodePath("../..")
 [node name="ObjectSpawner" type="Node2D" parent="EnemyRotator/EnemyAttack"]
 position = Vector2(0, -64)
 script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/shielder_projectile.tscn"
+objectPath = "res://Enemies/boss_projectile.tscn"
 
 [node name="ObjectSpawner2" type="Node2D" parent="EnemyRotator/EnemyAttack"]
 position = Vector2(-32, -48)
 rotation = -0.785398
 script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/shielder_projectile.tscn"
+objectPath = "res://Enemies/boss_projectile.tscn"
 
 [node name="ObjectSpawner3" type="Node2D" parent="EnemyRotator/EnemyAttack"]
 position = Vector2(32, -48)
 rotation = 0.785398
 script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/shielder_projectile.tscn"
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+position = Vector2(16, -56)
+rotation = 0.523599
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+position = Vector2(-16, -56)
+rotation = -0.523599
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner6" type="Node2D" parent="EnemyRotator/EnemyAttack"]
+position = Vector2(-3.8147e-06, -64)
+rotation = 0.785398
+script = ExtResource("12_dev8h")
+objectPath = "res://Enemies/boss_projectile.tscn"
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController")]
 script = ExtResource("13_y40se")

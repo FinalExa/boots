@@ -2,6 +2,7 @@ class_name EnemyRepelled
 extends Node
 
 @export var enemyController: EnemyController
+@export var repelledDivider: float = 1
 var repelledActive: bool
 var repelledTimer: float
 var repelledSpeed: float
@@ -14,6 +15,7 @@ func SetRepelled(repelDistance: float, repelDirection: Vector2, repelTime: float
 	repelledTimer = repelTime
 	repelledDirection = repelDirection
 	repelledSpeed = repelDistance / repelTime
+	repelledSpeed = repelledSpeed / repelledDivider
 	repelledActive = true
 
 func RepelledTimer(delta):
