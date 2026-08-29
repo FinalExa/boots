@@ -125,25 +125,25 @@ position = Vector2(-1664, -2880)
 rotation = -1.5708
 
 [node name="SlowingGround" parent="MapObjects" instance=ExtResource("8_4t3uh")]
-position = Vector2(-2112, -2368)
+position = Vector2(-2176, -2304)
 
 [node name="SlowingGround2" parent="MapObjects" instance=ExtResource("8_4t3uh")]
-position = Vector2(-2112, -3328)
+position = Vector2(-2176, -3392)
 
 [node name="SlowingGround3" parent="MapObjects" instance=ExtResource("8_4t3uh")]
-position = Vector2(-4928, -3328)
+position = Vector2(-4992, -3072)
 
 [node name="SlowingGround4" parent="MapObjects" instance=ExtResource("8_4t3uh")]
-position = Vector2(-4928, -3072)
+position = Vector2(-4992, -2944)
 
 [node name="SlowingGround5" parent="MapObjects" instance=ExtResource("8_4t3uh")]
-position = Vector2(-4928, -2816)
+position = Vector2(-4992, -2816)
 
 [node name="SlowingGround6" parent="MapObjects" instance=ExtResource("8_4t3uh")]
-position = Vector2(-4928, -2560)
+position = Vector2(-4992, -2688)
 
 [node name="SlowingGround7" parent="MapObjects" instance=ExtResource("8_4t3uh")]
-position = Vector2(-4928, -2304)
+position = Vector2(-4992, -2560)
 
 [node name="Doors" type="Node2D" parent="."]
 

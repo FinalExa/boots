@@ -21,10 +21,11 @@ func _process(delta):
 		InvulnerabilityTimer(delta)
 
 func UpdateHealthValue(valueToAdd: float):
-	currentHealth = clamp(currentHealth + valueToAdd, 0, maxHealth)
-	UpdateBar()
-	if (currentHealth <= 0):
-		LoseHeart()
+	if ((!invulnerabilityActive && valueToAdd < 0) || valueToAdd >= 0):
+		currentHealth = clamp(currentHealth + valueToAdd, 0, maxHealth)
+		UpdateBar()
+		if (currentHealth <= 0):
+			LoseHeart()
 
 func UpdateBar():
 	playerHearts[currentHearts].UpdateHealth(currentHealth)
@@ -34,8 +35,12 @@ func CheckForDamageType(damage: float):
 		UpdateHealthValue(-damage)
 		StartInvulnerability()
 		return
-	LoseHeart()
-	StartInvulnerability()
+	CheckForLoseHeart()
+
+func CheckForLoseHeart():
+	if (!invulnerabilityActive):
+		LoseHeart()
+		StartInvulnerability()
 
 func GenerateHearts():
 	for i in (maxHearts):

@@ -5,8 +5,10 @@ extends EnemyNode
 @export var enemyMovement: EnemyMovement
 
 func Evaluate(_delta):
-	if (enemyDetection.playerFound):
+	if (enemyDetection.playerFound && bossRobotMissileCheck.missilePoint != null && enemyController.global_position.distance_to(bossRobotMissileCheck.missilePoint.global_position) > bossRobotMissileCheck.pointDistance):
 		enemyMovement.ResetMovementSpeed()
 		enemyMovement.SetNewTarget(bossRobotMissileCheck.missilePoint)
+		bossRobotMissileCheck.movingToMissilePoint = true
 		return NodeState.FAILURE
-	return NodeState.SUCCESS
+	bossRobotMissileCheck.movingToMissilePoint = false
+	return NodeState.FAILURE

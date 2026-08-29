@@ -6,6 +6,7 @@ extends Node
 var missilePoint: Node2D
 var missileAttackTimer: float
 var missileReady: bool
+var movingToMissilePoint: bool
 
 func _ready():
 	StartMissileCooldown()

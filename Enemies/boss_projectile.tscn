@@ -4,9 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://ba4eq7x3pc5vg" path="res://Enemies/Sounds/enemyDirect.wav" id="2_2w0ge"]
 [ext_resource type="Texture2D" uid="uid://btwu6rs88d0u5" path="res://Enemies/Sprites/bossEnemyBullet.png" id="3_moq8w"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt7at"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocx2r"]
 radius = 8.0
-height = 48.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5yxn"]
 radius = 16.0
@@ -16,10 +15,11 @@ height = 64.0
 script = ExtResource("1_sonht")
 speedDecrease = 1000.0
 collisionSound = NodePath("Sounds/EnemyDirect")
-movementSpeed = 700.0
+movementSpeed = 1000.0
 lifeTime = 10.0
 forward = NodePath("Forward")
 damage = 40.0
+endOnCollisionOverride = true
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -31,7 +31,7 @@ volume_db = -20.0
 texture = ExtResource("3_moq8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_dt7at")
+shape = SubResource("CircleShape2D_ocx2r")
 
 [node name="Forward" type="Node2D" parent="."]
 position = Vector2(0, -24)

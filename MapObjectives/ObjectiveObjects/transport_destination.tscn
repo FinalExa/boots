@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="4_uxhe0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ygx61"]
-radius = 128.0
+radius = 64.4981
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nkn1q"]
 atlas = ExtResource("2_6nvem")
@@ -43,7 +43,7 @@ autoplay = "default"
 transportDestination = NodePath("..")
 
 [node name="TargetPointer" parent="." node_paths=PackedStringArray("baseObjectRef") instance=ExtResource("4_uxhe0")]
-position = Vector2(0, -56)
+position = Vector2(0, -96)
 baseObjectRef = NodePath("..")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

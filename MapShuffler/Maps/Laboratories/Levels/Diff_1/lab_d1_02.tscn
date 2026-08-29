@@ -146,13 +146,9 @@ position = Vector2(0, -128)
 position = Vector2(1728, 2304)
 
 [node name="SlowingGround" parent="MapObjects" instance=ExtResource("7_qlnci")]
-position = Vector2(1472, -1408)
+position = Vector2(1472, 0)
+scale = Vector2(1, 14)
 
 [node name="SlowingGround2" parent="MapObjects" instance=ExtResource("7_qlnci")]
-position = Vector2(1984, -1408)
-
-[node name="SlowingGround4" parent="MapObjects" instance=ExtResource("7_qlnci")]
-position = Vector2(1344, 1280)
-
-[node name="SlowingGround5" parent="MapObjects" instance=ExtResource("7_qlnci")]
-position = Vector2(2112, 1280)
+position = Vector2(1984, 0)
+scale = Vector2(1, 14)
