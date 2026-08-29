@@ -336,7 +336,7 @@ projectileTextureBar = NodePath("../../PlayerUI/HUD/ProjectileBar")
 projectileCountLabel = NodePath("../../PlayerUI/HUD/ProjectileBar/ProjectileCount")
 
 [node name="ObjectSpawner" type="Node2D" parent="PlayerAim/PlayerShooting"]
-position = Vector2(0, -64)
+position = Vector2(0, -96)
 script = ExtResource("23_3xtsy")
 
 [node name="Arrow" type="Sprite2D" parent="PlayerAim"]
