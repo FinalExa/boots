@@ -82,16 +82,16 @@ position = Vector2(0, 704)
 position = Vector2(0, 448)
 
 [node name="SlowingGround" parent="MapObjects" instance=ExtResource("6_3h3ar")]
-position = Vector2(-1408, -1152)
+position = Vector2(-1152, -1088)
 
 [node name="SlowingGround2" parent="MapObjects" instance=ExtResource("6_3h3ar")]
-position = Vector2(-1408, -896)
+position = Vector2(-1152, -960)
 
 [node name="SlowingGround3" parent="MapObjects" instance=ExtResource("6_3h3ar")]
-position = Vector2(1408, -1088)
+position = Vector2(1152, -1088)
 
 [node name="SlowingGround4" parent="MapObjects" instance=ExtResource("6_3h3ar")]
-position = Vector2(1408, -832)
+position = Vector2(1152, -960)
 
 [node name="Doors" type="Node2D" parent="."]
 
