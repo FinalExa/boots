@@ -22,10 +22,16 @@ func _process(delta):
 
 func UpdateHealthValue(valueToAdd: float):
 	if ((!invulnerabilityActive && valueToAdd < 0) || valueToAdd >= 0):
+		var previousHealth: float = currentHealth
 		currentHealth = clamp(currentHealth + valueToAdd, 0, maxHealth)
 		UpdateBar()
 		if (currentHealth <= 0):
 			LoseHeart()
+			return
+		if (currentHealth >= maxHealth):
+			var difference: float = (previousHealth + valueToAdd) - maxHealth
+			if (difference > 0 && currentHearts < maxHearts - 1):
+				AddHeart(difference)
 
 func UpdateBar():
 	playerHearts[currentHearts].UpdateHealth(currentHealth)
@@ -59,6 +65,12 @@ func LoseHeart():
 		currentHealth = maxHealth
 		return
 	GameOver()
+
+func AddHeart(startingValue: float):
+	currentHearts += 1
+	currentHealth = startingValue
+	playerHearts[currentHearts].SetEmpty()
+	playerHearts[currentHearts].UpdateHealth(currentHealth)
 
 func InvulnerabilityTimer(delta):
 	if (invulnerabilityTimer > 0):

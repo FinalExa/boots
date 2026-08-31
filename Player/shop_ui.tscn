@@ -30,8 +30,8 @@ script = ExtResource("1_2idad")
 powerUpButton = NodePath("PowerUpButtonContainer/PowerUpButton")
 powerUpPrice = 200.0
 healingButton = NodePath("HealingButtonContainer/HealingButtonContainer")
-healingValue = 30.0
-healingPrice = 150.0
+healingValue = 50.0
+healingPrice = 200.0
 
 [node name="PowerUpButtonContainer" type="PanelContainer" parent="."]
 layout_mode = 2
