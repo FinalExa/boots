@@ -25,15 +25,15 @@ func _ready():
 
 func AssignPowerUp(powerUp: PowerUp):
 	if (powerUp is PowerUpContact):
-		ReplaceOldPowerUp(contactPowerUp)
+		ReplaceOldPowerUp(contactPowerUp, powerUp)
 		contactPowerUp = powerUp
 		return
 	if (powerUp is PowerUpShoot):
-		ReplaceOldPowerUp(shootPowerUp)
+		ReplaceOldPowerUp(shootPowerUp, powerUp)
 		shootPowerUp = powerUp
 		return
 	if (powerUp is PowerUpSpeedCharge):
-		ReplaceOldPowerUp(speedChargePowerUp)
+		ReplaceOldPowerUp(speedChargePowerUp, powerUp)
 		speedChargeBar.show()
 		speedChargePowerUp = powerUp
 		speedChargePowerUp.speedChargeCurrentValue = 0
@@ -41,28 +41,28 @@ func AssignPowerUp(powerUp: PowerUp):
 		speedChargeBar.max_value = speedChargePowerUp.speedChargeMaxValue * 100
 		return
 	if (powerUp is PowerUpTrail):
-		ReplaceOldPowerUp(trailPowerUp)
+		ReplaceOldPowerUp(trailPowerUp, powerUp)
 		trailPowerUp = powerUp
 		return
 	if (powerUp is PowerUpAbility):
 		if (!powerUp.secondAbilitySlot):
-			ReplaceOldPowerUp(ability1PowerUp)
+			ReplaceOldPowerUp(ability1PowerUp, powerUp)
 			ability1PowerUp = powerUp
 			return
-		ReplaceOldPowerUp(ability2PowerUp)
+		ReplaceOldPowerUp(ability2PowerUp, powerUp)
 		ability2PowerUp = powerUp
 	if (powerUp is PowerUpAura):
 		powerUp.Clear()
-		ReplaceOldPowerUp(auraPowerUp)
+		ReplaceOldPowerUp(auraPowerUp, powerUp)
 		auraPowerUp = powerUp
 	if (powerUp is PassivePowerUp):
 		powerUpPassives.push_back(powerUp)
 		return
 
-func RemovePowerUp(powerUp: PowerUp):
+func RemovePowerUp(powerUp: PowerUp, keepBanned: bool):
 	powerUp.powerUpManager = null
-	playerRef.rewardSpawn.UnbanPowerUp(powerUp)
-	powerUp.reparent(playerRef.rewardSpawn)
+	if (!keepBanned): playerRef.rewardSpawn.UnbanPowerUp(powerUp)
+	if (powerUp.get_parent() != playerRef.rewardSpawn): powerUp.reparent(playerRef.rewardSpawn)
 	if (powerUp == contactPowerUp):
 		contactPowerUp = null
 		return
@@ -105,9 +105,16 @@ func FactionCheck(powerUp: PowerUp, factionToCheck: PowerUp.PowerUpFaction):
 		return true
 	return false
 
-func ReplaceOldPowerUp(powerUp: PowerUp):
-	if (powerUp != null):
-		powerUp.UnRegister()
+func ReplaceOldPowerUp(oldPowerUp: PowerUp, newPowerUp: PowerUp):
+	if (oldPowerUp != null):
+		if (!newPowerUp.GetPowerUpTree().has(oldPowerUp)):
+			var oldPowerUpTree: Array[PowerUp] = oldPowerUp.GetPowerUpTree()
+			for i in oldPowerUpTree.size():
+				if (i == 0):
+					oldPowerUp.UnRegister(false)
+				else: oldPowerUp.UnRegister(true)
+		else:
+			oldPowerUp.UnRegister(true)
 
 func HitDirect(enemyController: EnemyController):
 	if (contactPowerUp != null):

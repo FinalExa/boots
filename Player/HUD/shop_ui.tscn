@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://wdxseiaaybud"]
 
-[ext_resource type="Script" path="res://Player/Scripts/ShopUI.gd" id="1_2idad"]
+[ext_resource type="Script" path="res://Player/HUD/Scripts/ShopUI.gd" id="1_2idad"]
 [ext_resource type="Texture2D" uid="uid://8ifoql405v7w" path="res://PowerUps/Sprites/Characters/look_alook.png" id="2_wrkym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tfaqw"]

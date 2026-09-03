@@ -11,9 +11,7 @@
 [ext_resource type="Script" path="res://Player/Scripts/PlayerHealth.gd" id="5_dqtuw"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
 [ext_resource type="Script" path="res://Player/Scripts/CurrentObjectiveUI.gd" id="6_vo4ho"]
-[ext_resource type="PackedScene" uid="uid://bxn2uta6y2ij0" path="res://Player/power_up_ui.tscn" id="9_055o7"]
 [ext_resource type="PackedScene" uid="uid://y1tyx8ap1e4c" path="res://Player/first_speed_hitbox.tscn" id="11_tk2g5"]
-[ext_resource type="PackedScene" uid="uid://wdxseiaaybud" path="res://Player/shop_ui.tscn" id="11_umy70"]
 [ext_resource type="PackedScene" uid="uid://b71q2rjh5oown" path="res://Player/second_speed_hitbox.tscn" id="12_psnq3"]
 [ext_resource type="PackedScene" uid="uid://3bj114kxasu7" path="res://Player/third_speed_hitbox.tscn" id="13_gt5g5"]
 [ext_resource type="Script" path="res://Player/Scripts/PowerUpManager.gd" id="16_1u6or"]
@@ -46,6 +44,8 @@
 [ext_resource type="Texture2D" uid="uid://p8sl20lbj2ow" path="res://Player/HUD/Sprites/keyboard_ctrl.png" id="33_lvn6i"]
 [ext_resource type="Texture2D" uid="uid://dk3yrg8wcqva3" path="res://Player/HUD/Sprites/controller_button_right.png" id="36_7c3ge"]
 [ext_resource type="PackedScene" uid="uid://cfv3idhdh5mps" path="res://MissionSelect/mission_select_path.tscn" id="43_enpf3"]
+[ext_resource type="PackedScene" uid="uid://bxn2uta6y2ij0" path="res://Player/HUD/power_up_ui.tscn" id="44_febsl"]
+[ext_resource type="PackedScene" uid="uid://wdxseiaaybud" path="res://Player/HUD/shop_ui.tscn" id="45_7rblj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upbqd"]
 radius = 16.0
@@ -175,8 +175,8 @@ playerSpeedThresholds = NodePath("PlayerRotator/PlayerSpeedThresholds")
 playerInputs = NodePath("PlayerInputs")
 playerShooting = NodePath("PlayerAim/PlayerShooting")
 playerRotator = NodePath("PlayerRotator")
-powerUpUI = NodePath("PlayerUI/PowerUpUI")
-shopUI = NodePath("PlayerUI/ShopUI")
+powerUpUI = NodePath("")
+shopUI = NodePath("")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 missionSelectPath = NodePath("PlayerUI/MissionSelectPath")
@@ -542,10 +542,10 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 playerRef = NodePath("../..")
 
-[node name="PowerUpUI" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("9_055o7")]
+[node name="PowerUpUI" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("44_febsl")]
 playerRef = NodePath("../..")
 
-[node name="ShopUI" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("11_umy70")]
+[node name="ShopUI" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("45_7rblj")]
 playerRef = NodePath("../..")
 
 [node name="PauseMenu" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("27_8sjqk")]

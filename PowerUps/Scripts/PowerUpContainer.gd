@@ -3,7 +3,7 @@ extends Node2D
 
 @export var powerUpFaction: PowerUp.PowerUpFaction
 @export var powerUps: Array[PowerUp]
-var bannedPowerUps: Array[PowerUp]
+@export var bannedPowerUps: Array[PowerUp]
 
 func BanPowerUp(receivedPowerUp: PowerUp):
 	bannedPowerUps.push_back(receivedPowerUp)

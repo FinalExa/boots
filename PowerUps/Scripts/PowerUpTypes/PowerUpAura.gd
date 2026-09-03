@@ -9,7 +9,7 @@ var index: int
 var oldIndex: int = 0
 var currentPowerUp: PowerUpObjects
 
-func _ready():
+func ReadyOperations():
 	currentTimer = delay
 
 func _process(delta):

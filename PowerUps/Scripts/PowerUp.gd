@@ -10,16 +10,36 @@ enum PowerUpFaction {
 @export var powerUpDescription: String
 @export var powerUpFaction: PowerUpFaction
 
+@export var previousPowerUp: PowerUp
+@export var nextPowerUp: PowerUp
+
 var playerRef: PlayerCharacter
 var powerUpManager: PowerUpManager
+var parent: Node2D
+
+func _ready():
+	parent = self.get_parent()
+	ReadyOperations()
+
+func ReadyOperations():
+	pass
 
 func Register(player: PlayerCharacter):
 	powerUpManager.AssignPowerUp(self)
 	playerRef = player
 
-func UnRegister():
-	powerUpManager.RemovePowerUp(self)
+func UnRegister(keepBanned: bool):
+	powerUpManager.RemovePowerUp(self, keepBanned)
 	playerRef = null
+
+func GetPowerUpTree():
+	var powerUps: Array[PowerUp] = []
+	powerUps.push_front(self)
+	var powerUp: PowerUp = self
+	while (powerUp.previousPowerUp != null):
+		powerUp = previousPowerUp
+		powerUps.push_front(powerUp)
+	return powerUps
 
 func InitializePowerUpObject(powerUpObject: PowerUpObjects):
 	powerUpObject.SetBaseStats()

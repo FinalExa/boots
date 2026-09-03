@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bea5pnuv454uf"]
+
+[ext_resource type="Script" path="res://Player/HUD/Scripts/PowerUpSelector.gd" id="1_3oj4w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iihoj"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+
+[node name="PowerUpSelector" type="Control" node_paths=PackedStringArray("button", "upgradeLabel")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 896.0
+offset_bottom = 128.0
+script = ExtResource("1_3oj4w")
+button = NodePath("Button")
+upgradeLabel = NodePath("Label")
+baseUpgradeText = "UPGRADES FROM "
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = -48.0
+offset_right = 260.0
+offset_bottom = -3.0
+text = "UPGRADES FROM "
+label_settings = SubResource("LabelSettings_iihoj")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_right = 896.0
+offset_bottom = 128.0
+
+[connection signal="button_up" from="Button" to="." method="onButtonPressed"]
