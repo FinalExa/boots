@@ -14,13 +14,13 @@ func RegisterPowerUps(receivedPowerUps: Array[PowerUp]):
 		if (i < receivedPowerUps.size()):
 			receivedPowerUps[i].reparent(powerUpSelectors[i].button)
 			powerUpSelectors[i].button.text = str(receivedPowerUps[i].powerUpName, "\n", receivedPowerUps[i].powerUpDescription)
-			powerUpSelectors[i].button.show()
+			powerUpSelectors[i].show()
 			if (receivedPowerUps[i].previousPowerUp != null):
-				powerUpSelectors[i].ShowUpgradeLabel(receivedPowerUps[i].powerUpName)
+				powerUpSelectors[i].ShowUpgradeLabel(receivedPowerUps[i].previousPowerUp.powerUpName)
 			else:
 				powerUpSelectors[i].HideUpgradeLabel()
 		else :
-			powerUpSelectors[i].button.hide()
+			powerUpSelectors[i].hide()
 	if (receivedPowerUps.size() > 0):
 		playerRef.inSelectMenu = true
 		get_tree().paused = true
@@ -31,7 +31,7 @@ func OnButtonPressed(buttonId: int):
 	selectedPowerUp.reparent(playerRef.powerUpManager)
 	selectedPowerUp.global_position = playerRef.powerUpManager.global_position
 	selectedPowerUp.global_rotation = playerRef.powerUpManager.global_rotation
-	selectedPowerUp.powerUpManager = selectedPowerUp.get_parent()
+	selectedPowerUp.powerUpManager = playerRef.powerUpManager
 	selectedPowerUp.Register(playerRef)
 	rewardSpawn.BanPowerUp(selectedPowerUp)
 	if (selectedPowerUp.nextPowerUp != null): rewardSpawn.UnbanPowerUp(selectedPowerUp.nextPowerUp)
@@ -42,7 +42,7 @@ func OnButtonPressed(buttonId: int):
 
 func ClearPowerUps():
 	for i in powerUpSelectors.size():
-		if (powerUpSelectors[i].get_child_count() > 0):
+		if (powerUpSelectors[i].button.get_child_count() > 0):
 			var powerUpToRemove: PowerUp = powerUpSelectors[i].button.get_child(0)
 			powerUpToRemove.reparent(playerRef.rewardSpawn)
 			powerUpSelectors[i].button.text = ""

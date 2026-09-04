@@ -110,8 +110,7 @@ func ReplaceOldPowerUp(oldPowerUp: PowerUp, newPowerUp: PowerUp):
 		if (!newPowerUp.GetPowerUpTree().has(oldPowerUp)):
 			var oldPowerUpTree: Array[PowerUp] = oldPowerUp.GetPowerUpTree()
 			for i in oldPowerUpTree.size():
-				if (i == 0):
-					oldPowerUp.UnRegister(false)
+				if (i == 0): oldPowerUp.UnRegister(false)
 				else: oldPowerUp.UnRegister(true)
 		else:
 			oldPowerUp.UnRegister(true)

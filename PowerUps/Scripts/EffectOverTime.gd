@@ -13,7 +13,8 @@ enum Frequency
 {
 	CONSTANT,
 	INTERVAL,
-	END
+	END,
+	CONDITIONAL
 }
 
 func _process(delta):

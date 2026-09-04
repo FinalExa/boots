@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq575ee2encbc"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAura.gd" id="1_exvck"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_fotwm"]
+
+[node name="AuraBombTier2" type="Node2D" node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_exvck")
+spawners = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
+delay = 0.75
+powerUpName = "Enhanced Aura Bomb"
+powerUpDescription = "Explosions periodically happen around you. Enemies hit receive an extra explosion."
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("2_fotwm")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Aura/aura_bomb_1_t2.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_fotwm")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Aura/aura_bomb_2_t2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_fotwm")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Aura/aura_bomb_3_t2.tscn"

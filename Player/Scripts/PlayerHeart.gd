@@ -7,9 +7,9 @@ var targetValue: float
 var positive: bool
 var valueChangeActive: bool
 
-func Startup(max: float, min: float):
-	max_value = max * mult
-	min_value = min * mult
+func Startup(maxV: float, minV: float):
+	max_value = maxV * mult
+	min_value = minV * mult
 	SetFull()
 
 func _process(delta):
@@ -37,5 +37,5 @@ func UpdateValueLive(delta):
 				value = clamp(value + delta * mult * valueChangeSpeedPerSecond, 0, targetValue)
 			else:
 				value = clamp (value - delta * mult * valueChangeSpeedPerSecond, targetValue, max_value)
-		return
+			return
 		valueChangeActive = false

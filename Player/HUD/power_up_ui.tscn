@@ -62,7 +62,7 @@ buttonId = 1
 layout_mode = 0
 offset_top = 424.0
 offset_bottom = 552.0
-buttonId = 1
+buttonId = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1152, 232)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnhq1u0i3cb56"]
+[gd_scene load_steps=12 format=3 uid="uid://bnhq1u0i3cb56"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_305qo"]
 [ext_resource type="PackedScene" uid="uid://c3632ikuev61a" path="res://PowerUps/Bomb/area_passive_bomb.tscn" id="2_ki27m"]
@@ -10,10 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://ctyjdefimvi8b" path="res://PowerUps/Bomb/aura_bomb.tscn" id="8_d1ai0"]
 [ext_resource type="PackedScene" uid="uid://buw1ifal2wysn" path="res://PowerUps/Bomb/ability1_bomb.tscn" id="8_o8o73"]
 [ext_resource type="PackedScene" uid="uid://tgw74w22bhdl" path="res://PowerUps/Bomb/ability2_bomb.tscn" id="9_33a68"]
+[ext_resource type="PackedScene" uid="uid://bq575ee2encbc" path="res://PowerUps/Bomb/aura_bomb_tier2.tscn" id="9_okxov"]
 
-[node name="Bomb" type="Node2D" node_paths=PackedStringArray("powerUps")]
+[node name="Bomb" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps")]
 script = ExtResource("1_305qo")
-powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb"), NodePath("ShootBomb"), NodePath("AuraBomb"), NodePath("Ability1Bomb"), NodePath("Ability2Bomb")]
+powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb"), NodePath("ShootBomb"), NodePath("AuraBomb"), NodePath("AuraBombTier2"), NodePath("Ability1Bomb"), NodePath("Ability2Bomb")]
+bannedPowerUps = [NodePath("AuraBombTier2")]
 
 [node name="AreaPassiveBomb" parent="." instance=ExtResource("2_ki27m")]
 
@@ -27,7 +29,11 @@ powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("Dama
 
 [node name="ShootBomb" parent="." instance=ExtResource("7_qcwqm")]
 
-[node name="AuraBomb" parent="." instance=ExtResource("8_d1ai0")]
+[node name="AuraBomb" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("8_d1ai0")]
+nextPowerUp = NodePath("../AuraBombTier2")
+
+[node name="AuraBombTier2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("9_okxov")]
+previousPowerUp = NodePath("../AuraBomb")
 
 [node name="Ability1Bomb" parent="." instance=ExtResource("8_o8o73")]
 
