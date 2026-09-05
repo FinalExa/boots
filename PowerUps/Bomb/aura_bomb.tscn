@@ -6,7 +6,7 @@
 [node name="AuraBomb" type="Node2D" node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_mdw5x")
 spawners = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
-delay = 0.75
+delay = 0.45
 powerUpName = "Aura Bomb"
 powerUpDescription = "Explosions periodically happen around you."
 

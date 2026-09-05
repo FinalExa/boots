@@ -10,13 +10,12 @@ radius = 320.0
 [node name="AuraBomb3T2" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
 script = ExtResource("1_0na31")
 explosionDuration = 0.1
-explosionDamage = 60
+explosionDamage = 30
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
-hasExplosionEffect = true
-explosionEffectDamage = 25.0
-explosionEffectCountdown = 1.0
+hasExplosionExtra = true
+explosionExtraReference = "res://PowerUps/Bomb/SpawnedObjects/Aura/aura_bomb_sticky_3.tscn"
 
 [node name="BombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_5r80h")

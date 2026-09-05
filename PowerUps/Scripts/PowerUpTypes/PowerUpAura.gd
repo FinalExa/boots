@@ -15,6 +15,10 @@ func ReadyOperations():
 func _process(delta):
 	if (powerUpManager != null):
 		AuraEffect(delta)
+		return
+	if (currentPowerUp != null):
+		currentPowerUp.DeleteSelf()
+		currentPowerUp = null
 
 func AuraEffect(delta):
 	index = powerUpManager.playerSpeedThresholds.speedIndex

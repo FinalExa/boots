@@ -13,6 +13,7 @@ signal repelled
 @export var targetPointer: TargetPointer
 @export var attackDistance: float
 @export var damageImmunityDuration: float
+@export var attachedObjects: Node2D
 
 var currentEffectOverTime: EffectOverTime
 var playerRef: PlayerCharacter

@@ -10,7 +10,7 @@ radius = 96.3328
 [node name="AuraBomb1" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
 script = ExtResource("1_kqqyd")
 explosionDuration = 0.1
-explosionDamage = 15
+explosionDamage = 7
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")

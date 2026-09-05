@@ -6,7 +6,7 @@
 [node name="AuraBombTier2" type="Node2D" node_paths=PackedStringArray("spawners")]
 script = ExtResource("1_exvck")
 spawners = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
-delay = 0.75
+delay = 0.4
 powerUpName = "Enhanced Aura Bomb"
 powerUpDescription = "Explosions periodically happen around you. Enemies hit receive an extra explosion."
 

@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bllhlg88xlhba" path="res://MapObjects/slowing_ground.tscn" id="7_qlnci"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8mks2"]
-vertices = PackedVector2Array(3104, -1312, 3104, 1184, 2400, 1888, 1952, 928, 1952, -928, 2400, -2016, 1056, 1888, 1728, 1152, 2400, 2912, 1056, 2912, 1736, -1152, 1056, -2016, 352, -1312, 1504, -928, 352, 1184, 1504, 928)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 3, 2, 8, 9), PackedInt32Array(5, 4, 10, 11), PackedInt32Array(12, 11, 10, 13), PackedInt32Array(14, 12, 13, 15, 6), PackedInt32Array(6, 15, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(352, -1312, 1056, -2016, 2400, -2016, 3104, -1312, 3104, 1184, 2400, 1888, 2400, 2912, 1056, 2912, 1056, 1888, 352, 1184), PackedVector2Array(1736, -1152, 1952, -928, 1952, 928, 1728, 1152, 1504, 928, 1504, -928)])
+vertices = PackedVector2Array(3104, -1312, 3104, 1184, 2400, 1888, 2048, 928, 2048, -928, 2400, -2016, 1056, 1888, 1728, 1152, 2400, 2912, 1056, 2912, 1056, -2016, 1736, -1152, 352, -1312, 1408, -928, 352, 1184, 1408, 928)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 3, 2, 8, 9), PackedInt32Array(10, 5, 4, 11), PackedInt32Array(12, 10, 11, 13), PackedInt32Array(14, 12, 13, 15, 6), PackedInt32Array(6, 15, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(352, -1312, 1056, -2016, 2400, -2016, 3104, -1312, 3104, 1184, 2400, 1888, 2400, 2912, 1056, 2912, 1056, 1888, 352, 1184), PackedVector2Array(1736, -1152, 2048, -928, 2048, 928, 1728, 1152, 1408, 928, 1408, -928)])
 
 [node name="Lab_D1_02" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
 script = ExtResource("1_rbvnn")

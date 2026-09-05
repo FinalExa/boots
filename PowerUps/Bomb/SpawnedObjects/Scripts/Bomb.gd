@@ -10,23 +10,17 @@ extends PowerUpObjects
 @export var bombSprite: Sprite2D
 @export var explosionSprite: Sprite2D
 @export var explodeWhenOneEnemyIsInRange: bool
-@export var hasExplosionEffect: bool
-@export var explosionEffect: String = "res://PowerUps/Bomb/SpawnedObjects/bomb_delayed_explosion.tscn"
-@export var explosionEffectDamage: float
-@export var explosionEffectCountdown: float
+@export var hasExplosionExtra: bool
+@export var explosionExtraReference: String
 
 var baseDamage: float
 var baseCooldown: float
 var baseColliderSize: Vector2
 var baseSpriteSize: Vector2
-var baseEffectDamage: float
-var baseEffectCountdown: float
 var currentDamage: float
 var currentCooldown: float
 var currentColliderSize: Vector2
 var currentSpriteSize: Vector2
-var currentEffectDamage: float
-var currentEffectCountdown: float
 var timer: float
 var enemiesInRange: Array[EnemyController]
 var damagedEnemies: Array[EnemyController]
@@ -48,18 +42,12 @@ func SetBaseStats():
 	currentColliderSize = baseColliderSize
 	baseSpriteSize = explosionSprite.scale
 	currentSpriteSize = baseSpriteSize
-	baseEffectDamage = explosionEffectDamage
-	currentEffectDamage = baseEffectDamage
-	baseEffectCountdown = explosionEffectCountdown
-	currentEffectCountdown = baseEffectDamage
 
 func IncreaseStats(damage: float, size: float, time: float, specialObject: String):
 	currentDamage += (baseDamage * (damage / 100))
 	currentCooldown += (baseCooldown * (time / 100))
 	currentColliderSize += (baseColliderSize * (size / 100))
 	currentSpriteSize += (baseSpriteSize * (size / 100))
-	currentEffectDamage += (baseEffectDamage * (damage / 100))
-	currentEffectCountdown = clamp(baseEffectDamage - (baseEffectDamage * (damage / 100)), 0, baseEffectDamage)
 	SpawnSpecialObject(specialObject)
 	pass
 
@@ -86,10 +74,21 @@ func DamageEnemies():
 	for i in enemiesInRange.size():
 		if (enemiesInRange[i] != null):
 			enemiesInRange[i].ReceiveDamage(currentDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime)
-			if (hasExplosionEffect && enemiesInRange[i].currentEffectOverTime == null):
-				enemiesInRange[i].SetEffectOverTime(SpawnExplosionEffect())
+			CheckForAttach(enemiesInRange[i])
 			damagedEnemies.push_back(enemiesInRange[i])
 	enemiesInRange.clear()
+
+func CheckForAttach(enemy: EnemyController):
+	if (hasExplosionExtra):
+		var extraBomb = SpawnExtra(explosionExtraReference)
+		if (extraBomb is Bomb):
+			for i in enemy.attachedObjects.get_child_count():
+				if (enemy.attachedObjects.get_child(i) is Bomb):
+					extraBomb.call_deferred("DeleteSelf")
+					return
+			enemy.add_child(extraBomb)
+			extraBomb.global_position = enemy.global_position
+			powerUpRef.InitializePowerUpObject(extraBomb)
 
 func AutoTriggerExplosion():
 	if (explodeWhenOneEnemyIsInRange && enemiesInRange.size() > 0):
@@ -107,10 +106,7 @@ func _on_explosion_area_body_exited(body):
 func AlternativeOutcome():
 	timer = 0
 
-
-func SpawnExplosionEffect():
-	var obj_scene = load(explosionEffect)
-	var obj: BombDelayedExplosion = obj_scene.instantiate()
-	obj.duration = currentEffectCountdown
-	obj.damage = currentEffectDamage
+func SpawnExtra(objToSpawn: String):
+	var obj_scene = load(objToSpawn)
+	var obj = obj_scene.instantiate()
 	return obj

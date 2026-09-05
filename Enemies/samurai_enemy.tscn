@@ -30,7 +30,7 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 1088.12
 
-[node name="SamuraiEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer")]
+[node name="SamuraiEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects")]
 script = ExtResource("1_tjy26")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
@@ -41,6 +41,7 @@ enemyShielded = NodePath("EnemyShielded")
 targetPointer = NodePath("TargetPointer")
 attackDistance = 500.0
 damageImmunityDuration = 0.3
+attachedObjects = NodePath("AttachedObjects")
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -85,6 +86,8 @@ enemyController = NodePath("..")
 script = ExtResource("9_x73x5")
 shieldSprite = NodePath("../ShieldSprite")
 
+[node name="AttachedObjects" type="Node2D" parent="."]
+
 [node name="EnemyUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -128,7 +131,6 @@ characterRef = NodePath("../..")
 position = Vector2(32, -32)
 script = ExtResource("12_w46t3")
 reducedSpeed = 1000.0
-fullDamage = 30.0
 partialDamage = 5.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 
@@ -142,7 +144,6 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 24, -56, 8, -64, -8, -64, -24, -
 position = Vector2(-32, -32)
 script = ExtResource("12_w46t3")
 reducedSpeed = 1000.0
-fullDamage = 30.0
 partialDamage = 5.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 
@@ -156,7 +157,6 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 24, -56, 8, -64, -8, -64, -24, -
 position = Vector2(0, -32)
 script = ExtResource("12_w46t3")
 reducedSpeed = 1000.0
-fullDamage = 30.0
 partialDamage = 5.0
 hitSound = NodePath("../../../Sounds/EnemyDirect")
 

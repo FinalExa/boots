@@ -70,7 +70,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 1920.27
 
-[node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("bossRobotMissileCheck", "enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer")]
+[node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("bossRobotMissileCheck", "enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects")]
 script = ExtResource("1_c3stw")
 bossRobotMissileCheck = NodePath("BossRobotMissileCheck")
 enemyMovement = NodePath("EnemyMovement")
@@ -82,6 +82,7 @@ enemyShielded = NodePath("EnemyShielded")
 targetPointer = NodePath("TargetPointer")
 attackDistance = 500.0
 damageImmunityDuration = 0.3
+attachedObjects = NodePath("AttachedObjects")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 64)
@@ -125,6 +126,8 @@ shieldSprite = NodePath("../ShieldSprite")
 script = ExtResource("8_xvxff")
 missileAttackCooldown = 35.0
 pointDistance = 50.0
+
+[node name="AttachedObjects" type="Node2D" parent="."]
 
 [node name="EnemyUI" type="Control" parent="."]
 layout_mode = 3

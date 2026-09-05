@@ -31,7 +31,7 @@ radius = 1089.44
 [sub_resource type="CircleShape2D" id="CircleShape2D_n2qao"]
 radius = 576.0
 
-[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer")]
+[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects")]
 script = ExtResource("1_exjgg")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
@@ -42,6 +42,7 @@ enemyShielded = NodePath("EnemyShielded")
 targetPointer = NodePath("TargetPointer")
 attackDistance = 500.0
 damageImmunityDuration = 0.3
+attachedObjects = NodePath("AttachedObjects")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2vjwt")
@@ -77,6 +78,8 @@ enemyController = NodePath("..")
 [node name="EnemyShielded" type="Node" parent="." node_paths=PackedStringArray("shieldSprite")]
 script = ExtResource("7_p0pxy")
 shieldSprite = NodePath("../ShieldSprite")
+
+[node name="AttachedObjects" type="Node2D" parent="."]
 
 [node name="EnemyUI" type="Control" parent="."]
 layout_mode = 3

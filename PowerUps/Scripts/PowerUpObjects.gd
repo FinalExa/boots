@@ -3,6 +3,7 @@ extends Node2D
 
 @export var powerUpFaction: PowerUp.PowerUpFaction
 @export var destroyOnEnd: Node2D
+var powerUpRef: PowerUp
 var ref: Node2D
 
 func ApplyPowerUps(powerUpManager: PowerUpManager):
