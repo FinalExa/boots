@@ -43,7 +43,7 @@ func EffectOverTimeTimer(delta):
 					return
 			if (frequencyType == Frequency.END):
 				ExecuteEffect(delta)
-		call_deferred("DeleteSelf")
+		ref.UnsetEffectOverTime(self)
 
 func ExecuteEffect(_delta):
 	pass

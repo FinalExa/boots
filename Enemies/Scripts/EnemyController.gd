@@ -15,7 +15,7 @@ signal repelled
 @export var damageImmunityDuration: float
 @export var attachedObjects: Node2D
 
-var currentEffectOverTime: EffectOverTime
+var currentEffectsOverTime: Array[EffectOverTime]
 var playerRef: PlayerCharacter
 var damageImmunityTimer: float
 var repelledTimer: float
@@ -62,20 +62,28 @@ func EnemyDeath():
 		spawnerRef.ReceivedCallFromDeletedSpawnedObject(self)
 
 func SetEffectOverTime(effect: EffectOverTime):
-	if (currentEffectOverTime == null):
-		effect.ref = self
-		currentEffectOverTime = effect
-		call_deferred("PlaceEffect", effect)
-		effect.Initialize()
+	if (!currentEffectsOverTime.has(effect)):
+		AddEffectOverTime(effect)
 		return
 	effect.call_deferred("DeleteSelf")
+
+func AddEffectOverTime(effect: EffectOverTime):
+	effect.ref = self
+	currentEffectsOverTime.push_back(effect)
+	call_deferred("PlaceEffect", effect)
+	effect.Initialize()
 
 func PlaceEffect(effect: EffectOverTime):
 	add_child(effect)
 	effect.global_position = self.global_position
 
-func UnsetEffectOverTime():
-	if (currentEffectOverTime != null):
-		var effect: EffectOverTime = currentEffectOverTime
-		currentEffectOverTime = null
+func UnsetEffectOverTime(effect: EffectOverTime):
+	if (currentEffectsOverTime.has(effect)):
+		currentEffectsOverTime.erase(effect)
 		effect.call_deferred("DeleteSelf")
+
+func UnsetEffectsOverTime():
+	if (currentEffectsOverTime.size() > 0):
+		for i in currentEffectsOverTime.size():
+			currentEffectsOverTime[i].call_deferred("DeleteSelf")
+		currentEffectsOverTime.clear()
