@@ -87,12 +87,11 @@ func DoDamage():
 
 func ApplyDOT():
 	if (appliesDOT):
-		if (ref != null && ref is EnemyController && ref.currentEffectOverTime == null):
+		if (ref != null && ref is EnemyController):
 			ref.SetEffectOverTime(SpawnDoT())
 		if (enemiesInRange.size() > 0):
 			for i in enemiesInRange.size():
-				if (enemiesInRange[i].currentEffectOverTime == null):
-					enemiesInRange[i].SetEffectOverTime(SpawnDoT())
+				enemiesInRange[i].SetEffectOverTime(SpawnDoT())
 
 func SpawnDoT():
 	var obj_scene = load(DOTRef)
