@@ -62,10 +62,13 @@ func EnemyDeath():
 		spawnerRef.ReceivedCallFromDeletedSpawnedObject(self)
 
 func SetEffectOverTime(effect: EffectOverTime):
-	if (!currentEffectsOverTime.has(effect)):
-		AddEffectOverTime(effect)
-		return
-	effect.call_deferred("DeleteSelf")
+	for i in currentEffectsOverTime.size():
+		if (currentEffectsOverTime[i].effectName == effect.effectName):
+			if (effect.stackable):
+				currentEffectsOverTime[i].Stack(effect)
+			effect.call_deferred("DeleteSelf")
+			return
+	AddEffectOverTime(effect)
 
 func AddEffectOverTime(effect: EffectOverTime):
 	effect.ref = self

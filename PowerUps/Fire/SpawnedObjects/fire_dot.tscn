@@ -20,6 +20,8 @@ animations = [{
 
 [node name="FireDoT" type="Node2D"]
 script = ExtResource("1_ptxhh")
+effectName = "FireDoT"
+stackable = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.490196)

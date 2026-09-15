@@ -2,7 +2,6 @@ class_name PowerUpObjects
 extends Node2D
 
 @export var powerUpFaction: PowerUp.PowerUpFaction
-@export var destroyOnEnd: Node2D
 var powerUpRef: PowerUp
 var ref: Node2D
 
@@ -25,10 +24,7 @@ func SpawnSpecialObject(specialObject: String):
 		pass
 
 func DeleteSelf():
-	if (destroyOnEnd == null):
-		queue_free()
-	else:
-		destroyOnEnd.queue_free()
+	queue_free()
 
 func Finalize():
 	pass

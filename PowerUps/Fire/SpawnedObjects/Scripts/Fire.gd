@@ -99,6 +99,7 @@ func SpawnDoT():
 	var obj: FireDoT = obj_scene.instantiate()
 	obj.duration = currentDOTDuration
 	obj.damage = currentDOT
+	obj.source = powerUpRef
 	return obj
 
 func StartStationary():

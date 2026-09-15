@@ -27,7 +27,7 @@ func HealthUpdate(valueChange: float):
 		if (currentObjective != null):
 			currentObjective.RequestEnemyData(enemyController)
 		emit_signal("enemyDeath")
-		enemyController.UnsetEffectOverTime()
+		enemyController.UnsetEffectsOverTime()
 		enemyController.enemyAttack.frameMaster.RemoveAttack(enemyController.enemyAttack)
 		enemyController.queue_free()
 

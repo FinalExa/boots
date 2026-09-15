@@ -8,9 +8,6 @@ radius = 16.0
 [node name="FireShoot1" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape")]
 script = ExtResource("1_ljhk3")
 trueDamage = 5.0
-appliesDOT = true
-DOT = 10.0
-DOTDuration = 2.0
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 powerUpFaction = 1
 

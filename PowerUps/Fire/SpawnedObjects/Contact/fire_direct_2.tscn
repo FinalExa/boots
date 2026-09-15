@@ -6,6 +6,6 @@
 script = ExtResource("1_pjqgm")
 trueDamage = 10.0
 appliesDOT = true
-DOT = 10.0
-DOTDuration = 5.0
+DOT = 5.0
+DOTDuration = 3.0
 powerUpFaction = 1

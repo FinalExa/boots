@@ -23,9 +23,6 @@ radius = 32.0
 
 [node name="FireAbility2_1" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
 script = ExtResource("1_xp7qa")
-appliesDOT = true
-DOT = 3.0
-DOTDuration = 3.0
 stationary = true
 stationaryDOT = 5.0
 stationaryDuration = 5.0

@@ -4,8 +4,8 @@
 
 [node name="FireDirect3" type="Node2D"]
 script = ExtResource("1_yemya")
-trueDamage = 10.0
+trueDamage = 15.0
 appliesDOT = true
-DOT = 20.0
-DOTDuration = 5.0
+DOT = 10.0
+DOTDuration = 3.0
 powerUpFaction = 1

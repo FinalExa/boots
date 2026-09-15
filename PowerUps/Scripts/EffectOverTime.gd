@@ -1,13 +1,16 @@
 class_name EffectOverTime
 extends Node2D
 
+@export var effectName: String
 @export var frequencyType: Frequency
+@export var stackable: bool
 var ref: EnemyController
 var initialized: bool
 var duration: float
 var timer: float
 var intervalDuration: float
 var intervalTimer: float
+var source: PowerUp
 
 enum Frequency
 {
@@ -50,3 +53,6 @@ func ExecuteEffect(_delta):
 
 func DeleteSelf():
 	queue_free()
+
+func Stack(effect: EffectOverTime):
+	pass

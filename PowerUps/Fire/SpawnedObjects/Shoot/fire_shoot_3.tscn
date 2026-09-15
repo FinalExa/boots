@@ -9,8 +9,8 @@ radius = 16.0
 script = ExtResource("1_0b2xc")
 trueDamage = 20.0
 appliesDOT = true
-DOT = 25.0
-DOTDuration = 2.0
+DOT = 5.0
+DOTDuration = 3.0
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 powerUpFaction = 1
 
