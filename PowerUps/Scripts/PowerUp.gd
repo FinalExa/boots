@@ -48,7 +48,6 @@ func GetPowerUpTree():
 
 func InitializePowerUpObject(powerUpObject: PowerUpObjects):
 	powerUpObject.powerUpRef = self
-	powerUpObject.SetBaseStats()
 	powerUpObject.ApplyPowerUps(powerUpManager, passiveDataID)
 	powerUpObject.Finalize()
 	return powerUpObject
