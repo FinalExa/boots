@@ -7,6 +7,8 @@ extends Node2D
 @export var playerSpeedThresholds: PlayerSpeedThresholds
 @export var speedChargeBar: TextureProgressBar
 @export var speedChargeLabel: Label
+@export var passiveLowTimerCap: float
+@export var powerUpPassiveDataBlocks: Array[PowerUpPassiveDataBlock]
 var contactPowerUp: PowerUpContact
 var shootPowerUp: PowerUpShoot
 var speedChargePowerUp: PowerUpSpeedCharge
@@ -57,6 +59,7 @@ func AssignPowerUp(powerUp: PowerUp):
 		auraPowerUp = powerUp
 	if (powerUp is PassivePowerUp):
 		powerUpPassives.push_back(powerUp)
+		AddPassiveData(powerUp)
 		return
 
 func RemovePowerUp(powerUp: PowerUp, keepBanned: bool):
@@ -87,6 +90,7 @@ func RemovePowerUp(powerUp: PowerUp, keepBanned: bool):
 		return
 	if (powerUpPassives.has(powerUp)):
 		powerUpPassives.erase(powerUp)
+		RemovePassiveData(powerUp)
 		return
 
 func PlayerHasAnyBasePowerUpOfFaction(faction: PowerUp.PowerUpFaction):
@@ -134,3 +138,21 @@ func Ability2Used():
 func ShotTarget(enemyRef: EnemyController):
 	if (enemyRef != null && shootPowerUp != null):
 		shootPowerUp.EffectOnShotTarget(enemyRef, playerSpeedThresholds.speedIndex)
+
+func AddPassiveData(passive: PassivePowerUp):
+	for i in powerUpPassiveDataBlocks.size():
+		if (powerUpPassiveDataBlocks[i].powerUpFaction == passive.powerUpFaction):
+			powerUpPassiveDataBlocks[i].damageBonus += passive.damageChangePercentage
+			powerUpPassiveDataBlocks[i].timeBonus += passive.timeChangePercentage
+			powerUpPassiveDataBlocks[i].sizeBonus += passive.sizeChangePercentage
+			if (passive.specialEffectAdd != ""): powerUpPassiveDataBlocks[i].specialObjects.push_back(passive.specialEffectAdd)
+		return
+
+func RemovePassiveData(passive: PassivePowerUp):
+	for i in powerUpPassiveDataBlocks.size():
+		if (powerUpPassiveDataBlocks[i].powerUpFaction == passive.powerUpFaction):
+			powerUpPassiveDataBlocks[i].damageBonus -= passive.damageChangePercentage
+			powerUpPassiveDataBlocks[i].timeBonus -= passive.timeChangePercentage
+			powerUpPassiveDataBlocks[i].sizeBonus -= passive.sizeChangePercentage
+			if (passive.specialEffectAdd != ""): powerUpPassiveDataBlocks[i].specialObjects.erase(passive.specialEffectAdd)
+		return

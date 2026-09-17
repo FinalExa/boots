@@ -3,7 +3,7 @@ extends PowerUpObjects
 
 @export var explosionCooldown: float
 @export var explosionDuration: float
-@export var explosionDamage: int
+@export var explosionDamage: float
 @export var explosionRepelDistance: float
 @export var explosionRepelTime: float
 @export var explosionCollider: Node2D
@@ -13,10 +13,6 @@ extends PowerUpObjects
 @export var hasExplosionExtra: bool
 @export var explosionExtraReference: String
 
-var baseDamage: float
-var baseCooldown: float
-var baseColliderSize: Vector2
-var baseSpriteSize: Vector2
 var currentDamage: float
 var currentCooldown: float
 var currentColliderSize: Vector2
@@ -33,22 +29,12 @@ func _ready():
 func _process(delta):
 	BombTimer(delta)
 
-func SetBaseStats():
-	baseDamage = explosionDamage
-	currentDamage = baseDamage
-	baseCooldown = explosionCooldown
-	currentCooldown = baseCooldown
-	baseColliderSize = explosionCollider.scale
-	currentColliderSize = baseColliderSize
-	baseSpriteSize = explosionSprite.scale
-	currentSpriteSize = baseSpriteSize
-
-func IncreaseStats(damage: float, size: float, time: float, specialObject: String):
-	currentDamage += (baseDamage * (damage / 100))
-	currentCooldown += (baseCooldown * (time / 100))
-	currentColliderSize += (baseColliderSize * (size / 100))
-	currentSpriteSize += (baseSpriteSize * (size / 100))
-	SpawnSpecialObject(specialObject)
+func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
+	currentDamage = (explosionDamage * (dataBlock.damageBonus / 100))
+	currentCooldown = (explosionCooldown * (dataBlock.timeBonus / 100))
+	currentColliderSize = (explosionCollider.scale * (dataBlock.sizeBonus / 100))
+	currentSpriteSize = (bombSprite.scale * (dataBlock.sizeBonus / 100))
+	SpawnSpecialObjects(dataBlock.specialObjects)
 	pass
 
 func Finalize():

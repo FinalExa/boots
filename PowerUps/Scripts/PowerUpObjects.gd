@@ -5,22 +5,17 @@ extends Node2D
 var powerUpRef: PowerUp
 var ref: Node2D
 
-func ApplyPowerUps(powerUpManager: PowerUpManager):
-	for i in powerUpManager.powerUpPassives.size():
-		if (powerUpManager.powerUpPassives[i].powerUpFaction == powerUpFaction):
-			powerUpManager.powerUpPassives[i].ActivateStatIncrease(self)
+func ApplyPowerUps(powerUpManager: PowerUpManager, id: int):
+	IncreaseStats(powerUpManager.powerUpPassiveDataBlocks[id])
 
 func SetRef(externalRef):
 	ref = externalRef
 
-func SetBaseStats():
+func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
 	pass
 
-func IncreaseStats(_damage: float, _size: float, _time: float, _specialObject: String):
-	pass
-
-func SpawnSpecialObject(specialObject: String):
-	if (specialObject != ""):
+func SpawnSpecialObjects(specialObjects: Array[String]):
+	if (specialObjects.size() > 0):
 		pass
 
 func DeleteSelf():

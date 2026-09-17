@@ -15,6 +15,7 @@ enum PowerUpFaction {
 
 var playerRef: PlayerCharacter
 var powerUpManager: PowerUpManager
+var passiveDataID: int
 var parent: Node2D
 
 func _ready():
@@ -27,6 +28,10 @@ func ReadyOperations():
 func Register(player: PlayerCharacter):
 	powerUpManager.AssignPowerUp(self)
 	playerRef = player
+	for i in powerUpManager.powerUpPassiveDataBlocks.size():
+		if (powerUpManager.powerUpPassiveDataBlocks[i].powerUpFaction == powerUpFaction):
+			passiveDataID = i
+			break
 
 func UnRegister(keepBanned: bool):
 	powerUpManager.RemovePowerUp(self, keepBanned)
@@ -44,7 +49,7 @@ func GetPowerUpTree():
 func InitializePowerUpObject(powerUpObject: PowerUpObjects):
 	powerUpObject.powerUpRef = self
 	powerUpObject.SetBaseStats()
-	powerUpObject.ApplyPowerUps(powerUpManager)
+	powerUpObject.ApplyPowerUps(powerUpManager, passiveDataID)
 	powerUpObject.Finalize()
 	return powerUpObject
 

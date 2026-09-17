@@ -16,19 +16,12 @@ var didDamage: bool
 var stationaryStarted: bool
 var enemiesInRange: Array[EnemyController]
 var timer: float
-var baseDamage: float
 var currentDamage: float
-var baseDOT: float
 var currentDOT: float
-var baseStationaryDOT: float
 var currentStationaryDOT: float
-var baseDOTDuration: float
 var currentDOTDuration: float
-var baseStationaryDuration: float
 var currentStationaryDuration: float
-var baseStationaryAreaSize: Vector2
 var currentStationaryAreaSize: Vector2
-var baseSpriteSize: Vector2
 var currentSpriteSize: Vector2
 
 func _ready():
@@ -42,35 +35,17 @@ func _process(delta):
 		StationaryDamage(delta)
 		if (!stationaryPermanent): StationaryTimer(delta)
 
-func SetBaseStats():
-	baseDamage = trueDamage
-	currentDamage = baseDamage
-	baseDOT = DOT
-	currentDOT = baseDOT
-	baseStationaryDOT = stationaryDOT
-	currentStationaryDOT = baseStationaryDOT
-	baseDOTDuration = DOTDuration
-	currentDOTDuration = baseDOTDuration
-	baseStationaryDuration = stationaryDuration
-	currentStationaryDuration = baseStationaryDuration
+func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
+	currentDamage = (trueDamage * (dataBlock.damageBonus / 100))
+	currentDOT = (DOT * (dataBlock.damageBonus / 100))
+	currentStationaryDOT = (stationaryDOT * (dataBlock.damageBonus / 100))
+	currentDOTDuration = (DOTDuration * (dataBlock.timeBonus / 100))
+	currentStationaryDuration = (stationaryDuration * (dataBlock.timeBonus / 100))
 	if (stationaryAreaCollisionShape != null):
-		baseStationaryAreaSize = stationaryAreaCollisionShape.scale
-		currentStationaryAreaSize = baseStationaryAreaSize
+		currentStationaryAreaSize = (stationaryAreaCollisionShape.scale * (dataBlock.sizeBonus / 100))
 	if (sprite != null):
-		baseSpriteSize = sprite.scale
-		currentSpriteSize = baseSpriteSize
-
-func IncreaseStats(damage: float, size: float, time: float, specialObject: String):
-	currentDamage += (baseDamage * (damage / 100))
-	currentDOT += (baseDOT * (damage / 100))
-	currentStationaryDOT += (baseStationaryDOT * (damage / 100))
-	currentDOTDuration += (baseDOTDuration * (time / 100))
-	currentStationaryDuration += (baseStationaryDuration * (time / 100))
-	if (stationaryAreaCollisionShape != null):
-		currentStationaryAreaSize += (baseStationaryAreaSize * (size / 100))
-	if (sprite != null):
-		currentSpriteSize += (baseSpriteSize * (size / 100))
-	SpawnSpecialObject(specialObject)
+		currentSpriteSize = (sprite.scale * (dataBlock.sizeBonus / 100))
+	SpawnSpecialObjects(dataBlock.specialEffects)
 
 func Finalize():
 	if (stationaryAreaCollisionShape != null):
