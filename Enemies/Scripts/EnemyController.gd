@@ -31,8 +31,8 @@ func _process(delta):
 func _physics_process(_delta):
 	move_and_slide()
 
-func ReceiveDamage(damage: float, repelDistance: float, repelDirection: Vector2, repelTime: float):
-	emit_signal("damaged", damage)
+func ReceiveDamage(damage: float, repelDistance: float, repelDirection: Vector2, repelTime: float, damageSource: Node):
+	emit_signal("damaged", damage, damageSource)
 	ForceStopAttack()
 	if (repelTime > 0):
 		emit_signal("repelled")
@@ -57,9 +57,14 @@ func GetRotator():
 func SetSpawnerRef(receivedRef: ObjectSpawner):
 	spawnerRef = receivedRef
 
-func EnemyDeath():
+func RemoveFromSpawner():
 	if (spawnerRef != null):
 		spawnerRef.ReceivedCallFromDeletedSpawnedObject(self)
+
+func Death():
+	UnsetEffectsOverTime()
+	enemyAttack.frameMaster.RemoveAttack(enemyAttack)
+	queue_free()
 
 func SetEffectOverTime(effect: EffectOverTime):
 	for i in currentEffectsOverTime.size():
@@ -71,10 +76,9 @@ func SetEffectOverTime(effect: EffectOverTime):
 	AddEffectOverTime(effect)
 
 func AddEffectOverTime(effect: EffectOverTime):
-	effect.ref = self
 	currentEffectsOverTime.push_back(effect)
 	call_deferred("PlaceEffect", effect)
-	effect.Initialize()
+	effect.Initialize(self)
 
 func PlaceEffect(effect: EffectOverTime):
 	add_child(effect)

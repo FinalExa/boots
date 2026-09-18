@@ -20,7 +20,7 @@ func CheckForAreas(area):
 		return
 
 func EnemyCollision(enemyRef: EnemyController):
-	enemyRef.enemyHealth.HealthUpdate(-damage)
+	enemyRef.enemyHealth.HealthUpdate(-damage, self)
 	if (playerShooting != null): playerShooting.EnemyHit(enemyRef)
 	call_deferred("DeleteSelf")
 

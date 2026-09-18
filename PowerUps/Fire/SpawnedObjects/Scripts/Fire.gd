@@ -89,7 +89,7 @@ func StationaryTimer(delta):
 
 func StationaryDamage(delta):
 	for i in enemiesInRange.size():
-		enemiesInRange[i].enemyHealth.HealthUpdate(-currentStationaryDOT * delta)
+		enemiesInRange[i].enemyHealth.HealthUpdate(-currentStationaryDOT * delta, self)
 
 func ObjectInArea(body):
 	if (body is EnemyController && !enemiesInRange.has(body)):

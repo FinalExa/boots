@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0gf4nw5elr0w"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/BombShred.gd" id="1_28xs8"]
+
+[node name="BombShred" type="Node2D"]
+script = ExtResource("1_28xs8")
+effectName = "BombShred"
+frequencyType = 3

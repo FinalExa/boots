@@ -194,7 +194,7 @@ enemyController = NodePath("../../..")
 
 [connection signal="damaged" from="." to="EnemyHealth" method="_on_enemy_damaged"]
 [connection signal="repelled" from="." to="EnemyMovement" method="_on_enemy_repelled"]
-[connection signal="enemyDeath" from="EnemyHealth" to="." method="EnemyDeath"]
+[connection signal="enemyDeath" from="EnemyHealth" to="." method="RemoveFromSpawner"]
 [connection signal="enemyDeath" from="EnemyHealth" to="EnemyShielding" method="_on_enemy_health_enemy_death"]
 [connection signal="enemyDeath" from="EnemyHealth" to="TargetPointer" method="DestroyRotator"]
 [connection signal="body_entered" from="EnemyDetection" to="EnemyDetection" method="_on_body_entered"]

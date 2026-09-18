@@ -13,6 +13,6 @@ func _on_body_entered(body):
 func AttackEnemy(enemyController: EnemyController):
 	hitTargets.push_back(enemyController)
 	if (!repels):
-		enemyController.ReceiveDamage(damage, 0, Vector2.ZERO, 0)
+		enemyController.ReceiveDamage(damage, 0, Vector2.ZERO, 0, self)
 	else:
-		enemyController.ReceiveDamage(damage, repelDistance, characterRef.global_position.direction_to(enemyController.global_position), repelTime)
+		enemyController.ReceiveDamage(damage, repelDistance, characterRef.global_position.direction_to(enemyController.global_position), repelTime, self)

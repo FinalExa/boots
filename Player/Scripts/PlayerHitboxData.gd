@@ -104,7 +104,7 @@ func Clash(enemyController: EnemyController):
 
 func DealDamage(enemyController: EnemyController, damageDealt: float, repelDist: float, direction: Vector2, time: float, speedLoss: float, clash: bool):
 	if (!enemyController.damageImmunity):
-		enemyController.ReceiveDamage(damageDealt, repelDist, direction, time)
+		enemyController.ReceiveDamage(damageDealt, repelDist, direction, time, self)
 		if (clash):
 			clashSound.play()
 			emit_signal("hitClash", enemyController)
