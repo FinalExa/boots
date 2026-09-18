@@ -46,7 +46,7 @@ func GetPowerUpTree():
 		powerUps.push_front(powerUp)
 	return powerUps
 
-func InitializePowerUpObject(powerUpObject: PowerUpObjects):
+func InitializePowerUpObject(powerUpObject: PowerUpObject):
 	powerUpObject.powerUpRef = self
 	powerUpObject.ApplyPowerUps(powerUpManager, passiveDataID)
 	powerUpObject.Finalize()
@@ -61,12 +61,12 @@ func LaunchSpawnersWithRef(spawners: Array[ObjectSpawner], ref):
 		CreatePowerUpEffectWithRef(spawners[i], ref)
 
 func CreatePowerUpEffect(spawner: ObjectSpawner):
-	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
+	var spawnedPowerUpObject: PowerUpObject = spawner.SpawnObject()
 	if (spawnedPowerUpObject != null):
 		return InitializePowerUpObject(spawnedPowerUpObject)
 
 func CreatePowerUpEffectWithRef(spawner: ObjectSpawner, ref):
-	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
+	var spawnedPowerUpObject: PowerUpObject = spawner.SpawnObject()
 	if (spawnedPowerUpObject != null):
 		InitializePowerUpObject(spawnedPowerUpObject)
 		spawnedPowerUpObject.SetRef(ref)

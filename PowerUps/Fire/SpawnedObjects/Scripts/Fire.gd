@@ -1,5 +1,5 @@
 class_name Fire
-extends PowerUpObjects
+extends PowerUpObject
 
 @export var trueDamage: float
 @export var appliesDOT: bool

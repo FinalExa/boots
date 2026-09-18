@@ -8,10 +8,10 @@ func EffectOnShotTarget(target: EnemyController, index: int):
 		ApplyPowerUpOnTarget(target, index)
 
 func ApplyPowerUpOnTarget(target: EnemyController, index: int):
-	var powerUp: PowerUpObjects = CreatePowerUpEffect(shootObjectSpawners[index-1])
+	var powerUp: PowerUpObject = CreatePowerUpEffect(shootObjectSpawners[index-1])
 	powerUp.ref = target
 	call_deferred("RepositionPowerUp", powerUp, target)
 
-func RepositionPowerUp(powerUp: PowerUpObjects, target: EnemyController):
+func RepositionPowerUp(powerUp: PowerUpObject, target: EnemyController):
 	if (powerUp.get_parent() != target): powerUp.reparent(target)
 	powerUp.position = Vector2.ZERO

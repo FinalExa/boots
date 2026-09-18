@@ -7,7 +7,7 @@ extends PowerUp
 var currentTimer: float
 var index: int
 var oldIndex: int = 0
-var currentPowerUp: PowerUpObjects
+var currentPowerUp: PowerUpObject
 
 func ReadyOperations():
 	currentTimer = delay
@@ -53,11 +53,11 @@ func Clear():
 		currentPowerUp = null
 
 func CreateAndAssignPowerup():
-	var powerUp: PowerUpObjects = CreatePowerUpEffect(spawners[index-1])
+	var powerUp: PowerUpObject = CreatePowerUpEffect(spawners[index-1])
 	call_deferred("ReparentAssignedPowerUp", powerUp)
 	return powerUp
 
-func ReparentAssignedPowerUp(powerUp: PowerUpObjects):
+func ReparentAssignedPowerUp(powerUp: PowerUpObject):
 	if (powerUp.get_parent() != self || powerUp.get_parent() == null):
 		if (powerUp.get_parent() != null): powerUp.reparent(self)
 		else: add_child(powerUp)

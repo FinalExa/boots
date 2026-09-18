@@ -1,5 +1,5 @@
 class_name Bomb
-extends PowerUpObjects
+extends PowerUpObject
 
 @export var explosionCooldown: float
 @export var explosionDuration: float

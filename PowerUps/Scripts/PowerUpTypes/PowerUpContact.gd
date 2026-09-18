@@ -29,7 +29,7 @@ func SpawnObjects(ref: EnemyController, spawnerArray: Array[ObjectSpawner]):
 		SpawnPowerupObject(spawnerArray[i], ref)
 
 func SpawnPowerupObject(spawner: ObjectSpawner, ref):
-	var spawnedPowerUpObject: PowerUpObjects = spawner.SpawnObject()
+	var spawnedPowerUpObject: PowerUpObject = spawner.SpawnObject()
 	if (spawnedPowerUpObject != null):
 		InitializePowerUpObject(spawnedPowerUpObject)
 		spawnedPowerUpObject.SetRef(ref)

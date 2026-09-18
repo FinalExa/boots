@@ -1,4 +1,4 @@
-class_name PowerUpObjects
+class_name PowerUpObject
 extends Node2D
 
 @export var powerUpFaction: PowerUp.PowerUpFaction
