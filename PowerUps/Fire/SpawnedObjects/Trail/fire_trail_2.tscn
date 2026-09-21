@@ -32,6 +32,10 @@ stationaryDuration = 5.0
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
 powerUpFaction = 1
+hasEffect = true
+effect = "res://PowerUps/Fire/SpawnedObjects/fire_dot.tscn"
+effectDamage = 4.0
+effectDuration = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 9.53674e-07)

@@ -9,3 +9,7 @@ appliesDOT = true
 DOT = 1.5
 DOTDuration = 3.0
 powerUpFaction = 1
+hasEffect = true
+effect = "res://PowerUps/Fire/SpawnedObjects/fire_dot.tscn"
+effectDamage = 1.5
+effectDuration = 3.0

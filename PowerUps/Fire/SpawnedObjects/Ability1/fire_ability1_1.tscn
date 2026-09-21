@@ -25,6 +25,7 @@ radius = 64.1249
 script = ExtResource("1_2e4ns")
 stationary = true
 stationaryDOT = 3.0
+stationaryPermanent = null
 stationaryDuration = 5.0
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")

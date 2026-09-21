@@ -13,6 +13,10 @@ DOT = 5.0
 DOTDuration = 3.0
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 powerUpFaction = 1
+hasEffect = true
+effect = "res://PowerUps/Fire/SpawnedObjects/fire_dot.tscn"
+effectDamage = 10.0
+effectDuration = 3.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
