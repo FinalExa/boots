@@ -87,6 +87,7 @@ func PlaceEffect(effect: EffectOverTime):
 func UnsetEffectOverTime(effect: EffectOverTime):
 	if (currentEffectsOverTime.has(effect)):
 		currentEffectsOverTime.erase(effect)
+		enemyHealth.UnregisterExtraDamageEffect(effect)
 		effect.call_deferred("DeleteSelf")
 
 func UnsetEffectsOverTime():

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnhq1u0i3cb56"]
+[gd_scene load_steps=13 format=3 uid="uid://bnhq1u0i3cb56"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_305qo"]
 [ext_resource type="PackedScene" uid="uid://c3632ikuev61a" path="res://PowerUps/Bomb/area_passive_bomb.tscn" id="2_ki27m"]
 [ext_resource type="PackedScene" uid="uid://b2fdktwhixwui" path="res://PowerUps/Bomb/contact_bomb.tscn" id="3_l1h70"]
 [ext_resource type="PackedScene" uid="uid://bjn1c3owhijvx" path="res://PowerUps/Bomb/damage_passive_bomb.tscn" id="4_7i6hx"]
+[ext_resource type="PackedScene" uid="uid://du415yrw6qjnv" path="res://PowerUps/Bomb/contact_bomb_tier2.tscn" id="4_f777a"]
 [ext_resource type="PackedScene" uid="uid://bdjwha4ch7lm0" path="res://PowerUps/Bomb/speed_charge_bomb.tscn" id="5_v0m00"]
 [ext_resource type="PackedScene" uid="uid://eslqbrcvag7j" path="res://PowerUps/Bomb/trail_bomb.tscn" id="6_by2td"]
 [ext_resource type="PackedScene" uid="uid://s6ijvut8ln2f" path="res://PowerUps/Bomb/shoot_bomb.tscn" id="7_qcwqm"]
@@ -15,11 +16,15 @@
 [node name="Bomb" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps")]
 script = ExtResource("1_305qo")
 powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("TrailBomb"), NodePath("ShootBomb"), NodePath("AuraBomb"), NodePath("AuraBombTier2"), NodePath("Ability1Bomb"), NodePath("Ability2Bomb")]
-bannedPowerUps = [NodePath("AuraBombTier2")]
+bannedPowerUps = [NodePath("AuraBombTier2"), NodePath("ContactBombTier2")]
 
 [node name="AreaPassiveBomb" parent="." instance=ExtResource("2_ki27m")]
 
-[node name="ContactBomb" parent="." instance=ExtResource("3_l1h70")]
+[node name="ContactBomb" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("3_l1h70")]
+nextPowerUp = NodePath("../ContactBombTier2")
+
+[node name="ContactBombTier2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("4_f777a")]
+previousPowerUp = NodePath("../ContactBomb")
 
 [node name="DamagePassiveBomb" parent="." instance=ExtResource("4_7i6hx")]
 

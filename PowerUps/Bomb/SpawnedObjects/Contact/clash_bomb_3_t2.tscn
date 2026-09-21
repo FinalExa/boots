@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg4gxx8vpvsd0"]
+[gd_scene load_steps=5 format=3 uid="uid://5vlioa8seaet"]
 
-[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/Bomb.gd" id="1_kqqyd"]
-[ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="2_uemgn"]
-[ext_resource type="Texture2D" uid="uid://dkvcbpqsrixtp" path="res://PowerUps/Bomb/Sprites/explosion.png" id="3_68u78"]
+[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/Bomb.gd" id="1_wsqw0"]
+[ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="2_umpv8"]
+[ext_resource type="Texture2D" uid="uid://dkvcbpqsrixtp" path="res://PowerUps/Bomb/Sprites/explosion.png" id="3_hwook"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_836y0"]
 radius = 96.3328
 
-[node name="AuraBomb1" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
-script = ExtResource("1_kqqyd")
+[node name="ClashBomb3T2" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
+script = ExtResource("1_wsqw0")
 explosionDuration = 0.1
-explosionDamage = 5.0
+explosionDamage = 20.0
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
 
 [node name="BombSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_uemgn")
+texture = ExtResource("2_umpv8")
 
 [node name="ExplosionSprite" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.196078)
+modulate = Color(1, 1, 1, 0.509804)
 position = Vector2(-1.14441e-05, -1.14441e-05)
 scale = Vector2(5.05263, 5.64706)
-texture = ExtResource("3_68u78")
+texture = ExtResource("3_hwook")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
 

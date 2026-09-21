@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://ces0hjusxvvox"]
+
+[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/Bomb.gd" id="1_1yco5"]
+[ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="2_5ojg5"]
+[ext_resource type="Texture2D" uid="uid://dkvcbpqsrixtp" path="res://PowerUps/Bomb/Sprites/explosion.png" id="3_128h2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_836y0"]
+radius = 128.0
+
+[node name="DirectBomb3T2" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
+script = ExtResource("1_1yco5")
+explosionCooldown = null
+explosionDuration = 0.1
+explosionDamage = 30.0
+explosionRepelDistance = null
+explosionRepelTime = null
+explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
+bombSprite = NodePath("BombSprite")
+explosionSprite = NodePath("ExplosionSprite")
+explodeWhenOneEnemyIsInRange = null
+hasExplosionExtra = null
+explosionExtraReference = null
+hasEffect = true
+effect = "res://PowerUps/Bomb/SpawnedObjects/bomb_shred.tscn"
+effectDamage = 15.0
+effectDuration = 10.0
+
+[node name="BombSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_5ojg5")
+
+[node name="ExplosionSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(-3.8147e-06, -5.72205e-06)
+scale = Vector2(6.73684, 7.52941)
+texture = ExtResource("3_128h2")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_836y0")
+
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
+[connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]

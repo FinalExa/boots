@@ -17,6 +17,8 @@ var currentDamage: float
 var currentCooldown: float
 var currentColliderSize: Vector2
 var currentSpriteSize: Vector2
+var currentEffectDamage: float
+var currentEffectDuration: float
 var timer: float
 var enemiesInRange: Array[EnemyController]
 var damagedEnemies: Array[EnemyController]
@@ -34,6 +36,9 @@ func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
 	currentCooldown = (explosionCooldown * (dataBlock.timeBonus / 100))
 	currentColliderSize = (explosionCollider.scale * (dataBlock.sizeBonus / 100))
 	currentSpriteSize = (bombSprite.scale * (dataBlock.sizeBonus / 100))
+	if (hasEffect):
+		currentEffectDamage = (effectDamage * (dataBlock.damageBonus / 100))
+		currentEffectDuration = (effectDuration * (dataBlock.timeBonus / 100))
 	SpawnSpecialObjects(dataBlock.specialObjects)
 	pass
 
@@ -60,9 +65,14 @@ func DamageEnemies():
 	for i in enemiesInRange.size():
 		if (enemiesInRange[i] != null):
 			enemiesInRange[i].ReceiveDamage(currentDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime, self)
+			CheckForEffects(enemiesInRange[i])
 			CheckForAttach(enemiesInRange[i])
 			damagedEnemies.push_back(enemiesInRange[i])
 	enemiesInRange.clear()
+
+func CheckForEffects(enemy: EnemyController):
+	if (hasEffect && effect != ""):
+		enemy.AddEffectOverTime(SpawnEffectOverTime(currentEffectDamage, currentEffectDuration))
 
 func CheckForAttach(enemy: EnemyController):
 	if (hasExplosionExtra):

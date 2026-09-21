@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://du415yrw6qjnv"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpContact.gd" id="1_nfotn"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_aiar3"]
+
+[node name="ContactBombTier2" type="Node2D" node_paths=PackedStringArray("directSpawners1", "directSpawners2", "directSpawners3", "clashSpawners1", "clashSpawners2", "clashSpawners3")]
+script = ExtResource("1_nfotn")
+directSpawners1 = [NodePath("SpawnerDirect1")]
+directSpawners2 = [NodePath("SpawnerDirect2")]
+directSpawners3 = [NodePath("SpawnerDirect3")]
+clashSpawners1 = [NodePath("SpawnerClash1")]
+clashSpawners2 = [NodePath("SpawnerClash2")]
+clashSpawners3 = [NodePath("SpawnerClash3")]
+powerUpName = "Enhanced Contact Bomb"
+powerUpDescription = "Generates an explosion on Clashes and Directs. Directs shred enemy defenses."
+
+[node name="SpawnerDirect1" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_aiar3")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/direct_bomb_1_t2.tscn"
+
+[node name="SpawnerDirect2" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_aiar3")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/direct_bomb_2_t2.tscn"
+
+[node name="SpawnerDirect3" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_aiar3")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/direct_bomb_3_t2.tscn"
+
+[node name="SpawnerClash1" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_aiar3")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/clash_bomb_1_t2.tscn"
+
+[node name="SpawnerClash2" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_aiar3")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/clash_bomb_2_t2.tscn"
+
+[node name="SpawnerClash3" type="Node2D" parent="."]
+position = Vector2(0, -64)
+script = ExtResource("2_aiar3")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Contact/clash_bomb_3_t2.tscn"
