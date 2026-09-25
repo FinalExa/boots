@@ -12,6 +12,7 @@ var didDamage: bool
 var stationaryStarted: bool
 var enemiesInRange: Array[EnemyController]
 var timer: float
+
 var currentDamage: float
 var currentDOT: float
 var currentStationaryDOT: float
@@ -39,9 +40,11 @@ func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
 	currentStationaryDuration = (stationaryDuration * (dataBlock.timeBonus / 100))
 	if (stationaryAreaCollisionShape != null):
 		currentStationaryAreaSize = (stationaryAreaCollisionShape.scale * (dataBlock.sizeBonus / 100))
+		stationaryAreaCollisionShape.scale = currentStationaryAreaSize
 	if (sprite != null):
 		currentSpriteSize = (sprite.scale * (dataBlock.sizeBonus / 100))
-	SpawnSpecialObjects(dataBlock.specialEffects)
+		sprite.scale = currentSpriteSize
+	SpawnSpecialObjects(dataBlock.specialObjects)
 
 func Finalize():
 	if (stationaryAreaCollisionShape != null):

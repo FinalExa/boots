@@ -58,7 +58,7 @@ func ReadyOperations():
 func ExecuteEffect(_delta):
 	pass
 
-func ConditionalEffect(value):
+func ConditionalEffect(_value):
 	pass
 
 func DeleteSelf():

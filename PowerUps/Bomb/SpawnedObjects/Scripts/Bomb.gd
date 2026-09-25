@@ -35,7 +35,9 @@ func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
 	currentDamage = (explosionDamage * (dataBlock.damageBonus / 100))
 	currentCooldown = (explosionCooldown * (dataBlock.timeBonus / 100))
 	currentColliderSize = (explosionCollider.scale * (dataBlock.sizeBonus / 100))
-	currentSpriteSize = (bombSprite.scale * (dataBlock.sizeBonus / 100))
+	explosionCollider.scale = currentColliderSize
+	currentSpriteSize = (explosionSprite.scale * (dataBlock.sizeBonus / 100))
+	explosionSprite.scale = currentSpriteSize
 	if (hasEffect):
 		currentEffectDamage = (effectDamage * (dataBlock.damageBonus / 100))
 		currentEffectDuration = (effectDuration * (dataBlock.timeBonus / 100))

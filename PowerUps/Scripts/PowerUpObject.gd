@@ -15,7 +15,7 @@ func ApplyPowerUps(powerUpManager: PowerUpManager, id: int):
 func SetRef(externalRef):
 	ref = externalRef
 
-func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
+func IncreaseStats(_dataBlock: PowerUpPassiveDataBlock):
 	pass
 
 func SpawnSpecialObjects(specialObjects: Array[String]):
