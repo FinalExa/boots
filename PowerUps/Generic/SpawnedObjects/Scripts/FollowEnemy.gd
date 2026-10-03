@@ -37,7 +37,7 @@ func SetChosenEnemy():
 
 func Chase():
 	if (chosenEnemy != null):
-		objectToMove.translate(objectToMove.global_position.direction_to(chosenEnemy.global_position * moveSpeed))
+		objectToMove.global_position += objectToMove.global_position.direction_to(chosenEnemy.global_position * moveSpeed)
 
 func _on_body_entered(body):
 	if (body is EnemyController && !enemiesInRange.has(body)):

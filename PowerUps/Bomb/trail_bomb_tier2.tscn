@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq1ve831bymt6"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpTrail.gd" id="1_rx6me"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_2f3dm"]
+
+[node name="TrailBombTier2" type="Node2D" node_paths=PackedStringArray("trailSpawners1", "trailSpawners2", "trailSpawners3")]
+script = ExtResource("1_rx6me")
+trailSpawners1 = [NodePath("BombTrailSpawner1")]
+trailSpawners2 = [NodePath("BombTrailSpawner2")]
+trailSpawners3 = [NodePath("BombTrailSpawner3")]
+trailInterval = 0.5
+powerUpName = "Enhanced Trail Bomb"
+powerUpDescription = "While running, releases mini bombs behind at fixed time intervals. The mini bombs will explode once an enemy enters the explosion area. Bombs will follow the closest enemy."
+
+[node name="BombTrailSpawner1" type="Node2D" parent="."]
+position = Vector2(0, 64)
+script = ExtResource("2_2f3dm")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Trail/trail_bomb_1_t2.tscn"
+
+[node name="BombTrailSpawner2" type="Node2D" parent="."]
+position = Vector2(0, 64)
+script = ExtResource("2_2f3dm")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Trail/trail_bomb_2_t2.tscn"
+
+[node name="BombTrailSpawner3" type="Node2D" parent="."]
+position = Vector2(0, 64)
+script = ExtResource("2_2f3dm")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Trail/trail_bomb_3_t2.tscn"

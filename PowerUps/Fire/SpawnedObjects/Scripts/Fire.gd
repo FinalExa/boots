@@ -54,7 +54,7 @@ func Finalize():
 
 func DoDamage():
 	if (currentDamage > 0 && !didDamage && ref != null && ref is EnemyController):
-		ref.ReceiveDamage(currentDamage, 0, Vector2.ZERO, 0)
+		ref.ReceiveDamage(currentDamage, 0, Vector2.ZERO, 0, self)
 		didDamage = true
 		if (!stationary):
 			call_deferred("DeleteSelf")

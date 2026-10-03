@@ -13,6 +13,7 @@ var ref: Node2D
 
 func ApplyPowerUps(powerUpManager: PowerUpManager, id: int):
 	IncreaseStats(powerUpManager.powerUpPassiveDataBlocks[id])
+	if (hasSpecialObject): call_deferred("SpawnSpecialObject", specialObject)
 
 func SetRef(externalRef):
 	ref = externalRef
@@ -22,7 +23,14 @@ func IncreaseStats(_dataBlock: PowerUpPassiveDataBlock):
 
 func SpawnSpecialObjects(specialObjects: Array[String]):
 	if (specialObjects.size() > 0):
-		pass
+		for i in specialObjects.size():
+			call_deferred("SpawnSpecialObject", specialObjects[i])
+
+func SpawnSpecialObject(specialObject: String):
+	var obj_scene = load(specialObject)
+	var obj = obj_scene.instantiate()
+	self.add_child(obj)
+	obj.global_position = self.global_position
 
 func SpawnEffectOverTime(damage: float, duration: float):
 	var obj_scene = load(effect)
