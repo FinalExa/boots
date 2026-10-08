@@ -1,0 +1,160 @@
+[gd_scene load_steps=3 format=3 uid="uid://cioldimgsncwg"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAbility.gd" id="1_cijwp"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_21tgo"]
+
+[node name="Ability2BombTier2" type="Node2D" node_paths=PackedStringArray("abilitySpawners1", "abilitySpawners2", "abilitySpawners3")]
+script = ExtResource("1_cijwp")
+abilitySpawners1 = [NodePath("1/Spawner"), NodePath("1/Spawner2"), NodePath("1/Spawner3"), NodePath("1/Spawner4"), NodePath("1/Spawner5"), NodePath("1/Spawner6"), NodePath("1/Spawner7"), NodePath("1/Spawner8")]
+abilitySpawners2 = [NodePath("2/Spawner"), NodePath("2/Spawner2"), NodePath("2/Spawner3"), NodePath("2/Spawner4"), NodePath("2/Spawner5"), NodePath("2/Spawner6"), NodePath("2/Spawner7"), NodePath("2/Spawner8")]
+abilitySpawners3 = [NodePath("3/Spawner"), NodePath("3/Spawner2"), NodePath("3/Spawner3"), NodePath("3/Spawner4"), NodePath("3/Spawner5"), NodePath("3/Spawner6"), NodePath("3/Spawner7"), NodePath("3/Spawner8")]
+secondAbilitySlot = true
+powerUpName = "Enhanced Ability 2 Bomb"
+powerUpDescription = "Generates multiple bombs on ability 2 usage. The created bombs will chase nearby enemies."
+
+[node name="1" type="Node2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="1"]
+position = Vector2(0, -128)
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="Spawner2" type="Node2D" parent="1"]
+position = Vector2(96, -96)
+rotation = 0.785398
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="Spawner3" type="Node2D" parent="1"]
+position = Vector2(128, 0)
+rotation = 1.5708
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="Spawner4" type="Node2D" parent="1"]
+position = Vector2(96, 96)
+rotation = 2.35619
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="Spawner5" type="Node2D" parent="1"]
+position = Vector2(0, 128)
+rotation = 3.14159
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="Spawner6" type="Node2D" parent="1"]
+position = Vector2(-96, 96)
+rotation = -2.3562
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="Spawner7" type="Node2D" parent="1"]
+position = Vector2(-128, 0)
+rotation = -1.5708
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="Spawner8" type="Node2D" parent="1"]
+position = Vector2(-96, -96)
+rotation = -0.785395
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_1_t2.tscn"
+
+[node name="2" type="Node2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="2"]
+position = Vector2(0, -128)
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="Spawner2" type="Node2D" parent="2"]
+position = Vector2(96, -96)
+rotation = 0.785398
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="Spawner3" type="Node2D" parent="2"]
+position = Vector2(128, 0)
+rotation = 1.5708
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="Spawner4" type="Node2D" parent="2"]
+position = Vector2(96, 96)
+rotation = 2.35619
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="Spawner5" type="Node2D" parent="2"]
+position = Vector2(0, 128)
+rotation = 3.14159
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="Spawner6" type="Node2D" parent="2"]
+position = Vector2(-96, 96)
+rotation = -2.3562
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="Spawner7" type="Node2D" parent="2"]
+position = Vector2(-128, 0)
+rotation = -1.5708
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="Spawner8" type="Node2D" parent="2"]
+position = Vector2(-96, -96)
+rotation = -0.785395
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_2_t2.tscn"
+
+[node name="3" type="Node2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="3"]
+position = Vector2(0, -128)
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"
+
+[node name="Spawner2" type="Node2D" parent="3"]
+position = Vector2(96, -96)
+rotation = 0.785398
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"
+
+[node name="Spawner3" type="Node2D" parent="3"]
+position = Vector2(128, 0)
+rotation = 1.5708
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"
+
+[node name="Spawner4" type="Node2D" parent="3"]
+position = Vector2(96, 96)
+rotation = 2.35619
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"
+
+[node name="Spawner5" type="Node2D" parent="3"]
+position = Vector2(0, 128)
+rotation = 3.14159
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"
+
+[node name="Spawner6" type="Node2D" parent="3"]
+position = Vector2(-96, 96)
+rotation = -2.3562
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"
+
+[node name="Spawner7" type="Node2D" parent="3"]
+position = Vector2(-128, 0)
+rotation = -1.5708
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"
+
+[node name="Spawner8" type="Node2D" parent="3"]
+position = Vector2(-96, -96)
+rotation = -0.785395
+script = ExtResource("2_21tgo")
+objectPath = "res://PowerUps/Bomb/SpawnedObjects/Ability2/ability2_bomb_3_t2.tscn"

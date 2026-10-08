@@ -10,7 +10,7 @@ radius = 192.167
 [node name="Ability1Bomb2" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
 script = ExtResource("1_8bgus")
 explosionDuration = 0.3
-explosionDamage = 40
+explosionDamage = 40.0
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")

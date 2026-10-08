@@ -1,30 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://14a4cekwy117"]
+[gd_scene load_steps=5 format=3 uid="uid://bnxoa455gklx7"]
 
-[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/Bomb.gd" id="1_tdy01"]
-[ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="2_s5j55"]
-[ext_resource type="Texture2D" uid="uid://dkvcbpqsrixtp" path="res://PowerUps/Bomb/Sprites/explosion.png" id="3_tf875"]
+[ext_resource type="Script" path="res://PowerUps/Bomb/SpawnedObjects/Scripts/Bomb.gd" id="1_18x06"]
+[ext_resource type="Texture2D" uid="uid://ca1rrk75e8jce" path="res://PowerUps/Bomb/Sprites/bomb.png" id="2_m5ggx"]
+[ext_resource type="Texture2D" uid="uid://dkvcbpqsrixtp" path="res://PowerUps/Bomb/Sprites/explosion.png" id="3_14naa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_836y0"]
 radius = 128.0
 
-[node name="Ability2Bomb2" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
-script = ExtResource("1_tdy01")
-explosionCooldown = 5.0
+[node name="Ability2Bomb1T2" type="Node2D" node_paths=PackedStringArray("explosionCollider", "bombSprite", "explosionSprite")]
+script = ExtResource("1_18x06")
+explosionCooldown = 2.0
 explosionDuration = 0.1
-explosionDamage = 20.0
+explosionDamage = 15.0
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
 explodeWhenOneEnemyIsInRange = true
+hasSpecialObject = true
+specialObject = "res://PowerUps/Generic/SpawnedObjects/follow_enemy.tscn"
 
 [node name="BombSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_s5j55")
+texture = ExtResource("2_m5ggx")
 
 [node name="ExplosionSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.509804)
-position = Vector2(-7.62939e-06, 7.62939e-06)
+position = Vector2(-1.52588e-05, 0)
 scale = Vector2(6.73684, 7.52941)
-texture = ExtResource("3_tf875")
+texture = ExtResource("3_14naa")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
 
