@@ -34,7 +34,7 @@ func SpawnSpecialObject(specialObject: String):
 
 func SpawnEffectOverTime(damage: float, duration: float):
 	var obj_scene = load(effect)
-	var obj: FireDoT = obj_scene.instantiate()
+	var obj: EffectOverTime = obj_scene.instantiate()
 	obj.damage = damage
 	obj.duration = duration
 	obj.source = powerUpRef
