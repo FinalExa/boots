@@ -6,3 +6,4 @@
 script = ExtResource("1_28xs8")
 effectName = "BombShred"
 frequencyType = 3
+stackable = true

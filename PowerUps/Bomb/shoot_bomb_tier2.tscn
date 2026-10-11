@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpShoot.gd" id="1_ta7cv"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_vn83a"]
 
-[node name="ShootBomb" type="Node2D" node_paths=PackedStringArray("shootObjectSpawners")]
+[node name="ShootBombTier2" type="Node2D" node_paths=PackedStringArray("shootObjectSpawners")]
 script = ExtResource("1_ta7cv")
 shootObjectSpawners = [NodePath("ObjectSpawner1"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
 powerUpName = "Enhanced Shoot Bomb"

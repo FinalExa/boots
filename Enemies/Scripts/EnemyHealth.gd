@@ -22,13 +22,13 @@ func HealthUpdate(valueChange: float, source: Node):
 		valueChange = 0
 		enemyShielded.RemoveShielded()
 	ModifyHealth(valueChange)
+	LaunchExtraDamageEffects(valueChange)
 	if (currentHealth <= 0):
 		if (currentObjective != null):
 			currentObjective.RequestEnemyData(enemyController)
 		emit_signal("enemyDeath")
 		enemyController.Death()
 		return
-	if (!(source is EffectOverTime)): LaunchExtraDamageEffects(valueChange)
 
 func ModifyHealth(valueChange: float):
 	currentHealth = clamp(currentHealth + valueChange, 0, maxHealth)
@@ -46,7 +46,9 @@ func UnregisterExtraDamageEffect(effect: EffectOverTime):
 func LaunchExtraDamageEffects(value: float):
 	for i in extraDamageEffects.size():
 		var returnedValue: float = extraDamageEffects[i].ConditionalEffect(value)
-		if (returnedValue != 0): ModifyHealth(value)
+		if (returnedValue != 0):
+			ModifyHealth(returnedValue)
+			print(returnedValue)
 
 func _on_enemy_damaged(damageReceived: float, source: Node):
 	HealthUpdate(-damageReceived, source)
