@@ -7,6 +7,9 @@ extends Node2D
 @export var forceAtStart: Array[PowerUp]
 
 func _ready():
+	DebugTestPowerUps()
+
+func DebugTestPowerUps():
 	if (forceAtStart.size() > 0):
 		var playerRef: PlayerCharacter = get_tree().root.get_child(0).sceneSelector.playerRef
 		for i in forceAtStart.size():

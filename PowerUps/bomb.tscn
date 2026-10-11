@@ -63,6 +63,8 @@ nextPowerUp = NodePath("../Ability1BombTier2")
 [node name="Ability1BombTier2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("15_qku7l")]
 previousPowerUp = NodePath("../Ability1Bomb")
 
-[node name="Ability2Bomb" parent="." instance=ExtResource("9_33a68")]
+[node name="Ability2Bomb" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("9_33a68")]
+nextPowerUp = NodePath("../Ability2BombTier2")
 
-[node name="Ability2BombTier2" parent="." instance=ExtResource("17_alpgl")]
+[node name="Ability2BombTier2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("17_alpgl")]
+previousPowerUp = NodePath("../Ability2Bomb")
