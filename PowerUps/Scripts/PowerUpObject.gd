@@ -8,6 +8,7 @@ extends Node2D
 @export var effectDuration: float
 @export var hasSpecialObject: bool
 @export var specialObject: String
+@export var trueDamage: bool
 var powerUpRef: PowerUp
 var ref: Node2D
 

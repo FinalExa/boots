@@ -66,7 +66,8 @@ func BombTimer(delta):
 func DamageEnemies():
 	for i in enemiesInRange.size():
 		if (enemiesInRange[i] != null):
-			enemiesInRange[i].ReceiveDamage(currentDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime, self)
+			if (!trueDamage): enemiesInRange[i].ReceiveDamage(currentDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime, self)
+			else: enemiesInRange[i].DealTrueDamage(currentDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime, self)
 			CheckForEffects(enemiesInRange[i])
 			CheckForAttach(enemiesInRange[i])
 			damagedEnemies.push_back(enemiesInRange[i])

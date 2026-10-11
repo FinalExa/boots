@@ -16,6 +16,7 @@ bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
 hasExplosionExtra = true
 explosionExtraReference = "res://PowerUps/Bomb/SpawnedObjects/Aura/aura_bomb_sticky_2.tscn"
+trueDamage = true
 
 [node name="BombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_skjip")

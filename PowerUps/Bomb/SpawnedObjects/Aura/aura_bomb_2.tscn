@@ -14,6 +14,7 @@ explosionDamage = 10.0
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
+trueDamage = true
 
 [node name="BombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_bii2g")

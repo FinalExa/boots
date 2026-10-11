@@ -40,6 +40,13 @@ func ReceiveDamage(damage: float, repelDistance: float, repelDirection: Vector2,
 	damageImmunityTimer = damageImmunityDuration
 	damageImmunity = true
 
+func DealTrueDamage(damage: float, repelDistance: float, repelDirection: Vector2, repelTime: float, damageSource: Node2D):
+	emit_signal("damaged", damage, damageSource)
+	ForceStopAttack()
+	if (repelTime > 0):
+		emit_signal("repelled")
+		enemyRepelled.SetRepelled(repelDistance, repelDirection, repelTime)
+
 func ForceStopAttack():
 	if (enemyAttack.attackLaunched):
 		enemyAttack.ForceStartCooldown()
