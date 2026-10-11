@@ -26,8 +26,12 @@ func ReadyOperations():
 	pass
 
 func Register(player: PlayerCharacter):
-	powerUpManager.AssignPowerUp(self)
 	playerRef = player
+	self.reparent(playerRef.powerUpManager)
+	self.global_position = playerRef.powerUpManager.global_position
+	self.global_rotation = playerRef.powerUpManager.global_rotation
+	self.powerUpManager = playerRef.powerUpManager
+	powerUpManager.AssignPowerUp(self)
 	for i in powerUpManager.powerUpPassiveDataBlocks.size():
 		if (powerUpManager.powerUpPassiveDataBlocks[i].powerUpFaction == powerUpFaction):
 			passiveDataID = i

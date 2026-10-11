@@ -14,7 +14,7 @@ func _ready():
 
 func _process(delta):
 	Decision(delta)
-	Chase()
+	Chase(delta)
 
 func Decision(delta):
 	if (timer > 0):
@@ -35,9 +35,9 @@ func SetChosenEnemy():
 				distance = currentDistance
 				chosenEnemy = enemiesInRange[i]
 
-func Chase():
+func Chase(delta):
 	if (chosenEnemy != null):
-		objectToMove.global_position += objectToMove.global_position.direction_to(chosenEnemy.global_position * moveSpeed)
+		objectToMove.global_position += objectToMove.global_position.direction_to(chosenEnemy.global_position) * moveSpeed * delta
 
 func _on_body_entered(body):
 	if (body is EnemyController && !enemiesInRange.has(body)):

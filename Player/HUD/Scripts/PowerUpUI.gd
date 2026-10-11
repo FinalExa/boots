@@ -28,10 +28,6 @@ func RegisterPowerUps(receivedPowerUps: Array[PowerUp]):
 
 func OnButtonPressed(buttonId: int):
 	var selectedPowerUp: PowerUp = powerUpSelectors[buttonId].button.get_child(0)
-	selectedPowerUp.reparent(playerRef.powerUpManager)
-	selectedPowerUp.global_position = playerRef.powerUpManager.global_position
-	selectedPowerUp.global_rotation = playerRef.powerUpManager.global_rotation
-	selectedPowerUp.powerUpManager = playerRef.powerUpManager
 	selectedPowerUp.Register(playerRef)
 	rewardSpawn.BanPowerUp(selectedPowerUp)
 	if (selectedPowerUp.nextPowerUp != null): rewardSpawn.UnbanPowerUp(selectedPowerUp.nextPowerUp)
