@@ -16,6 +16,10 @@ explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
 explodeWhenOneEnemyIsInRange = true
+hasEffect = true
+effect = "res://PowerUps/Bomb/SpawnedObjects/bomb_shred.tscn"
+effectDamage = 3.0
+effectDuration = 10.0
 
 [node name="BombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_51ck5")

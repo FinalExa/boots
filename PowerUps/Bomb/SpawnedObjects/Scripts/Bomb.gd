@@ -75,7 +75,8 @@ func DamageEnemies():
 
 func CheckForEffects(enemy: EnemyController):
 	if (hasEffect && effect != ""):
-		enemy.SetEffectOverTime(SpawnEffectOverTime(currentEffectDamage, currentEffectDuration))
+		var effect: EffectOverTime = SpawnEffectOverTime(currentEffectDamage, currentEffectDuration)
+		enemy.SetEffectOverTime(effect)
 
 func CheckForAttach(enemy: EnemyController):
 	if (hasExplosionExtra):

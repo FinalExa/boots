@@ -3,6 +3,7 @@ extends Node2D
 
 @export var effectName: String
 @export var frequencyType: Frequency
+@export var conditionalType: ConditionalType
 @export var stackable: bool
 var ref: EnemyController
 var damage: float
@@ -20,6 +21,12 @@ enum Frequency
 	INTERVAL,
 	END,
 	CONDITIONAL
+}
+
+enum ConditionalType
+{
+	NONE,
+	HEALTH
 }
 
 func _process(delta):

@@ -84,9 +84,12 @@ func SetEffectOverTime(effect: EffectOverTime):
 
 func AddEffectOverTime(effect: EffectOverTime):
 	currentEffectsOverTime.push_back(effect)
-	if (effect.frequencyType == EffectOverTime.Frequency.CONDITIONAL): enemyHealth.RegisterExtraDamageEffect(effect)
 	call_deferred("PlaceEffect", effect)
 	effect.Initialize(self)
+	if (effect.frequencyType == EffectOverTime.Frequency.CONDITIONAL):
+		if (effect.conditionalType == EffectOverTime.ConditionalType.HEALTH):
+			enemyHealth.RegisterExtraDamageEffect(effect)
+			return
 
 func PlaceEffect(effect: EffectOverTime):
 	add_child(effect)
