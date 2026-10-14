@@ -55,6 +55,7 @@ func EffectOverTimeTimer(delta):
 				if (frequencyType == Frequency.CONSTANT):
 					ExecuteEffect(delta)
 					return
+			return
 			if (frequencyType == Frequency.END):
 				ExecuteEffect(delta)
 		ref.UnsetEffectOverTime(self)
