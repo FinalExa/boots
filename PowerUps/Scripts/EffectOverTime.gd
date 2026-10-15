@@ -45,6 +45,7 @@ func EffectOverTimeTimer(delta):
 		if (ref != null):
 			if (timer > 0):
 				timer -= delta
+				ExtraTimers(delta)
 				if (frequencyType == Frequency.INTERVAL):
 					if (intervalTimer > 0):
 						intervalTimer -= delta
@@ -59,6 +60,9 @@ func EffectOverTimeTimer(delta):
 			if (frequencyType == Frequency.END):
 				ExecuteEffect(delta)
 		ref.UnsetEffectOverTime(self)
+
+func ExtraTimers(_delta):
+	pass
 
 func ReadyOperations():
 	pass

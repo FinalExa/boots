@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf6h710ytsaxl"]
+
+[ext_resource type="Script" path="res://PowerUps/Fire/SpawnedObjects/Scripts/FireScorch.gd" id="1_ij81w"]
+
+[node name="FireScorch" type="Node2D"]
+script = ExtResource("1_ij81w")
+scorchCooldown = 0.5
+effectName = "FireScorch"
+frequencyType = 3
+conditionalType = 1
+stackable = true
