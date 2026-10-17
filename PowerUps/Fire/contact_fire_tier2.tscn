@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://nae4yx3ftjcl"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpContact.gd" id="1_ykest"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_rlafy"]
+
+[node name="ContactFireTier2" type="Node2D" node_paths=PackedStringArray("directSpawners1", "directSpawners2", "directSpawners3", "clashSpawners1", "clashSpawners2", "clashSpawners3")]
+script = ExtResource("1_ykest")
+directSpawners1 = [NodePath("SpawnerDirect1")]
+directSpawners2 = [NodePath("SpawnerDirect2")]
+directSpawners3 = [NodePath("SpawnerDirect3")]
+clashSpawners1 = [NodePath("SpawnerClash1")]
+clashSpawners2 = [NodePath("SpawnerClash2")]
+clashSpawners3 = [NodePath("SpawnerClash3")]
+powerUpName = "Enhanced Contact Fire"
+powerUpDescription = "Scorches the enemy on Direct and Clashes, Directs deal additional damage."
+powerUpFaction = 1
+
+[node name="SpawnerDirect1" type="Node2D" parent="."]
+script = ExtResource("2_rlafy")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Contact/fire_direct_1_t2.tscn"
+
+[node name="SpawnerDirect2" type="Node2D" parent="."]
+script = ExtResource("2_rlafy")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Contact/fire_direct_2_t2.tscn"
+
+[node name="SpawnerDirect3" type="Node2D" parent="."]
+script = ExtResource("2_rlafy")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Contact/fire_direct_3_t2.tscn"
+
+[node name="SpawnerClash1" type="Node2D" parent="."]
+script = ExtResource("2_rlafy")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Contact/fire_clash_1_t2.tscn"
+
+[node name="SpawnerClash2" type="Node2D" parent="."]
+script = ExtResource("2_rlafy")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Contact/fire_clash_2_t2.tscn"
+
+[node name="SpawnerClash3" type="Node2D" parent="."]
+script = ExtResource("2_rlafy")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Contact/fire_clash_3_t2.tscn"

@@ -28,6 +28,7 @@ stationaryDOT = 20.0
 stationaryPermanent = true
 stationaryAreaCollisionShape = NodePath("Area2D/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
+powerUpFaction = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)

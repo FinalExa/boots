@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bj80fpeqt7inw"]
+[gd_scene load_steps=13 format=3 uid="uid://bj80fpeqt7inw"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_mvwkw"]
 [ext_resource type="PackedScene" uid="uid://cwym7x6dytcng" path="res://PowerUps/Fire/contact_fire.tscn" id="2_37bpx"]
+[ext_resource type="PackedScene" uid="uid://nae4yx3ftjcl" path="res://PowerUps/Fire/contact_fire_tier2.tscn" id="3_0wy4g"]
 [ext_resource type="PackedScene" uid="uid://b42x7e36q02jq" path="res://PowerUps/Fire/trail_fire.tscn" id="3_ovaeg"]
 [ext_resource type="PackedScene" uid="uid://c748qg1e6hl1u" path="res://PowerUps/Fire/speed_charge_fire.tscn" id="4_xo4s6"]
 [ext_resource type="PackedScene" uid="uid://dy0xf2kaofrvj" path="res://PowerUps/Fire/ability1_fire.tscn" id="5_82h63"]
@@ -12,12 +13,17 @@
 [ext_resource type="PackedScene" uid="uid://b315gg5ai5jxm" path="res://PowerUps/Fire/damage_passive_fire.tscn" id="9_tb4o7"]
 [ext_resource type="PackedScene" uid="uid://o4o73il5jnuq" path="res://PowerUps/Fire/timer_passive_fire.tscn" id="10_kfgcj"]
 
-[node name="Fire" type="Node2D" node_paths=PackedStringArray("powerUps")]
+[node name="Fire" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps")]
 script = ExtResource("1_mvwkw")
 powerUpFaction = 1
-powerUps = [NodePath("ContactFire"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("Ability1Fire"), NodePath("Ability2Fire"), NodePath("ShootFire"), NodePath("AuraFire"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
+powerUps = [NodePath("ContactFire"), NodePath("ContactFireTier2"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("Ability1Fire"), NodePath("Ability2Fire"), NodePath("ShootFire"), NodePath("AuraFire"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
+bannedPowerUps = [NodePath("ContactFireTier2")]
 
-[node name="ContactFire" parent="." instance=ExtResource("2_37bpx")]
+[node name="ContactFire" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("2_37bpx")]
+nextPowerUp = NodePath("../ContactFireTier2")
+
+[node name="ContactFireTier2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("3_0wy4g")]
+previousPowerUp = NodePath("../ContactFire")
 
 [node name="TrailFire" parent="." instance=ExtResource("3_ovaeg")]
 

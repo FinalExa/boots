@@ -18,11 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://be57d6efowwxj" path="res://PowerUps/Bomb/ability1_bomb_tier2.tscn" id="15_qku7l"]
 [ext_resource type="PackedScene" uid="uid://cioldimgsncwg" path="res://PowerUps/Bomb/ability2_bomb_tier2.tscn" id="17_alpgl"]
 
-[node name="Bomb" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps", "forceAtStart")]
+[node name="Bomb" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps")]
 script = ExtResource("1_305qo")
 powerUps = [NodePath("AreaPassiveBomb"), NodePath("ContactBomb"), NodePath("ContactBombTier2"), NodePath("DamagePassiveBomb"), NodePath("SpeedChargeBomb"), NodePath("SpeedChargeBombTier2"), NodePath("TrailBomb"), NodePath("TrailBombTier2"), NodePath("ShootBomb"), NodePath("ShootBombTier2"), NodePath("AuraBomb"), NodePath("AuraBombTier2"), NodePath("Ability1Bomb"), NodePath("Ability1BombTier2"), NodePath("Ability2Bomb"), NodePath("Ability2BombTier2")]
 bannedPowerUps = [NodePath("AuraBombTier2"), NodePath("ContactBombTier2"), NodePath("SpeedChargeBombTier2"), NodePath("TrailBombTier2"), NodePath("ShootBombTier2"), NodePath("Ability1BombTier2"), NodePath("Ability2BombTier2")]
-forceAtStart = [NodePath("ShootBombTier2")]
 
 [node name="AreaPassiveBomb" parent="." instance=ExtResource("2_ki27m")]
 
