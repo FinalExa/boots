@@ -10,8 +10,6 @@ extends PowerUpObject
 @export var bombSprite: Sprite2D
 @export var explosionSprite: Sprite2D
 @export var explodeWhenOneEnemyIsInRange: bool
-@export var hasExplosionExtra: bool
-@export var explosionExtraReference: String
 
 var currentDamage: float
 var currentCooldown: float
@@ -69,7 +67,7 @@ func DamageEnemies():
 			if (!trueDamageCheck): enemiesInRange[i].ReceiveDamage(currentDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime, self)
 			else: enemiesInRange[i].DealTrueDamage(currentDamage, explosionRepelDistance, self.global_position.direction_to(enemiesInRange[i].global_position), explosionRepelTime, self)
 			CheckForEffects(enemiesInRange[i])
-			CheckForAttach(enemiesInRange[i])
+			SpawnAttachable(enemiesInRange[i])
 			damagedEnemies.push_back(enemiesInRange[i])
 	enemiesInRange.clear()
 
@@ -77,18 +75,6 @@ func CheckForEffects(enemy: EnemyController):
 	if (hasEffect && effect != ""):
 		var effect: EffectOverTime = SpawnEffectOverTime(currentEffectDamage, currentEffectDuration)
 		enemy.SetEffectOverTime(effect)
-
-func CheckForAttach(enemy: EnemyController):
-	if (hasExplosionExtra):
-		var extraBomb = SpawnExtra(explosionExtraReference)
-		if (extraBomb is Bomb):
-			for i in enemy.attachedObjects.get_child_count():
-				if (enemy.attachedObjects.get_child(i) is Bomb):
-					extraBomb.call_deferred("DeleteSelf")
-					return
-			enemy.add_child(extraBomb)
-			extraBomb.global_position = enemy.global_position
-			powerUpRef.InitializePowerUpObject(extraBomb)
 
 func AutoTriggerExplosion():
 	if (explodeWhenOneEnemyIsInRange && enemiesInRange.size() > 0):
@@ -105,8 +91,3 @@ func _on_explosion_area_body_exited(body):
 
 func AlternativeOutcome():
 	timer = 0
-
-func SpawnExtra(objToSpawn: String):
-	var obj_scene = load(objToSpawn)
-	var obj = obj_scene.instantiate()
-	return obj

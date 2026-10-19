@@ -6,6 +6,8 @@ extends Node2D
 @export var effect: String
 @export var effectDamage: float
 @export var effectDuration: float
+@export var hasAttachable: bool
+@export var attachable: String
 @export var hasSpecialObject: bool
 @export var specialObject: String
 @export var trueDamageCheck: bool
@@ -39,6 +41,22 @@ func SpawnEffectOverTime(damage: float, duration: float):
 	obj.damage = damage
 	obj.duration = duration
 	obj.source = powerUpRef
+	return obj
+
+func SpawnAttachable(enemyToAttach: EnemyController):
+	if (hasAttachable):
+		var spawnedAttachable = SpawnExtra(attachable)
+		if (spawnedAttachable is PowerUpObject):
+			if (enemyToAttach.attachedObjects.get_child_count() > 0):
+				spawnedAttachable.call_deferred("DeleteSelf")
+				return
+			enemyToAttach.add_child(spawnedAttachable)
+			spawnedAttachable.global_position = enemyToAttach.global_position
+			powerUpRef.InitializePowerUpObject(spawnedAttachable)
+
+func SpawnExtra(objToSpawn: String):
+	var obj_scene = load(objToSpawn)
+	var obj = obj_scene.instantiate()
 	return obj
 
 func DeleteSelf():

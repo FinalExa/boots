@@ -14,9 +14,8 @@ explosionDamage = 7.0
 explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
-hasExplosionExtra = true
-explosionExtraReference = "res://PowerUps/Bomb/SpawnedObjects/Aura/aura_bomb_sticky_1.tscn"
-trueDamage = true
+hasAttachable = true
+attachable = "res://PowerUps/Bomb/SpawnedObjects/Aura/aura_bomb_sticky_1.tscn"
 
 [node name="BombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ke1y7")
