@@ -18,6 +18,8 @@ explosionCollider = NodePath("ExplosionArea/CollisionShape2D")
 bombSprite = NodePath("BombSprite")
 explosionSprite = NodePath("ExplosionSprite")
 explodeWhenOneEnemyIsInRange = true
+hasSpecialObject = true
+specialObject = "res://PowerUps/Generic/SpawnedObjects/follow_enemy.tscn"
 
 [node name="BombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_o4t5a")

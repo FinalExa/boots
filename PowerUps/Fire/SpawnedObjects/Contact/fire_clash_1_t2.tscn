@@ -4,7 +4,7 @@
 
 [node name="FireClash1T2" type="Node2D"]
 script = ExtResource("1_0nwl0")
-trueDamage = 3.0
+trueDamage = 5.0
 powerUpFaction = 1
 hasEffect = true
 effect = "res://PowerUps/Fire/SpawnedObjects/fire_scorch.tscn"
