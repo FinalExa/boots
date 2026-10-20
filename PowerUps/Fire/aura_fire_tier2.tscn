@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://di3mib8lmdpek"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAura.gd" id="1_kjog4"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_p58g8"]
+
+[node name="AuraFireTier2" type="Node2D" node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_kjog4")
+swapMode = true
+spawners = [NodePath("FireSpawner1"), NodePath("FireSpawner2"), NodePath("FireSpawner3")]
+powerUpName = "Enhanced Aura Fire"
+powerUpDescription = "Fire is emitted around you, the fire sets enemies ablaze."
+powerUpFaction = 1
+
+[node name="FireSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_p58g8")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Aura/fire_aura_1_t2.tscn"
+
+[node name="FireSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_p58g8")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Aura/fire_aura_2_t2.tscn"
+
+[node name="FireSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_p58g8")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Aura/fire_aura_3_t2.tscn"

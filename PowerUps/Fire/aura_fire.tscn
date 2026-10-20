@@ -8,7 +8,7 @@ script = ExtResource("1_836vu")
 swapMode = true
 spawners = [NodePath("FireSpawner1"), NodePath("FireSpawner2"), NodePath("FireSpawner3")]
 powerUpName = "Aura Fire"
-powerUpDescription = "Fire is emitted around you"
+powerUpDescription = "Fire is emitted around you."
 powerUpFaction = 1
 
 [node name="FireSpawner1" type="Node2D" parent="."]
