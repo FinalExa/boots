@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddvdrb4uwvio8"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpShoot.gd" id="1_3cbl0"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_0f7o4"]
+
+[node name="ShootFireTier2" type="Node2D" node_paths=PackedStringArray("shootObjectSpawners")]
+script = ExtResource("1_3cbl0")
+shootObjectSpawners = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
+powerUpName = "Enhanced Fire Projectile"
+powerUpDescription = "Your projectiles set enemies hit ablaze."
+powerUpFaction = 1
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("2_0f7o4")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_shoot_1_t2.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_0f7o4")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_shoot_2_t2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_0f7o4")
+objectPath = "res://PowerUps/Fire/SpawnedObjects/Shoot/fire_shoot_3_t2.tscn"

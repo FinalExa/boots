@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bj80fpeqt7inw"]
+[gd_scene load_steps=15 format=3 uid="uid://bj80fpeqt7inw"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_mvwkw"]
 [ext_resource type="PackedScene" uid="uid://cwym7x6dytcng" path="res://PowerUps/Fire/contact_fire.tscn" id="2_37bpx"]
@@ -13,12 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://ba5byfw80f7pc" path="res://PowerUps/Fire/area_passive_fire.tscn" id="8_tet5g"]
 [ext_resource type="PackedScene" uid="uid://b315gg5ai5jxm" path="res://PowerUps/Fire/damage_passive_fire.tscn" id="9_tb4o7"]
 [ext_resource type="PackedScene" uid="uid://o4o73il5jnuq" path="res://PowerUps/Fire/timer_passive_fire.tscn" id="10_kfgcj"]
+[ext_resource type="PackedScene" uid="uid://ddvdrb4uwvio8" path="res://PowerUps/Fire/shoot_fire_tier2.tscn" id="10_v0l5k"]
 
 [node name="Fire" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps")]
 script = ExtResource("1_mvwkw")
 powerUpFaction = 1
-powerUps = [NodePath("ContactFire"), NodePath("ContactFireTier2"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("SpeedChargeFireTier2"), NodePath("Ability1Fire"), NodePath("Ability2Fire"), NodePath("ShootFire"), NodePath("AuraFire"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
-bannedPowerUps = [NodePath("ContactFireTier2"), NodePath("SpeedChargeFireTier2")]
+powerUps = [NodePath("ContactFire"), NodePath("ContactFireTier2"), NodePath("TrailFire"), NodePath("SpeedChargeFire"), NodePath("SpeedChargeFireTier2"), NodePath("Ability1Fire"), NodePath("Ability2Fire"), NodePath("ShootFire"), NodePath("ShootFireTier2"), NodePath("AuraFire"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
+bannedPowerUps = [NodePath("ContactFireTier2"), NodePath("SpeedChargeFireTier2"), NodePath("ShootFireTier2")]
 
 [node name="ContactFire" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("2_37bpx")]
 nextPowerUp = NodePath("../ContactFireTier2")
@@ -38,7 +39,11 @@ previousPowerUp = NodePath("../SpeedChargeFire")
 
 [node name="Ability2Fire" parent="." instance=ExtResource("6_xhqaq")]
 
-[node name="ShootFire" parent="." instance=ExtResource("7_tvxtq")]
+[node name="ShootFire" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("7_tvxtq")]
+nextPowerUp = NodePath("../ShootFireTier2")
+
+[node name="ShootFireTier2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("10_v0l5k")]
+previousPowerUp = NodePath("../ShootFire")
 
 [node name="AuraFire" parent="." instance=ExtResource("8_nst4p")]
 
