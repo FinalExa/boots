@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=66 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bxjhyugqqq8c7" path="res://Player/player_sprite.tscn" id="4_oxbc4"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerHealth.gd" id="5_dqtuw"]
 [ext_resource type="Texture2D" uid="uid://4a3ooq0arxy1" path="res://Player/Sprites/direction_arrow.png" id="5_s1pth"]
+[ext_resource type="Script" path="res://Player/Scripts/JohnnyPassive.gd" id="6_oemhe"]
 [ext_resource type="Script" path="res://Player/Scripts/CurrentObjectiveUI.gd" id="6_vo4ho"]
 [ext_resource type="PackedScene" uid="uid://y1tyx8ap1e4c" path="res://Player/first_speed_hitbox.tscn" id="11_tk2g5"]
 [ext_resource type="PackedScene" uid="uid://b71q2rjh5oown" path="res://Player/second_speed_hitbox.tscn" id="12_psnq3"]
@@ -184,7 +185,7 @@ font_size = 32
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "moneyLabel", "currentRoomLabel", "followItem")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "playerPassive", "moneyLabel", "currentRoomLabel", "followItem")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerUI/HUD/Objective")
@@ -197,10 +198,12 @@ shopUI = NodePath("PlayerUI/ShopUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 missionSelectPath = NodePath("PlayerUI/MissionSelectPath")
+playerPassive = NodePath("PlayerPassive")
 moneyLabel = NodePath("PlayerUI/HUD/MoneyValue")
 currentRoomLabel = NodePath("PlayerUI/HUD/CurrentRoomValue")
 followItem = NodePath("PlayerRotator/FollowItem")
 startingMoney = 100.0
+playerID = null
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -230,6 +233,9 @@ maxHearts = 3
 maxHealth = 100.0
 playerMovements = NodePath("../PlayerMovements")
 invulnerabilityTime = 1.0
+
+[node name="PlayerPassive" type="Node" parent="."]
+script = ExtResource("6_oemhe")
 
 [node name="PlayerInputs" type="Node2D" parent="."]
 script = ExtResource("3_fxyqo")

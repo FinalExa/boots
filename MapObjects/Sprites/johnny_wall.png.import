@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2oagw0whfxts"
-path="res://.godot/imported/foire.png-2fcdbe5621495ccfb15cdb963cfc228d.ctex"
+uid="uid://b3irecsp2onhe"
+path="res://.godot/imported/johnny_wall.png-62bf298f8ef332be9d0d46e6e170502d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PowerUps/Sprites/Characters/foire.png"
-dest_files=["res://.godot/imported/foire.png-2fcdbe5621495ccfb15cdb963cfc228d.ctex"]
+source_file="res://MapObjects/Sprites/johnny_wall.png"
+dest_files=["res://.godot/imported/johnny_wall.png-62bf298f8ef332be9d0d46e6e170502d.ctex"]
 
 [params]
 

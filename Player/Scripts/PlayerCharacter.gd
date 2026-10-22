@@ -12,15 +12,24 @@ extends CharacterBody2D
 @export var powerUpManager: PowerUpManager
 @export var playerHealth: PlayerHealth
 @export var missionSelectPath: MissionSelectPath
+@export var playerPassive: PlayerPassive
 @export var moneyLabel: Label
 @export var currentRoomLabel: Label
 @export var followItem: Node2D
 @export var rewardSpawn: RewardSpawn
 @export var mapProgressionSelector: MapProgressionSelector
 @export var startingMoney: float
+@export var playerID: Player
 var collisionResult: bool
 var currentMoney: float
 var inSelectMenu: bool
+
+enum Player {
+	JOHNNY,
+	HELIETTE,
+	SAL,
+	FIORA
+}
 
 func _ready():
 	UpdateMoney(startingMoney)
