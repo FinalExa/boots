@@ -1,11 +1,7 @@
 extends PlayerPassive
 
+signal passive_launched
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func ActivatePassive(tier: int, objRef: Node2D):
+	passiveProcs[GetSpeedIndex(tier)].StartAttack()
+	emit_signal("passive_launched")

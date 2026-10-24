@@ -13,7 +13,7 @@ func _process(delta):
 
 func PlayerPasses(playerRef: PlayerCharacter):
 	if (!deactivated):
-		playerRef.playerPassive.ActivatePassive(self)
+		playerRef.playerPassive.ActivatePassive(playerRef.playerSpeedThresholds.speedIndex, self)
 		if (!regenerates):
 			DestroySelf()
 		else:
