@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://csps3gv2wx6li"]
+[gd_scene load_steps=10 format=3 uid="uid://csps3gv2wx6li"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_pncm2"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_pta75"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bdbtps27g0ql8" path="res://MapShuffler/Door.tscn" id="4_obn3f"]
 [ext_resource type="PackedScene" uid="uid://ec5tqdevf7u7" path="res://MapObjects/booster_pad.tscn" id="5_a4m6g"]
 [ext_resource type="PackedScene" uid="uid://bllhlg88xlhba" path="res://MapObjects/slowing_ground.tscn" id="6_3h3ar"]
+[ext_resource type="PackedScene" uid="uid://ccdfq3p8fb1e0" path="res://MapObjects/johnny_wall.tscn" id="7_45oaj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dwnep"]
 vertices = PackedVector2Array(-1696, -32, -1760, -96, -1760, -1504, -1696, -1568, 1696, -1568, -1248, -32, -928, 288, 1760, -1504, -864, 1248, -928, 1184, 1248, -32, 928, 288, 1760, -96, 1696, -32, 864, 1248, 928, 1184)
@@ -92,6 +93,9 @@ position = Vector2(1152, -1088)
 
 [node name="SlowingGround4" parent="MapObjects" instance=ExtResource("6_3h3ar")]
 position = Vector2(1152, -960)
+
+[node name="JohnnyWall" parent="MapObjects" instance=ExtResource("7_45oaj")]
+position = Vector2(0, -448)
 
 [node name="Doors" type="Node2D" parent="."]
 

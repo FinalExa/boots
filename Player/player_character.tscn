@@ -188,7 +188,7 @@ font_size = 32
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "moneyLabel", "currentRoomLabel", "followItem")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "playerPassive", "moneyLabel", "currentRoomLabel", "followItem")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerUI/HUD/Objective")
@@ -201,6 +201,7 @@ shopUI = NodePath("PlayerUI/ShopUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 missionSelectPath = NodePath("PlayerUI/MissionSelectPath")
+playerPassive = NodePath("PlayerRotator/PlayerPassive")
 moneyLabel = NodePath("PlayerUI/HUD/MoneyValue")
 currentRoomLabel = NodePath("PlayerUI/HUD/CurrentRoomValue")
 followItem = NodePath("PlayerRotator/FollowItem")
@@ -304,16 +305,13 @@ powerUpPassiveDataBlocks = Array[ExtResource("14_5l6ef")]([SubResource("Resource
 script = ExtResource("6_oemhe")
 passiveProcs = [NodePath("JohnnyPassiveAttack1"), NodePath("JohnnyPassiveAttack2"), NodePath("JohnnyPassiveAttack3")]
 
-[node name="JohnnyPassiveAttack1" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("16_djkrr")]
-attackSounds = [null]
+[node name="JohnnyPassiveAttack1" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("16_djkrr")]
 characterRef = NodePath("../../..")
 
-[node name="JohnnyPassiveAttack2" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("17_onr3q")]
-attackSounds = [null]
+[node name="JohnnyPassiveAttack2" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("17_onr3q")]
 characterRef = NodePath("../../..")
 
-[node name="JohnnyPassiveAttack3" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("18_8oy8u")]
-attackSounds = [null]
+[node name="JohnnyPassiveAttack3" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("18_8oy8u")]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "playerSpeedThresholds", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
@@ -329,8 +327,7 @@ ability2Cooldown = 10.0
 ability2Bar = NodePath("../../PlayerUI/HUD/Ability2Bar")
 ability2Label = NodePath("../../PlayerUI/HUD/Ability2Bar/Ability2StackCount")
 
-[node name="PlayerAbilityA1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
-attackSounds = [null]
+[node name="PlayerAbilityA1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("19_bpc71")]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbilityA2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("16_fwm4b")]

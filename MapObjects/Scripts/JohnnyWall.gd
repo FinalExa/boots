@@ -17,7 +17,7 @@ func PlayerPasses(playerRef: PlayerCharacter):
 		if (!regenerates):
 			DestroySelf()
 		else:
-			SetOff()
+			call_deferred("SetOff")
 
 func DestroySelf():
 	self.queue_free()
@@ -38,4 +38,4 @@ func RegenerationTimer(delta):
 		if (timer > 0):
 			timer -= delta
 			return
-		SetOn()
+		call_deferred("SetOn")
