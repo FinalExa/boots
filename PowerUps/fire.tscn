@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj80fpeqt7inw"]
+[gd_scene load_steps=19 format=3 uid="uid://bj80fpeqt7inw"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_mvwkw"]
 [ext_resource type="PackedScene" uid="uid://cwym7x6dytcng" path="res://PowerUps/Fire/contact_fire.tscn" id="2_37bpx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b42x7e36q02jq" path="res://PowerUps/Fire/trail_fire.tscn" id="3_ovaeg"]
 [ext_resource type="PackedScene" uid="uid://c748qg1e6hl1u" path="res://PowerUps/Fire/speed_charge_fire.tscn" id="4_xo4s6"]
 [ext_resource type="PackedScene" uid="uid://dy0xf2kaofrvj" path="res://PowerUps/Fire/ability1_fire.tscn" id="5_82h63"]
+[ext_resource type="PackedScene" uid="uid://c33m2svytwuq4" path="res://PowerUps/Fire/trail_fire_tier2.tscn" id="5_cav1t"]
 [ext_resource type="PackedScene" uid="uid://ef10abku5qtj" path="res://PowerUps/Fire/speed_charge_fire_tier2.tscn" id="6_44ki8"]
 [ext_resource type="PackedScene" uid="uid://dlxfe4qkospkf" path="res://PowerUps/Fire/ability2_fire.tscn" id="6_xhqaq"]
 [ext_resource type="PackedScene" uid="uid://btdtp7rnbomg0" path="res://PowerUps/Fire/shoot_fire.tscn" id="7_tvxtq"]
@@ -18,11 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://ddvdrb4uwvio8" path="res://PowerUps/Fire/shoot_fire_tier2.tscn" id="10_v0l5k"]
 [ext_resource type="PackedScene" uid="uid://di3mib8lmdpek" path="res://PowerUps/Fire/aura_fire_tier2.tscn" id="12_dj647"]
 
-[node name="Fire" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps")]
+[node name="Fire" type="Node2D" node_paths=PackedStringArray("powerUps", "bannedPowerUps", "forceAtStart")]
 script = ExtResource("1_mvwkw")
 powerUpFaction = 1
-powerUps = [NodePath("ContactFire"), NodePath("ContactFireTier2"), NodePath("TrailFire"), NodePath("TrailFire2"), NodePath("SpeedChargeFire"), NodePath("SpeedChargeFireTier2"), NodePath("Ability1Fire"), NodePath("Ability1FireTier2"), NodePath("Ability2Fire"), NodePath("Ability2FireTier2"), NodePath("ShootFire"), NodePath("ShootFireTier2"), NodePath("AuraFire"), NodePath("AuraFireTier2"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
-bannedPowerUps = [NodePath("ContactFireTier2"), NodePath("SpeedChargeFireTier2"), NodePath("ShootFireTier2"), NodePath("AuraFireTier2"), NodePath("Ability1FireTier2"), NodePath("Ability2FireTier2"), NodePath("TrailFire2")]
+powerUps = [NodePath("ContactFire"), NodePath("ContactFireTier2"), NodePath("TrailFire"), NodePath("TrailFireTier2"), NodePath("SpeedChargeFire"), NodePath("SpeedChargeFireTier2"), NodePath("Ability1Fire"), NodePath("Ability1FireTier2"), NodePath("Ability2Fire"), NodePath("Ability2FireTier2"), NodePath("ShootFire"), NodePath("ShootFireTier2"), NodePath("AuraFire"), NodePath("AuraFireTier2"), NodePath("AreaPassiveFire"), NodePath("DamagePassiveFire"), NodePath("TimerPassiveFire")]
+bannedPowerUps = [NodePath("ContactFireTier2"), NodePath("SpeedChargeFireTier2"), NodePath("ShootFireTier2"), NodePath("AuraFireTier2"), NodePath("Ability1FireTier2"), NodePath("Ability2FireTier2"), NodePath("TrailFireTier2")]
+forceAtStart = [NodePath("AuraFireTier2")]
 
 [node name="ContactFire" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("2_37bpx")]
 nextPowerUp = NodePath("../ContactFireTier2")
@@ -31,9 +33,9 @@ nextPowerUp = NodePath("../ContactFireTier2")
 previousPowerUp = NodePath("../ContactFire")
 
 [node name="TrailFire" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("3_ovaeg")]
-nextPowerUp = NodePath("../TrailFire2")
+nextPowerUp = NodePath("../TrailFireTier2")
 
-[node name="TrailFire2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("3_ovaeg")]
+[node name="TrailFireTier2" parent="." node_paths=PackedStringArray("previousPowerUp") instance=ExtResource("5_cav1t")]
 previousPowerUp = NodePath("../TrailFire")
 
 [node name="SpeedChargeFire" parent="." node_paths=PackedStringArray("nextPowerUp") instance=ExtResource("4_xo4s6")]

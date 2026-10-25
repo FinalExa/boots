@@ -3,7 +3,7 @@ extends Node2D
 
 @export var passiveProcs: Array[ExecuteAttack]
 
-func ActivatePassive(tier: int, objRef: Node2D):
+func ActivatePassive(_tier: int, _objRef: Node2D):
 	pass
 
 func GetSpeedIndex(index: int):

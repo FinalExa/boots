@@ -26,6 +26,7 @@ func _ready():
 
 func _process(delta):
 	ApplyDOT()
+	ApplyAttachable()
 	DoDamage()
 	if (stationary):
 		StartStationary()
@@ -66,6 +67,14 @@ func ApplyDOT():
 		if (enemiesInRange.size() > 0):
 			for i in enemiesInRange.size():
 				enemiesInRange[i].SetEffectOverTime(SpawnEffectOverTime(currentDOT, currentDOTDuration))
+
+func ApplyAttachable():
+	if (hasAttachable):
+		if (ref != null && ref is EnemyController):
+			SpawnAttachable(ref)
+		if (enemiesInRange.size() > 0):
+			for i in enemiesInRange.size():
+				SpawnAttachable(enemiesInRange[i])
 
 func StartStationary():
 	if (!stationaryStarted):

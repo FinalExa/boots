@@ -15,11 +15,6 @@ attackHitboxes = [NodePath("PlayerAttackHitbox")]
 attackSounds = [null]
 attackMovements = Array[float]([0.0])
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3.05176e-05, -3.05176e-05)
-scale = Vector2(2.33333, 2.33333)
-texture = ExtResource("2_fs11o")
-
 [node name="PlayerAttackHitbox" type="Area2D" parent="."]
 script = ExtResource("2_g7xt6")
 damage = 70.0
@@ -29,5 +24,10 @@ repelTime = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackHitbox"]
 shape = SubResource("CircleShape2D_3ukbk")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerAttackHitbox"]
+position = Vector2(-3.05176e-05, -3.05176e-05)
+scale = Vector2(2.33333, 2.33333)
+texture = ExtResource("2_fs11o")
 
 [connection signal="body_entered" from="PlayerAttackHitbox" to="PlayerAttackHitbox" method="_on_body_entered"]
