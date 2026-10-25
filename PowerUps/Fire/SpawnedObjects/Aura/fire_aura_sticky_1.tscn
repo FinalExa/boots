@@ -22,6 +22,7 @@ animations = [{
 radius = 64.0
 
 [node name="FireAuraSticky1" type="Node2D" node_paths=PackedStringArray("stationaryAreaCollisionShape", "sprite")]
+modulate = Color(1, 1, 1, 0.392157)
 script = ExtResource("1_06nmd")
 stationary = true
 stationaryDOT = 3.0
