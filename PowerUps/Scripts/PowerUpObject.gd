@@ -29,8 +29,8 @@ func SpawnSpecialObjects(specialObjects: Array[String]):
 		for i in specialObjects.size():
 			call_deferred("SpawnSpecialObject", specialObjects[i])
 
-func SpawnSpecialObject(specialObject: String):
-	var obj = SpawnObject(specialObject)
+func SpawnSpecialObject(specialObj: String):
+	var obj = SpawnObject(specialObj)
 	self.add_child(obj)
 	obj.global_position = self.global_position
 

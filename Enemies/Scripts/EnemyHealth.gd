@@ -17,7 +17,7 @@ func _ready():
 func HealthStartup():
 	HealthUpdate(maxHealth, self)
 
-func HealthUpdate(valueChange: float, source: Node):
+func HealthUpdate(valueChange: float, _source: Node):
 	if (valueChange <= 0 && enemyShielded.shieldedBy != null):
 		valueChange = 0
 		enemyShielded.RemoveShielded()
