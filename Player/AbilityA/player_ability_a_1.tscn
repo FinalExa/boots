@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b8qt8l8h6ysit" path="res://Player/Sprites/ability1Area.png" id="3_fxwyp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vcw5"]
-radius = 192.167
+radius = 192.0
 
 [node name="PlayerAbilityA1" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
 script = ExtResource("1_pq8v7")
