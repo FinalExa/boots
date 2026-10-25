@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjrtmpdqqiag5"]
+[gd_scene load_steps=5 format=3 uid="uid://cjrtmpdqqiag5"]
 
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_77bco"]
+[ext_resource type="Texture2D" uid="uid://crxwsnjq6ednx" path="res://Player/PassiveEffects/Johnny/Sprites/johnny_passive_impact_area.png" id="2_fs11o"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAttackHitbox.gd" id="2_g7xt6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ukbk"]
@@ -13,6 +14,11 @@ attackPhasesLaunch = Array[int]([0])
 attackHitboxes = [NodePath("PlayerAttackHitbox")]
 attackSounds = [null]
 attackMovements = Array[float]([0.0])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.05176e-05, -3.05176e-05)
+scale = Vector2(2.33333, 2.33333)
+texture = ExtResource("2_fs11o")
 
 [node name="PlayerAttackHitbox" type="Area2D" parent="."]
 script = ExtResource("2_g7xt6")
