@@ -305,13 +305,16 @@ powerUpPassiveDataBlocks = Array[ExtResource("14_5l6ef")]([SubResource("Resource
 script = ExtResource("6_oemhe")
 passiveProcs = [NodePath("JohnnyPassiveAttack1"), NodePath("JohnnyPassiveAttack2"), NodePath("JohnnyPassiveAttack3")]
 
-[node name="JohnnyPassiveAttack1" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("16_djkrr")]
+[node name="JohnnyPassiveAttack1" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("16_djkrr")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="JohnnyPassiveAttack2" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("17_onr3q")]
+[node name="JohnnyPassiveAttack2" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("17_onr3q")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="JohnnyPassiveAttack3" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("18_8oy8u")]
+[node name="JohnnyPassiveAttack3" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("18_8oy8u")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "playerSpeedThresholds", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
@@ -327,7 +330,8 @@ ability2Cooldown = 10.0
 ability2Bar = NodePath("../../PlayerUI/HUD/Ability2Bar")
 ability2Label = NodePath("../../PlayerUI/HUD/Ability2Bar/Ability2StackCount")
 
-[node name="PlayerAbilityA1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("19_bpc71")]
+[node name="PlayerAbilityA1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbilityA2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("16_fwm4b")]

@@ -3,6 +3,12 @@ extends Node2D
 
 @export var passiveReferenced: PlayerCharacter.Player
 
+func _ready():
+	ReadyOperations()
+
+func ReadyOperations():
+	pass
+
 func IsHit(body):
 	if (body is PlayerCharacter):
 		if (body.playerID == passiveReferenced):
