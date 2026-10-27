@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccdfq3p8fb1e0"]
+
+[ext_resource type="Script" path="res://MapObjects/Scripts/JohnnyPassiveObject.gd" id="1_61hd5"]
+[ext_resource type="Texture2D" uid="uid://b3irecsp2onhe" path="res://MapObjects/Sprites/johnny_passive_object.png" id="2_rc5iw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0igw"]
+radius = 24.0
+height = 64.0
+
+[node name="JohnnyPassiveObject" type="Area2D" node_paths=PackedStringArray("spriteRef", "collisionRef")]
+script = ExtResource("1_61hd5")
+regenerates = true
+regenerationTimer = 10.0
+spriteRef = NodePath("Sprite2D")
+collisionRef = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_s0igw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rc5iw")
+
+[connection signal="body_entered" from="." to="." method="PlayerIn"]
+[connection signal="body_exited" from="." to="." method="PlayerLeaves"]

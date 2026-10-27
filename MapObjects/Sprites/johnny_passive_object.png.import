@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3irecsp2onhe"
-path="res://.godot/imported/johnny_wall.png-62bf298f8ef332be9d0d46e6e170502d.ctex"
+path="res://.godot/imported/johnny_passive_object.png-e171a93e27929e950675a291fa39a4d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MapObjects/Sprites/johnny_wall.png"
-dest_files=["res://.godot/imported/johnny_wall.png-62bf298f8ef332be9d0d46e6e170502d.ctex"]
+source_file="res://MapObjects/Sprites/johnny_passive_object.png"
+dest_files=["res://.godot/imported/johnny_passive_object.png-e171a93e27929e950675a291fa39a4d3.ctex"]
 
 [params]
 
