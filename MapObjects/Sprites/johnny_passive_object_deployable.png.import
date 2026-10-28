@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfdyft07a1sy7"
-path="res://.godot/imported/skill2_bar_under.png-6a3c9bc0f2b90a9f313be37e55538d30.ctex"
+uid="uid://c85r84115jsyj"
+path="res://.godot/imported/johnny_passive_object_deployable.png-032f1f79864a44d31feb786937cf13fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/HUD/Sprites/skill2_bar_under.png"
-dest_files=["res://.godot/imported/skill2_bar_under.png-6a3c9bc0f2b90a9f313be37e55538d30.ctex"]
+source_file="res://MapObjects/Sprites/johnny_passive_object_deployable.png"
+dest_files=["res://.godot/imported/johnny_passive_object_deployable.png-032f1f79864a44d31feb786937cf13fb.ctex"]
 
 [params]
 

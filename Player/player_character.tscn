@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=67 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -18,18 +18,18 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpPassiveDataBlock.gd" id="14_5l6ef"]
 [ext_resource type="Script" path="res://Player/Scripts/PowerUpManager.gd" id="16_1u6or"]
 [ext_resource type="PackedScene" uid="uid://bnqaogu2or7jy" path="res://Player/PassiveEffects/Johnny/johnny_passive_attack_1.tscn" id="16_djkrr"]
-[ext_resource type="PackedScene" uid="uid://bje0d4i6cm1e5" path="res://Player/AbilityA/player_ability_a_2.tscn" id="16_fwm4b"]
-[ext_resource type="PackedScene" uid="uid://d6lgqj15se8j" path="res://Player/AbilityA/player_ability_a_3.tscn" id="17_d3xim"]
 [ext_resource type="PackedScene" uid="uid://b4scdwkhploxa" path="res://Player/PassiveEffects/Johnny/johnny_passive_attack_2.tscn" id="17_onr3q"]
 [ext_resource type="PackedScene" uid="uid://cjrtmpdqqiag5" path="res://Player/PassiveEffects/Johnny/johnny_passive_attack_3.tscn" id="18_8oy8u"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAbilities.gd" id="18_d34mc"]
-[ext_resource type="PackedScene" uid="uid://clqjlnwlwnqnc" path="res://Player/AbilityB/player_ability_b_2.tscn" id="19_6jh4h"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAim.gd" id="19_44plk"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
-[ext_resource type="PackedScene" uid="uid://bqksn2ryw4yw4" path="res://Player/AbilityA/player_ability_a_1.tscn" id="19_bpc71"]
-[ext_resource type="PackedScene" uid="uid://d3fgotociy2vg" path="res://Player/AbilityB/player_ability_b_1.tscn" id="20_6myp7"]
-[ext_resource type="PackedScene" uid="uid://dn6i2mwky75eo" path="res://Player/AbilityB/player_ability_b_3.tscn" id="20_rwe1b"]
+[ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/Abilities/Sprites/repel_bar_under.png" id="20_1cvqj"]
+[ext_resource type="Texture2D" uid="uid://criabkf6fnqcn" path="res://Player/Abilities/Sprites/johhny_unleash_barrel.png" id="20_gle27"]
+[ext_resource type="PackedScene" uid="uid://bqksn2ryw4yw4" path="res://Player/Abilities/Repel/ability_repel_1.tscn" id="20_va7nl"]
+[ext_resource type="PackedScene" uid="uid://bje0d4i6cm1e5" path="res://Player/Abilities/Repel/ability_repel_2.tscn" id="21_eh710"]
 [ext_resource type="PackedScene" uid="uid://btmcb1a8mk3w6" path="res://Player/HUD/speed_bar.tscn" id="22_2s2fx"]
+[ext_resource type="PackedScene" uid="uid://qlxpc717qsxe" path="res://Player/Abilities/JohnnyUnleashBarrel/johnny_unleash_barrel.tscn" id="22_6omtg"]
+[ext_resource type="PackedScene" uid="uid://d6lgqj15se8j" path="res://Player/Abilities/Repel/ability_repel_3.tscn" id="22_mbne8"]
 [ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="23_3xtsy"]
 [ext_resource type="PackedScene" uid="uid://dp1jg12bwo32" path="res://Player/player_collision_detect.tscn" id="23_m5vn1"]
 [ext_resource type="Texture2D" uid="uid://cp8d0s2hr0mi0" path="res://Player/HUD/Sprites/projectiles_bar_under.png" id="24_og5fn"]
@@ -40,10 +40,8 @@
 [ext_resource type="Texture2D" uid="uid://q3b077lglk03" path="res://Player/HUD/Sprites/mouse_left_click.png" id="27_oad4o"]
 [ext_resource type="Texture2D" uid="uid://dwrbnlm2dcpxx" path="res://Player/HUD/Sprites/controller_button_left.png" id="27_s5g06"]
 [ext_resource type="Texture2D" uid="uid://xxlpg44dor5i" path="res://Player/HUD/Sprites/keyboard_E.png" id="27_ssrbe"]
-[ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/HUD/Sprites/skill1_bar_under.png" id="28_cedei"]
 [ext_resource type="Script" path="res://Player/HUD/Scripts/ChangeInputDisplay.gd" id="29_bypa6"]
 [ext_resource type="Texture2D" uid="uid://co4uclcuruyf7" path="res://Player/HUD/Sprites/keyboard_shift.png" id="29_jjlwt"]
-[ext_resource type="Texture2D" uid="uid://dfdyft07a1sy7" path="res://Player/HUD/Sprites/skill2_bar_under.png" id="30_bg1bh"]
 [ext_resource type="Texture2D" uid="uid://c5v85o6o0yft7" path="res://Player/HUD/Sprites/controller_button_rightTrigger.png" id="31_32ugx"]
 [ext_resource type="Texture2D" uid="uid://4t7h0djcy7sr" path="res://Player/HUD/Sprites/controller_button_down.png" id="33_8d208"]
 [ext_resource type="Texture2D" uid="uid://p8sl20lbj2ow" path="res://Player/HUD/Sprites/keyboard_ctrl.png" id="33_lvn6i"]
@@ -305,50 +303,44 @@ powerUpPassiveDataBlocks = Array[ExtResource("14_5l6ef")]([SubResource("Resource
 script = ExtResource("6_oemhe")
 passiveProcs = [NodePath("JohnnyPassiveAttack1"), NodePath("JohnnyPassiveAttack2"), NodePath("JohnnyPassiveAttack3")]
 
-[node name="JohnnyPassiveAttack1" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("16_djkrr")]
+[node name="JohnnyPassiveAttack1" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("16_djkrr")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="JohnnyPassiveAttack2" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("17_onr3q")]
+[node name="JohnnyPassiveAttack2" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("17_onr3q")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="JohnnyPassiveAttack3" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("characterRef") instance=ExtResource("18_8oy8u")]
+[node name="JohnnyPassiveAttack3" parent="PlayerRotator/PlayerPassive" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("18_8oy8u")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
 [node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "playerSpeedThresholds", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
 script = ExtResource("18_d34mc")
 playerInputs = NodePath("../../PlayerInputs")
 playerSpeedThresholds = NodePath("../PlayerSpeedThresholds")
-ability1 = [NodePath("PlayerAbilityA1"), NodePath("PlayerAbilityA2"), NodePath("PlayerAbilityA3")]
-ability1Cooldown = 15.0
+ability1 = [NodePath("JohnnyUnleashBarrel"), NodePath("JohnnyUnleashBarrel"), NodePath("JohnnyUnleashBarrel")]
+ability1Cooldown = 10.0
+ability1Stacks = 3
 ability1Bar = NodePath("../../PlayerUI/HUD/Ability1Bar")
 ability1Label = NodePath("../../PlayerUI/HUD/Ability1Bar/Ability1StackCount")
-ability2 = [NodePath("PlayerAbilityB1"), NodePath("PlayerAbilityB2"), NodePath("PlayerAbilityB3")]
+ability1Icon = ExtResource("20_gle27")
+ability2 = [NodePath("AbilityRepel1"), NodePath("AbilityRepel2"), NodePath("AbilityRepel3")]
 ability2Cooldown = 10.0
 ability2Bar = NodePath("../../PlayerUI/HUD/Ability2Bar")
 ability2Label = NodePath("../../PlayerUI/HUD/Ability2Bar/Ability2StackCount")
+ability2Icon = ExtResource("20_1cvqj")
 
-[node name="PlayerAbilityA1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_bpc71")]
-attackSounds = [null]
+[node name="JohnnyUnleashBarrel" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("22_6omtg")]
 characterRef = NodePath("../../..")
 
-[node name="PlayerAbilityA2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("16_fwm4b")]
-attackSounds = [null]
+[node name="AbilityRepel1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("20_va7nl")]
 characterRef = NodePath("../../..")
 
-[node name="PlayerAbilityA3" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("17_d3xim")]
-attackSounds = [null]
+[node name="AbilityRepel2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("21_eh710")]
 characterRef = NodePath("../../..")
 
-[node name="PlayerAbilityB1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_6myp7")]
-attackSounds = [null, null, null, null, null, null, null, null]
-characterRef = NodePath("../../..")
-
-[node name="PlayerAbilityB2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("19_6jh4h")]
-attackSounds = [null, null, null, null, null, null, null, null]
-characterRef = NodePath("../../..")
-
-[node name="PlayerAbilityB3" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_rwe1b")]
-attackSounds = [null, null, null, null, null, null, null, null]
+[node name="AbilityRepel3" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("22_mbne8")]
 characterRef = NodePath("../../..")
 
 [node name="FollowItem" type="Node2D" parent="PlayerRotator"]
@@ -518,7 +510,6 @@ offset_top = 920.0
 offset_right = 128.0
 offset_bottom = 984.0
 fill_mode = 3
-texture_under = ExtResource("28_cedei")
 texture_over = ExtResource("25_fakee")
 texture_progress = ExtResource("26_0xqhb")
 
@@ -544,7 +535,6 @@ offset_top = 984.0
 offset_right = 128.0
 offset_bottom = 1048.0
 fill_mode = 3
-texture_under = ExtResource("30_bg1bh")
 texture_over = ExtResource("25_fakee")
 texture_progress = ExtResource("26_0xqhb")
 
@@ -575,6 +565,7 @@ vertical_alignment = 1
 script = ExtResource("6_vo4ho")
 
 [node name="MissionSelectPath" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("43_enpf3")]
+visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0

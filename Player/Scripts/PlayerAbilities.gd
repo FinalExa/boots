@@ -14,6 +14,7 @@ var ability1Timer: float
 var ability1CurrentStacks: int
 @export var ability1Bar: TextureProgressBar
 @export var ability1Label: Label
+@export var ability1Icon: Texture2D
 
 @export var ability2: Array[ExecuteAttack]
 @export var ability2Cooldown: float
@@ -22,6 +23,7 @@ var ability2Timer: float
 var ability2CurrentStacks: int
 @export var ability2Bar: TextureProgressBar
 @export var ability2Label: Label
+@export var ability2Icon: Texture2D
 
 func _ready():
 	StartupAbilities()
@@ -35,10 +37,12 @@ func StartupAbilities():
 	ability1CurrentStacks = ability1Stacks
 	ability1Bar.max_value = ability1Cooldown * 100
 	ability1Label.text = str(ability1CurrentStacks, "/", ability1Stacks)
+	ability1Bar.texture_under = ability1Icon
 	ability2Timer = ability2Cooldown
 	ability2CurrentStacks = ability2Stacks
 	ability2Bar.max_value = ability2Cooldown * 100
 	ability2Label.text = str(ability2CurrentStacks, "/", ability2Stacks)
+	ability2Bar.texture_under = ability2Icon
 
 func AbilityIsUsed():
 	if (playerInputs.ability1 && ability1CurrentStacks > 0):

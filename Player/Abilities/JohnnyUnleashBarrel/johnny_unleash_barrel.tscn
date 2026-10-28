@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://qlxpc717qsxe"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_pub3x"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_m0dq3"]
+
+[node name="JohnnyUnleashBarrel" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_pub3x")
+attackDuration = 10
+attackPhasesLaunch = Array[int]([0])
+attackHitboxes = [NodePath("ObjectSpawner")]
+attackSounds = [null]
+attackMovements = Array[float]([0.0])
+ignoreAttackMovement = true
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("2_m0dq3")
+objectPath = "res://MapObjects/johnny_passive_object_deployable.tscn"

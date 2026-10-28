@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0jtk336531w"
-path="res://.godot/imported/skill1_bar_under.png-3176d64b89953e5266e99a82190b7465.ctex"
+uid="uid://dfdyft07a1sy7"
+path="res://.godot/imported/area_shoot_bar_under.png-223262880843f304b516ddca56c078c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/HUD/Sprites/skill1_bar_under.png"
-dest_files=["res://.godot/imported/skill1_bar_under.png-3176d64b89953e5266e99a82190b7465.ctex"]
+source_file="res://Player/Abilities/Sprites/area_shoot_bar_under.png"
+dest_files=["res://.godot/imported/area_shoot_bar_under.png-223262880843f304b516ddca56c078c4.ctex"]
 
 [params]
 
