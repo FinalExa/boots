@@ -20,9 +20,9 @@ func ProcessOperations(_delta):
 func PlayerCheck():
 	if (playerRef != null):
 		if (playerRef.playerID == passiveReferenced):
-			PlayerPasses(playerRef)
+			PlayerPasses()
 		else:
-			PlayerFails(playerRef)
+			PlayerFails()
 
 func PlayerIn(body):
 	if (body is PlayerCharacter):
@@ -32,8 +32,8 @@ func PlayerLeaves(body):
 	if (body is PlayerCharacter):
 		playerRef = null
 
-func PlayerPasses(_player: PlayerCharacter):
+func PlayerPasses():
 	pass
 
-func PlayerFails(_player: PlayerCharacter):
+func PlayerFails():
 	pass

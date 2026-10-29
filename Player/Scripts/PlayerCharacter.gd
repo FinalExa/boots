@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var powerUpManager: PowerUpManager
 @export var playerHealth: PlayerHealth
 @export var missionSelectPath: MissionSelectPath
+@export var playerAbilities: PlayerAbilities
 @export var playerPassive: PlayerPassive
 @export var moneyLabel: Label
 @export var currentRoomLabel: Label

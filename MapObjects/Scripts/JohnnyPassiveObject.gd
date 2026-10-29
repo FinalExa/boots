@@ -18,7 +18,7 @@ func ProcessOperations(delta):
 	DeployTimer(delta)
 	RegenerationTimer(delta)
 
-func PlayerPasses(playerRef: PlayerCharacter):
+func PlayerPasses():
 	if (!deactivated && deployed):
 		playerRef.playerPassive.ActivatePassive(playerRef.playerSpeedThresholds.speedIndex, self)
 

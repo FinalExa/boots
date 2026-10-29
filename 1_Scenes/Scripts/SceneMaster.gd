@@ -3,6 +3,7 @@ extends Node2D
 
 @export var frameMaster: FrameMaster
 @export var sceneSelector: SceneSelector
+@export var levelData: LevelData
 @export var hubPath: String
 
 func LoadHub():

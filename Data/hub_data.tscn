@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://drbfves7q2k86"]
+
+[ext_resource type="Script" path="res://Data/Scripts/HubData.gd" id="1_fkt0p"]
+[ext_resource type="Script" path="res://Data/Scripts/AbilityData.gd" id="2_wf6ip"]
+[ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/Abilities/Sprites/repel_bar_under.png" id="3_0bqn3"]
+[ext_resource type="Texture2D" uid="uid://dfdyft07a1sy7" path="res://Player/Abilities/Sprites/area_shoot_bar_under.png" id="4_5yfnw"]
+
+[sub_resource type="Resource" id="Resource_hx6dy"]
+script = ExtResource("2_wf6ip")
+abilityName = "Repel"
+pathRefs = Array[String](["res://Player/Abilities/Repel/ability_repel_1.tscn", "res://Player/Abilities/Repel/ability_repel_2.tscn", "res://Player/Abilities/Repel/ability_repel_3.tscn"])
+textureRef = ExtResource("3_0bqn3")
+cooldown = 10.0
+stacks = 1
+
+[sub_resource type="Resource" id="Resource_1y3yq"]
+script = ExtResource("2_wf6ip")
+abilityName = "Area Shoot"
+pathRefs = Array[String](["res://Player/Abilities/AreaShoot/ability_area_shoot_1.tscn", "res://Player/Abilities/AreaShoot/ability_area_shoot_2.tscn", "res://Player/Abilities/AreaShoot/ability_area_shoot_3.tscn"])
+textureRef = ExtResource("4_5yfnw")
+cooldown = 15.0
+stacks = 2
+
+[node name="HubData" type="Node"]
+script = ExtResource("1_fkt0p")
+abilities = Array[ExtResource("2_wf6ip")]([SubResource("Resource_hx6dy"), SubResource("Resource_1y3yq")])

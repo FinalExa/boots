@@ -3,6 +3,7 @@ extends StaticBody2D
 
 @export var activeLevelPath: String
 @export var inputIcon: AnimatedSprite2D
+@export var hubData: HubData
 var controllerAnimation: bool
 var playerHubRef: PlayerHub
 
@@ -31,6 +32,7 @@ func StartMission():
 	var obj_scene = load(activeLevelPath)
 	var sceneMaster: SceneMaster = obj_scene.instantiate()
 	sceneMaster.sceneSelector.playerRef.global_position = sceneMaster.sceneSelector.safePosition
+	hubData.SendData(sceneMaster.levelData)
 	rootRef.add_child(sceneMaster)
 	hubRef.queue_free()
 

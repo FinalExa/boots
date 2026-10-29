@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dqg13lpbwrv7"]
+[gd_scene load_steps=66 format=3 uid="uid://dqg13lpbwrv7"]
 
 [ext_resource type="Script" path="res://Player/Scripts/PlayerCharacter.gd" id="1_hu618"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerMovement.gd" id="1_n46fh"]
@@ -23,7 +23,6 @@
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAbilities.gd" id="18_d34mc"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerAim.gd" id="19_44plk"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerShooting.gd" id="19_aegdj"]
-[ext_resource type="Texture2D" uid="uid://0jtk336531w" path="res://Player/Abilities/Sprites/repel_bar_under.png" id="20_1cvqj"]
 [ext_resource type="Texture2D" uid="uid://criabkf6fnqcn" path="res://Player/Abilities/Sprites/johhny_unleash_barrel.png" id="20_gle27"]
 [ext_resource type="PackedScene" uid="uid://bqksn2ryw4yw4" path="res://Player/Abilities/Repel/ability_repel_1.tscn" id="20_va7nl"]
 [ext_resource type="PackedScene" uid="uid://bje0d4i6cm1e5" path="res://Player/Abilities/Repel/ability_repel_2.tscn" id="21_eh710"]
@@ -186,7 +185,7 @@ font_size = 32
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "playerPassive", "moneyLabel", "currentRoomLabel", "followItem")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "playerAbilities", "playerPassive", "moneyLabel", "currentRoomLabel", "followItem")]
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerUI/HUD/Objective")
@@ -199,12 +198,12 @@ shopUI = NodePath("PlayerUI/ShopUI")
 powerUpManager = NodePath("PlayerRotator/PowerUpManager")
 playerHealth = NodePath("PlayerHealth")
 missionSelectPath = NodePath("PlayerUI/MissionSelectPath")
+playerAbilities = NodePath("PlayerRotator/PlayerAbilities")
 playerPassive = NodePath("PlayerRotator/PlayerPassive")
 moneyLabel = NodePath("PlayerUI/HUD/MoneyValue")
 currentRoomLabel = NodePath("PlayerUI/HUD/CurrentRoomValue")
 followItem = NodePath("PlayerRotator/FollowItem")
 startingMoney = 100.0
-playerID = null
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -315,8 +314,9 @@ characterRef = NodePath("../../..")
 attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerInputs", "playerSpeedThresholds", "ability1", "ability1Bar", "ability1Label", "ability2", "ability2Bar", "ability2Label")]
+[node name="PlayerAbilities" type="Node2D" parent="PlayerRotator" node_paths=PackedStringArray("playerCharacter", "playerInputs", "playerSpeedThresholds", "ability1", "ability1Bar", "ability1Label", "ability2Bar", "ability2Label")]
 script = ExtResource("18_d34mc")
+playerCharacter = NodePath("../..")
 playerInputs = NodePath("../../PlayerInputs")
 playerSpeedThresholds = NodePath("../PlayerSpeedThresholds")
 ability1 = [NodePath("JohnnyUnleashBarrel"), NodePath("JohnnyUnleashBarrel"), NodePath("JohnnyUnleashBarrel")]
@@ -325,22 +325,23 @@ ability1Stacks = 3
 ability1Bar = NodePath("../../PlayerUI/HUD/Ability1Bar")
 ability1Label = NodePath("../../PlayerUI/HUD/Ability1Bar/Ability1StackCount")
 ability1Icon = ExtResource("20_gle27")
-ability2 = [NodePath("AbilityRepel1"), NodePath("AbilityRepel2"), NodePath("AbilityRepel3")]
-ability2Cooldown = 10.0
 ability2Bar = NodePath("../../PlayerUI/HUD/Ability2Bar")
 ability2Label = NodePath("../../PlayerUI/HUD/Ability2Bar/Ability2StackCount")
-ability2Icon = ExtResource("20_1cvqj")
 
-[node name="JohnnyUnleashBarrel" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("22_6omtg")]
+[node name="JohnnyUnleashBarrel" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("22_6omtg")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="AbilityRepel1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("20_va7nl")]
+[node name="AbilityRepel1" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("20_va7nl")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="AbilityRepel2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("21_eh710")]
+[node name="AbilityRepel2" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("21_eh710")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
-[node name="AbilityRepel3" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("characterRef") instance=ExtResource("22_mbne8")]
+[node name="AbilityRepel3" parent="PlayerRotator/PlayerAbilities" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("22_mbne8")]
+attackSounds = [null]
 characterRef = NodePath("../../..")
 
 [node name="FollowItem" type="Node2D" parent="PlayerRotator"]

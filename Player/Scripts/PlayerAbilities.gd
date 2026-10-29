@@ -4,6 +4,7 @@ extends Node2D
 signal ability1Used
 signal ability2Used
 
+@export var playerCharacter: PlayerCharacter
 @export var playerInputs: PlayerInputs
 @export var playerSpeedThresholds: PlayerSpeedThresholds
 
@@ -16,14 +17,13 @@ var ability1CurrentStacks: int
 @export var ability1Label: Label
 @export var ability1Icon: Texture2D
 
-@export var ability2: Array[ExecuteAttack]
-@export var ability2Cooldown: float
+var ability2: Array[ExecuteAttack]
+var ability2Cooldown: float
 var ability2Timer: float
-@export var ability2Stacks: int = 1
+var ability2Stacks: int = 1
 var ability2CurrentStacks: int
 @export var ability2Bar: TextureProgressBar
 @export var ability2Label: Label
-@export var ability2Icon: Texture2D
 
 func _ready():
 	StartupAbilities()
@@ -38,11 +38,27 @@ func StartupAbilities():
 	ability1Bar.max_value = ability1Cooldown * 100
 	ability1Label.text = str(ability1CurrentStacks, "/", ability1Stacks)
 	ability1Bar.texture_under = ability1Icon
+	
+
+func AddAbility2(receivedAbility: AbilityData):
+	ability2.clear()
+	for i in receivedAbility.pathRefs.size():
+		SpawnAndPlaceAbility2(receivedAbility.pathRefs[i])
+	ability2Cooldown = receivedAbility.cooldown
 	ability2Timer = ability2Cooldown
+	ability2CurrentStacks = receivedAbility.stacks
 	ability2CurrentStacks = ability2Stacks
 	ability2Bar.max_value = ability2Cooldown * 100
 	ability2Label.text = str(ability2CurrentStacks, "/", ability2Stacks)
-	ability2Bar.texture_under = ability2Icon
+	ability2Bar.texture_under = receivedAbility.textureRef
+
+func SpawnAndPlaceAbility2(abilityRef: String):
+	var abilityScene = load(abilityRef)
+	var abilityInstance: ExecuteAttack = abilityScene.instantiate()
+	self.add_child(abilityInstance)
+	abilityInstance.global_position = self.global_position
+	abilityInstance.characterRef = playerCharacter
+	ability2.push_back(abilityInstance)
 
 func AbilityIsUsed():
 	if (playerInputs.ability1 && ability1CurrentStacks > 0):
