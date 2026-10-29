@@ -8,6 +8,9 @@ var selectedAbilityID: int
 func _ready():
 	GetAbilityID()
 
+func SetAbilityID(id: int):
+	selectedAbilityID = id
+
 func GetAbilityID():
 	selectedAbilityID = LoadID()
 	if (selectedAbilityID == -1):
