@@ -1,18 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://byvdxm2flp23j"]
+[gd_scene load_steps=7 format=3 uid="uid://byvdxm2flp23j"]
 
+[ext_resource type="Script" path="res://Hub/Scripts/Hub.gd" id="1_7tc44"]
 [ext_resource type="PackedScene" uid="uid://drbfves7q2k86" path="res://Data/hub_data.tscn" id="1_famex"]
 [ext_resource type="PackedScene" uid="uid://bx5jew0cw2gt3" path="res://Hub/Player/player_hub.tscn" id="1_vjsfu"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_aui4k"]
 [ext_resource type="PackedScene" uid="uid://d162ajw3jj4li" path="res://Hub/mission_table.tscn" id="3_aactn"]
-[ext_resource type="PackedScene" uid="uid://doso15uu5gad8" path="res://Hub/ability_selector.tscn" id="5_5p1ds"]
+[ext_resource type="PackedScene" uid="uid://doso15uu5gad8" path="res://Hub/ability_table.tscn" id="5_62hu6"]
 
-[node name="Hub" type="Node2D"]
+[node name="Hub" type="Node2D" node_paths=PackedStringArray("hubData")]
 y_sort_enabled = true
+script = ExtResource("1_7tc44")
+hubData = NodePath("HubData")
 
-[node name="HubData" parent="." instance=ExtResource("1_famex")]
-baseAbilityID = 1
+[node name="HubData" parent="." node_paths=PackedStringArray("playerHub") instance=ExtResource("1_famex")]
+playerHub = NodePath("../PlayerHub")
 
-[node name="PlayerHub" parent="." instance=ExtResource("1_vjsfu")]
+[node name="PlayerHub" parent="." node_paths=PackedStringArray("hubData") instance=ExtResource("1_vjsfu")]
+hubData = NodePath("../HubData")
 
 [node name="MapStructure" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -34,4 +38,6 @@ layer_1/tile_data = PackedInt32Array(-589839, 65537, 0, -589838, 131073, 0, -589
 position = Vector2(0, -160)
 hubData = NodePath("../HubData")
 
-[node name="AbilitySelector" parent="." instance=ExtResource("5_5p1ds")]
+[node name="AbilityTable" parent="." node_paths=PackedStringArray("hubData") instance=ExtResource("5_62hu6")]
+position = Vector2(704, -352)
+hubData = NodePath("../HubData")

@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx5jew0cw2gt3"]
+[gd_scene load_steps=8 format=3 uid="uid://bx5jew0cw2gt3"]
 
 [ext_resource type="Script" path="res://Hub/Player/Scripts/PlayerHub.gd" id="1_x8s37"]
 [ext_resource type="Script" path="res://Player/Scripts/PlayerInputs.gd" id="2_anufw"]
 [ext_resource type="Script" path="res://Hub/Player/Scripts/PlayerHubMovement.gd" id="3_1qgqh"]
 [ext_resource type="PackedScene" uid="uid://bxjhyugqqq8c7" path="res://Player/player_sprite.tscn" id="4_u0fu7"]
 [ext_resource type="PackedScene" uid="uid://bqutpaclimhhe" path="res://Menus/pause_menu.tscn" id="4_usilo"]
+[ext_resource type="PackedScene" uid="uid://b7fm1bg4luof6" path="res://Hub/ability_select_screen.tscn" id="6_4uliq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h51le"]
 radius = 16.0
 
-[node name="PlayerHub" type="CharacterBody2D" node_paths=PackedStringArray("playerInputs")]
+[node name="PlayerHub" type="CharacterBody2D" node_paths=PackedStringArray("playerInputs", "abilitySelectScreen")]
 script = ExtResource("1_x8s37")
 playerInputs = NodePath("PlayerInputs")
+abilitySelectScreen = NodePath("HUD/AbilitySelectScreen")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 24)
@@ -48,7 +50,5 @@ offset_right = 936.0
 offset_bottom = 512.0
 playerHubRef = NodePath("../..")
 
-[node name="AbilitySelect" type="Control" parent="HUD"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="AbilitySelectScreen" parent="HUD" node_paths=PackedStringArray("playerHub") instance=ExtResource("6_4uliq")]
+playerHub = NodePath("../..")

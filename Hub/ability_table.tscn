@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://doso15uu5gad8"]
+
+[ext_resource type="Script" path="res://Hub/Scripts/AbilityTable.gd" id="1_emfpm"]
+[ext_resource type="Texture2D" uid="uid://dfvu8120auwst" path="res://Player/HUD/Sprites/controller_button_up.png" id="1_n3ruu"]
+[ext_resource type="Texture2D" uid="uid://fgeia50cgwi0" path="res://Player/HUD/Sprites/keyboard_F.png" id="2_bamh3"]
+[ext_resource type="Texture2D" uid="uid://dm250tr37my7e" path="res://Tiles/Sprites/boots_tileset.png" id="2_dkkah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn6m4"]
+size = Vector2(96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8cg8"]
+atlas = ExtResource("2_dkkah")
+region = Rect2(192, 256, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jtdmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8cg8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hputb"]
+atlas = ExtResource("1_n3ruu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pkp6"]
+atlas = ExtResource("2_bamh3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2r8jw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hputb")
+}],
+"loop": true,
+"name": &"controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pkp6")
+}],
+"loop": false,
+"name": &"keyboard",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8sl8"]
+radius = 128.0
+
+[node name="AbilityTable" type="StaticBody2D" node_paths=PackedStringArray("inputIcon")]
+script = ExtResource("1_emfpm")
+inputIcon = NodePath("InputIcon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gn6m4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jtdmb")
+autoplay = "default"
+
+[node name="InputIcon" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_2r8jw")
+animation = &"keyboard"
+autoplay = "keyboard"
+
+[node name="PlayerInArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInArea"]
+shape = SubResource("CircleShape2D_m8sl8")
+
+[connection signal="body_entered" from="PlayerInArea" to="." method="PlayerIn"]
+[connection signal="body_exited" from="PlayerInArea" to="." method="PlayerOut"]

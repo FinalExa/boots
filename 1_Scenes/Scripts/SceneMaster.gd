@@ -7,13 +7,11 @@ extends Node2D
 @export var hubPath: String
 
 func LoadHub():
-	call_deferred("ActuallyLoadHub")
-
-func ActuallyLoadHub():
 	var rootRef = get_tree().root
 	var activeSceneRef = rootRef.get_child(0)
 	rootRef.remove_child(activeSceneRef)
 	var obj_scene = load(hubPath)
-	var hub: Node2D = obj_scene.instantiate()
+	var hub: Hub = obj_scene.instantiate()
+	levelData.SendData(hub.hubData)
 	rootRef.add_child(hub)
 	activeSceneRef.queue_free()

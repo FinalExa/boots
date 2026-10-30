@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7fm1bg4luof6"]
+
+[ext_resource type="Script" path="res://Hub/Scripts/AbilitySelectScreen.gd" id="1_2aib8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qowyf"]
+font_size = 48
+
+[node name="AbilitySelectScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_2aib8")
+abilityDataButtonRef = "res://Hub/ability_button.tscn"
+startingPosition = Vector2(448, 216)
+overflowValue = 4
+buttonDistance = Vector2(128, 64)
+
+[node name="DoneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 896.0
+offset_right = 1024.0
+offset_bottom = 960.0
+text = "DONE"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 64.0
+offset_right = 1216.0
+offset_bottom = 192.0
+text = "SELECT ABILITY"
+label_settings = SubResource("LabelSettings_qowyf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="DoneButton" to="." method="DonePressed"]

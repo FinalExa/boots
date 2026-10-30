@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bod57bpqhcjha"]
+
+[ext_resource type="Script" path="res://Hub/Scripts/AbilityButton.gd" id="1_n0ox0"]
+
+[node name="AbilityButton" type="Button" node_paths=PackedStringArray("textureRect")]
+offset_left = 128.0
+offset_right = 384.0
+offset_bottom = 128.0
+script = ExtResource("1_n0ox0")
+textureRect = NodePath("TextureRect")
+secondRowText = "Cooldown: "
+thirdRowText = "Stacks: "
+selectedText = "SELECTED"
+baseColor = Color(1, 1, 1, 1)
+selectedColor = Color(0.376471, 0.376471, 0.376471, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -128.0
+offset_bottom = 128.0
+
+[connection signal="button_up" from="." to="." method="AbilitySelected"]
