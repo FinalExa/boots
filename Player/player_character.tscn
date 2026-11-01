@@ -231,6 +231,7 @@ heartRef = "res://Player/HUD/player_heart.tscn"
 heartStartPosition = NodePath("../PlayerUI/HUD/HeartSpawnPosition")
 maxHearts = 3
 maxHealth = 100.0
+lastHitHealth = 10.0
 playerMovements = NodePath("../PlayerMovements")
 invulnerabilityTime = 1.0
 
@@ -566,7 +567,6 @@ vertical_alignment = 1
 script = ExtResource("6_vo4ho")
 
 [node name="MissionSelectPath" parent="PlayerUI" node_paths=PackedStringArray("playerRef") instance=ExtResource("43_enpf3")]
-visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0

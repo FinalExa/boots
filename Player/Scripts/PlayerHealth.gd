@@ -5,6 +5,7 @@ extends Node
 @export var heartStartPosition: Control
 @export var maxHearts: int
 @export var maxHealth: float
+@export var lastHitHealth: float
 @export var playerMovements: PlayerMovements
 @export var invulnerabilityTime: float
 var invulnerabilityTimer: float
@@ -24,10 +25,14 @@ func UpdateHealthValue(valueToAdd: float):
 	if ((!invulnerabilityActive && valueToAdd < 0) || valueToAdd >= 0):
 		var previousHealth: float = currentHealth
 		currentHealth = clamp(currentHealth + valueToAdd, 0, maxHealth)
-		UpdateBar()
 		if (currentHealth <= 0):
-			LoseHeart()
+			if (currentHearts > 0):
+				LoseHeart()
+			else:
+				currentHealth = lastHitHealth
+				UpdateBar()
 			return
+		UpdateBar()
 		if (currentHealth >= maxHealth):
 			var difference: float = (previousHealth + valueToAdd) - maxHealth
 			if (difference > 0 && currentHearts < maxHearts - 1):
