@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b35ai308hd3yf"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_4tlqn"]
+[ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyattack.png" id="2_2hxhy"]
+[ext_resource type="Script" path="res://Enemies/Scripts/EnemyAttackHitbox.gd" id="3_rru6e"]
+[ext_resource type="Texture2D" uid="uid://cqpbxy5f24xwq" path="res://Enemies/Sprites/enemy_spin_attack_hitbox.png" id="4_lp7tu"]
+
+[node name="EnemySpinAttack" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_4tlqn")
+attackDuration = 30
+attackCooldown = 60
+attackPhasesLaunch = Array[int]([0, 5])
+attackHitboxes = [null, NodePath("EnemyAttackHitbox")]
+attackSounds = [null, null]
+attackMovements = Array[float]([0.0, 1500.0])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 1, 1, 1)
+position = Vector2(0, -48)
+texture = ExtResource("2_2hxhy")
+
+[node name="EnemyAttackHitbox" type="Area2D" parent="." groups=["ClashArea"]]
+script = ExtResource("3_rru6e")
+reducedSpeed = 1000.0
+partialDamage = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyAttackHitbox"]
+position = Vector2(0, -48)
+texture = ExtResource("4_lp7tu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyAttackHitbox"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 24, -56, 8, -64, -8, -64, -24, -56)
+
+[connection signal="body_entered" from="EnemyAttackHitbox" to="EnemyAttackHitbox" method="_on_body_entered"]

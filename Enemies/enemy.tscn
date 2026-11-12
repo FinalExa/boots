@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bo585ed8eynti"]
+[gd_scene load_steps=23 format=3 uid="uid://bo585ed8eynti"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyController.gd" id="1_d1ice"]
 [ext_resource type="Texture2D" uid="uid://cu1ng6o6iytvx" path="res://Enemies/Sprites/enemy.png" id="1_u7n81"]
@@ -11,14 +11,12 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRepelled.gd" id="6_ld5kg"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRotator.gd" id="6_xcinm"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyShielded.gd" id="7_lfdda"]
-[ext_resource type="Script" path="res://Enemies/Scripts/EnemyKillCheck.gd" id="7_xlcdy"]
-[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="8_16hwb"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BehaviorTree.gd" id="8_s3w1r"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="9_5t5mk"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="10_456kg"]
 [ext_resource type="PackedScene" uid="uid://cusd56vuia7wr" path="res://Enemies/enemy_health_bar.tscn" id="10_im1le"]
+[ext_resource type="PackedScene" uid="uid://e7k5jwr7l5pk" path="res://Enemies/Attacks/enemy_charge_attack.tscn" id="12_oynac"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="12_wbpqb"]
-[ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyattack.png" id="13_jg0ip"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyStartAttack.gd" id="14_tl21x"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyIsAttacking.gd" id="15_iqhbn"]
 [ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="15_msce2"]
@@ -34,7 +32,7 @@ script = ExtResource("1_d1ice")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
 enemyRotator = NodePath("EnemyRotator")
-enemyAttack = NodePath("EnemyRotator/EnemyAttack")
+enemyAttack = NodePath("EnemyRotator/EnemyChargeAttack")
 enemyHealth = NodePath("EnemyHealth")
 enemyShielded = NodePath("EnemyShielded")
 targetPointer = NodePath("TargetPointer")
@@ -114,31 +112,8 @@ pointer = NodePath("Pointer")
 [node name="Pointer" type="Node2D" parent="EnemyRotator"]
 position = Vector2(0, -64)
 
-[node name="EnemyAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
-script = ExtResource("8_16hwb")
-attackDuration = 30
-attackCooldown = 60
-attackPhasesLaunch = Array[int]([0, 5])
-attackHitboxes = [NodePath("Sprite2D"), NodePath("EnemyKillCheck")]
-attackSounds = [null, null]
-attackMovements = Array[float]([0.0, 1500.0])
+[node name="EnemyChargeAttack" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("12_oynac")]
 characterRef = NodePath("../..")
-
-[node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack"]
-self_modulate = Color(0, 1, 1, 1)
-texture = ExtResource("13_jg0ip")
-
-[node name="EnemyKillCheck" type="Area2D" parent="EnemyRotator/EnemyAttack" node_paths=PackedStringArray("hitSound") groups=["ClashArea"]]
-script = ExtResource("7_xlcdy")
-reducedSpeed = 1000.0
-partialDamage = 5.0
-hitSound = NodePath("../../../Sounds/EnemyDirect")
-
-[node name="Sprite2D" type="Sprite2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck"]
-texture = ExtResource("13_jg0ip")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyRotator/EnemyAttack/EnemyKillCheck"]
-polygon = PackedVector2Array(-32, -32, 32, -32, 24, -56, 8, -64, -8, -64, -24, -56)
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController", "normalSprite", "angrySprite")]
 script = ExtResource("4_bfq86")
@@ -166,15 +141,13 @@ children = [NodePath("TaskEnemyRepelled"), NodePath("TaskEnemyIsAttacking"), Nod
 script = ExtResource("12_wbpqb")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemyController")]
+[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyController")]
 script = ExtResource("15_iqhbn")
-enemyAttack = NodePath("../../../EnemyRotator/EnemyAttack")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyAttack", "enemyController")]
+[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyController")]
 script = ExtResource("14_tl21x")
 enemyMovement = NodePath("../../../EnemyMovement")
-enemyAttack = NodePath("../../../EnemyRotator/EnemyAttack")
 enemyController = NodePath("../../..")
 
 [node name="TaskChasePlayer" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyDetection", "enemyMovement", "enemyController")]
@@ -187,5 +160,4 @@ enemyController = NodePath("../../..")
 [connection signal="repelled" from="." to="EnemyMovement" method="_on_enemy_repelled"]
 [connection signal="enemyDeath" from="EnemyHealth" to="." method="RemoveFromSpawner"]
 [connection signal="enemyDeath" from="EnemyHealth" to="TargetPointer" method="DestroyRotator"]
-[connection signal="body_entered" from="EnemyRotator/EnemyAttack/EnemyKillCheck" to="EnemyRotator/EnemyAttack/EnemyKillCheck" method="_on_body_entered"]
 [connection signal="body_entered" from="EnemyDetection" to="EnemyDetection" method="_on_body_entered"]

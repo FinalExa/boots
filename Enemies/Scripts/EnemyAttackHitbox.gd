@@ -1,3 +1,4 @@
+class_name EnemyAttackHitbox
 extends AttackHitbox
 
 @export var reducedSpeed: float
