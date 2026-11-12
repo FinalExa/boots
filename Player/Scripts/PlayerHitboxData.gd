@@ -103,7 +103,7 @@ func Clash(enemyController: EnemyController):
 	DealDamage(enemyController, clashDamage, clashRepelDistance, playerMovements.currentDirection, clashRepelTime, clashLossOnImpact, true)
 
 func DealDamage(enemyController: EnemyController, damageDealt: float, repelDist: float, direction: Vector2, time: float, speedLoss: float, clash: bool):
-	if (!enemyController.damageImmunity):
+	if (enemyController != null && !enemyController.damageImmunity):
 		enemyController.ReceiveDamage(damageDealt, repelDist, direction, time, self)
 		if (clash):
 			clashSound.play()

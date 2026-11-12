@@ -65,7 +65,7 @@ position = Vector2(-3616, -4032)
 
 [node name="EnemySpawner" type="Node2D" parent="Enemies" node_paths=PackedStringArray("objectSpawnLocations")]
 script = ExtResource("6_mpf0r")
-objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn"])
+objectPaths = Array[String](["res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy_spinner.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy.tscn", "res://Enemies/enemy_spinner.tscn", "res://Enemies/enemy_spinner.tscn"])
 objectSpawnLocations = [NodePath("1"), NodePath("2"), NodePath("3"), NodePath("4"), NodePath("5"), NodePath("6"), NodePath("7"), NodePath("8"), NodePath("9"), NodePath("10"), NodePath("11"), NodePath("12")]
 aggressiveSpawn = true
 

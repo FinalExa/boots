@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BT_Sequence.gd" id="9_5t5mk"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="10_456kg"]
 [ext_resource type="PackedScene" uid="uid://cusd56vuia7wr" path="res://Enemies/enemy_health_bar.tscn" id="10_im1le"]
-[ext_resource type="PackedScene" uid="uid://e7k5jwr7l5pk" path="res://Enemies/Attacks/enemy_charge_attack.tscn" id="12_oynac"]
+[ext_resource type="PackedScene" uid="uid://bbb0cj3k2d6bd" path="res://Enemies/Attacks/enemy_charge_attack.tscn" id="12_oynac"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyRepelled.gd" id="12_wbpqb"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyStartAttack.gd" id="14_tl21x"]
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskEnemyIsAttacking.gd" id="15_iqhbn"]
@@ -60,7 +60,7 @@ texture = ExtResource("4_mv6rc")
 
 [node name="EnemyHealth" type="Node" parent="." node_paths=PackedStringArray("enemyController", "enemyShielded", "bar")]
 script = ExtResource("4_hlpqe")
-maxHealth = 200.0
+maxHealth = 100.0
 enemyController = NodePath("..")
 enemyShielded = NodePath("../EnemyShielded")
 bar = NodePath("../EnemyUI/EnemyHealthBar")
@@ -112,7 +112,8 @@ pointer = NodePath("Pointer")
 [node name="Pointer" type="Node2D" parent="EnemyRotator"]
 position = Vector2(0, -64)
 
-[node name="EnemyChargeAttack" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("12_oynac")]
+[node name="EnemyChargeAttack" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "characterRef") instance=ExtResource("12_oynac")]
+attackHitboxes = [null, null]
 characterRef = NodePath("../..")
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController", "normalSprite", "angrySprite")]
@@ -141,13 +142,15 @@ children = [NodePath("TaskEnemyRepelled"), NodePath("TaskEnemyIsAttacking"), Nod
 script = ExtResource("12_wbpqb")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyController")]
+[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemyController")]
 script = ExtResource("15_iqhbn")
+enemyAttack = NodePath("../../../EnemyRotator/EnemyChargeAttack")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyController")]
+[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyAttack", "enemyController")]
 script = ExtResource("14_tl21x")
 enemyMovement = NodePath("../../../EnemyMovement")
+enemyAttack = NodePath("../../../EnemyRotator/EnemyChargeAttack")
 enemyController = NodePath("../../..")
 
 [node name="TaskChasePlayer" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyDetection", "enemyMovement", "enemyController")]

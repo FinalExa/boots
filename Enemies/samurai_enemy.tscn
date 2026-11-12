@@ -115,7 +115,9 @@ pointer = NodePath("Pointer")
 [node name="Pointer" type="Node2D" parent="EnemyRotator"]
 position = Vector2(0, -64)
 
-[node name="SamuraiAttack" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("12_uv8ds")]
+[node name="SamuraiAttack" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef") instance=ExtResource("12_uv8ds")]
+attackHitboxes = [null, NodePath("EnemyAttackHitbox"), NodePath("EnemyAttackHitbox2"), NodePath("EnemyAttackHitbox3")]
+attackSounds = [null, null, null, null]
 characterRef = NodePath("../..")
 
 [node name="EnemySideShield" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("14_n55my")]
@@ -152,13 +154,15 @@ children = [NodePath("TaskEnemyRepelled"), NodePath("TaskEnemyIsAttacking"), Nod
 script = ExtResource("17_h51ge")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyController")]
+[node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemyController")]
 script = ExtResource("18_3sfxw")
+enemyAttack = NodePath("../../../EnemyRotator/SamuraiAttack")
 enemyController = NodePath("../../..")
 
-[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyController")]
+[node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyAttack", "enemyController")]
 script = ExtResource("19_p3f8h")
 enemyMovement = NodePath("../../../EnemyMovement")
+enemyAttack = NodePath("../../../EnemyRotator/SamuraiAttack")
 enemyController = NodePath("../../..")
 
 [node name="TaskChasePlayer" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyDetection", "enemyMovement", "enemyController")]

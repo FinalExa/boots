@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_rr6s7"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyAttackHitbox.gd" id="2_d0ura"]
-[ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Sprites/enemyattack.png" id="3_47qac"]
+[ext_resource type="Texture2D" uid="uid://by26x7jxmgdvm" path="res://Enemies/Attacks/Sprites/enemyattack.png" id="3_47qac"]
 
 [node name="SamuraiAttack" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
 script = ExtResource("1_rr6s7")
@@ -20,6 +20,7 @@ reducedSpeed = 1000.0
 partialDamage = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyAttackHitbox"]
+position = Vector2(0, -48)
 texture = ExtResource("3_47qac")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyAttackHitbox"]
@@ -32,6 +33,7 @@ reducedSpeed = 1000.0
 partialDamage = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyAttackHitbox2"]
+position = Vector2(0, -48)
 texture = ExtResource("3_47qac")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyAttackHitbox2"]
@@ -44,7 +46,7 @@ reducedSpeed = 1000.0
 partialDamage = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyAttackHitbox3"]
-position = Vector2(5.48363e-06, 0)
+position = Vector2(3.8147e-06, -48)
 scale = Vector2(2, 1)
 texture = ExtResource("3_47qac")
 

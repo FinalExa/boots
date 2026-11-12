@@ -73,8 +73,8 @@ func DamageEnemies():
 
 func CheckForEffects(enemy: EnemyController):
 	if (hasEffect && effect != ""):
-		var effect: EffectOverTime = SpawnEffectOverTime(currentEffectDamage, currentEffectDuration)
-		enemy.SetEffectOverTime(effect)
+		var spawnedEffect: EffectOverTime = SpawnEffectOverTime(currentEffectDamage, currentEffectDuration)
+		enemy.SetEffectOverTime(spawnedEffect)
 
 func AutoTriggerExplosion():
 	if (explodeWhenOneEnemyIsInRange && enemiesInRange.size() > 0):
