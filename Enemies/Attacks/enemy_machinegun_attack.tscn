@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://26o0udmrytvk"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_rmor5"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_0klni"]
+
+[node name="EnemyMachinegunAttack" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_rmor5")
+attackDuration = 30
+attackCooldown = 180
+attackPhasesLaunch = Array[int]([3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
+attackHitboxes = [NodePath("ObjectSpawner1"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner1"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5")]
+attackSounds = [null, null, null, null, null, null, null, null, null, null]
+attackMovements = Array[float]([-100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0])
+
+[node name="ObjectSpawner1" type="Node2D" parent="."]
+position = Vector2(0, -32)
+script = ExtResource("2_0klni")
+objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+position = Vector2(-16, -32)
+script = ExtResource("2_0klni")
+objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+position = Vector2(16, -32)
+script = ExtResource("2_0klni")
+objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="."]
+position = Vector2(-8, -32)
+script = ExtResource("2_0klni")
+objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="."]
+position = Vector2(8, -32)
+script = ExtResource("2_0klni")
+objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"

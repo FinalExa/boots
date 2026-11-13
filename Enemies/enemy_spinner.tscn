@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/BehaviorTree/TaskChasePlayer.gd" id="20_8lbgu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2vjwt"]
-radius = 48.0
+radius = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 704.045
