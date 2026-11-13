@@ -16,12 +16,13 @@ attackSounds = [null]
 attackMovements = Array[float]([0.0])
 ignoreAttackMovement = true
 
-[node name="PlayerAttackHitbox" type="Area2D" parent="."]
+[node name="PlayerAttackHitbox" type="Area2D" parent="." node_paths=PackedStringArray("collisionShape")]
 script = ExtResource("2_gc8r5")
 damage = 10.0
 repels = true
 repelDistance = 500.0
 repelTime = 0.1
+collisionShape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackHitbox"]
 shape = SubResource("CircleShape2D_0vcw5")

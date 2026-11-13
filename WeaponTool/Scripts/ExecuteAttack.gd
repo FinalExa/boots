@@ -56,23 +56,24 @@ func CooldownExecute():
 
 func AddAttackHitbox(index):
 	if (index < attackHitboxes.size()):
-		if (attackHitboxes[index] != null):
-			self.add_child(attackHitboxes[index])
-			attackHitboxInstance = self.get_child(0)
-			if (attackHitboxInstance is AttackHitbox):
-				attackHitboxInstance.characterRef = characterRef
-			else:
-				if (attackHitboxInstance is ObjectSpawner):
-					attackHitboxInstance.call_deferred("SpawnObject")
 		if (attackSounds[index] != null && !attackSounds[index].playing): attackSounds[index].play()
+		if (attackHitboxes[index] != null):
+			if (attackHitboxes[index] is AttackHitbox):
+				attackHitboxes[index].characterRef = characterRef
+				attackHitboxes[index].Enable()
+				return
+			if (attackHitboxes[index] is ObjectSpawner):
+				attackHitboxes[index].call_deferred("SpawnObject")
+				return
+			attackHitboxes[index].show()
 
 func RemoveAttackHitbox(index):
 	if (index < attackHitboxes.size() && attackHitboxes[index] != null):
-		attackHitboxInstance = attackHitboxes[index]
-		if (attackHitboxInstance is AttackHitbox):
-			attackHitboxInstance.AttackEnd()
-		if (attackHitboxInstance.get_parent() == self):
-			self.remove_child(attackHitboxInstance)
+		if (attackHitboxes[index] is AttackHitbox):
+			attackHitboxes[index].AttackEnd()
+			attackHitboxes[index].Disable()
+			return
+		attackHitboxes[index].hide()
 
 func StartAttack():
 	attackLaunched = true
