@@ -13,26 +13,26 @@ attackSounds = [null, null, null, null, null, null, null, null, null, null]
 attackMovements = Array[float]([-100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0, -100.0])
 
 [node name="ObjectSpawner1" type="Node2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -96)
 script = ExtResource("2_0klni")
 objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
 
 [node name="ObjectSpawner2" type="Node2D" parent="."]
-position = Vector2(-16, -32)
+position = Vector2(-16, -96)
 script = ExtResource("2_0klni")
 objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
 
 [node name="ObjectSpawner3" type="Node2D" parent="."]
-position = Vector2(16, -32)
+position = Vector2(16, -96)
 script = ExtResource("2_0klni")
 objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
 
 [node name="ObjectSpawner4" type="Node2D" parent="."]
-position = Vector2(-8, -32)
+position = Vector2(-8, -96)
 script = ExtResource("2_0klni")
 objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"
 
 [node name="ObjectSpawner5" type="Node2D" parent="."]
-position = Vector2(8, -32)
+position = Vector2(8, -96)
 script = ExtResource("2_0klni")
 objectPath = "res://Enemies/Attacks/Projectiles/machinegun_projectile.tscn"

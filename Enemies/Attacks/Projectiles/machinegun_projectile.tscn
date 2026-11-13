@@ -12,10 +12,10 @@ radius = 24.0
 
 [node name="MachinegunProjectile" type="CharacterBody2D" node_paths=PackedStringArray("collisionSound", "forward")]
 script = ExtResource("1_e3psn")
-speedDecrease = 800.0
+speedDecrease = 300.0
 collisionSound = NodePath("Sounds/EnemyDirect")
-movementSpeed = 500.0
-lifeTime = 5.0
+movementSpeed = 1000.0
+lifeTime = 10.0
 forward = NodePath("Forward")
 damage = 20.0
 
