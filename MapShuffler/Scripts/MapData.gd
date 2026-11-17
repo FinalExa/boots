@@ -2,6 +2,7 @@ class_name MapData
 extends Node
 
 @export var mapName: String
+@export var mapIcon: Texture2D
 @export var mapLevels: Array[MapLevel]
 @export var shopLevel: String
 @export var bossLevel: String

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2wjkvecnmkgr"
-path="res://.godot/imported/map_12.png-a5233d647f2089f8def16dcb95daf733.ctex"
+uid="uid://cavfif3fnswgu"
+path="res://.godot/imported/laboratoriesIcon.png-1d152c2f51a1358b167fecde7dfd8d57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MissionSelect/Sprites/Pressed/map_12.png"
-dest_files=["res://.godot/imported/map_12.png-a5233d647f2089f8def16dcb95daf733.ctex"]
+source_file="res://MissionSelect/Sprites/MapIcons/laboratoriesIcon.png"
+dest_files=["res://.godot/imported/laboratoriesIcon.png-1d152c2f51a1358b167fecde7dfd8d57.ctex"]
 
 [params]
 

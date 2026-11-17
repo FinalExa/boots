@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c71amm3r0ykyv"]
+[gd_scene load_steps=9 format=3 uid="uid://c71amm3r0ykyv"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/MapData.gd" id="1_cdydq"]
 [ext_resource type="Script" path="res://MapShuffler/Scripts/MapLevel.gd" id="2_6v0lf"]
+[ext_resource type="Texture2D" uid="uid://cavfif3fnswgu" path="res://MissionSelect/Sprites/MapIcons/laboratoriesIcon.png" id="2_nr37j"]
 
 [sub_resource type="Resource" id="Resource_1p47y"]
 script = ExtResource("2_6v0lf")
@@ -26,6 +27,7 @@ associatedLevels = Array[String](["res://MapShuffler/Maps/Laboratories/Levels/Di
 [node name="Laboratories" type="Node"]
 script = ExtResource("1_cdydq")
 mapName = "Laboratory"
+mapIcon = ExtResource("2_nr37j")
 mapLevels = Array[ExtResource("2_6v0lf")]([SubResource("Resource_1p47y"), SubResource("Resource_n7ydp"), SubResource("Resource_8akdp"), SubResource("Resource_rc13a"), SubResource("Resource_s7m54")])
 shopLevel = "res://1_Scenes/ShopScene.tscn"
 bossLevel = "res://MapShuffler/Maps/Laboratories/Levels/Boss/boss_01.tscn"
