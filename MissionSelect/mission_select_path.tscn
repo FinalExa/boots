@@ -38,17 +38,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="MissionSelectPath" type="TextureRect" node_paths=PackedStringArray("maps", "startLocation", "endLocation", "positionArrow", "endArrow")]
+[node name="MissionSelectPath" type="TextureRect" node_paths=PackedStringArray("maps", "leftChoice", "rightChoice", "bonusChoice", "finalChoice")]
 process_mode = 3
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_x6258")
 script = ExtResource("2_7a5cx")
-maps = [NodePath("Buttons/LeftChoice"), NodePath("Buttons/RightChoice"), NodePath("Buttons/BonusChoice"), NodePath("Buttons/FinalChoice"), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
-startLocation = NodePath("")
-endLocation = NodePath("")
-positionArrow = NodePath("PositionArrow")
-endArrow = NodePath("EndArrow")
+maps = [NodePath("Buttons/LeftChoice"), NodePath("Buttons/RightChoice"), NodePath("Buttons/BonusChoice"), NodePath("Buttons/FinalChoice")]
+leftChoice = NodePath("Buttons/LeftChoice")
+rightChoice = NodePath("Buttons/RightChoice")
+bonusChoice = NodePath("Buttons/BonusChoice")
+finalChoice = NodePath("Buttons/FinalChoice")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Laboratories" parent="." instance=ExtResource("4_qkh2r")]

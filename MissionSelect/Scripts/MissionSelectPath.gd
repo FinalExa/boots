@@ -2,11 +2,16 @@ class_name MissionSelectPath
 extends TextureRect
 
 @export var playerRef: PlayerCharacter
-@export var maps: Array[MapButton]
-@export var startLocation: MapButton
-@export var endLocation: MapButton
-@export var positionArrow: AnimatedSprite2D
-@export var endArrow: AnimatedSprite2D
+@export var maps: Array[MapData]
+@export var leftChoice: MapButton
+@export var rightChoice: MapButton
+@export var bonusChoice: MapButton
+@export var finalChoice: MapButton
+@export var destination: MapData
+@export var totalSteps: int
+var availableMaps: Array[MapData]
+var visitedMaps: Array[MapData]
+var currentStep: int
 var currentLocation: MapButton
 var mapProgressionSelector: MapProgressionSelector
 
@@ -14,14 +19,11 @@ func _ready():
 	Startup()
 
 func Startup():
+	currentStep = 0
 	mapProgressionSelector = playerRef.mapProgressionSelector
-	endArrow.global_position = endLocation.global_position + (endLocation.size/2)
-	positionArrow.global_position = startLocation.global_position + (startLocation.size/2)
 	for i in maps.size():
-		if (maps[i].missionSelectPath == null):
-			maps[i].missionSelectPath = self
-		if (maps[i].associatedMap.mapProgressionSelector == null):
-			maps[i].associatedMap.mapProgressionSelector = mapProgressionSelector
+		if (maps[i].mapProgressionSelector == null):
+			maps[i].mapProgressionSelector = mapProgressionSelector
 	SetAvailableMaps()
 
 func Open():
@@ -36,43 +38,29 @@ func Close():
 
 func ButtonPressed(button: MapButton):
 	currentLocation = button
-	positionArrow.global_position = currentLocation.global_position + (currentLocation.size/2)
 	mapProgressionSelector.SetAndProgress(button.associatedMap)
 	Close()
 	SetAvailableMaps()
+	currentStep += 1
 
 func PresetAllMaps():
+	visitedMaps.clear()
 	for i in maps.size():
-		if (!maps[i].done):
-			maps[i].disabled = false
-		else:
-			maps[i].disabled = true
+		availableMaps.push_back(maps[i])
 
 func SetAvailableMaps():
-	PresetAllMaps()
-	if (currentLocation == null):
-		for i in maps.size():
-			if (maps[i] != startLocation):
-				maps[i].disabled = true
-	else:
-		for i in maps.size():
-			if (!currentLocation.adjacentMaps.has(maps[i])):
-				maps[i].disabled = true
-	PreventSoftlock()
+	if (currentStep == 0): PresetAllMaps()
+	if (currentStep < totalSteps - 1):
+		TwoButtons()
+	else: OneButton()
+
+func TwoButtons():
+	pass
+
+func OneButton():
+	pass
 
 func CheckForEnd():
-	if (currentLocation == endLocation):
+	if (currentStep == totalSteps):
 		return true
 	return false
-
-func PreventSoftlock():
-	if (currentLocation != null):
-		var count: int = 0
-		for i in currentLocation.adjacentMaps.size():
-			if (currentLocation.adjacentMaps[i].disabled):
-				count += 1
-		if (count == currentLocation.adjacentMaps.size()):
-			for i in currentLocation.adjacentMaps.size():
-				if (currentLocation.adjacentMaps[i].disabled):
-					currentLocation.adjacentMaps[i].UnsetDone()
-					currentLocation.adjacentMaps[i].disabled = false

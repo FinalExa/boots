@@ -1,15 +1,20 @@
 class_name MapButton
 extends TextureButton
 
+signal mapSelected(button)
+
 @export var associatedMap: MapData
-var missionSelectPath: MissionSelectPath
-var done: bool
+
+func SetMap(mapData: MapData):
+	self.texture_normal = mapData.normalTexture
+	self.texture_pressed = mapData.pressedTexture
+	self.texture_hover = mapData.hoverTexture
 
 func OnPress():
-	missionSelectPath.ButtonPressed(self)
+	emit_signal("mapSelected", self)
 
-func SetDone():
-	done = true
+func ShowButton():
+	self.show()
 
-func UnsetDone():
-	done = false
+func HideButton():
+	self.hide()
