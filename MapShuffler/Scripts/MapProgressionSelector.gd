@@ -63,7 +63,6 @@ func FinishCurrentMap():
 	currentDifficultyValue = clamp(currentDifficultyValue + difficultyValueIncreaseOnComplete, 0, difficultyValueMaxValue)
 	currentMap.CompleteMap()
 	currentRoom = 0
-	playerCharacter.missionSelectPath.currentLocation.SetDone()
 	if (!playerCharacter.missionSelectPath.CheckForEnd()):
 		PickNewMap()
 	else:

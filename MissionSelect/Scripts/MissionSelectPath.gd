@@ -12,6 +12,7 @@ extends TextureRect
 @export var bonusBaseChance: int
 @export var bonusChanceIncrease: int
 var bonusCurrentChance: int
+var currentMap: MapData
 var availableMaps: Array[MapData]
 var visitedMaps: Array[MapData]
 var currentStep: int
@@ -42,6 +43,7 @@ func Close():
 func ButtonPressed(button: MapButton):
 	mapProgressionSelector.SetAndProgress(button.associatedMap)
 	visitedMaps.push_back(button.associatedMap)
+	currentMap = button.associatedMap
 	ReturnUnchosenMaps(button)
 	Close()
 	SetAvailableMaps()
