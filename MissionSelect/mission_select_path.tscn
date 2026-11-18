@@ -70,18 +70,18 @@ offset_bottom = 40.0
 
 [node name="LeftChoice" parent="Buttons" instance=ExtResource("4_ttcdc")]
 layout_mode = 0
-offset_left = 320.0
-offset_top = 128.0
-offset_right = 640.0
-offset_bottom = 624.0
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 768.0
+offset_bottom = 688.0
 pathTypeText = "Normal Map"
 
 [node name="RightChoice" parent="Buttons" instance=ExtResource("4_ttcdc")]
 layout_mode = 0
-offset_left = 1280.0
-offset_top = 128.0
-offset_right = 1600.0
-offset_bottom = 624.0
+offset_left = 1152.0
+offset_top = 192.0
+offset_right = 1472.0
+offset_bottom = 688.0
 pathTypeText = "Normal Map"
 
 [node name="BonusChoice" parent="Buttons" instance=ExtResource("4_ttcdc")]
