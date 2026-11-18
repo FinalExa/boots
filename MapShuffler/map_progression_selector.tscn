@@ -71,7 +71,7 @@ floorMaxDifficultyRange = 3.0
 
 [sub_resource type="Resource" id="Resource_qj3yx"]
 script = ExtResource("2_o7p8f")
-floorType = 1
+floorType = 6
 floorMinDifficultyRange = 2.0
 floorMaxDifficultyRange = 4.0
 

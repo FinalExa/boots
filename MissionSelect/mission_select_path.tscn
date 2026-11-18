@@ -1,113 +1,106 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfv3idhdh5mps"]
+[gd_scene load_steps=5 format=3 uid="uid://cfv3idhdh5mps"]
 
 [ext_resource type="Texture2D" uid="uid://bsawx088qmiii" path="res://MissionSelect/Sprites/mission_select_path_bg.png" id="1_x6258"]
 [ext_resource type="Script" path="res://MissionSelect/Scripts/MissionSelectPath.gd" id="2_7a5cx"]
 [ext_resource type="PackedScene" uid="uid://c71amm3r0ykyv" path="res://MapShuffler/Maps/Laboratories/laboratories.tscn" id="4_qkh2r"]
-[ext_resource type="Script" path="res://MissionSelect/Scripts/MapButton.gd" id="4_wjo3i"]
-[ext_resource type="Texture2D" uid="uid://qyybb7vkj6u5" path="res://Enemies/Sprites/pointer.png" id="4_y05el"]
+[ext_resource type="PackedScene" uid="uid://ccgfk27am7b5c" path="res://MissionSelect/map_button.tscn" id="4_ttcdc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sybi6"]
-atlas = ExtResource("4_y05el")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eaogv"]
-atlas = ExtResource("4_y05el")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t6spl"]
-atlas = ExtResource("4_y05el")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_irxvn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sybi6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eaogv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t6spl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eaogv")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="MissionSelectPath" type="TextureRect" node_paths=PackedStringArray("maps", "leftChoice", "rightChoice", "bonusChoice", "finalChoice")]
+[node name="MissionSelectPath" type="TextureRect" node_paths=PackedStringArray("maps", "leftChoice", "rightChoice", "bonusChoice", "finalChoice", "destination")]
 process_mode = 3
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_x6258")
 script = ExtResource("2_7a5cx")
-maps = [NodePath("Buttons/LeftChoice"), NodePath("Buttons/RightChoice"), NodePath("Buttons/BonusChoice"), NodePath("Buttons/FinalChoice")]
+maps = [NodePath("Maps/Laboratories1"), NodePath("Maps/Laboratories2"), NodePath("Maps/Laboratories3"), NodePath("Maps/Laboratories4"), NodePath("Maps/Laboratories5"), NodePath("Maps/Laboratories6"), NodePath("Maps/Laboratories7"), NodePath("Maps/Laboratories8"), NodePath("Maps/Laboratories9"), NodePath("Maps/Laboratories10"), NodePath("Maps/Laboratories11"), NodePath("Maps/Laboratories12"), NodePath("Maps/Laboratories13")]
 leftChoice = NodePath("Buttons/LeftChoice")
 rightChoice = NodePath("Buttons/RightChoice")
 bonusChoice = NodePath("Buttons/BonusChoice")
 finalChoice = NodePath("Buttons/FinalChoice")
+destination = NodePath("Maps/Laboratories13")
+totalSteps = 1
+bonusBaseChance = 10
+bonusChanceIncrease = 15
 metadata/_edit_horizontal_guides_ = []
 
-[node name="Laboratories" parent="." instance=ExtResource("4_qkh2r")]
+[node name="Maps" type="Node" parent="."]
 
-[node name="PositionArrow" type="AnimatedSprite2D" parent="."]
-z_index = 1
-rotation = 3.14159
-sprite_frames = SubResource("SpriteFrames_irxvn")
-autoplay = "default"
+[node name="Laboratories1" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 1"
 
-[node name="EndArrow" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-z_index = 1
-rotation = 3.14159
-sprite_frames = SubResource("SpriteFrames_irxvn")
-autoplay = "default"
+[node name="Laboratories2" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 2"
+
+[node name="Laboratories3" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 3"
+
+[node name="Laboratories4" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 4"
+
+[node name="Laboratories5" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 5"
+
+[node name="Laboratories6" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 6"
+
+[node name="Laboratories7" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 7"
+
+[node name="Laboratories8" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 8"
+
+[node name="Laboratories9" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 9"
+
+[node name="Laboratories10" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 10"
+
+[node name="Laboratories11" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 11"
+
+[node name="Laboratories12" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories 12"
+
+[node name="Laboratories13" parent="Maps" instance=ExtResource("4_qkh2r")]
+mapName = "Laboratories END"
 
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="LeftChoice" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap")]
+[node name="LeftChoice" parent="Buttons" instance=ExtResource("4_ttcdc")]
 layout_mode = 0
-offset_left = 505.0
-offset_top = 312.0
-offset_right = 761.002
-offset_bottom = 483.0
-script = ExtResource("4_wjo3i")
-associatedMap = NodePath("../../Laboratories")
+offset_left = 320.0
+offset_top = 128.0
+offset_right = 640.0
+offset_bottom = 624.0
+pathTypeText = "Normal Map"
 
-[node name="RightChoice" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap")]
+[node name="RightChoice" parent="Buttons" instance=ExtResource("4_ttcdc")]
 layout_mode = 0
-offset_left = 736.0
-offset_top = 343.0
-offset_right = 866.0
-offset_bottom = 460.0
-script = ExtResource("4_wjo3i")
-associatedMap = NodePath("../../Laboratories")
+offset_left = 1280.0
+offset_top = 128.0
+offset_right = 1600.0
+offset_bottom = 624.0
+pathTypeText = "Normal Map"
 
-[node name="BonusChoice" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap")]
+[node name="BonusChoice" parent="Buttons" instance=ExtResource("4_ttcdc")]
 layout_mode = 0
-offset_left = 838.0
-offset_top = 321.0
-offset_right = 1001.0
-offset_bottom = 526.0
-script = ExtResource("4_wjo3i")
-associatedMap = NodePath("../../Laboratories")
+offset_left = 800.0
+offset_top = 464.0
+offset_right = 1120.0
+offset_bottom = 960.0
+pathTypeText = "Bonus Map!"
 
-[node name="FinalChoice" type="TextureButton" parent="Buttons" node_paths=PackedStringArray("associatedMap")]
+[node name="FinalChoice" parent="Buttons" instance=ExtResource("4_ttcdc")]
 layout_mode = 0
-offset_left = 937.0
-offset_top = 286.0
-offset_right = 1132.0
-offset_bottom = 427.0
-script = ExtResource("4_wjo3i")
-associatedMap = NodePath("../../Laboratories")
+offset_left = 800.0
+offset_top = 272.0
+offset_right = 1120.0
+offset_bottom = 768.0
+pathTypeText = "Artifact Map!"
 
-[connection signal="button_up" from="Buttons/LeftChoice" to="Buttons/LeftChoice" method="OnPress"]
-[connection signal="button_up" from="Buttons/RightChoice" to="Buttons/RightChoice" method="OnPress"]
-[connection signal="button_up" from="Buttons/BonusChoice" to="Buttons/BonusChoice" method="OnPress"]
-[connection signal="button_up" from="Buttons/FinalChoice" to="Buttons/FinalChoice" method="OnPress"]
+[connection signal="mapSelected" from="Buttons/LeftChoice" to="." method="ButtonPressed"]
+[connection signal="mapSelected" from="Buttons/RightChoice" to="." method="ButtonPressed"]
+[connection signal="mapSelected" from="Buttons/BonusChoice" to="." method="ButtonPressed"]
+[connection signal="mapSelected" from="Buttons/FinalChoice" to="." method="ButtonPressed"]

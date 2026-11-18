@@ -3,12 +3,22 @@ extends TextureButton
 
 signal mapSelected(button)
 
-@export var associatedMap: MapData
+var associatedMap: MapData
+@export var mapTexture: TextureRect
+@export var areaNameLabel: Label
+@export var pathTypeLabel: Label
+@export var pathTypeText: String
+
+func _ready():
+	SetTypeText()
+
+func SetTypeText():
+	pathTypeLabel.text = pathTypeText
 
 func SetMap(mapData: MapData):
-	self.texture_normal = mapData.normalTexture
-	self.texture_pressed = mapData.pressedTexture
-	self.texture_hover = mapData.hoverTexture
+	associatedMap = mapData
+	areaNameLabel.text = mapData.mapName
+	mapTexture.texture = mapData.mapIcon
 
 func OnPress():
 	emit_signal("mapSelected", self)

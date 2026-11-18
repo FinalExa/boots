@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccgfk27am7b5c"]
+
+[ext_resource type="Script" path="res://MissionSelect/Scripts/MapButton.gd" id="1_0jkck"]
+[ext_resource type="Texture2D" uid="uid://yytpr0bn7jp4" path="res://MissionSelect/Sprites/MapIcons/0_iconsHolder_normal.png" id="1_t4ct8"]
+[ext_resource type="Texture2D" uid="uid://ba5rg4qmugn76" path="res://MissionSelect/Sprites/MapIcons/0_iconsHolder_pressed.png" id="2_kj24o"]
+[ext_resource type="Texture2D" uid="uid://cr1kqbhmpq7gp" path="res://MissionSelect/Sprites/MapIcons/0_iconsHolder_hover.png" id="3_sgu4p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tw336"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_4r71r"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+
+[node name="MapButton" type="TextureButton" node_paths=PackedStringArray("mapTexture", "areaNameLabel", "pathTypeLabel")]
+z_index = 1
+offset_right = 228.0
+offset_bottom = 336.0
+texture_normal = ExtResource("1_t4ct8")
+texture_pressed = ExtResource("2_kj24o")
+texture_hover = ExtResource("3_sgu4p")
+script = ExtResource("1_0jkck")
+mapTexture = NodePath("TextureRect")
+areaNameLabel = NodePath("AreaName")
+pathTypeLabel = NodePath("PathType")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 304.0
+offset_bottom = 416.0
+
+[node name="AreaName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 312.0
+offset_bottom = 64.0
+label_settings = SubResource("LabelSettings_tw336")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PathType" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 432.0
+offset_right = 312.0
+offset_bottom = 488.0
+label_settings = SubResource("LabelSettings_4r71r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="." to="." method="OnPress"]
