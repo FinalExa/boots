@@ -2,6 +2,7 @@ class_name PlayerPassiveObject
 extends Node2D
 
 @export var passiveReferenced: PlayerCharacter.Player
+@export var passiveNegativeEffect: PassiveNegativeEffect
 var playerRef: PlayerCharacter
 
 func _ready():
@@ -33,7 +34,9 @@ func PlayerLeaves(body):
 		playerRef = null
 
 func PlayerPasses():
-	pass
+	if (passiveNegativeEffect != null):
+		passiveNegativeEffect.SetDisabled()
 
 func PlayerFails():
-	pass
+	if (passiveNegativeEffect != null):
+		passiveNegativeEffect.SetEnabled()

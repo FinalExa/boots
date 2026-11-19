@@ -51,6 +51,7 @@ func ButtonPressed(button: MapButton):
 
 func PresetAllMaps():
 	visitedMaps.clear()
+	availableMaps.clear()
 	for i in maps.size():
 		availableMaps.push_back(maps[i])
 	visitedMaps.push_back(destination)

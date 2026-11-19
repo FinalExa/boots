@@ -186,6 +186,7 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerMovements", "currentObjectiveUI", "playerSpeedThresholds", "playerInputs", "playerShooting", "playerRotator", "powerUpUI", "shopUI", "powerUpManager", "playerHealth", "missionSelectPath", "playerAbilities", "playerPassive", "moneyLabel", "currentRoomLabel", "followItem")]
+y_sort_enabled = true
 script = ExtResource("1_hu618")
 playerMovements = NodePath("PlayerMovements")
 currentObjectiveUI = NodePath("PlayerUI/HUD/Objective")

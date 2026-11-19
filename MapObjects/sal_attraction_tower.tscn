@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxcgsl08ikkl"]
+
+[ext_resource type="Script" path="res://MapObjects/Scripts/PlayerPassiveObject.gd" id="1_pm72s"]
+[ext_resource type="Texture2D" uid="uid://cd7ncs7eigwlv" path="res://MapObjects/Sprites/sal_attraction_tower.png" id="2_fvvdg"]
+[ext_resource type="Script" path="res://MapObjects/Scripts/AttractionNegativeEffect.gd" id="3_ns7bt"]
+[ext_resource type="Texture2D" uid="uid://8aa7s8ak780" path="res://MapObjects/Sprites/sal_attraction_tower_field.png" id="4_s0qfq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_duqgb"]
+radius = 512.25
+
+[node name="SalAttractionTower" type="StaticBody2D" node_paths=PackedStringArray("passiveNegativeEffect")]
+y_sort_enabled = true
+script = ExtResource("1_pm72s")
+passiveReferenced = 2
+passiveNegativeEffect = NodePath("AttractionEffect")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-88, 40, -56, 56, 0, 64, 56, 56, 88, 40, 40, 8, 24, 0, -32, 0, -40, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
+texture = ExtResource("2_fvvdg")
+
+[node name="AttractionEffect" type="Area2D" parent="." node_paths=PackedStringArray("baseObject")]
+script = ExtResource("3_ns7bt")
+baseObject = NodePath("..")
+minDistance = 100.0
+attractionForce = 500.0
+activeDuration = 2.0
+inactiveDuration = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttractionEffect"]
+shape = SubResource("CircleShape2D_duqgb")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttractionEffect"]
+position = Vector2(-1.52588e-05, -1.52588e-05)
+scale = Vector2(2, 2)
+texture = ExtResource("4_s0qfq")
+
+[connection signal="body_entered" from="AttractionEffect" to="." method="PlayerIn"]
+[connection signal="body_entered" from="AttractionEffect" to="AttractionEffect" method="PlayerIn"]
+[connection signal="body_exited" from="AttractionEffect" to="." method="PlayerLeaves"]
+[connection signal="body_exited" from="AttractionEffect" to="AttractionEffect" method="PlayerOut"]
