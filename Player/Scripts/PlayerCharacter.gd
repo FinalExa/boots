@@ -27,7 +27,7 @@ var inSelectMenu: bool
 
 enum Player {
 	JOHNNY,
-	HELIETTE,
+	HELIA,
 	SAL,
 	FIORA
 }

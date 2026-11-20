@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://csps3gv2wx6li"]
+[gd_scene load_steps=14 format=3 uid="uid://csps3gv2wx6li"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_pncm2"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_pta75"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bllhlg88xlhba" path="res://MapObjects/slowing_ground.tscn" id="6_3h3ar"]
 [ext_resource type="PackedScene" uid="uid://ccdfq3p8fb1e0" path="res://MapObjects/johnny_passive_object.tscn" id="7_f23vq"]
 [ext_resource type="PackedScene" uid="uid://dxcgsl08ikkl" path="res://MapObjects/sal_attraction_tower.tscn" id="10_qfkds"]
+[ext_resource type="PackedScene" uid="uid://bd8dp00uoubyd" path="res://MapObjects/helia_gas_trap.tscn" id="11_52ct1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dwnep"]
 vertices = PackedVector2Array(-1696, -32, -1760, -96, -1760, -1504, -1696, -1568, 1696, -1568, -1248, -32, -928, 288, 1760, -1504, -864, 1248, -928, 1184, 1248, -32, 928, 288, 1760, -96, 1696, -32, 864, 1248, 928, 1184)
@@ -18,6 +19,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedIn
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1760, -1504, -1696, -1568, 1696, -1568, 1760, -1504, 1760, -96, 1696, -32, 1248, -32, 928, 288, 928, 1184, 864, 1248, -864, 1248, -928, 1184, -928, 288, -1248, -32, -1696, -32, -1760, -96)])
 
 [node name="Lab_D0_01" type="Node2D" node_paths=PackedStringArray("playerSpawnPoint", "rewardSpawnPosition")]
+y_sort_enabled = true
 script = ExtResource("1_pncm2")
 playerSpawnPoint = NodePath("SpawnPoint")
 rewardSpawnPosition = NodePath("RewardSpawnPosition")
@@ -97,6 +99,9 @@ position = Vector2(0, -448)
 
 [node name="SalAttractionTower" parent="MapObjects" instance=ExtResource("10_qfkds")]
 position = Vector2(-1152, -1024)
+
+[node name="HeliaGasTrap" parent="MapObjects" instance=ExtResource("11_52ct1")]
+position = Vector2(1280, -576)
 
 [node name="Doors" type="Node2D" parent="."]
 

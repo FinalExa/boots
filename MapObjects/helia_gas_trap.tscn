@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd8dp00uoubyd"]
+
+[ext_resource type="Script" path="res://MapObjects/Scripts/PlayerPassiveObject.gd" id="1_8rvxw"]
+[ext_resource type="Texture2D" uid="uid://y8dffp1f625e" path="res://MapObjects/Sprites/helia_gas_trap.png" id="2_qui75"]
+[ext_resource type="Script" path="res://MapObjects/Scripts/DamageNegativeEffect.gd" id="3_phhmc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rintm"]
+radius = 64.0
+
+[node name="HeliaGasTrap" type="Area2D" node_paths=PackedStringArray("passiveNegativeEffect")]
+script = ExtResource("1_8rvxw")
+passiveReferenced = 1
+passiveNegativeEffect = NodePath("DamageNegativeEffect")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rintm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qui75")
+
+[node name="DamageNegativeEffect" type="Node2D" parent="."]
+script = ExtResource("3_phhmc")
+damageOverTime = 25.0
+
+[connection signal="body_entered" from="." to="." method="PlayerIn"]
+[connection signal="body_entered" from="." to="DamageNegativeEffect" method="PlayerIn"]
+[connection signal="body_exited" from="." to="." method="PlayerLeaves"]
+[connection signal="body_exited" from="." to="DamageNegativeEffect" method="PlayerOut"]

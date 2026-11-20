@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crg0fqnhtvrn8"]
+[gd_scene load_steps=14 format=3 uid="uid://crg0fqnhtvrn8"]
 
 [ext_resource type="Script" path="res://MapShuffler/Scripts/GameplayScene.gd" id="1_sjbqj"]
 [ext_resource type="TileSet" uid="uid://lv2ribd5elhf" path="res://Tiles/game_tileset.tres" id="2_xauqq"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ec5tqdevf7u7" path="res://MapObjects/booster_pad.tscn" id="8_ekqr0"]
 [ext_resource type="PackedScene" uid="uid://ccdfq3p8fb1e0" path="res://MapObjects/johnny_passive_object.tscn" id="9_2eub0"]
 [ext_resource type="PackedScene" uid="uid://dxcgsl08ikkl" path="res://MapObjects/sal_attraction_tower.tscn" id="10_v2auc"]
+[ext_resource type="PackedScene" uid="uid://bd8dp00uoubyd" path="res://MapObjects/helia_gas_trap.tscn" id="11_hd1qg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uep3m"]
 vertices = PackedVector2Array(32, 800, -2272, 800, -2272, -864, -352, -864, 1632, -800, 1632, -864, -352, -992, -928, -3424, -1632, -2272, -2272, -3424, -2272, -2272, -3104, -4256, -3104, -1440, -4192, -1440, -5024, -2272, -5024, -3424, -4192, -4256)
@@ -154,6 +155,9 @@ position = Vector2(-640, -448)
 
 [node name="SalAttractionTower" parent="MapObjects" instance=ExtResource("10_v2auc")]
 position = Vector2(-3648, -1920)
+
+[node name="HeliaGasTrap" parent="MapObjects" instance=ExtResource("11_hd1qg")]
+position = Vector2(256, -1792)
 
 [node name="Doors" type="Node2D" parent="."]
 
