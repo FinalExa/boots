@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://u8rxru1u74ro"]
+
+[ext_resource type="Script" path="res://MapObjects/Scripts/PlayerPassiveObject.gd" id="1_x8f8d"]
+[ext_resource type="Texture2D" uid="uid://d26a57r6tgo6a" path="res://MapObjects/Sprites/fiora_vine_trap.png" id="2_rwnn4"]
+[ext_resource type="Script" path="res://MapObjects/Scripts/TrapNegativeEffect.gd" id="3_iwsho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ooy5p"]
+size = Vector2(128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w146n"]
+atlas = ExtResource("2_rwnn4")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dbnu"]
+atlas = ExtResource("2_rwnn4")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haifg"]
+atlas = ExtResource("2_rwnn4")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua2v0"]
+atlas = ExtResource("2_rwnn4")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_swh3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w146n")
+}],
+"loop": false,
+"name": &"capture",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dbnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haifg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua2v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haifg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="FioraVineTrap" type="Area2D" node_paths=PackedStringArray("passiveNegativeEffect")]
+script = ExtResource("1_x8f8d")
+passiveReferenced = 3
+passiveNegativeEffect = NodePath("DamageNegativeEffect")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ooy5p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_swh3t")
+autoplay = "default"
+
+[node name="DamageNegativeEffect" type="Node2D" parent="." node_paths=PackedStringArray("animatedSpriteRef", "centerPoint")]
+script = ExtResource("3_iwsho")
+duration = 1.0
+animatedSpriteRef = NodePath("../AnimatedSprite2D")
+centerPoint = NodePath("../CenterPoint")
+
+[node name="CenterPoint" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="PlayerIn"]
+[connection signal="body_entered" from="." to="DamageNegativeEffect" method="PlayerIn"]
+[connection signal="body_exited" from="." to="." method="PlayerLeaves"]
+[connection signal="body_exited" from="." to="DamageNegativeEffect" method="PlayerOut"]

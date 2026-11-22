@@ -39,6 +39,7 @@ var yValue: float
 var speedModifiers: Array[SpeedModifier]
 var finalSpeedModifier: float
 var enforcedDirections: Array[Vector2]
+var stoppers: Array[Node2D]
 
 func _ready():
 	currentSpeed = 0
@@ -81,7 +82,8 @@ func SetCurrentSpeed(delta):
 	currentSpeed = clamp(currentSpeed, 0, maxSpeed)
 
 func MovePlayerCharacter():
-	playerCharacter.velocity = currentDirection * currentSpeed
+	if (stoppers.size() == 0):
+		playerCharacter.velocity = currentDirection * currentSpeed
 	distanceToLastPos = lastPosition.distance_to(playerCharacter.global_position)
 
 func AccelerationCases(delta):
@@ -186,3 +188,13 @@ func CalculateSpeedModifiers():
 				finalSpeedModifier += speedModifiers[i].speedModifyValue
 				if (speedModifiers[i].enforceDirection):
 					enforcedDirections.push_back(speedModifiers[i].forwardDirection)
+
+func AddStopper(stopper: Node2D):
+	if (!stoppers.has(stopper)):
+		if (stoppers.size() == 0):
+			playerCharacter.velocity = Vector2.ZERO
+		stoppers.push_back(stopper)
+
+func RemoveStopper(stopper: Node2D):
+	if (stoppers.has(stopper)):
+		stoppers.erase(stopper)
