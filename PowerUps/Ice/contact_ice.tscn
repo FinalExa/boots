@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://o2yinv1e7ipa"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpContact.gd" id="1_2ehs6"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_im8ob"]
+
+[node name="ContactIce" type="Node2D" node_paths=PackedStringArray("directSpawners1", "directSpawners2", "directSpawners3", "clashSpawners1", "clashSpawners2", "clashSpawners3")]
+script = ExtResource("1_2ehs6")
+directSpawners1 = [NodePath("SpawnerDirect1")]
+directSpawners2 = [NodePath("SpawnerDirect2")]
+directSpawners3 = [NodePath("SpawnerDirect3")]
+clashSpawners1 = [NodePath("SpawnerClash1")]
+clashSpawners2 = [NodePath("SpawnerClash2")]
+clashSpawners3 = [NodePath("SpawnerClash3")]
+powerUpName = "Contact Ice"
+powerUpDescription = "Deals damage to the enemy and slows it."
+powerUpFaction = 2
+
+[node name="SpawnerDirect1" type="Node2D" parent="."]
+script = ExtResource("2_im8ob")
+
+[node name="SpawnerDirect2" type="Node2D" parent="."]
+script = ExtResource("2_im8ob")
+
+[node name="SpawnerDirect3" type="Node2D" parent="."]
+script = ExtResource("2_im8ob")
+
+[node name="SpawnerClash1" type="Node2D" parent="."]
+script = ExtResource("2_im8ob")
+
+[node name="SpawnerClash2" type="Node2D" parent="."]
+script = ExtResource("2_im8ob")
+
+[node name="SpawnerClash3" type="Node2D" parent="."]
+script = ExtResource("2_im8ob")

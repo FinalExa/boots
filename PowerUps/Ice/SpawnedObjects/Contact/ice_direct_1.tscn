@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxj41tq8wmnky"]
+
+[ext_resource type="Script" path="res://PowerUps/Ice/SpawnedObjects/Scripts/Ice.gd" id="1_eu1h1"]
+
+[node name="IceDirect1" type="Node2D"]
+script = ExtResource("1_eu1h1")
+iceDamage = 10.0
+powerUpFaction = 2

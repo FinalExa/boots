@@ -3,7 +3,9 @@ extends Node2D
 
 enum PowerUpFaction {
 	BOMB,
-	FIRE
+	FIRE,
+	ICE,
+	LIGHTNING
 }
 
 @export var powerUpName: String
