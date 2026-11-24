@@ -30,7 +30,7 @@ radius = 1089.44
 [sub_resource type="CircleShape2D" id="CircleShape2D_n2qao"]
 radius = 576.0
 
-[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects")]
+[node name="ShielderEnemy" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects", "allEnemyAttacks")]
 script = ExtResource("1_exjgg")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
@@ -42,6 +42,7 @@ targetPointer = NodePath("TargetPointer")
 attackDistance = 500.0
 damageImmunityDuration = 0.3
 attachedObjects = NodePath("AttachedObjects")
+allEnemyAttacks = [NodePath("EnemyRotator/ShielderShootAttack")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2vjwt")

@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8lq0yqas3mce"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_dubjg"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_hp7eo"]
+
+[node name="BossRobotMainAttack" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_dubjg")
+attackDuration = 50
+attackCooldown = 90
+attackPhasesLaunch = Array[int]([0, 5, 10, 20, 25, 30, 40, 45, 50])
+attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner6"), NodePath("ObjectSpawner7"), NodePath("ObjectSpawner8"), NodePath("ObjectSpawner9")]
+attackSounds = [null, null, null, null, null, null, null, null, null]
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+position = Vector2(0, -160)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+position = Vector2(-32, -144)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+position = Vector2(32, -144)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="."]
+position = Vector2(96, -160)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="."]
+position = Vector2(64, -144)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner6" type="Node2D" parent="."]
+position = Vector2(128, -144)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner7" type="Node2D" parent="."]
+position = Vector2(-96, -160)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner8" type="Node2D" parent="."]
+position = Vector2(-128, -144)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"
+
+[node name="ObjectSpawner9" type="Node2D" parent="."]
+position = Vector2(-64, -144)
+script = ExtResource("2_hp7eo")
+objectPath = "res://Enemies/boss_projectile.tscn"

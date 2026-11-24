@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjn4y2vm7ph0y"]
+[gd_scene load_steps=5 format=3 uid="uid://bjn4y2vm7ph0y"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/RewardSpawn.gd" id="1_o8bcu"]
 [ext_resource type="PackedScene" uid="uid://bnhq1u0i3cb56" path="res://PowerUps/bomb.tscn" id="2_743lp"]
 [ext_resource type="PackedScene" uid="uid://bj80fpeqt7inw" path="res://PowerUps/fire.tscn" id="3_3288b"]
+[ext_resource type="PackedScene" uid="uid://civ0yujr7sxw3" path="res://PowerUps/ice.tscn" id="4_eplfd"]
 
 [node name="RewardSpawn" type="Node2D" node_paths=PackedStringArray("powerUpContainers")]
 script = ExtResource("1_o8bcu")
 powerUpNumber = 3
 rewardPodiumPath = "res://PowerUps/reward_podium.tscn"
-powerUpContainers = [NodePath("Bomb"), NodePath("Fire")]
+powerUpContainers = [NodePath("Bomb"), NodePath("Fire"), NodePath("Ice")]
 rewardTypes = Array[int]([0, 1, 2, 3])
-rewardChances = Array[int]([40, 10, 50, 20])
+rewardChances = Array[int]([30, 15, 55, 0])
 firstRoomChances = Array[int]([1, 0, 0, 0])
 
 [node name="Bomb" parent="." instance=ExtResource("2_743lp")]
 
 [node name="Fire" parent="." instance=ExtResource("3_3288b")]
+
+[node name="Ice" parent="." instance=ExtResource("4_eplfd")]

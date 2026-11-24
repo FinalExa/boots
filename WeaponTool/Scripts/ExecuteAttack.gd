@@ -17,12 +17,15 @@ var attackLaunched: bool
 var cooldownActive: bool
 var attackFrame: int
 var currentPhase: int
+var slowed: bool
+var extraSlowFrame: int
 
 func _ready():
 	frameMaster = get_tree().root.get_child(0).frameMaster
 	frameMaster.RegisterAttack(self)
 	RemoveAttackHitboxes()
 	currentPhase = 0
+	extraSlowFrame = 0
 	ExtraReadyOperations()
 	
 func ExtraReadyOperations():
@@ -39,7 +42,7 @@ func AttackExecute():
 	LaunchNewPhase()
 	if (attackFrame < attackDuration):
 		AttackMovement(currentPhase - 1)
-		attackFrame += 1
+		IncreaseAttackFrame()
 		return
 	EndAttack()
 
@@ -50,9 +53,17 @@ func LaunchNewPhase():
 func CooldownExecute():
 	if (attackFrame < attackCooldown):
 		ActiveCooldownFeedback()
-		attackFrame += 1
+		IncreaseAttackFrame()
 	else:
 		EndCooldown()
+
+func IncreaseAttackFrame():
+	if (slowed):
+		if (extraSlowFrame == 0):
+			extraSlowFrame += 1
+			return
+		extraSlowFrame = 0
+	attackFrame += 1
 
 func AddAttackHitbox(index):
 	if (index < attackHitboxes.size()):
@@ -140,3 +151,9 @@ func ActiveCooldownFeedback():
 
 func EndCooldownFeedback():
 	pass
+
+func SetSlow():
+	slowed = true
+
+func RemoveSlow():
+	slowed = false

@@ -6,3 +6,7 @@
 script = ExtResource("1_eu1h1")
 iceDamage = 10.0
 powerUpFaction = 2
+hasEffect = true
+effect = "res://PowerUps/Ice/SpawnedObjects/ice_slow.tscn"
+effectDamage = 2.0
+effectDuration = 5.0

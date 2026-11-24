@@ -12,6 +12,7 @@ var duration: float
 var timer: float
 var intervalDuration: float
 var intervalTimer: float
+var doneStart: bool
 var source: PowerUp
 var receivedSources: Array[PowerUp] 
 
@@ -20,7 +21,8 @@ enum Frequency
 	CONSTANT,
 	INTERVAL,
 	END,
-	CONDITIONAL
+	CONDITIONAL,
+	START
 }
 
 enum ConditionalType
@@ -46,6 +48,10 @@ func EffectOverTimeTimer(delta):
 			if (timer > 0):
 				timer -= delta
 				ExtraTimers(delta)
+				if (frequencyType == Frequency.START && !doneStart):
+					ExecuteEffect(delta)
+					doneStart = true
+					return
 				if (frequencyType == Frequency.INTERVAL):
 					if (intervalTimer > 0):
 						intervalTimer -= delta
@@ -59,6 +65,8 @@ func EffectOverTimeTimer(delta):
 				return
 			if (frequencyType == Frequency.END):
 				ExecuteEffect(delta)
+			else:
+				OnEffectEnd()
 		ref.UnsetEffectOverTime(self)
 
 func ExtraTimers(_delta):
@@ -71,6 +79,9 @@ func ExecuteEffect(_delta):
 	pass
 
 func ConditionalEffect(_value):
+	pass
+
+func OnEffectEnd():
 	pass
 
 func DeleteSelf():

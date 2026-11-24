@@ -14,6 +14,7 @@ signal repelled
 @export var attackDistance: float
 @export var damageImmunityDuration: float
 @export var attachedObjects: Node2D
+@export var allEnemyAttacks: Array[ExecuteAttack]
 
 var currentEffectsOverTime: Array[EffectOverTime]
 var playerRef: PlayerCharacter

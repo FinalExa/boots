@@ -17,18 +17,24 @@ powerUpFaction = 2
 
 [node name="SpawnerDirect1" type="Node2D" parent="."]
 script = ExtResource("2_im8ob")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Contact/ice_direct_1.tscn"
 
 [node name="SpawnerDirect2" type="Node2D" parent="."]
 script = ExtResource("2_im8ob")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Contact/ice_direct_2.tscn"
 
 [node name="SpawnerDirect3" type="Node2D" parent="."]
 script = ExtResource("2_im8ob")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Contact/ice_direct_3.tscn"
 
 [node name="SpawnerClash1" type="Node2D" parent="."]
 script = ExtResource("2_im8ob")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Contact/ice_clash_1.tscn"
 
 [node name="SpawnerClash2" type="Node2D" parent="."]
 script = ExtResource("2_im8ob")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Contact/ice_clash_2.tscn"
 
 [node name="SpawnerClash3" type="Node2D" parent="."]
 script = ExtResource("2_im8ob")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Contact/ice_clash_3.tscn"

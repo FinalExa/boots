@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj3qv0guy03wx"]
+
+[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="1_5agkw"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_lkr3d"]
+
+[node name="BossRobotMissileAttack" type="Node2D" node_paths=PackedStringArray("attackHitboxes", "attackSounds")]
+script = ExtResource("1_5agkw")
+attackDuration = 90
+attackCooldown = 10
+attackPhasesLaunch = Array[int]([18, 24, 30, 48, 54, 60, 78, 84, 90])
+attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner")]
+attackSounds = [null, null, null, null, null, null, null, null, null]
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+position = Vector2(0, -160)
+script = ExtResource("2_lkr3d")
+objectPath = "res://Enemies/boss_missile.tscn"

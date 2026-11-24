@@ -10,8 +10,8 @@
 [ext_resource type="Script" path="res://Enemies/Scripts/Boss/BossRobotMissileCheck.gd" id="8_xvxff"]
 [ext_resource type="PackedScene" uid="uid://cusd56vuia7wr" path="res://Enemies/enemy_health_bar.tscn" id="9_avjfm"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyRotator.gd" id="10_v8e5r"]
-[ext_resource type="Script" path="res://WeaponTool/Scripts/ExecuteAttack.gd" id="11_tkvr3"]
-[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="12_dev8h"]
+[ext_resource type="PackedScene" uid="uid://c8lq0yqas3mce" path="res://Enemies/Attacks/boss_robot_main_attack.tscn" id="11_j28ht"]
+[ext_resource type="PackedScene" uid="uid://bj3qv0guy03wx" path="res://Enemies/Attacks/boss_robot_missile_attack.tscn" id="12_57cby"]
 [ext_resource type="Script" path="res://Enemies/Scripts/EnemyDetection.gd" id="13_y40se"]
 [ext_resource type="PackedScene" uid="uid://3ms2pcxo1p7d" path="res://MapObjectives/target_pointer.tscn" id="15_otaas"]
 [ext_resource type="Script" path="res://BehaviorTree/Scripts/BehaviorTree.gd" id="16_revh2"]
@@ -70,19 +70,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 1920.27
 
-[node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("bossRobotMissileCheck", "enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects")]
+[node name="BossEnemy" type="CharacterBody2D" node_paths=PackedStringArray("bossRobotMissileCheck", "enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects", "allEnemyAttacks")]
 script = ExtResource("1_c3stw")
 bossRobotMissileCheck = NodePath("BossRobotMissileCheck")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
 enemyRotator = NodePath("EnemyRotator")
-enemyAttack = NodePath("EnemyRotator/MainAttack")
+enemyAttack = NodePath("EnemyRotator/BossRobotMainAttack")
 enemyHealth = NodePath("EnemyHealth")
 enemyShielded = NodePath("EnemyShielded")
 targetPointer = NodePath("TargetPointer")
 attackDistance = 500.0
 damageImmunityDuration = 0.3
 attachedObjects = NodePath("AttachedObjects")
+allEnemyAttacks = [NodePath("EnemyRotator/BossRobotMainAttack"), NodePath("EnemyRotator/BossRobotMissileAttack")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 64)
@@ -160,73 +161,11 @@ pointer = NodePath("Pointer")
 [node name="Pointer" type="Node2D" parent="EnemyRotator"]
 position = Vector2(0, -64)
 
-[node name="MainAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
-script = ExtResource("11_tkvr3")
-attackDuration = 50
-attackCooldown = 90
-attackPhasesLaunch = Array[int]([0, 5, 10, 20, 25, 30, 40, 45, 50])
-attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3"), NodePath("ObjectSpawner4"), NodePath("ObjectSpawner5"), NodePath("ObjectSpawner6"), NodePath("ObjectSpawner7"), NodePath("ObjectSpawner8"), NodePath("ObjectSpawner9")]
-attackSounds = [null, null, null, null, null, null, null, null, null]
+[node name="BossRobotMainAttack" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("11_j28ht")]
 characterRef = NodePath("../..")
 
-[node name="ObjectSpawner" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(0, -160)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner2" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(-32, -144)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner3" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(32, -144)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner4" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(96, -160)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner5" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(64, -144)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner6" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(128, -144)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner7" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(-96, -160)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner8" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(-128, -144)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="ObjectSpawner9" type="Node2D" parent="EnemyRotator/MainAttack"]
-position = Vector2(-64, -144)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_projectile.tscn"
-
-[node name="MissileAttack" type="Node2D" parent="EnemyRotator" node_paths=PackedStringArray("attackHitboxes", "attackSounds", "characterRef")]
-script = ExtResource("11_tkvr3")
-attackDuration = 90
-attackCooldown = 10
-attackPhasesLaunch = Array[int]([18, 24, 30, 48, 54, 60, 78, 84, 90])
-attackHitboxes = [NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner"), NodePath("ObjectSpawner")]
-attackSounds = [null, null, null, null, null, null, null, null, null]
+[node name="BossRobotMissileAttack" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("12_57cby")]
 characterRef = NodePath("../..")
-
-[node name="ObjectSpawner" type="Node2D" parent="EnemyRotator/MissileAttack"]
-position = Vector2(0, -160)
-script = ExtResource("12_dev8h")
-objectPath = "res://Enemies/boss_missile.tscn"
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController")]
 script = ExtResource("13_y40se")
@@ -256,12 +195,12 @@ enemyController = NodePath("../../..")
 
 [node name="TaskEnemyIsAttackingMissiles" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemyController")]
 script = ExtResource("19_g2lyo")
-enemyAttack = NodePath("../../../EnemyRotator/MissileAttack")
+enemyAttack = NodePath("../../../EnemyRotator/BossRobotMissileAttack")
 enemyController = NodePath("../../..")
 
 [node name="TaskEnemyIsAttacking" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyAttack", "enemySprite", "enemyController")]
 script = ExtResource("19_g2lyo")
-enemyAttack = NodePath("../../../EnemyRotator/MainAttack")
+enemyAttack = NodePath("../../../EnemyRotator/BossRobotMainAttack")
 enemySprite = NodePath("../../../EnemySprite")
 enemyController = NodePath("../../..")
 
@@ -285,7 +224,7 @@ enemyController = NodePath("../../../..")
 script = ExtResource("21_oq4sp")
 enemyMovement = NodePath("../../../../EnemyMovement")
 bossRobotMissileCheck = NodePath("../../../../BossRobotMissileCheck")
-enemyBossMissileAttack = NodePath("../../../../EnemyRotator/MissileAttack")
+enemyBossMissileAttack = NodePath("../../../../EnemyRotator/BossRobotMissileAttack")
 enemySprite = NodePath("../../../../EnemySprite")
 enemyAttackAnimationName = "missile_attack"
 enemyController = NodePath("../../../..")
@@ -293,7 +232,7 @@ enemyController = NodePath("../../../..")
 [node name="TaskEnemyStartAttack" type="Node" parent="BehaviorTree/BT_Sequence" node_paths=PackedStringArray("enemyMovement", "enemyAttack", "enemySprite", "enemyController")]
 script = ExtResource("20_q1hx6")
 enemyMovement = NodePath("../../../EnemyMovement")
-enemyAttack = NodePath("../../../EnemyRotator/MainAttack")
+enemyAttack = NodePath("../../../EnemyRotator/BossRobotMainAttack")
 enemySprite = NodePath("../../../EnemySprite")
 enemyAttackAnimationName = "gun_attack"
 enemyController = NodePath("../../..")

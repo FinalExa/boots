@@ -25,7 +25,7 @@ radius = 48.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 704.045
 
-[node name="EnemyMachinegun" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects")]
+[node name="EnemyMachinegun" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects", "allEnemyAttacks")]
 script = ExtResource("1_3ntx5")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
@@ -37,6 +37,7 @@ targetPointer = NodePath("TargetPointer")
 attackDistance = 1000.0
 damageImmunityDuration = 0.3
 attachedObjects = NodePath("AttachedObjects")
+allEnemyAttacks = [NodePath("EnemyRotator/EnemyMachinegunAttack")]
 
 [node name="Sounds" type="Node" parent="."]
 
@@ -108,7 +109,8 @@ pointer = NodePath("Pointer")
 [node name="Pointer" type="Node2D" parent="EnemyRotator"]
 position = Vector2(0, -64)
 
-[node name="EnemyMachinegunAttack" parent="EnemyRotator" node_paths=PackedStringArray("characterRef") instance=ExtResource("10_5q3vd")]
+[node name="EnemyMachinegunAttack" parent="EnemyRotator" node_paths=PackedStringArray("attackSounds", "characterRef") instance=ExtResource("10_5q3vd")]
+attackSounds = [null, null, null, null, null, null, null, null, null, null]
 characterRef = NodePath("../..")
 
 [node name="EnemyDetection" type="Area2D" parent="." node_paths=PackedStringArray("enemyController", "normalSprite", "angrySprite")]

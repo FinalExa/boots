@@ -25,7 +25,7 @@ radius = 40.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5l0v"]
 radius = 704.045
 
-[node name="EnemySpinner" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects")]
+[node name="EnemySpinner" type="CharacterBody2D" node_paths=PackedStringArray("enemyMovement", "enemyRepelled", "enemyRotator", "enemyAttack", "enemyHealth", "enemyShielded", "targetPointer", "attachedObjects", "allEnemyAttacks")]
 script = ExtResource("1_q1ubi")
 enemyMovement = NodePath("EnemyMovement")
 enemyRepelled = NodePath("EnemyRepelled")
@@ -37,6 +37,7 @@ targetPointer = NodePath("TargetPointer")
 attackDistance = 200.0
 damageImmunityDuration = 0.3
 attachedObjects = NodePath("AttachedObjects")
+allEnemyAttacks = [NodePath("EnemyRotator/EnemySpinAttack")]
 
 [node name="Sounds" type="Node" parent="."]
 

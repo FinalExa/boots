@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_m3uem"]
 [ext_resource type="PackedScene" uid="uid://o2yinv1e7ipa" path="res://PowerUps/Ice/contact_ice.tscn" id="2_khm3b"]
 
-[node name="Ice" type="Node2D" node_paths=PackedStringArray("powerUps")]
+[node name="Ice" type="Node2D" node_paths=PackedStringArray("powerUps", "forceAtStart")]
 script = ExtResource("1_m3uem")
 powerUpFaction = 2
 powerUps = [NodePath("ContactIce")]
+forceAtStart = [NodePath("ContactIce")]
 
 [node name="ContactIce" parent="." instance=ExtResource("2_khm3b")]

@@ -8,7 +8,7 @@ var currentDamage: float
 var currentEffectDamage: float
 var currentEffectDuration: float
 
-func _ready():
+func _process(delta):
 	DoDamage()
 	ApplyEffect()
 	if (hasSpecialObject && specialObject != ""): SpawnSpecialObject(specialObject)
