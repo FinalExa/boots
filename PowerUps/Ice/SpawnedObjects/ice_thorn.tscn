@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c36msxbh0lul6"]
+
+[ext_resource type="Script" path="res://PowerUps/Ice/SpawnedObjects/Scripts/IceThorn.gd" id="1_dyi24"]
+[ext_resource type="Texture2D" uid="uid://d4hhwvskn4uss" path="res://PowerUps/Ice/Sprites/ice_thorn.png" id="2_d7s3y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5tf0"]
+radius = 160.2
+
+[node name="IceThorn" type="Area2D"]
+script = ExtResource("1_dyi24")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_d7s3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y5tf0")
+
+[connection signal="body_entered" from="." to="." method="ObjectInArea"]
+[connection signal="body_exited" from="." to="." method="ObjectOutOfArea"]

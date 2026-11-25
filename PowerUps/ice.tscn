@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://civ0yujr7sxw3"]
+[gd_scene load_steps=4 format=3 uid="uid://civ0yujr7sxw3"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_m3uem"]
 [ext_resource type="PackedScene" uid="uid://o2yinv1e7ipa" path="res://PowerUps/Ice/contact_ice.tscn" id="2_khm3b"]
+[ext_resource type="PackedScene" uid="uid://bl0rbguws1rga" path="res://PowerUps/Ice/speed_charge_ice.tscn" id="3_ofe6h"]
 
 [node name="Ice" type="Node2D" node_paths=PackedStringArray("powerUps", "forceAtStart")]
 script = ExtResource("1_m3uem")
 powerUpFaction = 2
-powerUps = [NodePath("ContactIce")]
-forceAtStart = [NodePath("ContactIce")]
+powerUps = [NodePath("ContactIce"), NodePath("SpeedChargeIce")]
+forceAtStart = [NodePath("SpeedChargeIce")]
 
 [node name="ContactIce" parent="." instance=ExtResource("2_khm3b")]
+
+[node name="SpeedChargeIce" parent="." instance=ExtResource("3_ofe6h")]

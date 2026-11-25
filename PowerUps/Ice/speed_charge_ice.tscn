@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl0rbguws1rga"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpSpeedCharge.gd" id="1_tyttv"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_nwlnq"]
+
+[node name="SpeedChargeIce" type="Node2D" node_paths=PackedStringArray("speedChargeSpawners1", "speedChargeSpawners2", "speedChargeSpawners3")]
+script = ExtResource("1_tyttv")
+speedChargeMaxValue = 2000.0
+speedChargeMaxStacks = 1
+speedChargeSpawners1 = [NodePath("ObjectSpawner1")]
+speedChargeSpawners2 = [NodePath("ObjectSpawner2")]
+speedChargeSpawners3 = [NodePath("ObjectSpawner3")]
+powerUpName = "Speed Charge Ice"
+powerUpDescription = "When activated, a wave of frost is emitted, every enemy hit inside it generates thorns."
+powerUpFaction = 2
+
+[node name="ObjectSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_nwlnq")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/SpeedCharge/ice_speed_charge_1.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_nwlnq")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/SpeedCharge/ice_speed_charge_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_nwlnq")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/SpeedCharge/ice_speed_charge_3.tscn"

@@ -21,7 +21,7 @@ var currentStationaryDuration: float
 var currentStationaryAreaSize: Vector2
 var currentSpriteSize: Vector2
 
-func _ready():
+func ReadyOperations():
 	self.global_rotation = 0
 
 func _process(delta):

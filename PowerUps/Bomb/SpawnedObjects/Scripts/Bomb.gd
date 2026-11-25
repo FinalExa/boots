@@ -22,7 +22,7 @@ var enemiesInRange: Array[EnemyController]
 var damagedEnemies: Array[EnemyController]
 var isExploding: bool
 
-func _ready():
+func ReadyOperations():
 	explosionSprite.hide()
 	self.global_rotation = 0
 

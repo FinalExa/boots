@@ -14,6 +14,12 @@ extends Node2D
 var powerUpRef: PowerUp
 var ref: Node2D
 
+func _ready():
+	ReadyOperations()
+
+func ReadyOperations():
+	pass
+
 func ApplyPowerUps(powerUpManager: PowerUpManager, id: int):
 	IncreaseStats(powerUpManager.powerUpPassiveDataBlocks[id])
 	if (hasSpecialObject): call_deferred("SpawnSpecialObject", specialObject)

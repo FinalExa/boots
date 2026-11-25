@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://reawftgrm307"]
+
+[ext_resource type="Script" path="res://PowerUps/Ice/SpawnedObjects/Scripts/IceThorns.gd" id="1_e1pya"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_v1bet"]
+
+[node name="IceThorns" type="Node2D" node_paths=PackedStringArray("spawnerRef")]
+script = ExtResource("1_e1pya")
+thornAmount = 3
+spawnerRef = NodePath("ObjectSpawner")
+spawnRangeValue = 300.0
+effectName = "IceThorns"
+frequencyType = 4
+
+[node name="ObjectSpawner" type="Node2D" parent="."]
+script = ExtResource("2_v1bet")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/ice_thorn.tscn"
