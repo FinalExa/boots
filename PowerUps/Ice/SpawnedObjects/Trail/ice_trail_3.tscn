@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6ehwhv4e5nt4"]
+
+[ext_resource type="Script" path="res://PowerUps/Ice/SpawnedObjects/Scripts/Ice.gd" id="1_r0ebx"]
+[ext_resource type="Texture2D" uid="uid://bqcj8rl7shy3y" path="res://PowerUps/Ice/Sprites/ice_floor.png" id="2_oxfk3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clsv8"]
+size = Vector2(128, 256)
+
+[node name="IceTrail3" type="Area2D"]
+script = ExtResource("1_r0ebx")
+iceDamage = 6.0
+duration = 2.0
+reEnterDamage = true
+powerUpFaction = 2
+hasEffect = true
+effect = "res://PowerUps/Ice/SpawnedObjects/ice_slow.tscn"
+effectDamage = 2.0
+effectDuration = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(2.86102e-06, 9.53674e-07)
+scale = Vector2(2, 2)
+texture = ExtResource("2_oxfk3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_clsv8")
+
+[connection signal="body_entered" from="." to="." method="ObjectInArea"]
+[connection signal="body_exited" from="." to="." method="ObjectOutOfArea"]

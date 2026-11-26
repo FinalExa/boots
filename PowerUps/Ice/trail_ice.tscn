@@ -8,16 +8,19 @@ script = ExtResource("1_yhdda")
 trailSpawners1 = [NodePath("ObjectSpawner1")]
 trailSpawners2 = [NodePath("ObjectSpawner2")]
 trailSpawners3 = [NodePath("ObjectSpawner3")]
-trailInterval = 0.5
+trailInterval = 0.1
 powerUpName = "Trail Ice"
 powerUpDescription = "Leaves behind you a trail of cold ice that slows enemies down and deals contact damage to them."
 powerUpFaction = 2
 
 [node name="ObjectSpawner1" type="Node2D" parent="."]
 script = ExtResource("2_4s1je")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Trail/ice_trail_1.tscn"
 
 [node name="ObjectSpawner2" type="Node2D" parent="."]
 script = ExtResource("2_4s1je")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Trail/ice_trail_2.tscn"
 
 [node name="ObjectSpawner3" type="Node2D" parent="."]
 script = ExtResource("2_4s1je")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Trail/ice_trail_3.tscn"

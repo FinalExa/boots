@@ -3,6 +3,7 @@ extends PowerUpObject
 
 @export var iceDamage: float
 @export var duration: float
+@export var reEnterDamage: bool
 
 var durationTimer: float
 var enemiesInRange: Array[EnemyController]
@@ -53,3 +54,5 @@ func ObjectInArea(body):
 func ObjectOutOfArea(body):
 	if (body is EnemyController && enemiesInRange.has(body)):
 		enemiesInRange.erase(body)
+		if (reEnterDamage && damagedEnemies.has(body)):
+			damagedEnemies.erase(body)
