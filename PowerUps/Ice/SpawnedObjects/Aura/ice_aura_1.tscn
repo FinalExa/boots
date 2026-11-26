@@ -6,10 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_112l4"]
 radius = 256.125
 
-[node name="IceAura1" type="Area2D"]
+[node name="IceAura1" type="Area2D" node_paths=PackedStringArray("collisionShape", "sprite")]
 script = ExtResource("1_q1nek")
 iceDamage = 15.0
 duration = 0.2
+collisionShape = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
 powerUpFaction = 2
 hasEffect = true
 effect = "res://PowerUps/Ice/SpawnedObjects/ice_slow.tscn"

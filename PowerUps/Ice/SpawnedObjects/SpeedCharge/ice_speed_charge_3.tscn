@@ -6,10 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3agvy"]
 radius = 640.05
 
-[node name="IceSpeedCharge3" type="Area2D"]
+[node name="IceSpeedCharge3" type="Area2D" node_paths=PackedStringArray("collisionShape", "sprite")]
 script = ExtResource("1_hgrdm")
 iceDamage = 10.0
 duration = 1.0
+collisionShape = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
 powerUpFaction = 2
 hasEffect = true
 effect = "res://PowerUps/Ice/SpawnedObjects/ice_thorns.tscn"

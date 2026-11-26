@@ -6,11 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd00d"]
 size = Vector2(96, 224)
 
-[node name="IceTrail2" type="Area2D"]
+[node name="IceTrail2" type="Area2D" node_paths=PackedStringArray("collisionShape", "sprite")]
 script = ExtResource("1_fwlxi")
 iceDamage = 4.0
 duration = 2.0
 reEnterDamage = true
+collisionShape = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
 powerUpFaction = 2
 hasEffect = true
 effect = "res://PowerUps/Ice/SpawnedObjects/ice_slow.tscn"

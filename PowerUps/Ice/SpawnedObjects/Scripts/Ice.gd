@@ -4,6 +4,11 @@ extends PowerUpObject
 @export var iceDamage: float
 @export var duration: float
 @export var reEnterDamage: bool
+@export var collisionShape: CollisionShape2D
+@export var sprite: Sprite2D
+
+var collisionShapeScale: Vector2
+var spriteScale: Vector2
 
 var durationTimer: float
 var enemiesInRange: Array[EnemyController]
@@ -31,7 +36,14 @@ func IncreaseStats(dataBlock: PowerUpPassiveDataBlock):
 	currentDuration = (duration * (dataBlock.timeBonus / 100))
 	currentEffectDamage = (effectDamage * (dataBlock.damageBonus / 100))
 	currentEffectDuration = (effectDuration * (dataBlock.timeBonus / 100))
+	if (collisionShape != null):
+		collisionShapeScale = (collisionShape.scale * (dataBlock.sizeBonus / 100))
+		collisionShape.scale = collisionShapeScale
+	if (sprite != null):
+		spriteScale = (sprite.scale * (dataBlock.sizeBonus / 100))
+		sprite.scale =  spriteScale
 	durationTimer = currentDuration
+	
 
 func DoDamageAndEffects():
 	if (ref != null && ref is EnemyController && !damagedEnemies.has(ref)):

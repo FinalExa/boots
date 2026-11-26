@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://2vkr5jd34rn3"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PassivePowerUp.gd" id="1_3ujih"]
+
+[node name="DamagePassiveIce" type="Node2D"]
+script = ExtResource("1_3ujih")
+damageChangePercentage = 30.0
+powerUpName = "Damage Passive Ice"
+powerUpDescription = "Increases ice damage by 30%"
