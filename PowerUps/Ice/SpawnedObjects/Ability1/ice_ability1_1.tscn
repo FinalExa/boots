@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7qkhf8tvp5nv"]
+
+[ext_resource type="Script" path="res://PowerUps/Ice/SpawnedObjects/Scripts/Ice.gd" id="1_jmmr1"]
+[ext_resource type="Texture2D" uid="uid://cujsy73lg66yl" path="res://PowerUps/Ice/Sprites/ice_mist.png" id="2_1fmv6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_112l4"]
+radius = 64.4981
+
+[node name="IceAbility1_1" type="Area2D" node_paths=PackedStringArray("collisionShape", "sprite")]
+script = ExtResource("1_jmmr1")
+iceDamageOverTime = 20.0
+duration = 5.0
+reEnterDamage = true
+collisionShape = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
+powerUpFaction = 2
+hasEffect = true
+effect = "res://PowerUps/Ice/SpawnedObjects/ice_thorns.tscn"
+effectDamage = 5.0
+effectDuration = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1fmv6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_112l4")
+
+[connection signal="body_entered" from="." to="." method="ObjectInArea"]
+[connection signal="body_exited" from="." to="." method="ObjectOutOfArea"]

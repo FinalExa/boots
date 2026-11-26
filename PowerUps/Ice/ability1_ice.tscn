@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=3 uid="uid://bejwufdfs1jic"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAbility.gd" id="1_v3umw"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_yrymh"]
+
+[node name="Ability1Ice" type="Node2D" node_paths=PackedStringArray("abilitySpawners1", "abilitySpawners2", "abilitySpawners3")]
+script = ExtResource("1_v3umw")
+abilitySpawners1 = [NodePath("1/ObjectSpawner1"), NodePath("1/ObjectSpawner2"), NodePath("1/ObjectSpawner3"), NodePath("1/ObjectSpawner4"), NodePath("1/ObjectSpawner5")]
+abilitySpawners2 = [NodePath("2/ObjectSpawner1"), NodePath("2/ObjectSpawner2"), NodePath("2/ObjectSpawner3"), NodePath("2/ObjectSpawner4"), NodePath("2/ObjectSpawner5")]
+abilitySpawners3 = [NodePath("3/ObjectSpawner1"), NodePath("3/ObjectSpawner2"), NodePath("3/ObjectSpawner3"), NodePath("3/ObjectSpawner4"), NodePath("3/ObjectSpawner5")]
+powerUpName = "Ability 1 Ice"
+powerUpDescription = "Creates icy mist that damages enemies over time and creates thorns around them."
+powerUpFaction = 2
+
+[node name="1" type="Node2D" parent="."]
+
+[node name="ObjectSpawner1" type="Node2D" parent="1"]
+position = Vector2(0, -192)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_1.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="1"]
+position = Vector2(-192, -64)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_1.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="1"]
+position = Vector2(192, -64)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_1.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="1"]
+position = Vector2(-128, 192)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_1.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="1"]
+position = Vector2(128, 192)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_1.tscn"
+
+[node name="2" type="Node2D" parent="."]
+
+[node name="ObjectSpawner1" type="Node2D" parent="2"]
+position = Vector2(0, -256)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_2.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="2"]
+position = Vector2(-256, -64)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="2"]
+position = Vector2(256, -64)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_2.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="2"]
+position = Vector2(-192, 256)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_2.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="2"]
+position = Vector2(192, 256)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_2.tscn"
+
+[node name="3" type="Node2D" parent="."]
+
+[node name="ObjectSpawner1" type="Node2D" parent="3"]
+position = Vector2(0, -320)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_3.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="3"]
+position = Vector2(-320, -64)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_3.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="3"]
+position = Vector2(320, -64)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_3.tscn"
+
+[node name="ObjectSpawner4" type="Node2D" parent="3"]
+position = Vector2(-256, 320)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_3.tscn"
+
+[node name="ObjectSpawner5" type="Node2D" parent="3"]
+position = Vector2(256, 320)
+script = ExtResource("2_yrymh")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability1/ice_ability1_3.tscn"

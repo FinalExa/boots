@@ -7,3 +7,4 @@ script = ExtResource("1_3ujih")
 damageChangePercentage = 30.0
 powerUpName = "Damage Passive Ice"
 powerUpDescription = "Increases ice damage by 30%"
+powerUpFaction = 2

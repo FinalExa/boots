@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvvh0rw0wiaag"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PassivePowerUp.gd" id="1_860w5"]
+
+[node name="TimerPassiveIce" type="Node2D"]
+script = ExtResource("1_860w5")
+timeChangePercentage = 30.0
+powerUpName = "Timer Passive Ice"
+powerUpDescription = "Ice duration and effects last 30% more."
+powerUpFaction = 2

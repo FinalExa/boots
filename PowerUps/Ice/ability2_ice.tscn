@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5je7ea5e58y6"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAbility.gd" id="1_xqg8f"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_l6616"]
+
+[node name="Ability2Ice" type="Node2D" node_paths=PackedStringArray("abilitySpawners1", "abilitySpawners2", "abilitySpawners3")]
+script = ExtResource("1_xqg8f")
+abilitySpawners1 = [NodePath("ObjectSpawner1")]
+abilitySpawners2 = [NodePath("ObjectSpawner2")]
+abilitySpawners3 = [NodePath("ObjectSpawner3")]
+secondAbilitySlot = true
+powerUpName = "Ability 2 Ice"
+powerUpDescription = "Creates a huge mist area that damages enemies over time slows them."
+powerUpFaction = 2
+
+[node name="ObjectSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_l6616")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability2/ice_ability2_1.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_l6616")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability2/ice_ability2_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_l6616")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Ability2/ice_ability2_3.tscn"
