@@ -3,7 +3,7 @@ extends EffectOverTime
 
 var defaultMoveSpeed: float
 
-func ExecuteEffect(delta):
+func ExecuteEffect(_delta):
 	SetSlowOnEnemy(ref)
 
 func OnEffectEnd():

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce7o0n7pkdgxd"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpAura.gd" id="1_jh1oc"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_ufmqj"]
+
+[node name="AuraIce" type="Node2D" node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_jh1oc")
+spawners = [NodePath("ObjectSpawner1"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
+delay = 0.3
+powerUpName = "Aura Ice"
+powerUpDescription = "Periodically emits an icy mist around you, "
+powerUpFaction = 2
+
+[node name="ObjectSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_ufmqj")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Aura/ice_aura_1.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_ufmqj")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Aura/ice_aura_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_ufmqj")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Aura/ice_aura_3.tscn"
