@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://db2io0dnd5xwu"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpShoot.gd" id="1_gxng4"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_l76fg"]
+
+[node name="ShootIce" type="Node2D" node_paths=PackedStringArray("shootObjectSpawners")]
+script = ExtResource("1_gxng4")
+shootObjectSpawners = [NodePath("ObjectSpawner1"), NodePath("ObjectSpawner2"), NodePath("ObjectSpawner3")]
+powerUpName = "Shoot Ice"
+powerUpDescription = "On hit your projectiles create ice thorns around the enemy hit."
+powerUpFaction = 2
+
+[node name="ObjectSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_l76fg")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Shoot/ice_shoot_1.tscn"
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_l76fg")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Shoot/ice_shoot_2.tscn"
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_l76fg")
+objectPath = "res://PowerUps/Ice/SpawnedObjects/Shoot/ice_shoot_3.tscn"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbrb5x2fjpbkj"]
+
+[ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpTypes/PowerUpTrail.gd" id="1_yhdda"]
+[ext_resource type="Script" path="res://Spawners/Scripts/ObjectSpawner.gd" id="2_4s1je"]
+
+[node name="TrailIce" type="Node2D" node_paths=PackedStringArray("trailSpawners1", "trailSpawners2", "trailSpawners3")]
+script = ExtResource("1_yhdda")
+trailSpawners1 = [NodePath("ObjectSpawner1")]
+trailSpawners2 = [NodePath("ObjectSpawner2")]
+trailSpawners3 = [NodePath("ObjectSpawner3")]
+trailInterval = 0.5
+powerUpName = "Trail Ice"
+powerUpDescription = "Leaves behind you a trail of cold ice that slows enemies down and deals contact damage to them."
+powerUpFaction = 2
+
+[node name="ObjectSpawner1" type="Node2D" parent="."]
+script = ExtResource("2_4s1je")
+
+[node name="ObjectSpawner2" type="Node2D" parent="."]
+script = ExtResource("2_4s1je")
+
+[node name="ObjectSpawner3" type="Node2D" parent="."]
+script = ExtResource("2_4s1je")

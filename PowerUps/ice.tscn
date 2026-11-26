@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://civ0yujr7sxw3"]
+[gd_scene load_steps=6 format=3 uid="uid://civ0yujr7sxw3"]
 
 [ext_resource type="Script" path="res://PowerUps/Scripts/PowerUpContainer.gd" id="1_m3uem"]
 [ext_resource type="PackedScene" uid="uid://o2yinv1e7ipa" path="res://PowerUps/Ice/contact_ice.tscn" id="2_khm3b"]
 [ext_resource type="PackedScene" uid="uid://bl0rbguws1rga" path="res://PowerUps/Ice/speed_charge_ice.tscn" id="3_ofe6h"]
 [ext_resource type="PackedScene" uid="uid://ce7o0n7pkdgxd" path="res://PowerUps/Ice/aura_ice.tscn" id="4_oaul2"]
+[ext_resource type="PackedScene" uid="uid://db2io0dnd5xwu" path="res://PowerUps/Ice/shoot_ice.tscn" id="5_d5c53"]
 
 [node name="Ice" type="Node2D" node_paths=PackedStringArray("powerUps", "forceAtStart")]
 script = ExtResource("1_m3uem")
 powerUpFaction = 2
-powerUps = [NodePath("ContactIce"), NodePath("SpeedChargeIce"), NodePath("AuraIce")]
-forceAtStart = [NodePath("AuraIce")]
+powerUps = [NodePath("ContactIce"), NodePath("SpeedChargeIce"), NodePath("AuraIce"), NodePath("ShootIce")]
+forceAtStart = [NodePath("ShootIce")]
 
 [node name="ContactIce" parent="." instance=ExtResource("2_khm3b")]
 
 [node name="SpeedChargeIce" parent="." instance=ExtResource("3_ofe6h")]
 
 [node name="AuraIce" parent="." instance=ExtResource("4_oaul2")]
+
+[node name="ShootIce" parent="." instance=ExtResource("5_d5c53")]
